@@ -4,10 +4,10 @@
 		"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
 		"postDate": "22-04-2016",
 		"tags": [
-			"Azure",
 			"announcement",
 			"arm",
 			"asm",
+			"azure",
 			"azureresourcemanager",
 			"azureservicemanagement"
 		],
@@ -26,9 +26,9 @@
 		"title": "Migrating from Azure ASM to ARM portal",
 		"postDate": "21-04-2016",
 		"tags": [
-			"Azure",
 			"arm",
 			"asm",
+			"azure",
 			"azureresourcemanager",
 			"azureservicemanagement"
 		],
@@ -47,8 +47,8 @@
 		"title": "PowerShell DSC - Partial Configurations",
 		"postDate": "20-04-2016",
 		"tags": [
-			"PowerShell",
-			"dsc"
+			"dsc",
+			"powershell"
 		],
 		"category": "PowerShell",
 		"body": "**Partial Configurations** is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\r\nThe Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.\r\n\r\nThis opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.\r\n\r\nYou can have partial configurations in following modes:\r\n\r\n 1. Push Mode\r\n 2. Pull Mode\r\n 3. Hybrid Mode (i.e. combination of Push and Pull)\r\n \r\n### Configuration for the PUSH Mode\r\n\r\nYou need to follow three steps to configure Partial configurations for the PUSH mode:\r\n\r\n - Configure the LCM, on the target node, to expect partial configurations\r\n - Push each partial configuration from different sources using **Publish-DSCConfiguration** cmdlet. Target node will automatically combine the partial configurations into single configuration.\r\n - Apply the configuration by calling the **Start-DSCConfiguration**cmdlet\r\n \r\n### Configuration for the PULL Mode\r\n\r\nThis is bit complex than the Push mode. In nutshell you only need couple of steps:\r\n\r\n - Configure the LCM, on the target node, to receive partial configurations but from PULL servers\r\n - Name and locate the configuration documents properly on the pull servers\r\n \r\nTo know more about DSC Partial configurations follow the below references:\r\n\r\n   - [Detailed Blog by AutomationNext with very valuable insights](https:\/\/automationnext.wordpress.com\/2016\/04\/19\/powershell-desired-state-configuration-partial-configurations-without-configurationid\/)\r\n   - [Official MSDN Article](https:\/\/msdn.microsoft.com\/en-us\/powershell\/dsc\/partialconfigs)",
@@ -65,8 +65,8 @@
 		"title": "Azure Container Service hits General Availability",
 		"postDate": "19-04-2016",
 		"tags": [
-			"Azure",
-			"General"
+			"azure",
+			"general"
 		],
 		"category": "Azure",
 		"body": "Azure Container Service has finally hit General Availability today. \r\n\r\nIf you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\r\nAll the tools that you may be familiar with when working with a Container Service should work like Apache Mesos or Docker Swarm. It only uses open source components in the orchestration layers to give you portability of full applications.\r\n\r\nYou can find the announcement here: [GA for Azure Container Service](https:\/\/azure.microsoft.com\/en-us\/updates\/general-availability-azure-container-service\/)\r\n\r\nYou can learn more about the Container Service as offered by Azure on the product page here: [Azure Container Service](https:\/\/azure.microsoft.com\/en-us\/services\/container-service\/)\r\n",
@@ -75,7 +75,8 @@
 		"slug": "azure-container-service-hits-general-availability",
 		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work lik...<\/p>\n"
+		"summary": "\n<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work lik...<\/p>\n",
+		"prevStatus": "publised"
 	},
 	{
 		"author": "@20aman",
@@ -83,7 +84,7 @@
 		"postDate": "15-04-2016",
 		"tags": [
 			".net",
-			"Azure",
+			"azure",
 			"c#"
 		],
 		"category": "Azure",
@@ -93,7 +94,8 @@
 		"slug": "azure-authentication-authenticating-any-azure-api-request-in-your-application",
 		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p>I have created a code sample to showcase how you can authenticate any request programatically with Azure.\nThis also contains <strong>a Reusable Authentication Helper class<\/strong> which you can directly use in your code.<\/p>\n<h3>Where is the code<\/h3>\n<p>You can find the complete code sample alo...<\/p>\n"
+		"summary": "\n<p>I have created a code sample to showcase how you can authenticate any request programatically with Azure.\nThis also contains <strong>a Reusable Authentication Helper class<\/strong> which you can directly use in your code.<\/p>\n<h3>Where is the code<\/h3>\n<p>You can find the complete code sample alo...<\/p>\n",
+		"prevStatus": "publised"
 	},
 	{
 		"author": "@20aman",
@@ -119,8 +121,10 @@
 		"title": "Various Options Added to Buy Microsoft Azure Active Directory Basic",
 		"postDate": "13-04-2016",
 		"tags": [
-			"Azure",
-			"general"
+			"azure",
+			"general",
+			"ad",
+			"activedirectory"
 		],
 		"category": "Azure",
 		"body": "Today Microsoft announced that they have added various options to buy Microsoft Azure Active Directory (AAD) Basic. \r\nYou can now buy it through the Direct program as well as through following options:\r\n\r\n - [Microsoft Enterprise Agreement](https:\/\/www.microsoft.com\/en-us\/licensing\/licensing-programs\/enterprise.aspx?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP)\r\n - [Open Volume License Program](https:\/\/www.microsoft.com\/en-us\/licensing\/licensing-programs\/open-license.aspx?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP)\r\n - [Microsoft Cloud Solution Provider](https:\/\/partner.microsoft.com\/en-US\/Solutions\/cloud-reseller-overview?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP)\r\n\r\nTo purchase, sign in to the [Office 365 Administration Portal](https:\/\/portal.office.com)\r\n\r\nYou can also watch the below video for details. Although the video is for AAD Premium, the steps are essentially similar for AAD Basic.\r\n<iframe src=\"https:\/\/channel9.msdn.com\/Series\/Azure-Active-Directory-Videos-Demos\/How-to-Purchase-Azure-Active-Directory-Premium-Existing-Customer\/player\" width=\"560\" height=\"315\" allowFullScreen frameBorder=\"0\"><\/iframe>\r\n\r\nYou can also engage a partner to assist you with the purchase and your Azure Active Directory related any requirements. \r\n[Infront Consulting Group](http:\/\/www.infrontconsulting.com\/) (where I currently work) is one such partner who are highly respected in market and are Microsoft Gold Certified Partner. \r\n\r\nThanks for reading! If you have any questions please ask in the comments below.",
@@ -157,8 +161,8 @@
 		"title": "Getting Started - Azure Site Recovery (ASR) In New Azure Portal",
 		"postDate": "09-04-2016",
 		"tags": [
-			"Azure",
-			"arm"
+			"arm",
+			"azure"
 		],
 		"category": "Azure",
 		"body": "Azure Site Recovery or ASR is now available in the new Azure Resource Manager or ARM portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.\r\n**Your older Vaults (created via Classic ASM Azure Portal) will not be available in ASR preview feature.**\r\n\r\n### What are the new features\r\n\r\nThe new features include:\r\n\r\n* All the goodness of Azure Resource Manager in ASR\r\n* Lean experience for various ASR scenarios\r\n* Enhancements to the specific Site Recovery scenarios\r\n\r\n### Lets take a quick look at some of these.\r\n\r\nIf you Browse and search for \"Recovery\" you get Recovery Services Vaults as Preview feature.\r\n![Browse and Search](http:\/\/HarvestingClouds.com\/images\/14617358075720517f78904.png \"Browse and Search\")\r\n\r\nClicking on it will open up the blade for \"Recovery Services valuts\". Notice that Microsoft has PREVIEW text in this.\r\n![alt text](http:\/\/HarvestingClouds.com\/images\/1461735702572051161683f.png \"ASR Vault\")\r\n\r\nClicking on the Add button brings up the ASR vault creation blade. Notice the locations available for vault creation here.\r\n![Vault Creation](http:\/\/HarvestingClouds.com\/images\/14617359385720520210878.png \"Vault Creation\")\r\n\r\nAfter you hit create the Vault gets deployed really quickly. I tested for East US location and it was created in under 10 secs.\r\nRefresh to view your newly created vault. Click on it to open the NEW ASR Vault features. Notice that the Backup feature is also there in the ASR vault now.\r\n![New Vault](http:\/\/HarvestingClouds.com\/images\/1461735907572051e31549a.png \"New Vault\")\r\n\r\nTo find the options for replication go to Settings -> Getting Started section -> Site Recovery -> Follow Wizard.\r\n![New Site Recovery Wizard](http:\/\/HarvestingClouds.com\/images\/1461735869572051bd2d6fa.png \"New Site Recovery Wizard\")\r\n\r\nThe Scenario Types available are only two. But all the scenarios are covered here:\r\n\r\n* From my site to Azure\r\n* From my site to another site\r\n\r\nBased on the scenario you select you are asked for different options. The options for Virtualization\/Management Server type for \"From my site to Azure\" are:\r\n\r\n* VMM\r\n* Stand alone Hyper-V hosts\r\n* vCenter\r\n* Physical machines (not virtualized)\r\n![Creation Options](http:\/\/HarvestingClouds.com\/images\/14617358385720519e578ba.png \"Creation Options\")\r\n\r\n### Backup in ASR vault\r\nAnother feature is creation of Backups from the same vault. Click on the + icon for Backup in the Vault main blade and then follow the wizard for the preview feature.\r\n![Backup In ASR](http:\/\/HarvestingClouds.com\/images\/14617357575720514d5d1d8.png \"Backup In ASR\")\r\nNotice in the screenshot above that the backup types available are:\r\n\r\n* Azure virtual machine backup\r\n* File Folder backup\r\n* System Center Data Protection Manager\r\n\r\nSelecting each option provides you with details for next steps. You can then create a backup policy and configure Items to backup.\r\n\r\nGive these features a try and let us know in comments below how you find the new features.\r\nHappy Exploring!",
