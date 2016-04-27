@@ -85,7 +85,7 @@
 		"tags": [
 			".net",
 			"azure",
-			"c#"
+			"csharp"
 		],
 		"category": "Azure",
 		"body": "I have created a code sample to showcase how you can authenticate any request programatically with Azure. \r\nThis also contains **a Reusable Authentication Helper class** which you can directly use in your code.\r\n\r\n### Where is the code\r\n\r\nYou can find the complete code sample along with the reusable Azure Authentication Helper class library from this GitHub repo:\r\n[Azure Authentication Sample](https:\/\/github.com\/HarvestingClouds\/AzureAuthentication)\r\n\r\n### What are my authentication Options\r\n\r\nYou have the following options\r\n\r\n - Authenticating by **Prompting** for Credentials from end user. (This needs end user interaction)\r\n - Authenticating by **Credentials** i.e. using a password. (This does not need any end user interaction)\r\n - Authenticating by using a **Certificate** ( This also does not need any end user interaction)\r\n\r\nI have provided this functionality in 3 separate methods, in a separate class file along with it's interface. \r\nYou can follow the instructions in the ReadMe file in the GitHub repo and start using any one of the method.\r\n\r\nI hope you find this usefull and this will avoid the trouble of figuring things out, which I have already undergone. \r\n\r\nLet me know in the comments below if you have any questions or anything to add to this.",
@@ -141,7 +141,7 @@
 		"title": "Multiple Values In Grid.Mvc Single Column Filter via Checkboxes with Code Sample",
 		"postDate": "12-04-2016",
 		"tags": [
-			"c#",
+			"csharp",
 			"gridmvc",
 			"mvc",
 			"webdevelopment"
