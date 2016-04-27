@@ -1,0 +1,11 @@
+{
+	"url": "http:\/\/HarvestingClouds.com",
+	"title": "Harvesting Clouds",
+	"tagline": "Blog about all things regarding private and public clouds",
+	"author": "@20aman",
+	"layout": "default",
+	"theme": "cerulean.min.css",
+	"disqus": "harvestingclouds",
+	"analytics": "UA-75855204-1",
+	"only_titles": ""
+}

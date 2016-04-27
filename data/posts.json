@@ -1,0 +1,208 @@
+[
+	{
+		"author": "@20aman",
+		"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
+		"postDate": "22-04-2016",
+		"tags": [
+			"Azure",
+			"announcement",
+			"arm",
+			"asm",
+			"azureresourcemanager",
+			"azureservicemanagement"
+		],
+		"category": "Azure",
+		"body": "In additional to the tool I mentioned yesterday regarding [Migrating from Azure ASM to ARM portal](http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal) there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.\r\n\r\nMicrosoft has promised that they are committed to make the migration more easier from ASM (older) to ARM (newer) portal. Various solutions are already in the pipeline for this.\r\nBelow are the details and roadmap for the tentative timelines for these solutions.\r\n\r\n<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\"> <tbody> <tr> <td valign=\"top\" width=\"29%\"> <p><b>Solution<\/b><\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p><b>Customer Experience<\/b><\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p><b>Expected availability in 2016<\/b><\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Script migration<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>VM is rebooted as it is recreated in the Resource Manager model. While the Virtual Machines for the environment are recreated, the network is disconnected.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q1<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines, no VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>As all Virtual Machines deployed in the Resource Manager model must be in a VNet, Virtual Machines will be migrated and placed in a new VNET. This will result in a change in network configuration, requiring a reboot to reconnect.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with VNET<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q2, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine. This will require disconnecting any VNets connected on-premises, whether via ExpressRoute or VPN, before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q2<\/p> <\/td> <\/tr> <tr> <td valign=\"top\" width=\"29%\"> <p>Virtual Machines with basic hybrid (one connection)<\/p> <\/td> <td valign=\"top\" width=\"51%\"> <p>Starting in Q3, the platform will offer Virtual Machine migration from ASM to Resource Manager model without disrupting the running Virtual Machine and with minimal disruption to a basic hybrid connection, limited to just one connection back on-premises. More complex connections will require disconnecting before doing the migration.<\/p> <\/td> <td valign=\"top\" width=\"18%\"> <p align=\"center\">Q3<\/p> <\/td> <\/tr> <\/tbody> <\/table>\r\n\r\nReference: [Transitioning to the Resource Manager model](https:\/\/azure.microsoft.com\/en-us\/blog\/transitioning-to-the-resource-manager-model\/)",
+		"addpost": "addpost",
+		"dated": "Apr 22, 2016",
+		"slug": "roadmap-solutions-to-help-with-migration-from-azure-asm-to-arm-portal",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In additional to the tool I mentioned yesterday regarding <a href=\"http:\/\/harvestingclouds.com\/Migrating-from-Azure-ASM-to-ARM-portal\">Migrating from Azure ASM to ARM portal<\/a> there are various solutions in the pipeline. This post looks at the high level Roadmap for the same from Microsoft.<\/p>...\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Migrating from Azure ASM to ARM portal",
+		"postDate": "21-04-2016",
+		"tags": [
+			"Azure",
+			"arm",
+			"asm",
+			"azureresourcemanager",
+			"azureservicemanagement"
+		],
+		"category": "Azure",
+		"body": "With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.\r\nThe bottom line of all the discussion around the two portals is that **ARM is the future and is here to stay**. It means that you need to **plan and migrate** your resources from ASM portal to the ARM portal.\r\n\r\nThe key resource is your infrastructure which primarily consists of virtual machines. To migrate a single Virtual Machine (VM) from ASM portal to ARM portal you can leverage a set of PowerShell scripts called ASM2ARM.\r\nYou can download these scripts and check their description on [GitHub here on the **ASM2ARM** page](https:\/\/github.com\/fullscale180\/asm2arm). You can check the detailed instructions there too.\r\n\r\nTo plan this right now is very important as the transitioning to Azure Resource Manager model is already underway. Any future development and investment seems to be happening only in the newer portal only.\r\n\r\n**Reference:** [ASM2ARM scripts on GitHub](https:\/\/github.com\/fullscale180\/asm2arm)",
+		"addpost": "addpost",
+		"dated": "Apr 21, 2016",
+		"slug": "migrating-from-azure-asm-to-arm-portal",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.\nThe bottom line of all the discussion around the two portals is that <strong>ARM is the future and is here to stay...<\/strong><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "PowerShell DSC - Partial Configurations",
+		"postDate": "20-04-2016",
+		"tags": [
+			"PowerShell",
+			"dsc"
+		],
+		"category": "PowerShell",
+		"body": "**Partial Configurations** is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\r\nThe Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.\r\n\r\nThis opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.\r\n\r\nYou can have partial configurations in following modes:\r\n\r\n 1. Push Mode\r\n 2. Pull Mode\r\n 3. Hybrid Mode (i.e. combination of Push and Pull)\r\n \r\n### Configuration for the PUSH Mode\r\n\r\nYou need to follow three steps to configure Partial configurations for the PUSH mode:\r\n\r\n - Configure the LCM, on the target node, to expect partial configurations\r\n - Push each partial configuration from different sources using **Publish-DSCConfiguration** cmdlet. Target node will automatically combine the partial configurations into single configuration.\r\n - Apply the configuration by calling the **Start-DSCConfiguration**cmdlet\r\n \r\n### Configuration for the PULL Mode\r\n\r\nThis is bit complex than the Push mode. In nutshell you only need couple of steps:\r\n\r\n - Configure the LCM, on the target node, to receive partial configurations but from PULL servers\r\n - Name and locate the configuration documents properly on the pull servers\r\n \r\nTo know more about DSC Partial configurations follow the below references:\r\n\r\n   - [Detailed Blog by AutomationNext with very valuable insights](https:\/\/automationnext.wordpress.com\/2016\/04\/19\/powershell-desired-state-configuration-partial-configurations-without-configurationid\/)\r\n   - [Official MSDN Article](https:\/\/msdn.microsoft.com\/en-us\/powershell\/dsc\/partialconfigs)",
+		"addpost": "addpost",
+		"dated": "Apr 20, 2016",
+		"slug": "powershell-dsc-partial-configurations",
+		"categoryslug": "powershell",
+		"status": "publised",
+		"summary": "\n<p><strong>Partial Configurations<\/strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.\nThe Local Configuration Manager or LCM on the target node puts the...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Container Service hits General Availability",
+		"postDate": "19-04-2016",
+		"tags": [
+			"Azure",
+			"General"
+		],
+		"category": "Azure",
+		"body": "Azure Container Service has finally hit General Availability today. \r\n\r\nIf you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\r\nAll the tools that you may be familiar with when working with a Container Service should work like Apache Mesos or Docker Swarm. It only uses open source components in the orchestration layers to give you portability of full applications.\r\n\r\nYou can find the announcement here: [GA for Azure Container Service](https:\/\/azure.microsoft.com\/en-us\/updates\/general-availability-azure-container-service\/)\r\n\r\nYou can learn more about the Container Service as offered by Azure on the product page here: [Azure Container Service](https:\/\/azure.microsoft.com\/en-us\/services\/container-service\/)\r\n",
+		"addpost": "addpost",
+		"dated": "Apr 19, 2016",
+		"slug": "azure-container-service-hits-general-availability",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Azure Container Service has finally hit General Availability today. <\/p>\n<p>If you don't know already, it is the \"container hosting solution\" which is optimized for Microsoft's Azure cloud.\nAll the tools that you may be familiar with when working with a Container Service should work lik...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Authentication - Authenticating any Azure API Request in your Application",
+		"postDate": "15-04-2016",
+		"tags": [
+			".net",
+			"Azure",
+			"c#"
+		],
+		"category": "Azure",
+		"body": "I have created a code sample to showcase how you can authenticate any request programatically with Azure. \r\nThis also contains **a Reusable Authentication Helper class** which you can directly use in your code.\r\n\r\n### Where is the code\r\n\r\nYou can find the complete code sample along with the reusable Azure Authentication Helper class library from this GitHub repo:\r\n[Azure Authentication Sample](https:\/\/github.com\/HarvestingClouds\/AzureAuthentication)\r\n\r\n### What are my authentication Options\r\n\r\nYou have the following options\r\n\r\n - Authenticating by **Prompting** for Credentials from end user. (This needs end user interaction)\r\n - Authenticating by **Credentials** i.e. using a password. (This does not need any end user interaction)\r\n - Authenticating by using a **Certificate** ( This also does not need any end user interaction)\r\n\r\nI have provided this functionality in 3 separate methods, in a separate class file along with it's interface. \r\nYou can follow the instructions in the ReadMe file in the GitHub repo and start using any one of the method.\r\n\r\nI hope you find this usefull and this will avoid the trouble of figuring things out, which I have already undergone. \r\n\r\nLet me know in the comments below if you have any questions or anything to add to this.",
+		"addpost": "addpost",
+		"dated": "Apr 15, 2016",
+		"slug": "azure-authentication-authenticating-any-azure-api-request-in-your-application",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>I have created a code sample to showcase how you can authenticate any request programatically with Azure.\nThis also contains <strong>a Reusable Authentication Helper class<\/strong> which you can directly use in your code.<\/p>\n<h3>Where is the code<\/h3>\n<p>You can find the complete code sample alo...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Run Azure Automation Runbooks via PowerShell ISE",
+		"postDate": "14-04-2016",
+		"tags": [
+			"automation",
+			"azure",
+			"powershell"
+		],
+		"category": "Azure",
+		"body": "Today I came across this blog post from my friend: [Azure Automation PowerShell ISE add-on](https:\/\/scomanswers.wordpress.com\/2016\/04\/11\/azure-automation-powershell-ise-add-on\/)\r\n\r\nWhat I came to know is that now you can Run the Azure Automation Runbooks via PowerShell ISE. This solves a big pain point for all Azure developers.\r\nNow you will be able to develop and test your scripts right from the convenience of your laptop's local PowerShell ISE. \r\n\r\n### What you need to do\r\nAll you need to do is install the PowerShell Add-On using the below cmdlet:\r\n\r\n```powershell\r\nFind-Module AzureAutomationAuthoringToolkit | Install-Module -Scope CurrentUser\r\n```\r\n\r\nThen import the module using below cmdlet:\r\n\r\n```powershell\r\nImport-Module AzureAutomationAuthoringToolkit\r\n```\r\n\r\nYou can configure the Add-On using a Configuration tab in the add-on and start getting your hands dirty. \r\n\r\n### Official Information from the Add-On Help\r\n\r\n#### Capabilities\r\n\r\n - Test runbooks on your local machine and in the Azure Automation service: \r\n - Store and edit Automation Assets locally \r\n - Use Automation Activities (Get-AutomationVariable, Get-AutomationPSCredential, etc) in local PowerShell scripts \r\n - Sync changes back to your Automation Account \r\n - Run test jobs in Automation and view results \r\n\r\n#### Notes\r\nAssets\r\n\r\n - Secret values (passwords, encrypted variables) are not downloaded automatically; they need to be set manually the first time the account is synced \r\n - Values that haven't been downloaded will be highlighted \r\n - Asset values you enter locally will not get overwritten when you sync from the cloud \r\n\r\nRunbooks \r\n\r\n - Native PowerShell and PowerShell Workflow runbooks are supported \r\n\r\nCheck the screenshot regarding this information below:\r\n![Official Notes](http:\/\/HarvestingClouds.com\/images\/1461735632572050d069253.png \"Official Notes\")\r\n\r\n### How much time it would take me\r\nIn all it would take you under 10 mins to get setup and rolling.\r\n\r\n### Where is more information on this and screenshots\r\nGo to the official [Technet blog by clicking HERE.](https:\/\/blogs.technet.microsoft.com\/msoms\/2016\/04\/08\/the-way-cool-azure-automation-powershell-ise-add-on\/)\r\n\r\nStart playing around and let us know your initial impression in the comments below. If you have any doubts and I will be happy to address them.",
+		"addpost": "addpost",
+		"dated": "Apr 14, 2016",
+		"slug": "run-azure-automation-runbooks-via-powershell-ise",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Today I came across this blog post from my friend: <a href=\"https:\/\/scomanswers.wordpress.com\/2016\/04\/11\/azure-automation-powershell-ise-add-on\/\">Azure Automation PowerShell ISE add-on<\/a><\/p>\n<p>What I came to know is that now you can Run the Azure Automation Runbooks via PowerShell ISE. This so...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Various Options Added to Buy Microsoft Azure Active Directory Basic",
+		"postDate": "13-04-2016",
+		"tags": [
+			"Azure",
+			"general"
+		],
+		"category": "Azure",
+		"body": "Today Microsoft announced that they have added various options to buy Microsoft Azure Active Directory (AAD) Basic. \r\nYou can now buy it through the Direct program as well as through following options:\r\n\r\n - [Microsoft Enterprise Agreement](https:\/\/www.microsoft.com\/en-us\/licensing\/licensing-programs\/enterprise.aspx?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP)\r\n - [Open Volume License Program](https:\/\/www.microsoft.com\/en-us\/licensing\/licensing-programs\/open-license.aspx?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP)\r\n - [Microsoft Cloud Solution Provider](https:\/\/partner.microsoft.com\/en-US\/Solutions\/cloud-reseller-overview?WT.mc_id=azurebg_email_Trans_1065_Tier2_Release_MOSP)\r\n\r\nTo purchase, sign in to the [Office 365 Administration Portal](https:\/\/portal.office.com)\r\n\r\nYou can also watch the below video for details. Although the video is for AAD Premium, the steps are essentially similar for AAD Basic.\r\n<iframe src=\"https:\/\/channel9.msdn.com\/Series\/Azure-Active-Directory-Videos-Demos\/How-to-Purchase-Azure-Active-Directory-Premium-Existing-Customer\/player\" width=\"560\" height=\"315\" allowFullScreen frameBorder=\"0\"><\/iframe>\r\n\r\nYou can also engage a partner to assist you with the purchase and your Azure Active Directory related any requirements. \r\n[Infront Consulting Group](http:\/\/www.infrontconsulting.com\/) (where I currently work) is one such partner who are highly respected in market and are Microsoft Gold Certified Partner. \r\n\r\nThanks for reading! If you have any questions please ask in the comments below.",
+		"addpost": "addpost",
+		"dated": "Apr 13, 2016",
+		"slug": "various-options-added-to-buy-microsoft-azure-active-directory-basic",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Today Microsoft announced that they have added various options to buy Microsoft Azure Active Directory (AAD) Basic.\nYou can now buy it through the Direct program as well as through following options:<\/p>\n<ul><li><a href=\"https:\/\/www.microsoft.com\/en-us\/licensing\/licensing-programs\/enterprise.asp...\"><\/a><\/li><\/ul>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Multiple Values In Grid.Mvc Single Column Filter via Checkboxes with Code Sample",
+		"postDate": "12-04-2016",
+		"tags": [
+			"c#",
+			"gridmvc",
+			"mvc",
+			"webdevelopment"
+		],
+		"category": "Web Development",
+		"body": "I have been struggling to implement multiple filters in a single column in Grid.Mvc tool. I have solved this by altering the code and updating the custom widget.\r\n**Note:** The WithMultipleFilters() option will not help you in this. That option enables multiple filters on different columns. To have multiple filters in the same column you need to update the way filtering works in the tool itself.\r\n\r\nI have used a list of checkboxes and any or all of the elements selected in this checkbox list will be used for filtering the column values.\r\n\r\nYou can find the code in my fork of the official Grid.Mvc repo at below link:\r\n<a href=\"https:\/\/github.com\/HarvestingClouds\/Grid.Mvc\" target=\"_blank\">Fork of Grid.Mvc repo with Advance Filters<\/a>\r\n\r\nI have also created a pull request for the same so that more people get benefit from this if they refer the master branch of the main repo.\r\n\r\n### What are the changes I have done?\r\nI have made changes to two files:\r\n\r\n 1. **DefaultColumnFilter.cs** file in \"**GridMvc**\" class library project under the Filters folder. I have updated the GetFilterExpression method to create multiple expressions based on the pipeline character in filter values.\r\n 2. **gridmvc.customwidgets.js** file in \"**GridMvc.Site**\" web application project\r\n\r\nBoth of these paths are shown below:\r\nLocation of DefaultColumnFilter.cs:\r\n![DefaultColumnFilter.cs](http:\/\/HarvestingClouds.com\/images\/146173541957204ffb99678.png \"DefaultColumnFilter.cs\")\r\n\r\nLocation of gridmvc.customwidgets.js:\r\n![gridmvc.customwidgets.js](http:\/\/HarvestingClouds.com\/images\/146173543057205006529e6.png \"gridmvc.customwidgets.js\")\r\n\r\nHow the end result look like:\r\n![Checkbox Filtering](http:\/\/HarvestingClouds.com\/images\/14617354255720500171fe7.png \"Checkbox Filtering\")\r\n\r\nYou can directly use the code if you want. Just honor the license of the original author.\r\n\r\nLet me know in the comments below if you have any doubts and I will be happy to address them.",
+		"addpost": "addpost",
+		"dated": "Apr 12, 2016",
+		"slug": "multiple-values-in-gridmvc-single-column-filter-via-checkboxes-with-code-sample",
+		"categoryslug": "web-development",
+		"status": "publised",
+		"summary": "\n<p>I have been struggling to implement multiple filters in a single column in Grid.Mvc tool. I have solved this by altering the code and updating the custom widget.\n<strong>Note:<\/strong> The WithMultipleFilters() option will not help you in this. That option enables multiple filters on different co...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Getting Started - Azure Site Recovery (ASR) In New Azure Portal",
+		"postDate": "09-04-2016",
+		"tags": [
+			"Azure",
+			"arm"
+		],
+		"category": "Azure",
+		"body": "Azure Site Recovery or ASR is now available in the new Azure Resource Manager or ARM portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.\r\n**Your older Vaults (created via Classic ASM Azure Portal) will not be available in ASR preview feature.**\r\n\r\n### What are the new features\r\n\r\nThe new features include:\r\n\r\n* All the goodness of Azure Resource Manager in ASR\r\n* Lean experience for various ASR scenarios\r\n* Enhancements to the specific Site Recovery scenarios\r\n\r\n### Lets take a quick look at some of these.\r\n\r\nIf you Browse and search for \"Recovery\" you get Recovery Services Vaults as Preview feature.\r\n![Browse and Search](http:\/\/HarvestingClouds.com\/images\/14617358075720517f78904.png \"Browse and Search\")\r\n\r\nClicking on it will open up the blade for \"Recovery Services valuts\". Notice that Microsoft has PREVIEW text in this.\r\n![alt text](http:\/\/HarvestingClouds.com\/images\/1461735702572051161683f.png \"ASR Vault\")\r\n\r\nClicking on the Add button brings up the ASR vault creation blade. Notice the locations available for vault creation here.\r\n![Vault Creation](http:\/\/HarvestingClouds.com\/images\/14617359385720520210878.png \"Vault Creation\")\r\n\r\nAfter you hit create the Vault gets deployed really quickly. I tested for East US location and it was created in under 10 secs.\r\nRefresh to view your newly created vault. Click on it to open the NEW ASR Vault features. Notice that the Backup feature is also there in the ASR vault now.\r\n![New Vault](http:\/\/HarvestingClouds.com\/images\/1461735907572051e31549a.png \"New Vault\")\r\n\r\nTo find the options for replication go to Settings -> Getting Started section -> Site Recovery -> Follow Wizard.\r\n![New Site Recovery Wizard](http:\/\/HarvestingClouds.com\/images\/1461735869572051bd2d6fa.png \"New Site Recovery Wizard\")\r\n\r\nThe Scenario Types available are only two. But all the scenarios are covered here:\r\n\r\n* From my site to Azure\r\n* From my site to another site\r\n\r\nBased on the scenario you select you are asked for different options. The options for Virtualization\/Management Server type for \"From my site to Azure\" are:\r\n\r\n* VMM\r\n* Stand alone Hyper-V hosts\r\n* vCenter\r\n* Physical machines (not virtualized)\r\n![Creation Options](http:\/\/HarvestingClouds.com\/images\/14617358385720519e578ba.png \"Creation Options\")\r\n\r\n### Backup in ASR vault\r\nAnother feature is creation of Backups from the same vault. Click on the + icon for Backup in the Vault main blade and then follow the wizard for the preview feature.\r\n![Backup In ASR](http:\/\/HarvestingClouds.com\/images\/14617357575720514d5d1d8.png \"Backup In ASR\")\r\nNotice in the screenshot above that the backup types available are:\r\n\r\n* Azure virtual machine backup\r\n* File Folder backup\r\n* System Center Data Protection Manager\r\n\r\nSelecting each option provides you with details for next steps. You can then create a backup policy and configure Items to backup.\r\n\r\nGive these features a try and let us know in comments below how you find the new features.\r\nHappy Exploring!",
+		"addpost": "addpost",
+		"dated": "Apr 09, 2016",
+		"slug": "getting-started-azure-site-recovery-asr-in-new-azure-portal",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Azure Site Recovery or ASR is now available in the new Azure Resource Manager or ARM portal (codename Ibiza) with modern user interface. It is in preview at this stage. But it is production ready for all the Hyper-V related scenarios.\n<strong>Your older Vaults (created via Classic ASM Azure Porta...<\/strong><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Coming Soon - Windows 10 Anniversary Update",
+		"postDate": "08-04-2016",
+		"tags": [
+			"announcement",
+			"windows10"
+		],
+		"category": "General",
+		"body": "Windows 10 Anniversary Update is coming this summary. It will be available for free download for the following devices (which is almost every device):\r\n\r\n* PCs\r\n* Tablets\r\n* Phones\r\n* Xbox One\r\n* Microsoft HoloLens\r\n* IoT\r\n\r\n## What this means to you:\r\n\r\n* Improved Biometric Security\r\n* Microsoft Edge browser\r\n* Windows Ink (where just one click of pen will bring up all the gamut available for use with your Pen device)\r\n* Universal Windows Platform or UWP apps are coming to XBox through a Unified Windows Store. Also if you own a XBox you will be able to turn it into a dev box and do development with it\r\n* Various improvements to Cortana\r\n\r\n<a href=\"https:\/\/www.microsoft.com\/en-us\/windows\/upcoming-features\" target=\"_blank\">Check out more details here<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Apr 08, 2016",
+		"slug": "coming-soon-windows-10-anniversary-update",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>Windows 10 Anniversary Update is coming this summary. It will be available for free download for the following devices (which is almost every device):<\/p>\n<ul><li>PCs<\/li>\n<li>Tablets<\/li>\n<li>Phones<\/li>\n<li>Xbox One<\/li>\n<li>Microsoft HoloLens<\/li>\n<li>IoT<\/li>\n<\/ul><h2>What this means to you...<\/h2>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Introducing Harvesting Clouds",
+		"postDate": "04-01-2016",
+		"tags": [
+			"general"
+		],
+		"category": "General",
+		"body": "Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.\r\n\r\n### Private Cloud\r\n\r\nMy key areas of interest in Private Cloud include the following:\r\n\r\n* PowerShell Scripting\r\n* Windows Azure Pack or WAP\r\n* Service Management Automation or SMA\r\n* Azure Stack\r\n* System Center Orchestrator\r\n* System Center VMM and other products like Service Manager, Ops Mgr, etc.\r\n\r\n### Public Cloud\r\n\r\nIn addition to the Private Cloud the areas of interest in Public Cloud are:\r\n\r\n* Microsoft Azure and Amazon Web Services - both IaaS and PaaS\r\n* Azure Automation\r\n* Desired State Configurations\r\n* Application Insights\r\n* Azure Web Apps\r\n* Web APIs\r\n* Azure Site Recovery and Backup\r\n* Migrations from Private to Public Clouds\r\n\r\n### Common Areas & Best of both worlds\r\n\r\nI have also been involved in creating Hybrid clouds leveraging the best of both worlds. I will try to share my knowledge on this with you. The key aspects in this area are:\r\n* Building Hybrid Solutions\r\n* Developing Web or Desktop Applications targetting either or both the clouds (using MVC, Dot Net)\r\n* Using TFS Online, Visual Studio, GitHub to better collaborate and work in an automated fashion\r\n* Release Manager to automate your release workflows\r\n\r\n### Primary Focus\r\n\r\nAs you must have guessed by now, the primary focus for this blog will be Microsoft Technologies. We will also explore beyond this and will be talking about various emerging open source technologies and the new Better Together world with the amalgamation of various technologies in one solution.\r\n\r\nI invite to take this journey with me!\r\nKeep learning!\r\n",
+		"addpost": "addpost",
+		"dated": "Apr 01, 2016",
+		"slug": "introducing-harvesting-clouds",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
+		"prevStatus": "publised"
+	}
+]
