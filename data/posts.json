@@ -1,6 +1,28 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Taking Automatic Remediation Action on Azure VM Alert Generation",
+		"postDate": "27-04-2016",
+		"tags": [
+			"automation",
+			"azure",
+			"azureautomation",
+			"virtualmachine",
+			"vm"
+		],
+		"category": "Azure",
+		"body": "Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.\r\n\r\n > Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.\r\n\r\nTo access this feature open your Virtual Machine. Then go to the Manage alerts section in the Settings:\r\n\r\n![Setting - Manage alerts][1]\r\n\r\nThen open an existing alert or click on \"Add alert\" to create a new one. Specify the criteria for the alert. Scroll down to the bottom and you can view the new section to link the alert to an Automation Runbook.\r\n\r\n![Automation Runbook for Alert][2]\r\n\r\n###Under the hood\r\nThe alert will send data to your Runbook in a special format. Your Runbook should be expecting this. Under the hood this happens via WebHooks. The alert data is passed via a HTTP POST request. The Automation webhook service extracts the alert data from the POST request and passes it to the runbook in a parameter called **\"WebhookData\"**. The Runbook will look like below:\r\n\r\n    [OutputType(\"PSAzureOperationResponse\")]\r\n    \r\n    param ( [object] $WebhookData )\r\n    \r\n    if ($WebhookData)\r\n    {\r\n        # Get the data object from WebhookData\r\n        $WebhookBody = (ConvertFrom-Json -InputObject $WebhookData.RequestBody)\r\n\r\n        #Rest of the script comes here\r\n    }\r\n\r\n**In Nutshell**, now you can now trigger Azure Automation Runbooks to take remediation actions on Virtual Machines in case an alert is triggered. \r\n\r\n**Reference with complete Runbook sample:** [Azure Automation solution - remediate Azure VM alerts](https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/automation-azure-vm-alert-integration\/)\r\n\r\n\r\n  [1]: http:\/\/HarvestingClouds.com\/images\/14618976705722c9c653752.png\r\n  [2]: http:\/\/HarvestingClouds.com\/images\/14618978425722ca722a741.png",
+		"savedraft": "savedraft",
+		"dated": "Apr 27, 2016",
+		"slug": "taking-automatic-remediation-action-on-azure-vm-alert-generation",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is triggered on an Azure Virtual Machine to take a remediation action. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation ...<\/p>\n",
+		"addpost": "addpost",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "ROADMAP - Solutions to help with Migration from Azure ASM to ARM portal",
 		"postDate": "22-04-2016",
 		"tags": [
@@ -208,23 +230,5 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Taking automatic action on Azure VM Alert Generation",
-		"postDate": "27-04-2016",
-		"tags": [
-			"azure",
-			"vm",
-			"virtualmachine"
-		],
-		"category": "Azure",
-		"body": "Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is trigger on an Azure Virtual Machine. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.\r\n\r\n > Note: This feature is supported only for the V2 Virtual Machines, i.e. the VMs created using ARM portal.\r\n\r\n**Reference:** [Azure Automation solution - remediate Azure VM alerts](https:\/\/azure.microsoft.com\/en-us\/documentation\/articles\/automation-azure-vm-alert-integration\/)",
-		"savedraft": "savedraft",
-		"dated": "Apr 27, 2016",
-		"slug": "taking-automatic-action-on-azure-vm-alert-generation",
-		"categoryslug": "azure",
-		"status": "draft",
-		"summary": "\n<p>Using a new feature in Azure, now you can easily configure to trigger an Azure Automation Runbook when an Alert is trigger on an Azure Virtual Machine. To leverage this feature all you need to do is link the alert on Azure VM to an already existing Azure Automation Runbook.<\/p>\n<blockquote>\n<p>No...<\/p><\/blockquote>\n"
 	}
 ]
