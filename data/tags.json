@@ -31,5 +31,7 @@
 	"33": "csharp",
 	"34": "vm",
 	"35": "virtualmachine",
-	"36": "storage"
+	"36": "storage",
+	"37": "datacenter",
+	"41": "blob"
 }
