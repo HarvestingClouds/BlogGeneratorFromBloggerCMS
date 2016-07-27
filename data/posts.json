@@ -1,6 +1,26 @@
 [
 	{
 		"author": "@20aman",
+		"title": "ASR Setup for VMs running in VMWare without VMware level User Access",
+		"postDate": "27-07-2016",
+		"tags": [
+			"ASR",
+			"Azure",
+			"AzureSiteRecovery",
+			"VMWare"
+		],
+		"category": "Azure",
+		"body": "### Problem Statement\r\nRecently I was setting up **Azure Site Recovery** (or ASR) in an environment. We had multiple VMs in VMWare environment. The environment was managed by Third Party who did not want to give any service account for VMWare as their environment was shared with different customers. So we had access only to the VMs. Without relevant access, ASR for VMWare was out of the question for us.\r\n\r\n### Solution\r\nWe treated the VMs, in such environment, as physical machines when setting up ASR to replicate these machines to Azure. \r\nWe used the option of \"***Not virtualized\/other***\" in the \"***Prepare Infrastructure***\" wizard of ASR. We **treated the VMs as physical servers** and did not face any issues during the migration. \r\n\r\nRefer below screenshot for the exact option discussed above.\r\n\r\n![Protection Goal][1]\r\n\r\n\r\nLater when enabling the Replication for any Server, run the \"***Enable Replication***\" wizard by clicking on \"**+Replicate**\" on the ASR vault's blade. Then select \"**Machine Type**\" as \"***Physical Machine***\" and add the Physical Machines by mentioning their IP addresses. \r\n\r\n**Note:** For this approach to work, the Configuration server should be on the same network as the VM being considered as Physical Machine.\r\n\r\n\r\nWe were able to migrate many servers successfully and without any issues using this approach.\r\n\r\n\r\n  [1]: http:\/\/HarvestingClouds.com\/images\/14696297155798c513ea908.png",
+		"addpost": "addpost",
+		"dated": "Jul 26, 2016",
+		"slug": "asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<h3>Problem Statement<\/h3>\n<p>Recently I was setting up <strong>Azure Site Recovery<\/strong> (or ASR) in an environment. We had multiple VMs in VMWare environment. The environment was managed by Third Party who did not want to give any service account for VMWare as their environment was shared with ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Uploading and Downloading files securely from Azure Storage Blob via PowerShell",
 		"postDate": "18-05-2016",
 		"tags": [
