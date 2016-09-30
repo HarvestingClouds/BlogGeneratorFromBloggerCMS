@@ -36,5 +36,8 @@
 	"38": "blob",
 	"39": "VMWare",
 	"40": "ASR",
-	"41": "AzureSiteRecovery"
+	"41": "AzureSiteRecovery",
+	"42": "ARM",
+	"43": "AzureResourceManager",
+	"44": "Templates"
 }
