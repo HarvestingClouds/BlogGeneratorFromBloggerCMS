@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -71,16 +71,134 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 main-content">
-            <h1>Tag Posts</h1>
-            <hr/>
-            <br/>
+            <article>
+                <h3>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</h3>
+                <span class="glyphicon glyphicon-user"></span> @20aman
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span> Aug 24, 2016
+                <hr>
 
-                <h3><a href="http://HarvestingClouds.com/post/azure-container-service-hits-general-availability">Azure Container Service hits General Availability</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 19, 2016
-                <h3><a href="http://HarvestingClouds.com/post/various-options-added-to-buy-microsoft-azure-active-directory-basic">Various Options Added to Buy Microsoft Azure Active Directory Basic</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 13, 2016
-                <h3><a href="http://HarvestingClouds.com/post/introducing-harvesting-clouds">Introducing Harvesting Clouds</a></h3>
-                <span class="glyphicon glyphicon-time"></span> Apr 01, 2016
+                <p class="post-content"><p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<ol>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters - This blog post</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
+</ol>
+<h2>Parameters</h2>
+<p>As mentioned earlier, parameters are the way to customize the templates, each time you deploy it to create resources in Azure. These parameters are the end-user inputs for various aspects of the template. E.g. If you are deploying an Azure Virtual Machine via an ARM Template then the name of the VM can be an input parameter. Operating System type can be another parameter.</p>
+<p>The parameters can be referred and used in other parts of the ARM Template.</p>
+<h3>1. Defining Parameters</h3>
+<p>Parameters is a one huge JSON object with multiple JSON properties. Each property is one parameter which is represented as another JSON object. Let us look at its structure at a high level.</p>
+<pre><code>"parameters": {
+               "parameter 1" : {},
+               "parameter 2" : {},
+               "parameter 3" : {}
+}</code></pre>
+<p>E.g. If you are creating a template to deploy a Windows Virtual Machine then the parameters will look something like below:</p>
+<pre><code>"parameters": {
+               "VMName" : {},
+               "AdminUserName" : {},
+               "AdminPassword" : {},
+               "WindowsOSVersion" : {}
+}</code></pre>
+<p>Now let us look at one of the parameters. E.g. The AdminUserName parameter will look like:</p>
+<pre><code>"adminUsername": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Username for the Virtual Machine."
+            }
+        }</code></pre>
+<p>The parameter object, as shown above, has following parts:</p>
+<ol>
+<li><strong>Type</strong> - This is the data Type of the parameter.</li>
+<li><strong>minLength</strong> - This is the minimum length the parameter must have</li>
+<li><strong>Metadata</strong> - This is just to provide a description as to what the parameter means.</li>
+</ol>
+<p>The <strong>Data Type</strong> allowed for the parameter are:</p>
+<ul>
+<li>string or secureString – any valid JSON string</li>
+<li>int – any valid JSON integer</li>
+<li>bool – any valid JSON boolean </li>
+<li>object – any valid JSON object </li>
+<li>array – any valid JSON array</li>
+</ul>
+<p>A more complex parameter e.g. Windows OS Version, with few more properties, is shown below:</p>
+<pre><code>"windowsOSVersion": {
+            "type": "string",
+            "defaultValue": "2012-R2-Datacenter",
+            "allowedValues": [
+                "2008-R2-SP1",
+                "2012-Datacenter",
+                "2012-R2-Datacenter"
+            ],
+            "metadata": {
+                "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-Datacenter, 2012-R2-Datacenter."
+            }
+        }</code></pre>
+<p>It has additional below properties:</p>
+<ol>
+<li><strong>Default Value</strong> - This is the default value. End User will be able to change this value when deploying the template. If no value is provided then this value is picked.</li>
+<li><strong>Allowed Values</strong> - This is an Array of values which are allowed for the parameter. Only value from this set is allowed as an input.</li>
+</ol>
+<h3>2. Using Parameters</h3>
+<p>Using parameters is easy. Wherever in your template (in variables or resources section) you want to use the value of a parameter, just use the parameter function as shown below with the name of the parameter as input, enclosed in square brackets. </p>
+<pre><code>[parameters('windowsOSVersion')]</code></pre>
+<p>If the parameter value is assigned to a property, enclosing it in double quotes, as shown below:</p>
+<pre><code>"sku": "[parameters('windowsOSVersion')]"</code></pre>
+<h3>3. Best Practices</h3>
+<ul>
+<li>Try to always provide Default Values</li>
+<li>Provide metadata so that you can provide insight as to what the parameter is meant for</li>
+<li>Provide complete descriptive names, no matter how long.</li>
+<li>Use <strong>Pascal Casing</strong> to name your parameters. i.e. First letter should be a small letter. Then every new word will have the first letter as a capital. No space between words. E.g. windowsOSVersion</li>
+<li>Use properties like minLength and Allowed values to impose restrictions. This reduces any human errors.</li>
+</ul>
+<p>That's all there is to Parameters in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p></p>
+                <br/><br/>
+
+                <div class="post-info">
+                        <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
+                        &nbsp;&nbsp;
+
+                    <span class="glyphicon glyphicon-bookmark"></span>
+
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
+                </div>
+
+            </article>
+            <hr/>
+
+            <div class="text-center clearfix">
+                <div class="col-sm-4 col-md-4">
+                    <a class="prevpost btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Prev Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="btn btn-primary" href="http://HarvestingClouds.com/posts.html"><i class="fa fa-navicon"></i> View All
+                        Post</a>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <a class="nextpost btn btn-primary"><i class="fa fa-chevron-circle-right"></i> Next Post</a>
+                </div>
+            </div>
+
+            <hr/>
+            
+            <!-- Comment form -->
+            <div class="well">
+                <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">Comments
+                    powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">Comments powered by
+                    <span class="logo-disqus">Disqus</span></a>
+            </div>
+
         </div>
 
         <div class="sidebar col-md-4">
@@ -185,6 +303,7 @@
                     </div>
                 </div>
             </div>
+
     </div>
 </div>
 
@@ -222,3 +341,69 @@
 
 </body>
 </html>
+<!-- for pagination -->
+<script>
+    $(function () {
+
+        ///////////////////////////////////////////////////
+        // class/id/selector of prev link
+        var $prevPostSelector = $('.prevpost');
+        var $nextPostSelector = $('.nextpost');
+        ///////////////////////////////////////////////////
+
+        var pageArray = document.location.href.split('/');
+        var currentPageSlug = pageArray[pageArray.length - 1];
+
+        if (!currentPageSlug) {
+            currentPageSlug = pageArray[pageArray.length - 2];
+        }
+
+        $.ajax({
+            url: __blogURL + "/data/blog.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (data.posts !== undefined && data.posts !== null) {
+                    $.each(data.posts, function (i, post) {
+                        if (post.slug === currentPageSlug || post.slug + '/' === currentPageSlug) {
+
+                            var prevPost = data.posts[i - 1];
+                            var nextPost = data.posts[i + 1];
+
+                            if (prevPost === undefined || prevPost === null) {
+                                // hide previous link if it is first post
+                                $prevPostSelector.hide();
+                            }
+                            else {
+                                $prevPostSelector.attr('href', __blogURL + '/post/' + prevPost.slug);
+                            }
+
+                            if (nextPost === undefined || nextPost === null) {
+                                // hide previous link if it is last post
+                                $nextPostSelector.hide();
+                            }
+                            else {
+                                $nextPostSelector.attr('href', __blogURL + '/post/' + nextPost.slug);
+                            }
+
+                            return false; // break out of each
+                        }
+                    });
+                }
+            },
+            error: function (e) {
+                $prevPostSelector.hide();
+                $nextPostSelector.hide();
+            }
+        });
+
+        // for Disqus
+        var disqus_shortname = 'harvestingclouds';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+    });
+</script>

@@ -72,146 +72,58 @@
     <div class="row">
         <div class="col-md-8 main-content">
                 <article>
-                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components">Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</a></h3>
+                    <h3><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-helper-functions">Step by Step ARM Templates - Helper Functions</a></h3>
                     <span class="glyphicon glyphicon-user"></span> @20aman
                     &nbsp;&nbsp;
-                    <span class="glyphicon glyphicon-time"></span> Aug 22, 2016
+                    <span class="glyphicon glyphicon-time"></span> Aug 31, 2016
                 
                         <hr>
-                        <p class="post-content"><p>As we discussed <a href="../step-by-step-azure-resource-manager-arm-templates-index/">earlier in the introduction</a> <strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources.</p>
-<p>In this post, we will deconstruct any basic ARM template and will understand it's various components.</p>
-<p>Any ARM Template will look like below:</p>
-<pre><code>{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "variables": {},
-    "resources": [ {}, {} ]
-}</code></pre>
-<p>Snapshot of the Template at root level, as generated via Visual Studio:</p>
-<p><img src="http://HarvestingClouds.com/images/147520488857edd71873f9b.png" alt="ARM Template Components" /></p>
-<p>As you can see the components (or properties) of any ARM template includes:</p>
-<ol>
-<li>Schema</li>
-<li>Content Version</li>
-<li>Parameters</li>
-<li>Variables</li>
-<li>Resources</li>
-</ol>
-<p>Let's look at these in more detail.</p>
-<table border="1" cellpadding="4" cellspacing="4">
-        <colgroup>
-            <col>
-            <col>
-            <col>
-            <col>
-        </colgroup>
-        <tbody valign="top">
-            <tr>
-                <th>Element name</th>
-                <th>Required</th>
-                <th>JSON Type</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>$schema</td>
-                <td>Yes</td>
-                <td>String Value</td>
-                <td>Location of the JSON schema file that describes the version of the template language.</td>
-            </tr>
-            <tr>
-                <td>contentVersion</td>
-                <td>Yes</td>
-                <td>String Value</td>
-                <td>Version of the template (such as 1.2.0.20). When deploying resources using the template, this value can be used to make sure that the right template is being used.</td>
-            </tr>
-            <tr>
-                <td>parameters</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are provided by the end user (manually or via a parameters file) when deployment is executed to customize resource deployment.</td>
-            </tr>
-            <tr>
-                <td>variables</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are reused multiple times in the template. You can update these values. They are different from Parameters as their value is known and they are not required as inputs from the end user.</td>
-            </tr>
-            <tr>
-                <td>resources</td>
-                <td>Yes</td>
-                <td>Array of Objects</td>
-                <td>Types of services that are deployed or updated in a resource group. Each JSON object in this Array denotes an Azure Resource.</td>
-            </tr>
-            <tr>
-                <td>outputs</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are returned after deployment.</td>
-            </tr>
-        </tbody>
-</table>
-<p>Now that you know what each part is at a high level, let us look at the 4 main components in detail.</p>
-<h2>1. Parameters</h2>
-<p>As mentioned earlier, parameters are the way to customize the templates, each time you deploy it to create resources in Azure. These parameters are the end-user inputs for various aspects of the template. E.g. If you are deploying an Azure Virtual Machine via an ARM Template then the name of the VM can be an input parameter. Operating System type can be another parameter.</p>
-<p>The parameters can be referred and used in other parts of the ARM Template.</p>
-<h3>Defining Parameters</h3>
-<p>Parameters is a one huge JSON object with multiple JSON properties. Each property is one parameter which is represented as another JSON object. Let us look at it's structure at high level.</p>
-<pre><code>"parameters": {
-               "parameter 1" : {},
-               "parameter 2" : {},
-               "parameter 3" : {}
-}</code></pre>
-<p>E.g. If you are creating a template to deploy a Windows Virtual Machine then the parameters will look something like below:</p>
-<pre><code>"parameters": {
-               "VMName" : {},
-               "AdminUserName" : {},
-               "AdminPassword" : {},
-               "WindowsOSVersion" : {}
-}</code></pre>
-<p>Now let us look at one of the parameter. E.g. The AdminUserName parameter will look like:</p>
-<pre><code>"adminUsername": {
-            "type": "string",
-            "minLength": 1,
-            "metadata": {
-                "description": "Username for the Virtual Machine."
-            }
-        }</code></pre>
-<p>The parameter object, as shown above, has following parts:</p>
-<ol>
-<li><strong>Type</strong> - This is the data Type of the parameter.</li>
-<li><strong>minLength</strong> - This is the minimum lenth the parameter must have</li>
-<li><strong>Metadata</strong> - This is just to provide a description as to what the parameter means.</li>
-</ol>
-<p>The <strong>Data Type</strong> allowed for the parameter are:</p>
+                        <p class="post-content"><p>ARM Templates has various dynamic constructs called <strong>Helper Functions</strong> which can make your template more generic. These constructs reduce the hard coded values in your templates. You can use the information from this blog to make your existing templates more dynamic and start writing new templates with a much generic approach.</p>
+<p>Let's look at the most important helper functions and their practical usage one by one. </p>
+<h3>1. Resource Id - Resource Function</h3>
+<p>You use this function to determine the ID of a resource. This is only used when the resource (whose ID is needed) is not being deployed in the current template and it already exists in Azure.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)</code></pre>
+<p>Only required parameters of this helper function are resourceType and resourceName1.</p>
+<p>These parameters are as follows:</p>
 <ul>
-<li>string or secureString – any valid JSON string</li>
-<li>int – any valid JSON integer</li>
-<li>bool – any valid JSON boolean </li>
-<li>object – any valid JSON object </li>
-<li>array – any valid JSON array</li>
+<li>subscription ID - This is only needed if you want to refer a different subscription. Default value is the current subscription</li>
+<li>resource Group Name - Name of the resource group where the resource exists. Default is the current resource group, in which you are deploying the template</li>
+<li>resource Type - Type of resource including resource provider namespace</li>
+<li>resource Name 1  - Name of the resource</li>
+<li>resource Name 2  - Next resource name segment if resource is nested. E.g. a VM Extension</li>
 </ul>
-<p>A more complex parameter e.g. Windows OS Version, with few more properties, is shown below:</p>
-<pre><code>"windowsOSVersion": {
-            "type": "string",
-            "defaultValue": "2012-R2-Datacenter",
-            "allowedValues": [
-                "2008-R2-SP1",
-                "2012-Datacenter",
-                "2012-R2-Datacenter"
-            ],
-            "metadata": {
-                "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-Datacenter, 2012-R2-Datacenter."
-            }
-        }</code></pre>
-<p>It has additional below properties:</p>
-<ol>
-<li><strong>Default Value</strong> - </li>
-<li><strong>Allowed Values</strong> - 
-<h2>2. Variables</h2></li>
-</ol>
-<h2>3. Resources</h2>
-<h2>4. Outputs</h2></p>
+<p><strong>Example</strong></p>
+<pre><code>"vnetId1": "[resourceId('AE06-Mgmt-RG','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+"vnetId2": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"</code></pre>
+<p>The above example shows two ways of using the resource ID helper function to determine the Id of a virtual network. First one uses the resource group, resource type and resource name. Second example uses only the resource Type and resource name. Second example assumes the resource group to be same as the template being deployed to.</p>
+<h3>2. Resource Group - Resource Function</h3>
+<p>This helper function returns an object that represents the current resource group to which the template is being deployed.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceGroup()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"vhdStorageName": "[concat('vhdstorage', uniqueString(resourceGroup().id))]",
+ "storageAccountResourceGroup": "[resourcegroup().name]",
+ "location": "[resourceGroup().location]"</code></pre>
+<p>The above example shows 3 uses of the resource group helper functions. First one uses the ID of the resource group, second uses the name property and third uses the location for the current resource group.</p>
+<h3>3. Subscription - Resource Function</h3>
+<p>The generic syntax to use this is:</p>
+<pre><code>subscription()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"subscriptionId": "[subscription().subscriptionId]"</code></pre>
+<p>The above example is straightforward. It fetches the subscription Id of the current subscription.</p>
+<h3>4. Concat - String Function</h3>
+<p>This function is used to concatinate (i.e. combine) two or more values.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>concat (array1, array2, array3, ...)</code></pre>
+<p>At least 1 array is needed for concat to work. </p>
+<p><strong>Example</strong></p>
+<pre><code>"subnetRef": "[concat(variables('vNetId'), '/subnets/', variables('subnetName'))]"</code></pre>
+<p>The above example combines (or concatinates) 3 text values. First value is the value of variable vNetId. Second value is a string &quot;/subnets/&quot;. Third value is the value of the variable subnet Name.</p>
+<p>These are the most common Helper functions that you will use in 80%-90% of the templates. </p>
+<p>To check the complete list of Helper Functions, check this official link: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-functions/#resource-functions">Azure Resource Manager template functions</a></p></p>
                         <br/>
                 
                         <div class="post-info">
@@ -271,11 +183,11 @@
                 </div>
         
                 <ul class="list-group">
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components">Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components">Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-json-101-for-it-administrators">Step by Step ARM Templates - JSON 101 for IT Administrators</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index">Step by Step Azure Resource Manager (ARM) Templates - Index</a></li>
-                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access">ASR Setup for VMs running in VMWare without VMware level User Access</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-helper-functions">Step by Step ARM Templates - Helper Functions</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 4 - Resources</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 3 - Variables</a></li>
+                        <li class="list-group-item"><a href="http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters">Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
                 </ul>
             </div>
         
@@ -314,16 +226,16 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/activedirectory" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">activedirectory</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/ad" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ad</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/announcement" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">announcement</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">ARM</a>
+<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">ARM</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/arm" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">arm</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asm" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">asm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/asr" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">ASR</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/automation" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">automation</a>
-<a style="font-size: 19px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="5 total posts" data-original-title="6 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 30px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="11 total posts" data-original-title="12 total posts" data-toggle="tooltip">azure</a>
+<a style="font-size: 26px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azure" title="9 total posts" data-original-title="10 total posts" data-toggle="tooltip">Azure</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureautomation" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">azureautomation</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureresourcemanager</a>
+<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureresourcemanager" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">AzureResourceManager</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azureservicemanagement" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">azureservicemanagement</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/azuresiterecovery" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">AzureSiteRecovery</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/blob" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">blob</a>
@@ -336,7 +248,7 @@
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/mvc" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">mvc</a>
 <a style="font-size: 15px" class="tag_cloud" href="http://HarvestingClouds.com/tag/powershell" title="3 total posts" data-original-title="4 total posts" data-toggle="tooltip">powershell</a>
 <a style="font-size: 13px" class="tag_cloud" href="http://HarvestingClouds.com/tag/storage" title="2 total posts" data-original-title="3 total posts" data-toggle="tooltip">storage</a>
-<a style="font-size: 17px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="4 total posts" data-original-title="5 total posts" data-toggle="tooltip">Templates</a>
+<a style="font-size: 24px" class="tag_cloud" href="http://HarvestingClouds.com/tag/templates" title="8 total posts" data-original-title="9 total posts" data-toggle="tooltip">Templates</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/virtualmachine" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">virtualmachine</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vm" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">vm</a>
 <a style="font-size: 12px" class="tag_cloud" href="http://HarvestingClouds.com/tag/vmware" title="1 total posts" data-original-title="2 total posts" data-toggle="tooltip">VMWare</a>

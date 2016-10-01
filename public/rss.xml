@@ -6,86 +6,314 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
-<title>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</title>
-<description><![CDATA[<p>As we discussed <a href="../step-by-step-azure-resource-manager-arm-templates-index/">earlier in the introduction</a> <strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources.</p>
-<p>In this post, we will deconstruct any basic ARM template and will understand it's various components.</p>
-<p>Any ARM Template will look like below:</p>
-<pre><code>{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "variables": {},
-    "resources": [ {}, {} ]
-}</code></pre>
-<p>Snapshot of the Template at root level, as generated via Visual Studio:</p>
-<p><img src="http://HarvestingClouds.com/images/147520488857edd71873f9b.png" alt="ARM Template Components" /></p>
-<p>As you can see the components (or properties) of any ARM template includes:</p>
+<title>Step by Step ARM Templates - Helper Functions</title>
+<description><![CDATA[<p>ARM Templates has various dynamic constructs called <strong>Helper Functions</strong> which can make your template more generic. These constructs reduce the hard coded values in your templates. You can use the information from this blog to make your existing templates more dynamic and start writing new templates with a much generic approach.</p>
+<p>Let's look at the most important helper functions and their practical usage one by one. </p>
+<h3>1. Resource Id - Resource Function</h3>
+<p>You use this function to determine the ID of a resource. This is only used when the resource (whose ID is needed) is not being deployed in the current template and it already exists in Azure.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)</code></pre>
+<p>Only required parameters of this helper function are resourceType and resourceName1.</p>
+<p>These parameters are as follows:</p>
+<ul>
+<li>subscription ID - This is only needed if you want to refer a different subscription. Default value is the current subscription</li>
+<li>resource Group Name - Name of the resource group where the resource exists. Default is the current resource group, in which you are deploying the template</li>
+<li>resource Type - Type of resource including resource provider namespace</li>
+<li>resource Name 1  - Name of the resource</li>
+<li>resource Name 2  - Next resource name segment if resource is nested. E.g. a VM Extension</li>
+</ul>
+<p><strong>Example</strong></p>
+<pre><code>"vnetId1": "[resourceId('AE06-Mgmt-RG','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+"vnetId2": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"</code></pre>
+<p>The above example shows two ways of using the resource ID helper function to determine the Id of a virtual network. First one uses the resource group, resource type and resource name. Second example uses only the resource Type and resource name. Second example assumes the resource group to be same as the template being deployed to.</p>
+<h3>2. Resource Group - Resource Function</h3>
+<p>This helper function returns an object that represents the current resource group to which the template is being deployed.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>resourceGroup()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"vhdStorageName": "[concat('vhdstorage', uniqueString(resourceGroup().id))]",
+ "storageAccountResourceGroup": "[resourcegroup().name]",
+ "location": "[resourceGroup().location]"</code></pre>
+<p>The above example shows 3 uses of the resource group helper functions. First one uses the ID of the resource group, second uses the name property and third uses the location for the current resource group.</p>
+<h3>3. Subscription - Resource Function</h3>
+<p>The generic syntax to use this is:</p>
+<pre><code>subscription()</code></pre>
+<p>No parameters are needed in this helper function.</p>
+<p><strong>Example</strong></p>
+<pre><code>"subscriptionId": "[subscription().subscriptionId]"</code></pre>
+<p>The above example is straightforward. It fetches the subscription Id of the current subscription.</p>
+<h3>4. Concat - String Function</h3>
+<p>This function is used to concatinate (i.e. combine) two or more values.</p>
+<p>The generic syntax to use this is:</p>
+<pre><code>concat (array1, array2, array3, ...)</code></pre>
+<p>At least 1 array is needed for concat to work. </p>
+<p><strong>Example</strong></p>
+<pre><code>"subnetRef": "[concat(variables('vNetId'), '/subnets/', variables('subnetName'))]"</code></pre>
+<p>The above example combines (or concatinates) 3 text values. First value is the value of variable vNetId. Second value is a string &quot;/subnets/&quot;. Third value is the value of the variable subnet Name.</p>
+<p>These are the most common Helper functions that you will use in 80%-90% of the templates. </p>
+<p>To check the complete list of Helper Functions, check this official link: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-functions/#resource-functions">Azure Resource Manager template functions</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-helper-functions</link>
+<pubDate>Wed, 31 Aug 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</title>
+<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
-<li>Schema</li>
-<li>Content Version</li>
-<li>Parameters</li>
-<li>Variables</li>
-<li>Resources</li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs - This blog post</a></li>
 </ol>
-<p>Let's look at these in more detail.</p>
-<table border="1" cellpadding="4" cellspacing="4">
-        <colgroup>
-            <col>
-            <col>
-            <col>
-            <col>
-        </colgroup>
-        <tbody valign="top">
-            <tr>
-                <th>Element name</th>
-                <th>Required</th>
-                <th>JSON Type</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>$schema</td>
-                <td>Yes</td>
-                <td>String Value</td>
-                <td>Location of the JSON schema file that describes the version of the template language.</td>
-            </tr>
-            <tr>
-                <td>contentVersion</td>
-                <td>Yes</td>
-                <td>String Value</td>
-                <td>Version of the template (such as 1.2.0.20). When deploying resources using the template, this value can be used to make sure that the right template is being used.</td>
-            </tr>
-            <tr>
-                <td>parameters</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are provided by the end user (manually or via a parameters file) when deployment is executed to customize resource deployment.</td>
-            </tr>
-            <tr>
-                <td>variables</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are reused multiple times in the template. You can update these values. They are different from Parameters as their value is known and they are not required as inputs from the end user.</td>
-            </tr>
-            <tr>
-                <td>resources</td>
-                <td>Yes</td>
-                <td>Array of Objects</td>
-                <td>Types of services that are deployed or updated in a resource group. Each JSON object in this Array denotes an Azure Resource.</td>
-            </tr>
-            <tr>
-                <td>outputs</td>
-                <td>No</td>
-                <td>JSON Object</td>
-                <td>Values that are returned after deployment.</td>
-            </tr>
-        </tbody>
-</table>
-<p>Now that you know what each part is at a high level, let us look at the 4 main components in detail.</p>
-<h2>1. Parameters</h2>
+<h2>Outputs</h2>
+<p>This section is used to output any values after the deployment of the ARM Template. This can output any Ids or connection strings based on the deployed resources. </p>
+<p>This is a single JSON object with various output objects (just like Parameters. The overall JSON structure looks like below:</p>
+<pre><code>"outputs": { 
+    "output1" : {
+                     "type":"string",
+                     "value": "value1"
+      },
+    "output2" : {
+                     "type":"string",
+                     "value": "value2"
+      },
+}</code></pre>
+<p>Each output object has 2 properties:</p>
+<ol>
+<li>Type - Data type of the output</li>
+<li>Value - value of the output</li>
+</ol>
+<p>A real life example with look like below:</p>
+<pre><code>"outputs": {
+    "adminUsername": {
+        "type": "string",
+        "value": "[parameters('adminUsername')]"
+    }
+}</code></pre>
+<p>The above example will output the administrator Username using the parameter from the template.</p>
+<p>That's all there is to Outputs in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs</link>
+<pubDate>Tue, 30 Aug 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 4 - Resources</title>
+<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<ol>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources  - This blog post</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
+</ol>
+<h2>Resources</h2>
+<p>This is the major section of the whole ARM template. This is where you define what resources should be deployed in Azure. You also define dependencies between resources in this section. </p>
+<p>The resources section consist of an array of JSON Objects as shown below:</p>
+<pre><code>"resources": [
+        { },
+        { },
+]</code></pre>
+<p>Each object in the array (represented via curly braces) is an Azure resource. You can deploy multiple resources in a single ARM template. E.g. You can deploy a new Storage Account, new Virtual Network and three Virtual Machines in that virtual network within a single template.
+Within the object, various properties (and nested properties) are used to provide the configurations of each resource. </p>
+<h3>Elements</h3>
+<p>Different elements in a single resource object can be one of the following:</p>
+<ol>
+<li><strong>apiVersion</strong> - <strong><em>Required</em></strong> - Version of the API. e.g. &quot;2015-06-15&quot;</li>
+<li><strong>type</strong> - <strong><em>Required</em></strong> - Type of the resource. This value is a combination of the namespace of the resource provider and the resource type that the resource provider supports. e.g. Azure Storage Account will have type as &quot;Microsoft.Storage/storageAccounts&quot;.</li>
+<li><strong>name</strong> - <strong><em>Required</em></strong> - Name of the resource. The name must follow URI component restrictions and also the Azure naming restrictions if any. E.g. Storage account name can only be in small letters and has to be unique.</li>
+<li><strong>location</strong> - Optional - Use supported geo-locations of the provided resource without any spaces. Or use the resource group's location dynamically.</li>
+<li><strong>tags</strong> - Optional - Tags that are associated with the resource.</li>
+<li><strong>dependsOn</strong> - Optional - Other resources in the same template, that the current resource being defined depends on. The dependencies between resources are evaluated and resources are deployed in their dependent order. When resources are not dependent on each other, they are attempted to be deployed in parallel. The value can be a comma-separated list of resource names or resource unique identifiers.</li>
+<li><strong>properties</strong> - Optional - Resource specific configuration settings. E.g. Account type property for a storage account name.</li>
+<li><strong>resources</strong> - Optional - Child resources that depend on the resource being defined. E.g. Extension resources for a Virtual Machine resource.</li>
+</ol>
+<h3>Examples</h3>
+<p>Let's look at two examples. First, we will take a simple resource example to deploy a storage account in Azure:</p>
+<pre><code>{
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('vhdStorageName')]",
+            "apiVersion": "2015-06-15",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "StorageAccount",
+                "department" : "Finance",
+                "application" : "database"
+            },
+            "properties": {
+                "accountType": "[variables('vhdStorageType')]"
+            }
+        }</code></pre>
+<p>Above example will deploy a storage account with the name from &quot;vhdStorageName&quot; variable. It will apply 3 tags to the resource after deployment. It will use the account type (i.e. standard or premium) based on the value of the &quot;vhdStorageType&quot; variable. If you want to deploy 2 or more similar storage accounts, then just copy and paste the json for the resource, separated by comma. It will become another object in the Resources array.</p>
+<p>Now let's look at a complex and larger example of deploying a single virtual machine with one extension for Diagnostics.</p>
+<pre><code>    {
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Compute/virtualMachines",
+        "name": "[variables('vmName')]",
+        "location": "[resourceGroup().location]",
+        "tags": {
+            "displayName": "VirtualMachine"
+        },
+        "dependsOn": [
+            "[concat('Microsoft.Storage/storageAccounts/', variables('vhdStorageName'))]",
+            "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
+        ],
+        "properties": {
+            "hardwareProfile": {
+                "vmSize": "[variables('vmSize')]"
+            },
+            "osProfile": {
+                "computerName": "[variables('vmName')]",
+                "adminUsername": "[parameters('adminUsername')]",
+                "adminPassword": "[parameters('adminPassword')]"
+            },
+            "storageProfile": {
+                "imageReference": {
+                    "publisher": "[variables('imagePublisher')]",
+                    "offer": "[variables('imageOffer')]",
+                    "sku": "[parameters('windowsOSVersion')]",
+                    "version": "latest"
+                },
+                "osDisk": {
+                    "name": "osdisk",
+                    "vhd": {
+                        "uri": "[concat('http://', variables('vhdStorageName'), '.blob.core.windows.net/', variables('vhdStorageContainerName'), '/', variables('OSDiskName'), '.vhd')]"
+                    },
+                    "caching": "ReadWrite",
+                    "createOption": "FromImage"
+                }
+            },
+            "networkProfile": {
+                "networkInterfaces": [
+                    {
+                        "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+                    }
+                ]
+            },
+            "diagnosticsProfile": {
+                "bootDiagnostics": {
+                    "enabled": true,
+                    "storageUri": "[concat('http://', variables('diagnosticsStorageAccountName'), '.blob.core.windows.net')]"
+                }
+            }
+        },
+        "resources": [
+            {
+                "type": "extensions",
+                "name": "Microsoft.Insights.VMDiagnosticsSettings",
+                "apiVersion": "2015-06-15",
+                "location": "[resourceGroup().location]",
+                "tags": {
+                    "displayName": "AzureDiagnostics"
+                },
+                "dependsOn": [
+                    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+                ],
+                "properties": {
+                    "publisher": "Microsoft.Azure.Diagnostics",
+                    "type": "IaaSDiagnostics",
+                    "typeHandlerVersion": "1.5",
+                    "autoUpgradeMinorVersion": true,
+                    "settings": {
+                        "xmlCfg": "[base64(concat(variables('wadcfgxstart'), variables('wadmetricsresourceid'), variables('wadcfgxend')))]",
+                        "storageAccount": "[variables('diagnosticsStorageAccountName')]"
+                    },
+                    "protectedSettings": {
+                        "storageAccountName": "[variables('diagnosticsStorageAccountName')]",
+                        "storageAccountKey": "[listkeys(variables('accountid'), '2015-06-15').key1]",
+                        "storageAccountEndPoint": "https://core.windows.net"
+                    }
+                }
+            }
+        ]
+    }</code></pre>
+<p>Note that the above code snippet defines a single virtual machine. Let us decode various sections of this complex resource:</p>
+<ul>
+<li>It begins with simple properties like apiVersion, type, name, location and tags as discussed in the previous example. These are straightforward and thus values are provided to these attributes.</li>
+<li>Next is the <strong>dependsOn</strong> section. This defines the dependency between resources. In the above example, the virtual machine resource is dependent on the storage account and a network interface, which are also defined in the template. These 2 resources will be created before the virtual machine creation/deployment. If these resources are not created in the template then it will check for the presence of these resources in the current subscription. If they are not present the template will not get deployed and will error out.</li>
+<li>Next are various <strong>properties</strong> to configure the Virtual machine, like hardware profile, os profile, storage profile, os disk, network profile, diagnostics profile etc.</li>
+<li>Next, we have additional <strong>sub-resources</strong>. These are Azure resources which will be created and linked to the current resource. Only one sub-resource is created in the above example which is an extension for VM diagnostics settings.</li>
+</ul>
+<p>That's all there is to Resources in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources</link>
+<pubDate>Mon, 29 Aug 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 3 - Variables</title>
+<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<ol>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables - This blog post</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
+</ol>
+<h2>Variables</h2>
+<p>Variables are values that you either know beforehand or you can construct from the input parameters. These variables can then be reused at multiple locations in the resources section. If you later want to change the value of a variable then it automatically gets updated at all other locations. They can be used to define a resource property.</p>
+<h3>Defining Variables</h3>
+<p>Variable is a one huge JSON object. Each property can be one of the simple data type (like integer, bool, string etc.) or can be another complex JSON object. The general structure is as shown below:</p>
+<pre><code>"variables": {
+      "variable 1" : "value 1",
+      "variable 2" : "value 2",
+      "variable 3" : 1024,
+      "variable 4" : {}
+}</code></pre>
+<p>Note that in the above example, the first 3 variables are of simple value type. The 4rth variable is however of a complex JSON object type.</p>
+<p>Let's now check a real variables section from an actual ARM template:</p>
+<pre><code>"variables": {
+        "vmSize": "Standard_A2",
+        "virtualNetworkName": "MyVNETName",
+        "vnetId1": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+        "vnetId2": "[resourceId(parameters('vNetRG'),'Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
+        "vhdStorageName": "[concat('vhdstorage', uniqueString(resourceGroup().id))]",
+        "storageAccountResourceGroup": "[resourcegroup().name]",
+        "location": "[resourceGroup().location]",
+        "subscriptionId": "[subscription().subscriptionId]"
+    }</code></pre>
+<p>There are lots of key constructs in the above code snippet. I have tried to capture as many different constructs in this snippets as I could. Let us decode each variable one by one.</p>
+<ol>
+<li>vmSize - Simple String</li>
+<li>virtualNetworkName - Simple string name</li>
+<li>vnetId1 - This uses a special function named &quot;<strong>resourceId</strong>&quot; to find out the resource ID of the virtual network. This function is invoked by using the syntax <code>"[resourceId(Input)]"</code> .  This gets the resource ID of a resource which is defined by the Input to this. Also, note the use of another variable as an input to this.</li>
+<li>vnetId2 - This also fetches the resource Id of a virtual network using &quot;resourceId&quot; method. Note the use of the value of a parameter in this to find out Resource Group of the existing Virtual network (parameter &quot;vNetRG&quot;).</li>
+<li>subnetRef - This variable uses another function &quot;<strong>concat</strong>&quot; in ARM template i.e. <code>"[concat(input1,input2,...)]"</code>. This function can take many inputs and will concatinate (i.e. club together) the value of all the inputs provided. You can use parameters or another variable.</li>
+<li>vhdStorageName - This also uses concat function to dynamically generate a storage name. However it uses &quot;<strong>resourcegroup</strong>&quot; function as <code>"[resourcegroup()]"</code>. This function always returns the resource group to which you are deploying the current ARM template. Then the variable uses the id property of the resource group returned.</li>
+<li>storageAccountResourceGroup - This uses the &quot;name&quot; property of the current resource group</li>
+<li>location - This uses the &quot;location&quot; property of the current resource group.</li>
+<li>subscriptionId - This uses the &quot;<strong>subscription</strong>&quot; function as <code>"[subscription()]"</code> to find out the current subscription to which the current ARM template is being deployed.  Then it uses the subscription Id property of the subscription to get the required Id.</li>
+</ol>
+<p>Note that these constructs are very powerfull and can be used to dynamically construct your ARM template. These constructs are also known as Helper Functions and are explained in detail here: <a href="../step-by-step-arm-templates-helper-functions/">Step by Step ARM Templates - Helper Functions</a></p>
+<h3>Using Variables</h3>
+<p>Using variables is very easy and is similar to using parameters. In fact, you already saw the usage of variables above, while defining other variables.</p>
+<p>You use the square parenthesis to indicate to the ARM engine to evaluate whatever is inside the parenthesis. You use the &quot;variable&quot; keyword and then you pass the name of the variable as input. Check the example below.</p>
+<pre><code>"storageAccountName": "[variables('storageAccountName')]"</code></pre>
+<h3>Best Practices</h3>
+<p>Best practices are similar to the Parameters.</p>
+<ul>
+<li>Provide complete descriptive names, no matter how long.</li>
+<li>Use <strong>Pascal Casing</strong> to name your parameters. i.e. First letter should be a small letter. Then every new word will have the first letter as a capital. No space between words. E.g. storageAccountName</li>
+<li>Use the constructs explained in the previous section to dynamically generate variables. This reduces any human errors.</li>
+<li>Anything that is used more than once and is not required to be entered by an end user, should be created as a variable. Later on, this helps by minimizing the number of places you need to change the value.</li>
+</ul>
+<p>That's all there is to Variables in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables</link>
+<pubDate>Fri, 26 Aug 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</title>
+<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<ol>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters - This blog post</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
+</ol>
+<h2>Parameters</h2>
 <p>As mentioned earlier, parameters are the way to customize the templates, each time you deploy it to create resources in Azure. These parameters are the end-user inputs for various aspects of the template. E.g. If you are deploying an Azure Virtual Machine via an ARM Template then the name of the VM can be an input parameter. Operating System type can be another parameter.</p>
 <p>The parameters can be referred and used in other parts of the ARM Template.</p>
-<h3>Defining Parameters</h3>
-<p>Parameters is a one huge JSON object with multiple JSON properties. Each property is one parameter which is represented as another JSON object. Let us look at it's structure at high level.</p>
+<h3>1. Defining Parameters</h3>
+<p>Parameters is a one huge JSON object with multiple JSON properties. Each property is one parameter which is represented as another JSON object. Let us look at its structure at a high level.</p>
 <pre><code>"parameters": {
                "parameter 1" : {},
                "parameter 2" : {},
@@ -98,7 +326,7 @@
                "AdminPassword" : {},
                "WindowsOSVersion" : {}
 }</code></pre>
-<p>Now let us look at one of the parameter. E.g. The AdminUserName parameter will look like:</p>
+<p>Now let us look at one of the parameters. E.g. The AdminUserName parameter will look like:</p>
 <pre><code>"adminUsername": {
             "type": "string",
             "minLength": 1,
@@ -109,7 +337,7 @@
 <p>The parameter object, as shown above, has following parts:</p>
 <ol>
 <li><strong>Type</strong> - This is the data Type of the parameter.</li>
-<li><strong>minLength</strong> - This is the minimum lenth the parameter must have</li>
+<li><strong>minLength</strong> - This is the minimum length the parameter must have</li>
 <li><strong>Metadata</strong> - This is just to provide a description as to what the parameter means.</li>
 </ol>
 <p>The <strong>Data Type</strong> allowed for the parameter are:</p>
@@ -135,14 +363,25 @@
         }</code></pre>
 <p>It has additional below properties:</p>
 <ol>
-<li><strong>Default Value</strong> - </li>
-<li><strong>Allowed Values</strong> - 
-<h2>2. Variables</h2></li>
+<li><strong>Default Value</strong> - This is the default value. End User will be able to change this value when deploying the template. If no value is provided then this value is picked.</li>
+<li><strong>Allowed Values</strong> - This is an Array of values which are allowed for the parameter. Only value from this set is allowed as an input.</li>
 </ol>
-<h2>3. Resources</h2>
-<h2>4. Outputs</h2>]]></description>
-<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components</link>
-<pubDate>Mon, 22 Aug 2016 00:00:00 +0500</pubDate>
+<h3>2. Using Parameters</h3>
+<p>Using parameters is easy. Wherever in your template (in variables or resources section) you want to use the value of a parameter, just use the parameter function as shown below with the name of the parameter as input, enclosed in square brackets. </p>
+<pre><code>[parameters('windowsOSVersion')]</code></pre>
+<p>If the parameter value is assigned to a property, enclosing it in double quotes, as shown below:</p>
+<pre><code>"sku": "[parameters('windowsOSVersion')]"</code></pre>
+<h3>3. Best Practices</h3>
+<ul>
+<li>Try to always provide Default Values</li>
+<li>Provide metadata so that you can provide insight as to what the parameter is meant for</li>
+<li>Provide complete descriptive names, no matter how long.</li>
+<li>Use <strong>Pascal Casing</strong> to name your parameters. i.e. First letter should be a small letter. Then every new word will have the first letter as a capital. No space between words. E.g. windowsOSVersion</li>
+<li>Use properties like minLength and Allowed values to impose restrictions. This reduces any human errors.</li>
+</ul>
+<p>That's all there is to Parameters in ARM Templates. If you have any doubts, please comment in the below section. Use the links at the Top to know all about other components in an ARM Template.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters</link>
+<pubDate>Wed, 24 Aug 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</title>
@@ -221,10 +460,10 @@
 </table>
 <p>Now that you know what each part is at a high level, in the next posts, we will look at the key 4 components in detail.</p>
 <ol>
-<li>Parameters</li>
-<li>Variables</li>
-<li>Resources</li>
-<li>Outputs</li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">Outputs</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components</link>
 <pubDate>Mon, 22 Aug 2016 00:00:00 +0500</pubDate>
@@ -349,6 +588,11 @@
 <ol>
 <li><a href="#">Index</a> </li>
 <li><a href="../step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
+<li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
 <pubDate>Mon, 15 Aug 2016 00:00:00 +0500</pubDate>
