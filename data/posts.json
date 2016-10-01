@@ -1,6 +1,47 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Step by Step Azure Resource Manager (ARM) Templates - Index",
+		"postDate": "15-08-2016",
+		"tags": [
+			"ARM",
+			"Azure",
+			"AzureResourceManager",
+			"Templates"
+		],
+		"category": "Azure",
+		"body": "**Azure Resource Manager (ARM) Template** is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.\r\n\r\nARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various **benefits** including:\r\n\r\n - **Declarative Deployment** \u2013 All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.\r\n - **Idempotency** \u2013 You can deploy the same template over and over again without affecting the current resources.\r\n - **Predictability** - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.\r\n - **Repitition without Errors** - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).\r\n\r\nThis series of posts try to decode and understand the ARM Templates \"Step By Step\".\r\n\r\nThis post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.\r\n\r\n 1. [Index](#) \r\n 2. [JSON 101 for IT Administrators](\/post\/step-by-step-arm-templates-json-101-for-it-administrators\/)\r\n 3. [What is in an ARM Template - Understanding All Components](\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components\/)\r\n 4. [What is in an ARM Template - Understanding Components 2 - Parameters](\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters\/)\r\n 5. [What is in an ARM Template - Understanding Components 3 - Variables](\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables\/)\r\n 6. [What is in an ARM Template - Understanding Components 4 - Resources](\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources\/)\r\n 7. [What is in an ARM Template - Understanding Components 5 - Outputs](\/post\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs\/)\r\n 8. [Helper Functions in ARM Templates](\/post\/step-by-step-arm-templates-helper-functions\/)",
+		"savedraft": "savedraft",
+		"dated": "Sep 30, 2016",
+		"slug": "step-by-step-azure-resource-manager-arm-templates-index",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Resource Manager (ARM) Template<\/strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and r...<\/p>\n",
+		"addpost": "addpost",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Step by Step ARM Templates - Building your first ARM Template",
+		"postDate": "04-09-2016",
+		"tags": [
+			"ARM",
+			"Azure",
+			"AzureResourceManager",
+			"Templates"
+		],
+		"category": "Azure",
+		"body": "In this blog post, we will use the knowledge learnt in previous blogs and will build a basic ARM template. \r\nIf you haven't checked previous blog posts then have a quick read of your preferred topics here: [Step by Step Azure Resource Manager (ARM) Templates - Index](\/post\/step-by-step-azure-resource-manager-arm-templates-index\/)\r\n\r\nTo follow this blog, you can use any text editor which can provide JSON syntax highlighting. We will be looking at using Visual Studio to author ARM templates in a future blog post. Visual Studio can provide JSON outlining and is a very powerful tool for authoring ARM templates.\r\n\r\nLet us assume that you want to deploy a storage account and build a virtual network in Azure. You want to automate the process and need to repeat the process in various environments. ARM templates fit the bill for the solution of this problem.\r\n\r\nIn the next few sections, we will build each section of the template and then at the end will check the complete template.\r\n\r\n### 1. Template Header ###\r\n\r\n    \"$schema\": \"https:\/\/schema.management.azure.com\/schemas\/2015-01-01\/deploymentTemplate.json#\",\r\n    \"contentVersion\": \"1.0.0.0\",\r\n\r\n### 2. Parameters ###\r\n\r\n    \"parameters\": {\r\n        \"vhdStorageName\": {\r\n            \"type\": \"string\",\r\n            \"minLength\": 1,\r\n            \"defaultValue\": \"mystorage101\",\r\n            \"metadata\": {\r\n                \"description\": \"Name of the Storage Account.\"\r\n            }\r\n        },\r\n        \"virtualNetworkName\": {\r\n            \"type\": \"string\",\r\n            \"metadata\": {\r\n                \"description\": \"Name of the virtual network.\"\r\n            }\r\n        }\r\n    },\r\n\r\n### 3. Variables ###\r\n\r\n    \"variables\": {\r\n        \"addressPrefix\": \"10.0.0.0\/16\",\r\n        \"subnetName\": \"Subnet\",\r\n        \"subnetPrefix\": \"10.0.0.0\/24\",\r\n        \"vhdStorageType\": \"Standard_LRS\"\r\n    },\r\n\r\n### 4. Resources ###\r\n\r\n    \"resources\": [\r\n        {\r\n            \"type\": \"Microsoft.Storage\/storageAccounts\",\r\n            \"name\": \"[parameters('vhdStorageName')]\",\r\n            \"apiVersion\": \"2015-06-15\",\r\n            \"location\": \"[resourceGroup().location]\",\r\n            \"tags\": {\r\n                \"displayName\": \"StorageAccount\"\r\n            },\r\n            \"properties\": {\r\n                \"accountType\": \"[variables('vhdStorageType')]\"\r\n            }\r\n        },\r\n        {\r\n            \"apiVersion\": \"2015-06-15\",\r\n            \"type\": \"Microsoft.Network\/virtualNetworks\",\r\n            \"name\": \"[parameters('virtualNetworkName')]\",\r\n            \"location\": \"[resourceGroup().location]\",\r\n            \"tags\": {\r\n                \"displayName\": \"VirtualNetwork\"\r\n            },\r\n            \"properties\": {\r\n                \"addressSpace\": {\r\n                    \"addressPrefixes\": [\r\n                        \"[variables('addressPrefix')]\"\r\n                    ]\r\n                },\r\n                \"subnets\": [\r\n                    {\r\n                        \"name\": \"[variables('subnetName')]\",\r\n                        \"properties\": {\r\n                            \"addressPrefix\": \"[variables('subnetPrefix')]\"\r\n                        }\r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    ]\r\n\r\n### Complete Template ###\r\n\r\nHere is the complete template build from all the sections discussed above.\r\n\r\n    {\r\n        \"$schema\": \"https:\/\/schema.management.azure.com\/schemas\/2015-01-01\/deploymentTemplate.json#\",\r\n        \"contentVersion\": \"1.0.0.0\",\r\n        \"parameters\": {\r\n            \"vhdStorageName\": {\r\n                \"type\": \"string\",\r\n                \"minLength\": 1,\r\n                \"defaultValue\": \"mystorage101\",\r\n                \"metadata\": {\r\n                    \"description\": \"Name of the Storage Account.\"\r\n                }\r\n            },\r\n            \"virtualNetworkName\": {\r\n                \"type\": \"string\",\r\n                \"metadata\": {\r\n                    \"description\": \"Name of the virtual network.\"\r\n                }\r\n            }\r\n        },\r\n        \"variables\": {\r\n            \"addressPrefix\": \"10.0.0.0\/16\",\r\n            \"subnetName\": \"Subnet\",\r\n            \"subnetPrefix\": \"10.0.0.0\/24\",\r\n            \"vhdStorageType\": \"Standard_LRS\"\r\n        },\r\n        \"resources\": [\r\n            {\r\n                \"type\": \"Microsoft.Storage\/storageAccounts\",\r\n                \"name\": \"[parameters('vhdStorageName')]\",\r\n                \"apiVersion\": \"2015-06-15\",\r\n                \"location\": \"[resourceGroup().location]\",\r\n                \"tags\": {\r\n                    \"displayName\": \"StorageAccount\"\r\n                },\r\n                \"properties\": {\r\n                    \"accountType\": \"[variables('vhdStorageType')]\"\r\n                }\r\n            },\r\n            {\r\n                \"apiVersion\": \"2015-06-15\",\r\n                \"type\": \"Microsoft.Network\/virtualNetworks\",\r\n                \"name\": \"[parameters('virtualNetworkName')]\",\r\n                \"location\": \"[resourceGroup().location]\",\r\n                \"tags\": {\r\n                    \"displayName\": \"VirtualNetwork\"\r\n                },\r\n                \"properties\": {\r\n                    \"addressSpace\": {\r\n                        \"addressPrefixes\": [\r\n                            \"[variables('addressPrefix')]\"\r\n                        ]\r\n                    },\r\n                    \"subnets\": [\r\n                        {\r\n                            \"name\": \"[variables('subnetName')]\",\r\n                            \"properties\": {\r\n                                \"addressPrefix\": \"[variables('subnetPrefix')]\"\r\n                            }\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        ]\r\n    }\r\n\r\nIn the next blog, we will learn how to deploy this template.\r\n",
+		"addpost": "addpost",
+		"dated": "Sep 04, 2016",
+		"slug": "step-by-step-arm-templates-building-your-first-arm-template",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In this blog post, we will use the knowledge learnt in previous blogs and will build a basic ARM template.\nIf you haven't checked previous blog posts then have a quick read of your preferred topics here: <a href=\"\/post\/step-by-step-azure-resource-manager-arm-templates-index\/\">Step by Step Azure R...<\/a><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Step by Step ARM Templates - Helper Functions",
 		"postDate": "31-08-2016",
 		"tags": [
@@ -138,27 +179,6 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>Azure Resource Manager (ARM) templates are written in JSON or <strong>JavaScript Object Notation<\/strong>. To understand ARM templates, you need to understand few quick basics about JSON. These will enable you to lay a great foundation which will enable you to understand ARM templates very easily...<\/p>\n",
-		"addpost": "addpost",
-		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Step by Step Azure Resource Manager (ARM) Templates - Index",
-		"postDate": "15-08-2016",
-		"tags": [
-			"ARM",
-			"Azure",
-			"AzureResourceManager",
-			"Templates"
-		],
-		"category": "Azure",
-		"body": "**Azure Resource Manager (ARM) Template** is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.\r\n\r\nARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various **benefits** including:\r\n\r\n - **Declarative Deployment** \u2013 All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.\r\n - **Idempotency** \u2013 You can deploy the same template over and over again without affecting the current resources.\r\n - **Predictability** - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.\r\n - **Repitition without Errors** - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).\r\n\r\nThis series of posts try to decode and understand the ARM Templates \"Step By Step\".\r\n\r\nThis post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.\r\n\r\n 1. [Index](#) \r\n 2. [JSON 101 for IT Administrators](..\/step-by-step-arm-templates-json-101-for-it-administrators\/)\r\n 3. [What is in an ARM Template - Understanding All Components](..\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components\/)\r\n 4. [What is in an ARM Template - Understanding Components 2 - Parameters](..\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters\/)\r\n 5. [What is in an ARM Template - Understanding Components 3 - Variables](..\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables\/)\r\n 6. [What is in an ARM Template - Understanding Components 4 - Resources](..\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources\/)\r\n 7. [What is in an ARM Template - Understanding Components 5 - Outputs](..\/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs\/)",
-		"savedraft": "savedraft",
-		"dated": "Aug 15, 2016",
-		"slug": "step-by-step-azure-resource-manager-arm-templates-index",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p><strong>Azure Resource Manager (ARM) Template<\/strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and r...<\/p>\n",
 		"addpost": "addpost",
 		"prevStatus": "publised"
 	},
