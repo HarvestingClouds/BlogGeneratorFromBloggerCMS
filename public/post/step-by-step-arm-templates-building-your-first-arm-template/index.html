@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>PowerShell DSC - Partial Configurations :: Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Building your first ARM Template :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,50 +72,205 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>PowerShell DSC - Partial Configurations</h3>
+                <h3>Step by Step ARM Templates - Building your first ARM Template</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 20, 2016
+                <span class="glyphicon glyphicon-time"></span> Sep 04, 2016
                 <hr>
 
-                <p class="post-content"><p><strong>Partial Configurations</strong> is a new feature in PowerShell 5.0 Desired State Configuration or DSC. It allows the configurations to be delivered in parts or fragments. These configurations can come from various sources.
-The Local Configuration Manager or LCM on the target node puts these partial configurations from different sources together and after that apply the same as a single configuration.</p>
-<p>This opens various possibilities for Enterprises to manage their infrastructure and designate the responsibility to various teams for a single node. The team expert in a particular field can focus on that feature without worrying about other features.</p>
-<p>You can have partial configurations in following modes:</p>
+                <p class="post-content"><p>In this blog post, we will use the knowledge learned in previous blogs and will build a basic ARM template.
+If you haven't checked previous blog posts then have a quick read of your preferred topics here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>To follow this blog, you can use any text editor which can provide JSON syntax highlighting. We will be looking at using Visual Studio to author ARM templates in a future blog post. Visual Studio can provide JSON outlining and is a very powerful tool for authoring ARM templates.</p>
+<p>Let us assume that you want to deploy a storage account and build a virtual network in Azure. You want to automate the process and need to repeat the process in various environments. ARM templates fit the bill for the solution of this problem.</p>
+<p>In the next few sections, we will build each section of the template and then at the end will check the complete template.</p>
+<h3>1. Template Header</h3>
+<p>This section is very basic and contains just the schema and the content version. You can use the content version to manage the development versions of the template as you make changes to your templates in the future.</p>
+<pre><code>"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"contentVersion": "1.0.0.0",</code></pre>
+<h3>2. Parameters</h3>
+<p>Here we define all the inputs we need from the end users. We provide default values for those parameters for which we know what the most common values will be based on our environment. For the current template we define two parameters:</p>
+<ul>
+<li><strong>vhdStorageName</strong> - This is the name of the storage account in Azure which will be created by the deployment of this template.</li>
+<li><strong>virtualNetworkName</strong> - This is the name of the Virtual Network which will be created by the deployment of this template.</li>
+</ul>
+<p>As a best practice, provide the metadata, describing what each parameter is for. Also, note that we have used pascal casing to name the parameters with very descriptive names.</p>
+<pre><code>"parameters": {
+    "vhdStorageName": {
+        "type": "string",
+        "minLength": 1,
+        "defaultValue": "mystorage101",
+        "metadata": {
+            "description": "Name of the Storage Account."
+        }
+    },
+    "virtualNetworkName": {
+        "type": "string",
+        "metadata": {
+            "description": "Name of the virtual network."
+        }
+    }
+},</code></pre>
+<h3>3. Variables</h3>
+<p>Next, we add some variables for the values which will be reused later in the template in the resources section. We create variables for all those reusable values for which we know what their value at deployment will be. We define 4 variables in this template:</p>
+<ul>
+<li><strong>addressPrefix</strong> - Address prefix for the Virtual Network </li>
+<li><strong>subnetName</strong> - Subnet name which will be created under the virtual network</li>
+<li><strong>subnetPrefix</strong> - Subnet prefix for the subnet, which will be created under the virtual network</li>
+<li><strong>vhdStorageType</strong> - Type of the storage account. Here we used Standard locally redundant storage (LRS)</li>
+</ul>
+<p>Variables section look as below:</p>
+<pre><code>"variables": {
+    "addressPrefix": "10.0.0.0/16",
+    "subnetName": "Subnet",
+    "subnetPrefix": "10.0.0.0/24",
+    "vhdStorageType": "Standard_LRS"
+},</code></pre>
+<h3>4. Resources</h3>
+<p>Now comes the last and main section i.e. Resources. Here we define both the resources for our template:</p>
+<ul>
+<li>Storage Account</li>
+<li>Virtual Network</li>
+</ul>
+<p>Let us look at each of these resources one by one.</p>
+<p><strong>A. Storage Account Resource</strong></p>
+<p>This resource has below properties (or key-value pairs):</p>
 <ol>
-<li>Push Mode</li>
-<li>Pull Mode</li>
-<li>Hybrid Mode (i.e. combination of Push and Pull)</li>
+<li><strong>Type</strong> - Type of the resource is set to Microsoft.Storage/storageAccounts. This is what tells the Azure that the current resource is a Storage Account</li>
+<li><strong>Name</strong> - This defines the name of the storage account to be deployed based on the parameter to the template</li>
+<li><strong>API Version</strong> - this is the standard version for the REST API in Azure</li>
+<li><strong>Location</strong> - This is the Azure location. The location is found dynamically based on the location of the resource group to which this template will be deployed.</li>
+<li><strong>tags</strong> - only one tag is defined for the display name. You should have more tags in case of a production ready template</li>
+<li><strong>properties</strong> - This is where you tell Azure what kind of storage account you need. Here the account type is set using the value of the variable vhdStorageType.</li>
 </ol>
-<h3>Configuration for the PUSH Mode</h3>
-<p>You need to follow three steps to configure Partial configurations for the PUSH mode:</p>
-<ul>
-<li>Configure the LCM, on the target node, to expect partial configurations</li>
-<li>Push each partial configuration from different sources using <strong>Publish-DSCConfiguration</strong> cmdlet. Target node will automatically combine the partial configurations into single configuration.</li>
-<li>Apply the configuration by calling the <strong>Start-DSCConfiguration</strong>cmdlet</li>
-</ul>
-<h3>Configuration for the PULL Mode</h3>
-<p>This is bit complex than the Push mode. In nutshell you only need couple of steps:</p>
-<ul>
-<li>Configure the LCM, on the target node, to receive partial configurations but from PULL servers</li>
-<li>Name and locate the configuration documents properly on the pull servers</li>
-</ul>
-<p>To know more about DSC Partial configurations follow the below references:</p>
-<ul>
-<li><a href="https://automationnext.wordpress.com/2016/04/19/powershell-desired-state-configuration-partial-configurations-without-configurationid/">Detailed Blog by AutomationNext with very valuable insights</a></li>
-<li><a href="https://msdn.microsoft.com/en-us/powershell/dsc/partialconfigs">Official MSDN Article</a></li>
-</ul></p>
+<p><strong>B. Virtual Network Resource</strong></p>
+<p>This resource has below properties (or key-value pairs):</p>
+<ol>
+<li><strong>Type</strong> - Type of the resource is set to Microsoft.Network/virtualNetworks. This is what tells the Azure that the current resource is a Virtual Network</li>
+<li><strong>Name</strong> - This defines the name of the virtual network to be deployed based on the parameter to the template</li>
+<li><strong>API Version</strong> - this is the standard version for the REST API in Azure</li>
+<li><strong>Location</strong> - This is the Azure location. The location is found dynamically based on the location of the resource group to which this template will be deployed.</li>
+<li><strong>tags</strong> - only one tag is defined for the display name. You should have more tags in case of a production ready template</li>
+<li><strong>properties</strong> - This is where you define the address space for the virtual network. You also define the subnet under the virtual network here.</li>
+</ol>
+<p>The resources section look like below:</p>
+<pre><code>"resources": [
+    {
+        "type": "Microsoft.Storage/storageAccounts",
+        "name": "[parameters('vhdStorageName')]",
+        "apiVersion": "2015-06-15",
+        "location": "[resourceGroup().location]",
+        "tags": {
+            "displayName": "StorageAccount"
+        },
+        "properties": {
+            "accountType": "[variables('vhdStorageType')]"
+        }
+    },
+    {
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Network/virtualNetworks",
+        "name": "[parameters('virtualNetworkName')]",
+        "location": "[resourceGroup().location]",
+        "tags": {
+            "displayName": "VirtualNetwork"
+        },
+        "properties": {
+            "addressSpace": {
+                "addressPrefixes": [
+                    "[variables('addressPrefix')]"
+                ]
+            },
+            "subnets": [
+                {
+                    "name": "[variables('subnetName')]",
+                    "properties": {
+                        "addressPrefix": "[variables('subnetPrefix')]"
+                    }
+                }
+            ]
+        }
+    }
+]</code></pre>
+<h3>Complete Template</h3>
+<p>Here is the complete template build from all the sections discussed above. You can copy and use this template for testing and working along with next deployment posts.</p>
+<pre><code>{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vhdStorageName": {
+            "type": "string",
+            "minLength": 1,
+            "defaultValue": "mystorage101",
+            "metadata": {
+                "description": "Name of the Storage Account."
+            }
+        },
+        "virtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the virtual network."
+            }
+        }
+    },
+    "variables": {
+        "addressPrefix": "10.0.0.0/16",
+        "subnetName": "Subnet",
+        "subnetPrefix": "10.0.0.0/24",
+        "vhdStorageType": "Standard_LRS"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[parameters('vhdStorageName')]",
+            "apiVersion": "2015-06-15",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "StorageAccount"
+            },
+            "properties": {
+                "accountType": "[variables('vhdStorageType')]"
+            }
+        },
+        {
+            "apiVersion": "2015-06-15",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworkName')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "VirtualNetwork"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('addressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnetPrefix')]"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}</code></pre>
+<p>In the next blog, we will learn how to deploy this template.</p></p>
                 <br/><br/>
 
                 <div class="post-info">
                         <span class="glyphicon glyphicon-folder-open"></span> &nbsp;
-                        <a href="http://HarvestingClouds.com/category/powershell">PowerShell</a>
+                        <a href="http://HarvestingClouds.com/category/azure">Azure</a>
                         &nbsp;&nbsp;
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/dsc">dsc</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/powershell">powershell</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                 </div>
 
             </article>
