@@ -44,7 +44,8 @@
 
                         <tbody>
                         <?php
-                        foreach ($data as $key => $image) {
+                        $reversed = array_reverse($data);
+                        foreach ($reversed as $key => $image) {
                             $fullPath = $settings['url'] . '/images/' . basename($image['image']);
                             ?>
                             <tr>
