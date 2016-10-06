@@ -40,5 +40,6 @@
 	"42": "ARM",
 	"43": "AzureResourceManager",
 	"44": "Templates",
-	"45": "JSON"
+	"45": "JSON",
+	"46": "VisualStudio"
 }
