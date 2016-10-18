@@ -6,6 +6,241 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Step by Step ARM Templates - Using Key Vault to Securely Provide Information in ARM Templates</title>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>When providing passwords and other secure and confidential information in ARM Templates, you need to ensure that you don't hard code these values anywhere. You don't need to compromise the security of the system while trying to automate deployments. Your end goal is to try to automate as much as possible and reduce manual involvement. </p>
+<p><strong>Key Vaults</strong> are there to solve this problem without compromising any security. In fact, they make the whole solution more secure with least manual intervention.</p>
+<h3>Setting up the Key Vault</h3>
+<p>We first need to setup the Key Vault in Azure to be able to use it via ARM Template parameters.</p>
+<ol>
+    <li>
+<b>Create a Key Vault in Azure</b> by going to <i>New -> Security + Identity -> Key Vault</i>. Provide a name, subscription, resource group etc. and provision the Key Vault. Once it is created navigate to it by clicking on "More Services" and searching for Key Vault. Click on the name of the vault you created. E.g. In this example we have named the key vault to "TestKeyVault101".
+
+<br />
+<b>Note</b> that this feature is in Preview  at the time of writing of this blog.
+
+    </li>
+
+    <li>
+        Next, we need to <b>Add a Secret</b> in the key vault. Click on the Secrets and then the + Add button at the top, as shown below:
+<br />
+<img alt="Adding Secret" src="/images/1476818644580676d447b16.png" />
+<br />
+Next, in the "Create a secret" blade, set the Upload Options to Manual. Provide a name and value to the secret. Value is the password you want to securely save.
+Ensure that the Enabled is set to Yes. Optionally you can set the activation and expiration dates. In this example, we are setting the Secret Name to "DefaultAdminPasswordSecret".
+<img alt="Creating Secret" src="/images/1476818650580676da89fee.png" />
+    </li>
+
+    <li>
+        Next, we will set the <b>Access Policies </b> to provide access to the user under the context of which the template will be deployed. This is the user which will be accessing the Key Vault. Go to Key Vault settings and select Access Policies. Add the new user as shown below:
+
+<img alt="Access Policies" src="/images/14768190995806789bad0c4.png" />
+<br />
+
+    </li>
+
+    <li>
+        Next, we will set the <b>Advanced Access Policies </b> to indicate that this key vault can be accessed via ARM Templates. Go to Key Vault settings and select Advanced Access Policies. Ensure that the checkbox for "<i>Enable access to Azure Resource Manager for template deployment</i>" is checked as shown below:
+
+<img alt="Access Policies" src="/images/1476819105580678a1cfc9f.png" />
+<br /> 
+
+    </li>
+
+</ol>
+<p>We are now all set with our Key Vault. Next, we will be using the secret we created to set the local Administrator user's password.</p>
+<h3>Using the Key Vault Secret in ARM Template</h3>
+<p>Let us assume that you have a JSON ARM Template which deploys a VM. One of the parameters in this template is AdminPassword. You want to use the Key Vault Secret to provide the value for this parameter. </p>
+<p><strong>First</strong>, ensure that the parameter is declared as <i>securestring</i> as shown below:</p>
+<pre><code>"adminPassword": {
+    "type": "securestring",
+    "metadata": {
+        "description": "Password for local admin account."
+    }
+}</code></pre>
+<p><strong>Next</strong>, we need to use the parameters file for this template. If you don't have one already create a new one. We can provide the reference to the Key Vault Secret as the value of admin user's password parameter in this file. General Syntax of providing reference is as shown follow:</p>
+<pre><code>"adminPassword": {
+  "reference": {
+    "keyVault": {
+      "id": "Key Vault Id Here"
+    },
+    "secretName": "Name of the secret in Azure Key Vault"
+  }
+}</code></pre>
+<p>Now the ID in the above Syntax can be provided as:</p>
+<p><em>/subscriptions/{guid}/resourceGroups/{group-name}/providers/Microsoft.KeyVault/vaults/{vault-name}</em>. </p>
+<p>Note to replace the <em>{guid}</em> with actual GUID for the subscription (without the curly braces), replace <em>{group-name}</em> with the actual name of the resource group and <em>{vault-name}</em> with the actual name of the Key Vault.</p>
+<p>You can also find the Resource ID for the Key Vault by navigating to it in the Azure Portal and then checking it's properties as shown below:</p>
+<p><img src="/images/147682308858068830f2f8e.png" alt="Key Vault Resource ID" /></p>
+<p>The complete parameter file looks like below:</p>
+<pre><code>{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "OtherParameter": {
+      "value": "otherValue"
+    },
+    "adminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/11111aaa-1a11-1a11-a1aa-1a1111a111a1/resourceGroups/TestRG101/providers/Microsoft.KeyVault/vaults/TestKeyVault101"
+        },
+        "secretName": "DefaultAdminPasswordSecret"
+      }
+    }
+  }
+}</code></pre>
+<p>Next, deploy the template using PowerShell and pass this parameters file as explained here: <a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a>. </p>
+<p>Example PowerShell cmdlet to deploy will look like:</p>
+<pre><code>New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName TestResourceGroup01 -TemplateFile .\TemplateFile.json -TemplateParameterFile .\ParametersFile.json</code></pre>
+<p>Now that you know how to use values from Key Vaults, you can make the automated deployment of resources more secure in your environment.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates</link>
+<pubDate>Tue, 18 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step ARM Templates - Visualizing ARM Templates and Generating Diagrams</title>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>When developing ARM Templates, from time to time you will need to:</p>
+<ul>
+<li>Visualize your ARM Templates</li>
+<li>Generate Diagrams for your ARM Templates</li>
+</ul>
+<p>Microsoft has provided an Open Source tool for this named &quot;ARMVIZ&quot; (short for ARM Visualizer). This tool can be accessed by navigating to the below URL:</p>
+<p><a href="http://armviz.io/"><a href="http://armviz.io/">http://armviz.io/</a></a></p>
+<h3>Navigating ARMVIZ</h3>
+<p>ARMVIZ is a nice in-browser application to visualize all the components in a template. It also shows the dependencies between various components. Using this web application you can:</p>
+<ul>
+<li>Either visualize your own developed template,</li>
+<li>Or inspect existing templates on GitHub</li>
+</ul>
+<p>Let's take a quick tour of the interface:</p>
+<p><img src="/images/14768067785806487ad77dd.png" alt="ARMVIZ Interface" /></p>
+<p>I have numbered various elements of the interface in the above diagram. Let's quickly review these elements:</p>
+<ol>
+
+    <li>
+              <b>Designer</b> - This is represented by an "eye" icon on the left bar. This should be selected by default. If you are in the editor mode then you can click this and the diagram will be shown in the middle portion of the screen.
+    </li>
+
+    <li>
+              <b>Editor</b> - This is represented by "</>" text for code on the left bar. Clicking on this will take you to the editor portion of the ARMVIZ tool. In this area, you can edit your template while still in the tool. You can add or remove components. You can even edit the components or add dependencies.
+    </li>
+
+     <li>
+              <b>Canvas area</b> - This is the main screen (the middle area) where the template is displayed.
+    </li>
+
+    <li>
+              <b>File Menu</b> - This is the main and simple menu in the whole web application in the top bar. It has two options:
+              <ol type="a">
+                       <li>
+                             <b>Open Local Template</b> - You can open an ARM Template JSON from your local computer to visualize using this menu option.
+                       </li>
+                       <li>
+                             <b>Download Template</b> - You can download the current template by using this menu option.
+                       </li>
+              </ol>
+    </li>
+
+    <li>
+              <b>Quickstart ARM Templates</b> - This is the link to external library of Quickstart ARM Templates on GitHub. These starter templates can help you save a lot of time. Instead of starting from scratch you can use these templates to fasten the ARM Templates Development.
+    </li>
+
+</ol>
+<p>This is how the Editor portion of the tool looks like. Use this area to edit or update your template.
+<strong>Note:</strong> If there will be mistakes, such as missing parenthesis in your template, the designer will not show any diagram. </p>
+<p><img src="/images/147680732358064a9ba1310.png" alt="Editor Area" /></p>
+<p>You can zoom into and zoom out of your template diagram by rolling the mouse wheel. You can also drag and reposition various elements.
+Take a screenshot once you have repositioned the elements as per your requirements and have zoomed into an appropriate level.</p>
+<p>Below screenshot is taken from a much more complex template.</p>
+<p><img src="/images/1476806791580648877fed3.png" alt="Complex ARM Template Diagram" /></p>
+<p>In conclusion, ARMVIZ can enable you to easily visualize your ARM Templates. It can empower you to generate diagrams for your documentation and to present to your team.</p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams</link>
+<pubDate>Mon, 17 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Automation Preview Solution - Start/Stop VMs during off-hours </title>
+<description><![CDATA[<p>Starting and Stopping VMs during off-hours can mean lots of cost optimizations for you. We have been implementing this via custom Runbooks and schedules for various customers. Now there is out of the box support for this within Azure. The feature is currently in Preview but you can build on this.</p>
+<h3>What do I need - Prerequisites</h3>
+<p>Before beginning check that your region has this feature available. Just like with any other automation solution, you will need to have:</p>
+<ol>
+<li>OMS Workspace (or you can create new while adding the solution)</li>
+<li>Automation Account (or you can create new)</li>
+<li>Azure Run As account (and not the Microsoft Account)</li>
+<li>For email support, Office 365 business-class subscription is required</li>
+</ol>
+<p>Note: The VMs that you want to manage should be in the same subscription and resource group as where the Automation account resides.</p>
+<h3>How to Add</h3>
+<p>To Add the solution, click on &quot;+ New&quot; symbol and search for &quot;Start/Stop VMs during off-hours&quot;. You will find the below solution available to be created:</p>
+<p><img src="/images/1476808753580650317ab68.png" alt="Start and Stop VMs Preview Solution" /></p>
+<h3>What does it Contain</h3>
+<p>The solution is a combination of various automation assets:</p>
+<ol>
+<li>Runbooks</li>
+<li>Variables</li>
+<li>Schedules</li>
+<li>Credentials</li>
+</ol>
+<p>You can change some configurations during and some after the deployment. </p>
+<p>Find out more here: <a href="https://azure.microsoft.com/en-us/documentation/articles/automation-solution-vm-management/">Start/Stop VMs during off-hours [Preview]</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-automation-preview-solution-start-stop-vms-during-off-hours</link>
+<pubDate>Tue, 11 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure RemoteApp is going away. New Purchases in portal are now stopped </title>
+<description><![CDATA[<p>Today I got an email saying &quot;Action recommended: Deleting unnecessary RemoteApp collections can save you money&quot;. This email is also a reminder from Microsoft that the RemoteApp is going away. We need to plan for the migration for the existing RemoteApps to other platforms.</p>
+<h3>What this means</h3>
+<p>This means various things to you. Most prominently:</p>
+<ul>
+<li>Over the next year, the support for Remote App is going away</li>
+<li>You need to plan and migrate the existing RemoteApp application to other platforms</li>
+<li>New Purchases in the Azure portal for RemoteApp are no longer available</li>
+</ul>
+<h3>When is the service coming to Stop</h3>
+<p>The service will have support through <strong>August 31st, 2017</strong>. That's when this service will come to a stop. New service purchase was stopped effective October 1st, 2016.</p>
+<h3>What are my Options</h3>
+<p>You have various options for migration. The option being <strong>recommended</strong> by Microsoft is using &quot;<strong>Citrix XenApp express</strong>&quot;. In fact, Microsoft is partnering up with Citrix on this. This service is not yet available and is currently under development. As this will be the native option in Azure this will be your best bet once it is announced. You can learn more about this solution here on Citrix site: <a href="https://www.citrix.com/global-partners/microsoft/remote-app.html">Citrix and Microsoft</a></p>
+<p>The second option is to use Remote Desktop Services (RDS) deployed on Azure IaaS. This means to set up the infrastructure yourself and then deploy and host the RDS solution on that infrastructure in Azure. You can know more about the steps here: <a href="https://technet.microsoft.com/en-us/windows-server-docs/compute/remote-desktop-services/host-desktops-and-apps-in-remote-desktop-services">Host desktops and apps in Remote Desktop Services on Azure</a></p>
+<p>Another option is to use  hosted solutions from various 3rd party vendors. You can find such solution from various partners from the Azure marketplace. You can also read and get to know the complete list of these hosting partners here: <a href="https://technet.microsoft.com/en-us/windows-server-docs/compute/remote-desktop-services/rds-hosting-partners">RDS - Partners for hosting desktops and apps</a></p>
+<p><strong>In conclusion,</strong> I will recommend to wait and look out for Citrix XenApp express solution. If you need new remote application solutions then you need to either deploy your own solution or use one of the hosted solutions by 3rd party vendors. You can read more about the official announcement here: <a href="https://blogs.technet.microsoft.com/enterprisemobility/2016/08/12/application-remoting-and-the-cloud/?WT.mc_id=azurebg_email_Trans_1218_No_Usage_Azure_RemoteApp">Application Remoting and the Cloud</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-remoteapp-is-going-away-new-purchases-in-portal-are-now-stopped</link>
+<pubDate>Mon, 10 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
+<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
+<p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits</strong> including:</p>
+<ul>
+<li><strong>Declarative Deployment</strong> – All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.</li>
+<li><strong>Idempotency</strong> – You can deploy the same template over and over again without affecting the current resources.</li>
+<li><strong>Predictability</strong> - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.</li>
+<li><strong>Repitition without Errors</strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).</li>
+</ul>
+<p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.</p>
+<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.</p>
+<ol>
+<li><a href="#">Index</a> </li>
+<li><a href="/post/step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
+<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
+<li><a href="/post/step-by-step-arm-templates-helper-functions/">Helper Functions in ARM Templates</a></li>
+<li><a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">Building your first ARM Template</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">Deploying Template Using Azure Portal</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a></li>
+<li><a href="/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template/">Creating Parameters file for an ARM Template</a></li>
+<li><a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">Authoring ARM Templates using Visual Studio</a></li>
+<li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
+<li><a href="/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource/">Iterating and creating multiple instances of a resource</a></li>
+<li><a href="/post/step-by-step-arm-templates-visualizing-arm-templates-and-generating-diagrams/">Visualizing ARM Templates and Generating Diagrams</a></li>
+<li><a href="/post/step-by-step-arm-templates-using-key-vault-to-securely-provide-information-in-arm-templates/">Using Key Vault to Securely Provide Information in ARM Templates</a></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
+<pubDate>Fri, 07 Oct 2016 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Script Sample - Generate Azure Resources Report by Tags</title>
 <description><![CDATA[<p>When managing resources in Azure, Tags are there to help you. They add very valuable metadata to the Azure resources.
 In nutshell, tags are Key-Value pairs. E.g. &quot;Business Unit = Finance&quot;, &quot;Site = Central US&quot; are two such tags.</p>
@@ -40,39 +275,126 @@ In nutshell, tags are Key-Value pairs. E.g. &quot;Business Unit = Finance&quot;,
 <pubDate>Mon, 03 Oct 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Step by Step Azure Resource Manager (ARM) Templates - Index</title>
-<description><![CDATA[<p><strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources. The template can be used to deploy the resources consistently and repeatedly.</p>
-<p>ARM Templates can be used for the deployment of resources on both Azure and Azure Stack. Using these templates for all deployments provides you with various <strong>benefits</strong> including:</p>
+<title>Step by Step ARM Templates - Iterating and creating multiple instances of a resource</title>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>In Azure Resource Manager (ARM) templates, you can define the variable once and then iterate/loop over that definition and create multiple instances of that resource.
+There are 3 special constructs in ARM templates to help you with this. </p>
+<p>These <strong>constructs</strong> are:</p>
 <ul>
-<li><strong>Declarative Deployment</strong> – All you need to do is declare what you need to deploy. You don't need to create any complex rules or write lengthy scripts.</li>
-<li><strong>Idempotency</strong> – You can deploy the same template over and over again without affecting the current resources.</li>
-<li><strong>Predictability</strong> - Using Templates you can have accurate predictability when performing large deployments. You reduce any manual errors.</li>
-<li><strong>Repitition without Errors</strong> - You can deploy the same infrastructure over and over again (e.g. in Dev-test environments and then in production).</li>
+<li><strong>copy</strong> - This is a property that is defined within the resource. This is the construct which when defined indicates that this resource needs to be looped over and created multiple times. It also specifies the number of times to iterate via &quot;count&quot; property.</li>
+<li><strong>copyIndex()</strong> - Used to access the current iteration value. Its value for the first iteration is <strong>zero</strong>. For the second iteration, its value is 1 and so on... You can pass it an integer (number) as a parameter. Whatever number you pass that will become the value for the first iteration and subsequent iterations. E.g. copyIndex(20) will compute to 20 in the first iteration, 21 in the second iteration and so on.</li>
+<li><strong>length</strong> - This is the method of arrays. It computes the number of elements in an array. It can be used to set the &quot;count&quot; property of &quot;copy&quot; construct.</li>
 </ul>
-<p>This series of posts try to decode and understand the ARM Templates &quot;Step By Step&quot;.</p>
-<p>This post is an index of all the posts, in sequence, for understanding the Azure Resource Manager (ARM) Templates. This post will be updated regularly as more posts on this topic are added.</p>
+<p><strong>Note:</strong> Arrays are always <strong>zero indexed</strong>. What that means is that the first element of the array is indexed at 0, the second element of the array is indexed at 1, and so on...</p>
+<h3>1. Simple Example</h3>
+<p>Let us understand these constructs using an example.</p>
+<pre><code>"parameters": { 
+  "count": { 
+    "type": "int", 
+    "defaultValue": 3 
+  } 
+}, 
+"resources": [ 
+  { 
+      "name": "[concat('HarvestingClouds-', copyIndex(100))]", 
+      "type": "Microsoft.Web/sites", 
+      "location": "Central US", 
+      "apiVersion": "2015-08-01",
+      "copy": { 
+         "name": "websitescopy", 
+         "count": "[parameters('count')]" 
+      }, 
+      "properties": {
+          "serverFarmId": "hostingPlanName"
+      }
+  } 
+]</code></pre>
+<p>The above example will <strong>result</strong> in creation of below 3 web apps in Azure:</p>
+<ul>
+<li>HarvestingClouds-100</li>
+<li>HarvestingClouds-101</li>
+<li>HarvestingClouds-102</li>
+</ul>
+<p>Note the usage of &quot;copy&quot; property in the above code example:</p>
+<pre><code> "copy": { 
+             "name": "websitescopy", 
+             "count": "[parameters('count')]" 
+          }</code></pre>
+<p>As you can notice above, the value of this property is another JSON object. This object has further two properties: </p>
+<ul>
+<li>First is the name property, which provides the name to the looping construct. This can be any meaningful name. </li>
+<li>The second property is the count, which specifies how many times this resource definition should be deployed. Note that the value is set to the parameter named &quot;count&quot;. The name of the parameter can be anything but the value of the parameter has to be a number (i.e. an integer).</li>
+</ul>
+<p>Next, note how the name of the web application is constructed using the copyIndex() helper function.</p>
+<pre><code>"name": "[concat('HarvestingClouds-', copyIndex(100))]"</code></pre>
+<p>The above value uses two helper functions. First is the &quot;concat()&quot; which is concatenating (i.e. joining) two values. First value is the prefix string &quot;HarvestingClouds-&quot;. Second parameter and the second helper function is <code>copyIndex(100)</code>. This specifies the current iteration value, which is offset with 100. So for the first iteration, the value will be 0+100 = 100, for the second iteration the value will be 1+100 = 101 and so on...</p>
+<h3>2. Example with an Array</h3>
+<p>Let's assume that you want to deploy multiple web apps for different purposes. You need one web app for Production, one for Staging or testing and one for Development. You want to name the web apps deployed with the purpose concatenated.
+The below example uses an array to set the values for the web app name:</p>
+<pre><code>"parameters": { 
+  "purpose": { 
+     "type": "array", 
+         "defaultValue": [ 
+         "Production", 
+         "Staging", 
+         "Development" 
+      ] 
+  }
+}, 
+"resources": [ 
+  { 
+      "name": "[concat('HarvestingClouds-', parameters('purpose')[copyIndex()])]", 
+      "type": "Microsoft.Web/sites", 
+      "location": "Central US", 
+      "apiVersion": "2015-08-01",
+      "copy": { 
+         "name": "websitescopy", 
+         "count": "[length(parameters('purpose'))]" 
+      }, 
+      "properties": {
+          "serverFarmId": "hostingPlanName"
+      } 
+  } 
+]</code></pre>
+<p>The <strong>output</strong> of the above sample will be 3 web apps deployed in Azure with following names:</p>
+<ul>
+<li>HarvestingClouds-Production</li>
+<li>HarvestingClouds-Staging</li>
+<li>HarvestingClouds-Development</li>
+</ul>
+<p>Note in the above code sample that the parameter &quot;purpose&quot; is an array with 3 values i.e. Production, Staging, and Development. Then in the &quot;copy&quot; construct the count property is set using the length of this array as shown below. As there are 3 elements in the array, the value of count will be 3 and the resource will be deployed 3 times.</p>
+<pre><code>"count": "[length(parameters('purpose'))]" </code></pre>
+<p>Next, the name of the web app is set using the copyIndex() and the array itself as shown below:</p>
+<pre><code>"name": "[concat('HarvestingClouds-', parameters('purpose')[copyIndex()])]"</code></pre>
+<p>As earlier, it uses concat helper function to add two strings. The first string is simple text i.e. &quot;HarvestingClouds-&quot;, which becomes the prefix for the web app name. Second is finding out the value of the array based on the current iteration. For the first iteration, copyIndex() will compute to zero, therefore the second parameter becomes <code>parameters('purpose')[0]</code>. This will fetch the 0th element of the array which is Production. Similarly, for the second iteration, copyIndex() will compute to 1, therefore the second parameter becomes <code>parameters('purpose')[1]</code>. This will fetch the second element of the array (or element at index value 1) which is Staging, and so on...</p>
+<h3>3. Depending upon resources being deployed by the copy Loop</h3>
+<p>Let's assume you want to deploy a storage account. But you want to deploy it only after all the web apps are deployed by the loop. In this scenario, the dependsOn property of a resource is set to the name of the &quot;copy&quot; property of the resource, rather than the resource itself.</p>
+<pre><code>    {
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Storage/storageAccounts",
+        "name": "teststorage101",
+        "location": "[resourceGroup().location]",
+        "properties": {
+            "accountType": "Standard_LRS"
+         }
+       "dependsOn": ["websitescopy"]
+    }</code></pre>
+<p>Note above that the dependsOn property is set to the name property of the copy in the earlier web app example. This storage account will not be deployed until all 3 web apps are not deployed.</p>
+<h3>4. Limitations</h3>
+<p>There are two limitations on the use of the copy to iterate and create multiple resource instances:</p>
 <ol>
-<li><a href="#">Index</a> </li>
-<li><a href="/post/step-by-step-arm-templates-json-101-for-it-administrators/">JSON 101 for IT Administrators</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">What is in an ARM Template - Understanding All Components</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">What is in an ARM Template - Understanding Components 2 - Parameters</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-3-variables/">What is in an ARM Template - Understanding Components 3 - Variables</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-4-resources/">What is in an ARM Template - Understanding Components 4 - Resources</a></li>
-<li><a href="/post/step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-5-outputs/">What is in an ARM Template - Understanding Components 5 - Outputs</a></li>
-<li><a href="/post/step-by-step-arm-templates-helper-functions/">Helper Functions in ARM Templates</a></li>
-<li><a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">Building your first ARM Template</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">Deploying Template Using Azure Portal</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-template-using-azure-powershell/">Deploying Template Using Azure PowerShell</a></li>
-<li><a href="/post/step-by-step-arm-templates-creating-parameters-file-for-an-arm-template/">Creating Parameters file for an ARM Template</a></li>
-<li><a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">Authoring ARM Templates using Visual Studio</a></li>
-<li><a href="/post/step-by-step-arm-templates-deploying-arm-templates-using-visual-studio/">Deploying ARM Templates using Visual Studio</a></li>
-</ol>]]></description>
-<link>http://HarvestingClouds.com/post/step-by-step-azure-resource-manager-arm-templates-index</link>
-<pubDate>Fri, 30 Sep 2016 00:00:00 +0500</pubDate>
+<li><strong>Nested Resources</strong> - You cannot use a copy loop for a nested resource. If you need to create multiple instances of a resource that you typically define as nested within another resource, you must instead create the resource as a top-level resource and define the relationship with the parent resource through the <strong>type</strong> and <strong>name</strong> properties.</li>
+<li><strong>Looping Properties of a Resource</strong> - You can only use copy on resource types, not on properties within a resource type. E.g. Creating multiple data disks within a VM.</li>
+</ol>
+<p>That is all there is to iterate and creating multiple resources from a single definition. When your templates will start becoming complex then these constructs/helper functions will help you a lot. E.g. you may need to deploy multiple load balanced resources, then you can use the concepts defined in this post.</p>
+<p>You can also refer the official documentation here: <a href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-multiple/">copy, copyIndex, and length</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/step-by-step-arm-templates-iterating-and-creating-multiple-instances-of-a-resource</link>
+<pubDate>Tue, 27 Sep 2016 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Step by Step ARM Templates - Deploying ARM Templates using Visual Studio</title>
-<description><![CDATA[<p>In the last blog we saw <a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">How to use Visual Studio to author ARM templates</a>. In this blog we will see how to use Visual Studio (VS) to deploy the template without leaving VS.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>In the last blog we saw <a href="/post/step-by-step-arm-templates-authoring-arm-templates-using-visual-studio/">How to use Visual Studio to author ARM templates</a>. In this blog we will see how to use Visual Studio (VS) to deploy the template without leaving VS.</p>
 <p>Deploying with Visual Studio is very simple, straightforward and very intuitive. Just follow the below steps.</p>
 <ol>
 
@@ -149,7 +471,8 @@ Provide the password and hit Enter as shown below:
 </item>
 <item>
 <title>Step by Step ARM Templates - Authoring ARM Templates using Visual Studio</title>
-<description><![CDATA[<p><strong>Visual Studio</strong> is a very powerful tool when it comes to authoring ARM Templates. </p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p><strong>Visual Studio</strong> is a very powerful tool when it comes to authoring ARM Templates. </p>
 <p><strong>Key features</strong> which make it a tool of our choice are:</p>
 <ul>
 <li>In-house support for ARM Templates</li>
@@ -251,7 +574,8 @@ The last thing to notice is the use of <b>Intellisense</b> in Visual Studio whic
 </item>
 <item>
 <title>Step by Step ARM Templates - Creating Parameters file for an ARM Template</title>
-<description><![CDATA[<p>You can pass the input values for the Parameters in your ARM template using an additional JSON file. This additional file is what we will be referring to as <strong>Parameters File</strong>.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>You can pass the input values for the Parameters in your ARM template using an additional JSON file. This additional file is what we will be referring to as <strong>Parameters File</strong>.</p>
 <p>The only restriction on a parameters file is that the size of the parameter file cannot be more than 64 KB.</p>
 <p>Parameters file follows a similar structure to the ARM Template. They are very simple as compared to the ARM template. In all they have 3 sections as explained below:</p>
 <ol>
@@ -279,7 +603,8 @@ The last thing to notice is the use of <b>Intellisense</b> in Visual Studio whic
 </item>
 <item>
 <title>Step by Step ARM Templates - Deploying Template Using Azure PowerShell</title>
-<description><![CDATA[<p>In the previous blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>In the previous blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
 <p>There are various options to deploy a template to Azure. We already saw in the last blog <a href="/post/step-by-step-arm-templates-deploying-template-using-azure-portal/">How to deploy template using <strong>Azure Portal</strong></a>. Now we will look at <strong>Azure PowerShell</strong> as more programmatic and automated way to deploy the template.</p>
 <h2>Pre-requisites</h2>
 <p>Things you should know before deployment</p>
@@ -347,7 +672,8 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Te
 </item>
 <item>
 <title>Step by Step ARM Templates - Deploying Template Using Azure Portal</title>
-<description><![CDATA[<p>In the last blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>In the last blog you learned <a href="/post/step-by-step-arm-templates-building-your-first-arm-template/">How to build your first ARM Template</a> . Now that you have a fully functional ARM template we want to deploy this template to Azure.</p>
 <p>There are various options to deploy a template to Azure. Using Azure portal is by far the easiest and most intuitive option for the deployment. Follow the steps in this blog to deploy your template to Azure.</p>
 <h2>Pre-requisites</h2>
 <p>Things you should know before deployment</p>
@@ -391,7 +717,8 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Te
 </item>
 <item>
 <title>Step by Step ARM Templates - Building your first ARM Template</title>
-<description><![CDATA[<p>In this blog post, we will use the knowledge learned in previous blogs and will build a basic ARM template.
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>In this blog post, we will use the knowledge learned in previous blogs and will build a basic ARM template.
 If you haven't checked previous blog posts then have a quick read of your preferred topics here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
 <p>To follow this blog, you can use any text editor which can provide JSON syntax highlighting. We will be looking at using Visual Studio to author ARM templates in a future blog post. Visual Studio can provide JSON outlining and is a very powerful tool for authoring ARM templates.</p>
 <p>Let us assume that you want to deploy a storage account and build a virtual network in Azure. You want to automate the process and need to repeat the process in various environments. ARM templates fit the bill for the solution of this problem.</p>
@@ -576,7 +903,8 @@ If you haven't checked previous blog posts then have a quick read of your prefer
 </item>
 <item>
 <title>Step by Step ARM Templates - Helper Functions</title>
-<description><![CDATA[<p>ARM Templates has various dynamic constructs called <strong>Helper Functions</strong> which can make your template more generic. These constructs reduce the hard coded values in your templates. You can use the information from this blog to make your existing templates more dynamic and start writing new templates with a much generic approach.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>ARM Templates has various dynamic constructs called <strong>Helper Functions</strong> which can make your template more generic. These constructs reduce the hard coded values in your templates. You can use the information from this blog to make your existing templates more dynamic and start writing new templates with a much generic approach.</p>
 <p>Let's look at the most important helper functions and their practical usage one by one. </p>
 <h3>1. Resource Id - Resource Function</h3>
 <p>You use this function to determine the ID of a resource. This is only used when the resource (whose ID is needed) is not being deployed in the current template and it already exists in Azure.</p>
@@ -627,7 +955,8 @@ If you haven't checked previous blog posts then have a quick read of your prefer
 </item>
 <item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 5 - Outputs</title>
-<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
@@ -667,7 +996,8 @@ If you haven't checked previous blog posts then have a quick read of your prefer
 </item>
 <item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 4 - Resources</title>
-<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
@@ -808,7 +1138,8 @@ Within the object, various properties (and nested properties) are used to provid
 </item>
 <item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 3 - Variables</title>
-<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters</a></li>
@@ -870,7 +1201,8 @@ Within the object, various properties (and nested properties) are used to provid
 </item>
 <item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding Components 2 - Parameters</title>
-<description><![CDATA[<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>If you haven't checked the previous blog on the overall structure of the ARM template, I suggest you give it a quick read before checking the component described in this post in detail.</p>
 <ol>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-all-components/">Understanding all components</a></li>
 <li><a href="../step-by-step-arm-templates-what-is-in-an-arm-template-understanding-components-2-parameters/">Parameters - This blog post</a></li>
@@ -954,7 +1286,8 @@ Within the object, various properties (and nested properties) are used to provid
 </item>
 <item>
 <title>Step by Step ARM Templates - What is in an ARM Template - Understanding All Components</title>
-<description><![CDATA[<p>As we discussed <a href="../step-by-step-azure-resource-manager-arm-templates-index/">earlier in the introduction</a> <strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>As we discussed <a href="../step-by-step-azure-resource-manager-arm-templates-index/">earlier in the introduction</a> <strong>Azure Resource Manager (ARM) Template</strong> is a JavaScript Object Notation (JSON) file that defines one or more resources to deploy to a resource group. It also defines the dependencies between the deployed resources.</p>
 <p>In this post, we will deconstruct any basic ARM template and will understand it's various components.</p>
 <p>Any ARM Template will look like below:</p>
 <pre><code>{
@@ -1039,7 +1372,8 @@ Within the object, various properties (and nested properties) are used to provid
 </item>
 <item>
 <title>Step by Step ARM Templates - JSON 101 for IT Administrators</title>
-<description><![CDATA[<p>Azure Resource Manager (ARM) templates are written in JSON or <strong>JavaScript Object Notation</strong>. To understand ARM templates, you need to understand few quick basics about JSON. These will enable you to lay a great foundation which will enable you to understand ARM templates very easily.</p>
+<description><![CDATA[<p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>Azure Resource Manager (ARM) templates are written in JSON or <strong>JavaScript Object Notation</strong>. To understand ARM templates, you need to understand few quick basics about JSON. These will enable you to lay a great foundation which will enable you to understand ARM templates very easily.</p>
 <p>JSON or JavaScript Object Notation (pronounce like &quot;Jay-son&quot;) is a text-based data format that's designed to be human-readable, lightweight, and easy to transmit between a server and a web client. Its syntax is derived from JavaScript. Think of this as an even more compact version of XML files.</p>
 <p>JSON is a popular notation for transmitting data through RESTful web services. The official internet media type for JSON is <code>application/json</code>, and JSON files typically have a <code>.json</code> extension.</p>
 <p>To understand JSON we need to understand <strong>3 main components</strong>. These components are like building blocks, using which you can build very complex JSON files.</p>
