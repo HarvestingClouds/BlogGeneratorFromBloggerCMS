@@ -8,7 +8,7 @@
     <meta name="description" content="Blog about all things regarding private and public clouds">
     <meta name="author" content="@20aman">
 
-    <title>Migrating from Azure ASM to ARM portal :: Harvesting Clouds</title>
+    <title>Step by Step ARM Templates - Deploying a Windows VM with OMS integration :: Harvesting Clouds</title>
 
     <!-- rss feed url -->
     <link rel="alternate" type="application/rss+xml" title="Harvesting Clouds" href="http://HarvestingClouds.com/rss.xml"/>
@@ -72,18 +72,63 @@
     <div class="row">
         <div class="col-md-8 main-content">
             <article>
-                <h3>Migrating from Azure ASM to ARM portal</h3>
+                <h3>Step by Step ARM Templates - Deploying a Windows VM with OMS integration</h3>
                 <span class="glyphicon glyphicon-user"></span> @20aman
                 &nbsp;&nbsp;
-                <span class="glyphicon glyphicon-time"></span> Apr 21, 2016
+                <span class="glyphicon glyphicon-time"></span> Oct 16, 2016
                 <hr>
 
-                <p class="post-content"><p>With co-existing Azure Service Management or ASM portal (older) and Azure Resource Manager or ARM portal (newer) there has been lots of confusions and problems for IT administrators.
-The bottom line of all the discussion around the two portals is that <strong>ARM is the future and is here to stay</strong>. It means that you need to <strong>plan and migrate</strong> your resources from ASM portal to the ARM portal.</p>
-<p>The key resource is your infrastructure which primarily consists of virtual machines. To migrate a single Virtual Machine (VM) from ASM portal to ARM portal you can leverage a set of PowerShell scripts called ASM2ARM.
-You can download these scripts and check their description on <a href="https://github.com/fullscale180/asm2arm">GitHub here on the <strong>ASM2ARM</strong> page</a>. You can check the detailed instructions there too.</p>
-<p>To plan this right now is very important as the transitioning to Azure Resource Manager model is already underway. Any future development and investment seems to be happening only in the newer portal only.</p>
-<p><strong>Reference:</strong> <a href="https://github.com/fullscale180/asm2arm">ASM2ARM scripts on GitHub</a></p></p>
+                <p class="post-content"><p><strong>Index</strong> of all blogs in this <strong>Step by Step ARM Templates series</strong> is located here: <a href="/post/step-by-step-azure-resource-manager-arm-templates-index/">Step by Step Azure Resource Manager (ARM) Templates - Index</a></p>
+<p>You can deploy a Windows VM with OMS integration. You can have the OMS extension installed. And then you can onboard the VM to a specified workspace. </p>
+<h3>Prerequisites</h3>
+<p>You need already have an OMS workspace setup in your subscription. You need to have the following information about this OMS Workspace:</p>
+<ol>
+<li>OMS workspace ID</li>
+<li>OMS workspace Key</li>
+</ol>
+<p>You may obtain the workspace ID and key by going to the Connected Sources tab in the Settings page in the OMS Portal or to the Direct Agent blade in the Azure portal.</p>
+<p>In the Azure Portal go to the Log Analytics -&gt; Click on the OMS Workspace you want to use. Click on the &quot;OMS Portal&quot; to navigate to the OMS Portal.</p>
+<p><img src="/images/14768464545806e3762d97c.png" alt="Link to OMS Portal" /></p>
+<p>In the OMS portal, navigate to the Settings.</p>
+<p><img src="/images/14768422705806d31e60125.png" alt="OMS Portal Settings" /></p>
+<p>In Settings, go to the Connected Sources -&gt; Windows Servers. Note the Workspace ID and the Primary Key as shown below:</p>
+<p><img src="/images/14768422755806d323b2caa.png" alt="OMS Portal ID and Key" /></p>
+<h3>ARM Template Sections for OMS integration</h3>
+<p>Within the VM resource, you need to define the OMS extension as shown below:</p>
+<pre><code>  "resources": [
+    {
+      "type": "extensions",
+      "name": "Microsoft.EnterpriseCloud.Monitoring",
+      "apiVersion": "[variables('apiVersion')]",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+      ],
+      "properties": {
+        "publisher": "Microsoft.EnterpriseCloud.Monitoring",
+        "type": "MicrosoftMonitoringAgent",
+        "typeHandlerVersion": "1.0",
+        "autoUpgradeMinorVersion": true,
+        "settings": {
+          "workspaceId": "Your Workspace ID Here"
+        },
+        "protectedSettings": {
+          "workspaceKey": "Your Workspace Key Here"
+        }
+      }
+    }
+  ]</code></pre>
+<p>The above configures the OMS on the VM. Note that you need the nested extension resource of type &quot;Microsoft.EnterpriseCloud.Monitoring&quot;. </p>
+<p>Also, note the Workspace Id and Key in the template section above. Enter the values as per your environment which we found in the Prerequisites section above. </p>
+<h3>Providing the Workspace ID and Workspace Key Dynamically</h3>
+<p>You can also provide the Workspace Id and the Workspace Key dynamically by only using the OMS Workspace name. Follow the below sample. Note the use of reference, listKeys, and resourceId helper functions.</p>
+<pre><code>"settings": {
+          "workspaceId": "[reference(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').customerId]"
+        },
+        "protectedSettings": {
+          "workspaceKey": "[listKeys(resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName')), '2015-03-20').primarySharedKey]"
+        }</code></pre>
+<p><strong>Reference:</strong> You can check the complete quick starter template for OMS integration here: <a href="https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-windows-vm">GitHub Sample - Deployment of a Windows VM with OMS Extension</a></p></p>
                 <br/><br/>
 
                 <div class="post-info">
@@ -93,11 +138,10 @@ You can download these scripts and check their description on <a href="https://g
 
                     <span class="glyphicon glyphicon-bookmark"></span>
 
-                        <a href="http://HarvestingClouds.com/tag/arm">arm</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/asm">asm</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/azure">azure</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/azureresourcemanager">azureresourcemanager</a>&nbsp;&nbsp;
-                        <a href="http://HarvestingClouds.com/tag/azureservicemanagement">azureservicemanagement</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/ARM">ARM</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Azure">Azure</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/AzureResourceManager">AzureResourceManager</a>&nbsp;&nbsp;
+                        <a href="http://HarvestingClouds.com/tag/Templates">Templates</a>&nbsp;&nbsp;
                 </div>
 
             </article>
