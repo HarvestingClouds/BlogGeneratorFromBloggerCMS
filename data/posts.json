@@ -1,6 +1,25 @@
 [
 	{
 		"author": "@20aman",
+		"title": "General Availability - Azure Active Directory (AD) Domain Services",
+		"postDate": "27-10-2016",
+		"tags": [
+			"AD",
+			"ActiveDirectory",
+			"Azure"
+		],
+		"category": "Azure",
+		"body": "**Azure Active Directory Domain Services** are here to revolutionize the way Domain Services are used. They are here to reduce even further the infrastructure management for IT Administrators. \r\n\r\n###What is this service###\r\n\r\nUsing this service you can now setup domains without having to setup the domain controllers. You can set up your Domain in Azure using Domain Services and then you can have virtual machines joining to that domain. At no point, you need to set up any domain controllers. You can also use Group Policy with this service to securely administer your domain joined infrastructure.\r\n\r\nThis service benefits all customers. For **enterprise customers**, they get the familiar enterprise grade service. For **medium to small business customers**, the service makes even more sense as they get enterprise level service for a smaller price due to small infrastructure and thus a small number of objects in AD.\r\n\r\nThis service is out of the box a highly available service. It is hosted in globally distributed datacenters.\r\n\r\n### When is this service available ###\r\n\r\nThis service is now **Generally Available**. The pricing for this service will start from 1st December 2016.\r\n\r\nThe payment model is Pay-As-You-Go. The usage will be charged per hour. The chargeback will be based on the total number of AD Objects in your AD Tenant. These objects include users, groups, and domain-joined computers. Directory size and hours are calculated and emitted daily. Usage is prorated to the minute.\r\n\r\nCurrently, there are 3 tiers. \r\n\r\n - Less than 25,000 directory objects\r\n - 25,001 to 100,000 directory objects\r\n - more than 100,000 directory objects\r\n\r\n### Is this service available in my region###\r\n\r\nAt the time of writing of this blog post, this service is available in the following regions:\r\n\r\n - East US\r\n - East US 2\r\n - Central US\r\n - South Central US\r\n - West US\r\n\r\nCheck this link for most updated availability: [Azure Products by Region](https:\/\/azure.microsoft.com\/en-us\/regions\/services\/)\r\n\r\nAlso, check the official ADDS page here: [Azure Active Directory Domain Services](https:\/\/azure.microsoft.com\/en-us\/services\/active-directory-ds\/)\r\nAnd, check the upto date pricing here: [Pricing](https:\/\/azure.microsoft.com\/en-us\/pricing\/details\/active-directory-ds\/)\r\n\r\nNow it is time for you to go and try this new service for yourself and enjoy it's benefits!",
+		"addpost": "addpost",
+		"dated": "Oct 27, 2016",
+		"slug": "general-availability-azure-active-directory-ad-domain-services",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Active Directory Domain Services<\/strong> are here to revolutionize the way Domain Services are used. They are here to reduce even further the infrastructure management for IT Administrators. <\/p>\n<h3>What is this service<\/h3>\n<p>Using this service you can now setup domains without ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers",
 		"postDate": "25-10-2016",
 		"tags": [

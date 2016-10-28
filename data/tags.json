@@ -48,5 +48,7 @@
 	"50": "RemoteApp",
 	"51": "Automation",
 	"52": "Runbooks",
-	"53": "KeyVault"
+	"53": "KeyVault",
+	"54": "AD",
+	"55": "ActiveDirectory"
 }
