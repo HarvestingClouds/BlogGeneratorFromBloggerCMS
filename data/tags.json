@@ -51,5 +51,6 @@
 	"53": "KeyVault",
 	"54": "AD",
 	"55": "ActiveDirectory",
-	"56": "ResourceGroups"
+	"56": "ResourceGroups",
+	"57": "ApplicationInsights"
 }
