@@ -52,5 +52,9 @@
 	"54": "AD",
 	"55": "ActiveDirectory",
 	"56": "ResourceGroups",
-	"57": "ApplicationInsights"
+	"57": "ApplicationInsights",
+	"58": "reservedinstances",
+	"59": "manageddisks",
+	"60": "microsoft",
+	"61": "microsoftazure"
 }
