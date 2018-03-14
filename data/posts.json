@@ -1,6 +1,30 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Great Way to learn - 2018 Microsoft Azure Community Study Groups",
+		"postDate": "05-12-2017",
+		"tags": [
+			"azure",
+			"azureresourcemanager",
+			"certifications",
+			"mcsa",
+			"mcsd",
+			"mcse",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "How many times have you started preparation for any Azure certification and have left it midway because of any reason? We all need a little extra nudge. Microsoft Azure Community Study Groups is just the thing you need to create and fulfill your next year resolutions. \r\n\r\nHere are the registration links, provided \"as is\":\r\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"0\">\r\n<tbody>\r\n<tr>\r\n<td width=\"461\" valign=\"top\">\r\n<p><b>Exam<\/b><\/p>\r\n<\/td>\r\n<td width=\"158\" valign=\"top\">\r\n<p><b>Registration Link<\/b><\/p>\r\n<\/td>\r\n<td width=\"208\" valign=\"top\">\r\n<p><b>Dates<\/b><\/p>\r\n<\/td>\r\n<\/tr>\r\n<tr>\r\n<td width=\"461\" valign=\"top\">\r\n<p><b>70-532: Developing Microsoft Azure Solutions<\/b><\/p>\r\n<\/td>\r\n<td width=\"158\" valign=\"top\">\r\n<p><a href=\"https:\/\/aka.ms\/532asg\">https:\/\/aka.ms\/532asg<\/a><\/p>\r\n<\/td>\r\n<td width=\"208\" valign=\"top\">\r\n<p>March 23 \u2013 May 24, 2018<\/p>\r\n<\/td>\r\n<\/tr>\r\n<tr>\r\n<td width=\"461\" valign=\"top\">\r\n<p><b>70-533: Implementing Microsoft Azure Infrastructure Solutions<\/b><\/p>\r\n<\/td>\r\n<td width=\"158\" valign=\"top\">\r\n<p><a href=\"https:\/\/aka.ms\/533asg\">https:\/\/aka.ms\/533asg<\/a><\/p>\r\n<\/td>\r\n<td width=\"208\" valign=\"top\">\r\n<p>January 12 \u2013 April 13, 2018<\/p>\r\n<\/td>\r\n<\/tr>\r\n<tr>\r\n<td width=\"461\" valign=\"top\">\r\n<p><b>70-535: Architecting Microsoft Azure Solutions <\/b><\/p>\r\n<\/td>\r\n<td width=\"158\" valign=\"top\">\r\n<p><a href=\"https:\/\/aka.ms\/535asg\">https:\/\/aka.ms\/535asg<\/a><\/p>\r\n<\/td>\r\n<td width=\"208\" valign=\"top\">\r\n<p>January 12 \u2013 May 24, 2018<\/p>\r\n<\/td>\r\n<\/tr>\r\n<tr>\r\n<td width=\"461\" valign=\"top\">\r\n<p><b>70-483: Programing in C#<\/b><\/p>\r\n<\/td>\r\n<td width=\"158\" valign=\"top\">\r\n<p><a href=\"https:\/\/aka.ms\/483asg\">https:\/\/aka.ms\/483asg<\/a><\/p>\r\n<\/td>\r\n<td width=\"208\" valign=\"top\">\r\n<p>January 12 \u2013 March 2, 2018<\/p>\r\n<\/td>\r\n<\/tr>\r\n<tr>\r\n<td width=\"461\" valign=\"top\">\r\n<p><b>70-486: Developing ASP.NET MVC Web Applications<\/b><\/p>\r\n<\/td>\r\n<td width=\"158\" valign=\"top\">\r\n<p><a href=\"https:\/\/aka.ms\/486asg\">https:\/\/aka.ms\/486asg<\/a><\/p>\r\n<\/td>\r\n<td width=\"208\" valign=\"top\">\r\n<p>January 12 \u2013 March 23, 2018<\/p>\r\n<\/td>\r\n<\/tr>\r\n<tr>\r\n<td width=\"461\" valign=\"top\">\r\n<p><b>70-487: Developing Microsoft Azure and Web Services<\/b><\/p>\r\n<\/td>\r\n<td width=\"158\" valign=\"top\">\r\n<p><a href=\"https:\/\/aka.ms\/487asg\">https:\/\/aka.ms\/487asg<\/a><\/p>\r\n<\/td>\r\n<td width=\"208\" valign=\"top\">\r\n<p>March 9 \u2013 May 11, 2018<\/p>\r\n<\/td>\r\n<\/tr>\r\n<\/tbody>\r\n<\/table>\r\n\r\nYou can access the main blog from here:\r\n<a href=\"https:\/\/blogs.technet.microsoft.com\/uspartner_ts2team\/2017\/12\/04\/2018-microsoft-azure-community-study-groups\/\" target=\"_blank\">2018 Microsoft Azure Community Study Groups<\/a>",
+		"addpost": "addpost",
+		"dated": "Dec 05, 2017",
+		"slug": "great-way-to-learn-2018-microsoft-azure-community-study-groups",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>How many times have you started preparation for any Azure certification and have left it midway because of any reason? We all need a little extra nudge. Microsoft Azure Community Study Groups is just the thing you need to create and fulfill your next year resolutions. <\/p>\n<p>Here are the registr...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Introducing the Harvesting Clouds YouTube channel",
 		"postDate": "29-11-2017",
 		"tags": [
@@ -83,6 +107,28 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>Azure Managed Disks bring lots of advantages and benefits to the table when compared to Azure Storage Account based VM disks. The first thing to note is that these are only related to VM disks and not general blob storage. In this post, lets take a look at what all benefits you get when you creat...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Cloud Shell - Introduction",
+		"postDate": "08-10-2017",
+		"tags": [
+			"automation",
+			"azure",
+			"azureautomation",
+			"microsoft",
+			"powershell",
+			"shell"
+		],
+		"category": "Azure",
+		"body": "**Azure Cloud Shell** is a very convenient option to run your automation scripts against your subscriptions. \r\n\r\nThe shell is provided in two flavors:\r\n\r\n - Bash based shell\r\n - PowerShell in Cloud Shell (currently in Preview)\r\n\r\nThe Cloud Shell is a Browser based experience. What this means is that you do not need to install any dependencies for the Azure commands to run. Also, there is no dependency on your machine's hardware. You can work irrespective of your local machine's configurations.\r\n\r\n### Support for various tools\r\nAzure Cloud Shell comes preloaded with various tools depending upon the shell type selected. It comes loaded with Linux tools like bash, sh, tmux and dig. The Azure tools which are preloaded are Azure CLI 2.0 and 1.0, AzCopy,etc.Text editors include vim and nano. Git source control tools are also included. Various other Build, Containers, Databases, etc. tools are also included. It also comes with language support for .net version 2.0.0, Java version 1.8, Node.js 6.9.4, PowerShell 6.0(beta) and Python 2.7 and 3.5 etc. Check the References section for the full list and up to date version of Tools and Language support.\r\n\r\n### Key Concepts\r\n\r\nBelow are some of the key concepts (in nutshell) about the cloud shell.\r\n\r\n 1. You can opt for any one of the two shell options available, as per your preferences. You can choose to have a **Bash shell** or **PowerShell in Cloud shell**\r\n 2. You can easily switch between the two shells at any time\r\n 3. If you are logged into Azure portal then you are also automatically authenticated into the Azure Cloud Shell\r\n\r\nOther important concepts as per Microsoft documentation are:\r\n\r\n 1. Cloud Shell runs on a temporary host provided on a per-session,\r\n    per-user basis \r\n 2. Cloud Shell times out after 20 minutes without\r\n    interactive activity \r\n 3. Cloud Shell requires an Azure file share to be\r\n    mounted \r\n 4. Cloud Shell uses the same Azure file share for both Bash and\r\n    PowerShell \r\n 5. Cloud Shell is assigned one machine per user account \r\n 6. Bash persists $Home using a 5-GB image held in your file share\r\n 7. Permissions are set as a regular Linux user in Bash\r\n\r\n### Pricing\r\n\r\nCloud Shell does not have any direct cost linked to it. The charge for Cloud Shell is only for the usage of the underlying Azure Storage. The exact charge depends on the amount you store on that storage and the type of the storage. By default, Locally Redundant Storage is created. \r\n\r\n**References**:\r\n\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/overview\" target=\"_blank\">Azure Cloud Shell Overview<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/features\" target=\"_blank\">Azure Cloud Shell Features and Tools<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/features-powershell\" target=_blank\">Features & tools for PowerShell in Azure Cloud Shell<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Oct 08, 2017",
+		"slug": "azure-cloud-shell-introduction",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Cloud Shell<\/strong> is a very convenient option to run your automation scripts against your subscriptions. <\/p>\n<p>The shell is provided in two flavors:<\/p>\n<ul><li>Bash based shell<\/li>\n<li>PowerShell in Cloud Shell (currently in Preview)<\/li>\n<\/ul><p>The Cloud Shell is a Browse...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
