@@ -1,6 +1,27 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2",
+		"postDate": "08-01-2018",
+		"tags": [
+			"azure",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure",
+			"troubleshooting"
+		],
+		"category": "Azure",
+		"body": "This is the second part of troubleshooting Azure Site Recovery (ASR) Data replication issues. Part 1 is located here:  <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working<\/a>\r\n\r\nGo through the part 1 before this blog as that talks about the location of logs and various preliminary steps. This blog talks about the issue where you are not even able to enable Data Replication for a server. \r\n\r\n### Preliminary Checks ###\r\n\r\nPerform the following basic checks related to connectivity:\r\n\r\n - Ensure that the ASR management server has connectivity with Azure.\r\n - Ensure connectivity between the management server (process server) and the source machine which you are trying to replicate. Ensure that the source machine is accessible from the process server.\r\n  - You will also need to enable and allow \u201cFile and Printer Sharing\u201d on the source machine in the Windows Firewall. \r\n - Ensure that the account that you use for enabling the protection has administrator rights on the source machine. This is needed for installation of the Mobility services agent on the source machine.\r\n - Also allow Windows Management Instrumentation (WMI) in the Windows Firewall, if not already.\r\n - Disable remote User Account Control (UAC) if you are using local administrator account to install the mobility service.\r\n\r\n\r\n### Checking Services ###\r\n\r\nAlso, check whether the following services are running and configured correctly on the source machine:\r\n\r\n 1. If **Volume Shadow Copy(VSS)** service Startup Type is set to Disabled, change it to Automatic.\r\n 2. If **COM+ System Application(COMSysApp)** service Startup Type is to Disabled, change it to Automatic.\r\n 3. If the Microsoft **Distributed Transaction Coordinator Service (MSDTC)** Startup Type is set to Disabled, change it to Automatic.\r\n 4. If the service Startup Types were already set to Automatic, check if COM+ enumeration succeeds. a) You check COM+ enumeration by Component Services (comexp.msc) b) Browse to Component Service -> Computers -> My Computer -> COM+ Application. You should be able to expand the System Application node and see the contents under that node. c) Ensure that Volume Shadow Copy Service is listed under Component Service -> Computers -> My Computer -> DCOM config\r\n\r\n### Alternate Option ###\r\n\r\nIf for any reason you can't enable any of the above steps, e.g. if you can't provide admin access to the service account on the source machine or disable remote UAC, then you have an alternative option. You can install the Mobility services agent on the source machine prior to enabling the protection. You will still need the services to be configured appropriately but will not need admin access while enabling the protection. To install the mobility services agent, you have various options:\r\n\r\n* [Install using software deployment tools like System Center Configuration Manager](vmware-azure-mobility-install-configuration-mgr.md)\r\n* [Install with Azure Automation and Desired State Configuration (Automation DSC)](vmware-azure-mobility-deploy-automation-dsc.md)\r\n* [Install manually from the UI](vmware-azure-install-mobility-service.md#install-mobility-service-manually-by-using-the-gui)\r\n* [Install manually from a command prompt](vmware-azure-install-mobility-service.md#install-mobility-service-manually-at-a-command-prompt)\r\n* [Install using the Site Recovery push installation](vmware-azure-install-mobility-service.md#install-mobility-service-by-push-installation-from-azure-site-recovery)\r\n\r\n\r\nAll these options are described in details here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/site-recovery\/vmware-azure-install-mobility-service\" target=\"_blank\">Install the Mobility service<\/a>\r\n\r\n### Next Steps ###\r\n\r\nRestart the job after ensuring all the pre-requisites as described in previous sections. If you are still facing issues, revisit the Part 1 of the troubleshooting series as mentioned at the beginning of this blog. Let us know in comments below if the issue persists. \r\n",
+		"addpost": "addpost",
+		"dated": "Jan 08, 2018",
+		"slug": "troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>This is the second part of troubleshooting Azure Site Recovery (ASR) Data replication issues. Part 1 is located here:  <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data ...<\/a><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Great Way to learn - 2018 Microsoft Azure Community Study Groups",
 		"postDate": "05-12-2017",
 		"tags": [
@@ -107,6 +128,27 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>Azure Managed Disks bring lots of advantages and benefits to the table when compared to Azure Storage Account based VM disks. The first thing to note is that these are only related to VM disks and not general blob storage. In this post, lets take a look at what all benefits you get when you creat...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Cloud Shell - Embedding Cloud Shell in your Websites",
+		"postDate": "16-10-1985",
+		"tags": [
+			"azure",
+			"bash",
+			"cloud",
+			"powershell",
+			"shell"
+		],
+		"category": "Azure",
+		"body": "Embedding Azure Cloud Shell in your websites gives your visitors an option to directly interact with Azure, without even leaving your website. Your website may be talking about a code sample that your visitor may want to try in Azure. Instead of opening a new instance of Azure Portal, the visitors can try the command right from your site if you have embedded the cloud shell in your website.\r\n\r\nAll you need is the embed code and you are all set. Just add this code to your site and then you will be able to launch the cloud shell right from there with just a click of a button.Behind the scene, this is nothing but hyperlinking to the URL: https:\/\/shell.azure.com\r\n\r\n### Embed Code ###\r\nThe embed code is as follows if you are using Markdown\r\n\r\n    [![Launch Cloud Shell](https:\/\/shell.azure.com\/images\/launchcloudshell.png \"Launch Cloud Shell\")](https:\/\/shell.azure.com)\r\n\r\nIf you are building a website in HTML then the embed code will look like:\r\n\r\n    <a style=\"cursor:pointer\" onclick='javascript:window.open(\"https:\/\/shell.azure.com\", \"_blank\", \"toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no\")'><image src=\"https:\/\/shell.azure.com\/images\/launchcloudshell.png\" \/><\/a>\r\n\r\n\r\n\r\n### Code in Action ###\r\n\r\nClicking on below image will open a popup. It will navigate you to the https:\/\/shell.azure.com URL within the popup. You can login to Azure and try any commands. I encourage to inspect the link below and compare with the above embed code.\r\n\r\n<a style=\"cursor:pointer\" onclick='javascript:window.open(\"https:\/\/shell.azure.com\", \"_blank\", \"toolbar=no,scrollbars=yes,resizable=yes,menubar=no,location=no,status=no\")'><image src=\"https:\/\/shell.azure.com\/images\/launchcloudshell.png\" \/><\/a>\r\n\r\n### Choosing Shell Type ###\r\n\r\nThe above examples will open the most recently used cloud shell. If you want to encourage visitors to experience a specific cloud shell, then update the URL section above embed code. Update as below by adding the last part to the URLs:\r\n\r\n -  Bash Shell - https:\/\/shell.azure.com\/bash\r\n - PowerShell Shell - https:\/\/shell.azure.com\/powershell\r\n\r\n\r\n### Reference: ###\r\n\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/embed-cloud-shell\" target=\"_blank\">Embed Azure Cloud Shell<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Oct 16, 2017",
+		"slug": "azure-cloud-shell-embedding-cloud-shell-in-your-websites",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Embedding Azure Cloud Shell in your websites gives your visitors an option to directly interact with Azure, without even leaving your website. Your website may be talking about a code sample that your visitor may want to try in Azure. Instead of opening a new instance of Azure Portal, the visitor...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -1005,5 +1047,25 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Site Recovery (ASR) - Series Index",
+		"postDate": "19-02-2018",
+		"tags": [
+			"asr",
+			"azure",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. \r\n\r\nThis series talks about various aspects of working with **Azure Site Recovery** or **ASR**. \r\n\r\nThis blog is an **Index** of various blogs in the series:\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/azure-site-recovery-asr-new-feature-added-to-target-resource-groups\/\" target=\"_blank\">Azure Site Recovery (ASR) - New feature added to target Resource Groups<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers\/\" target=\"_blank\">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access\/\" target=\"_blank\">ASR Setup for VMs running in VMWare without VMware level User Access<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/getting-started-azure-site-recovery-asr-in-new-azure-portal\/\" target=\"_blank\">Getting Started - Azure Site Recovery (ASR) In New Azure Portal<\/a>",
+		"addpost": "addpost",
+		"dated": "Feb 19, 2018",
+		"slug": "azure-site-recovery-asr-series-index",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. <\/p>\n<p>This ser...<\/p>\n"
 	}
 ]
