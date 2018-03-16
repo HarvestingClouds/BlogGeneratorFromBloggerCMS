@@ -1,6 +1,49 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Azure Site Recovery (ASR) - Series Index",
+		"postDate": "19-02-2018",
+		"tags": [
+			"asr",
+			"azure",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. \r\n\r\nThis series talks about various aspects of working with **Azure Site Recovery** or **ASR**. \r\n\r\nThis blog is an **Index** of various blogs in the series:\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/azure-site-recovery-asr-new-feature-added-to-target-resource-groups\/\" target=\"_blank\">Azure Site Recovery (ASR) - New feature added to target Resource Groups<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers\/\" target=\"_blank\">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access\/\" target=\"_blank\">ASR Setup for VMs running in VMWare without VMware level User Access<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/getting-started-azure-site-recovery-asr-in-new-azure-portal\/\" target=\"_blank\">Getting Started - Azure Site Recovery (ASR) In New Azure Portal<\/a>",
+		"addpost": "addpost",
+		"dated": "Feb 19, 2018",
+		"slug": "azure-site-recovery-asr-series-index",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. <\/p>\n<p>This ser...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Demystifying Azure Security - Just In Time VM access",
+		"postDate": "10-01-2018",
+		"tags": [
+			"azure",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"security",
+			"vm"
+		],
+		"category": "Azure",
+		"body": "**Just in time VM access** is a feature under **Azure Security Center**. In simple terms it allows you to control access to a VM. When you enable JIT, all access is locked down on the VM on all ports. This is done via Network Security Group (NSG) rules. The access is granted only for the duration allowed and also only on the ports requested. And then everything is locked down again at the end of the duration.\r\n\r\nThe attackers are leveraging various ways to get into your environment. One such way is using Bots to automate and Brute Force method to attempt entering in your environment. If you need to access a VM, in your environment, from Internet without VPN (e.g. to change some files on a Web app VM) then you are potentially opening up 3389 port on the VM and that can become a target for the attackers. Locking down the VM except when you need it and only for the duration of the requirement, reduces these risks significantly. \r\n\r\n### How to Configure it ###\r\n\r\nTo configure this go to Azure **Security Center**.",
+		"addpost": "addpost",
+		"dated": "Jan 10, 2018",
+		"slug": "demystifying-azure-security-just-in-time-vm-access",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Just in time VM access<\/strong> is a feature under <strong>Azure Security Center<\/strong>. In simple terms it allows you to control access to a VM. When you enable JIT, all access is locked down on the VM on all ports. This is done via Network Security Group (NSG) rules. The access is gra...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2",
 		"postDate": "08-01-2018",
 		"tags": [
@@ -1047,25 +1090,5 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Azure Site Recovery (ASR) - Series Index",
-		"postDate": "19-02-2018",
-		"tags": [
-			"asr",
-			"azure",
-			"azuresiterecovery",
-			"microsoft",
-			"microsoftazure"
-		],
-		"category": "Azure",
-		"body": "Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. \r\n\r\nThis series talks about various aspects of working with **Azure Site Recovery** or **ASR**. \r\n\r\nThis blog is an **Index** of various blogs in the series:\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/azure-site-recovery-asr-new-feature-added-to-target-resource-groups\/\" target=\"_blank\">Azure Site Recovery (ASR) - New feature added to target Resource Groups<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers\/\" target=\"_blank\">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access\/\" target=\"_blank\">ASR Setup for VMs running in VMWare without VMware level User Access<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/getting-started-azure-site-recovery-asr-in-new-azure-portal\/\" target=\"_blank\">Getting Started - Azure Site Recovery (ASR) In New Azure Portal<\/a>",
-		"addpost": "addpost",
-		"dated": "Feb 19, 2018",
-		"slug": "azure-site-recovery-asr-series-index",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. <\/p>\n<p>This ser...<\/p>\n"
 	}
 ]
