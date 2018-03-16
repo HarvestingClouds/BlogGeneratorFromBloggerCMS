@@ -13,12 +13,57 @@
 		"category": "Azure",
 		"body": "Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. \r\n\r\nThis series talks about various aspects of working with **Azure Site Recovery** or **ASR**. \r\n\r\nThis blog is an **Index** of various blogs in the series:\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/azure-site-recovery-asr-new-feature-added-to-target-resource-groups\/\" target=\"_blank\">Azure Site Recovery (ASR) - New feature added to target Resource Groups<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers\/\" target=\"_blank\">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access\/\" target=\"_blank\">ASR Setup for VMs running in VMWare without VMware level User Access<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/getting-started-azure-site-recovery-asr-in-new-azure-portal\/\" target=\"_blank\">Getting Started - Azure Site Recovery (ASR) In New Azure Portal<\/a>",
 		"addpost": "addpost",
-		"dated": "Feb 19, 2018",
+		"dated": "Mar 19, 2018",
 		"slug": "azure-site-recovery-asr-series-index",
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. <\/p>\n<p>This ser...<\/p>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Resources - New Azure Log Analytics Language Cheat Sheets",
+		"postDate": "19-02-2018",
+		"tags": [
+			"analytics",
+			"azue",
+			"language",
+			"log",
+			"loganalytics",
+			"microsoft",
+			"microsoftazure",
+			"oms",
+			"query",
+			"querylanguage"
+		],
+		"category": "Azure",
+		"body": "Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporated into the new language. This blog post talks about the resources to quickly learn the new syntax. Specifically, if you know the older syntax or you know T-SQL syntax then how to translate that knowledge.\r\n\r\n### Older to new Query Language syntax ###\r\n\r\nIf you have been working with the older Log Analytics query syntax, then you have two options to convert that knowledge to newer query language syntax:\r\n\r\n 1. Use the in portal legacy syntax converter and learn as you convert\r\n 2. Use the Microsoft provided Cheat Sheet\r\n\r\nWhen you navigate to OMS log analytics portal and go to the Log search section, there you will see a link above the query text window for \"**Show legacy language converter**\". When you click on this link a new text box will appear above the query text box. Type your legacy query and then click on \"**Convert**\" button. The query will be converted into the new language syntax. Click Run to execute the query. If there will be any errors in the query you will be notified of the same. \r\n\r\n<img src=\"\/images\/15212342425aac314289ed9.png\" alt=\"OMS Language Converter\">\r\n\r\nIn the above example, \"Event\" type is being fetched and then only Source, EventLog, EventID properties are selected. In the older format the query syntax used to be:\r\n\r\n    Type=Event | select Source, EventLog, EventID\r\n\r\nIn the newer format the same query looks as below:\r\n\r\n    Event | project Source, EventLog, EventID\r\n\r\nPointers for key query syntax can be found in the complete cheat sheet which can be found here: <a href=\"https:\/\/docs.loganalytics.io\/docs\/Learn\/References\/Legacy-to-new-to-Azure-Log-Analytics-Language\" target=\"_blank\">Legacy to new Azure Log Analytics Query Language cheat sheet<\/a>\r\n\r\n### T-SQL to new Query Language syntax ###\r\n\r\nIf you are well versed in the T-SQL query syntax and are new to OMS Azure Log Analytics, then you can easily translate that to the Log Analytics query language with the help of the cheat sheet provided by Microsoft for the key syntax.\r\n\r\nE.g. if we want to select records for only columns name and resultCode from a table named dependencies then the query syntax in T-SQL will look like:\r\n\r\n    SELECT name, resultCode FROM dependencies\r\n\r\nSyntax for the same query in newer Log Analytics language will look like:\r\n\r\n    dependencies \r\n    | project name, resultCode\r\n\r\nAs you might have guessed already, \"project\" is a key word in newer language to select specific columns. Selecting a table is as simple as typing the name of the table.\r\n\r\nThe complete cheat sheet can be found here: <a href=\"https:\/\/docs.loganalytics.io\/docs\/Learn\/References\/SQL-to-Azure-Log-Analytics\" target=\"_blank\">SQL to Azure Log Analytics query language cheat sheet<\/a>",
+		"addpost": "addpost",
+		"dated": "Feb 19, 2018",
+		"slug": "resources-new-azure-log-analytics-language-cheat-sheets",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporat...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Fixing the error - The subscription is not registered to use provider",
+		"postDate": "22-01-2018",
+		"tags": [
+			"azure",
+			"azureresourcemanager",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "This blog shows you simple step to resolve the provider registration error, that you can come across while working programmatically with Azure (in Azure Resource Manager model).\r\n\r\nYou can come across this error while running a PowerShell cmdlet or anywhere else: **The subscription 'xxxxxx-xxxx-xxx-xxxx-xxxxxxxx' is not registered to use providername**. E.g. in the below screenshot I got the error *The subscription '8c665920-2c37-419f-81fb-99d737cc4697' is not registered to use microsoft.insights*. \r\n\r\n<img src=\"\/images\/15212142425aabe322e6b05.png\" alt=\"Provider Error\">\r\n\r\nTo resolve this error you will need to navigate to the Azure Portal (i.e. https:\/\/portal.azure.com ). Authenticate to the portal with your credentials. Navigate to Subscriptions section. If you don't see this section then click on \"All Services\" and then search for Subscription. Once in the subscriptions blade, select the subscription for which you have been getting the error. If there was only one subscription then click on that. In the selected subscription's blade follow the below steps:\r\n\r\n 1. Click on the Resource Providers\r\n 2. In the list of providers, find the one for which you have been getting error and then click on \"Register\" link in front of it\r\n 3. The provider will go into \"Registering\" state\r\n 4. Once completed, the provider will then go into \"Registered\" state\r\n\r\n<img src=\"\/images\/15212142785aabe346ede90.png\" alt=\"Subscription Settings\">\r\n\r\nNow retry the cmdlet or API you were trying before. It will not generate the provider error now. ",
+		"addpost": "addpost",
+		"dated": "Jan 22, 2018",
+		"slug": "fixing-the-error-the-subscription-is-not-registered-to-use-provider",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>This blog shows you simple step to resolve the provider registration error, that you can come across while working programmatically with Azure (in Azure Resource Manager model).<\/p>\n<p>You can come across this error while running a PowerShell cmdlet or anywhere else: <strong>The subscription 'xxx...<\/strong><\/p>\n"
 	},
 	{
 		"author": "@20aman",
