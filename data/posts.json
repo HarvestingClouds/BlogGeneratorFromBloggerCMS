@@ -22,6 +22,27 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Demystifying Azure Security - Series Index",
+		"postDate": "11-03-2018",
+		"tags": [
+			"azure",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "Understanding the security is of utmost importance in designing any application architecture. When bringing your applications or infrastructure to Azure or even designing new applications in Azure, you need to be aware of all the ways you can make your application\/design more secure by leveraging various features Azure has to offer.\r\n\r\nThis series talks about various aspects of **security** as related to different aspects of Azure.\r\n\r\nThis blog is an **Index** of various blogs in the series \"Demystifying Azure Security\":\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-rbac-roles\/\" target=\"_blank\">Understanding RBAC Roles<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-custom-rbac-roles\/\" target=\"_blank\">Custom RBAC Roles<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-just-in-time-vm-access\/\" target=\"_blank\">Just In Time VM access<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 11, 2018",
+		"slug": "demystifying-azure-security-series-index",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>Understanding the security is of utmost importance in designing any application architecture. When bringing your applications or infrastructure to Azure or even designing new applications in Azure, you need to be aware of all the ways you can make your application\/design more secure by leveraging...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Resources - New Azure Log Analytics Language Cheat Sheets",
 		"postDate": "19-02-2018",
 		"tags": [
@@ -44,6 +65,31 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporat...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Demystifying Azure Security - Custom RBAC Roles",
+		"postDate": "04-02-2018",
+		"tags": [
+			"azure",
+			"azureresourcemanager",
+			"azuresecurity",
+			"custom",
+			"customroles",
+			"microsoft",
+			"microsoftazure",
+			"roles",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "Before going through this blog, please ensure that you have visited the basics of RBAC Roles in general, explained in a primer here: <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-rbac-roles\/\" target=\"_blank\">Demystifying Azure Security - RBAC Roles<\/a>.\r\n\r\nThis blog explains an easy approach to understand and create your own Custom RBAC Roles in Azure (ARM model). We will inspect an existing simple role and will reverse engineer the way to create Custom RBAC Roles. \r\n\r\n### Inspecting Existing Role's Definition ###\r\n\r\nStart by inspecting any existing Role's Definition. To do this run the cmdlet **Get-AzureRMRoleDefinition** and provide the name of any built-in RBAC Role. For this blog, run the below script to inspect the \"Reader\" and \"Virtual Machine Contributor\" roles.\r\n\r\n    Login-AzureRMAccount\r\n    \r\n    Get-AzureRMRoleDefinition -Name \"Reader\" | ConvertTo-Json | Out-File C:\\rbacrole-reader.json\r\n\r\n    Get-AzureRMRoleDefinition -Name \"Virtual Machine Contributor\" | ConvertTo-Json | Out-File C:\\rbacrole-VMContributor.json\r\n\r\n\r\nIf you open and inspect the \"rbacrole-reader.json\" file you will see the JSON similar to below:\r\n\r\n    {\r\n        \"Name\":  \"Reader\",\r\n        \"Id\":  \"aaaa11a1-3333-48ef-bd42-f606fba81ae7\",\r\n        \"IsCustom\":  false,\r\n        \"Description\":  \"Lets you view everything, but not make any changes.\",\r\n        \"Actions\":  [\r\n                        \"*\/read\"\r\n                    ],\r\n        \"NotActions\":  [\r\n    \r\n                       ],\r\n        \"AssignableScopes\":  [\r\n                                 \"\/\"\r\n                             ]\r\n    }\r\n\r\nNotice above that there are below sections in the definition:\r\n\r\n 1. **Name** - Name of the role\r\n 2. **Id** - unique guid for the role\r\n 3. **IsCustom** - boolean value. \"true\" for the Custom Roles and \"false\" for the built-in roles\r\n 4. **Description** - description of the role\r\n 5. **Actions** - Allowed list of actions for the Role\r\n 6. **NotActions** - Not Allowed list of actions for the Role\r\n 7. **AssignableScopes** - Scope at which this role can be assigned. E.g. all the subscription Ids. It's mandatory that the RBAC role contains the explicit subscription IDs where it is used otherwise you will not be able to use the role.\r\n\r\n\r\n### Understanding Actions and NotActions ###\r\n\r\nAs mentioned before, Actions describe the allowed list of action for the Role whereas the NotActions describe the not allowed actions for the Role. You can use wildcard * and special syntax to define the Actions and NotActions, as per the Microsoft documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/active-directory\/role-based-access-control-custom-roles\" target=\"_blank\">Create custom roles for Azure Role-Based Access Control<\/a>:\r\n\r\nOperation strings that contain wildcards (\\*) grant access to all operations that match the operation string. For instance:\r\n\r\n* `*\/read` grants access to read operations for all resource types of all Azure resource providers.\r\n* `Microsoft.Compute\/*` grants access to all operations for all resource types in the Microsoft.Compute resource provider.\r\n* `Microsoft.Network\/*\/read` grants access to read operations for all resource types in the Microsoft.Network resource provider of Azure.\r\n* `Microsoft.Compute\/virtualMachines\/*` grants access to all operations of virtual machines and its child resource types.\r\n* `Microsoft.Web\/sites\/restart\/Action` grants access to restart websites.\r\n\r\nUse `Get-AzureRmProviderOperation` (in PowerShell) or `azure provider operations show` (in Azure CLI) to list operations of Azure resource providers. You may also use these commands to verify that an operation string is valid and to expand wildcard operation strings.\r\n\r\n\r\n    Get-AzureRMProviderOperation Microsoft.Compute\/virtualMachines\/*\/action | FT Operation, OperationName\r\n    \r\n    Get-AzureRMProviderOperation Microsoft.Network\/*\r\n\r\n### Defining a Custom role ###\r\n\r\nLet's define a custom role, who can start or restart a VM in Azure but can't open a support ticket.\r\n\r\nSave the following code as \"yourCustomRole01.json\" file on your C drive (or any other location).\r\n\r\n    {\r\n      \"Name\": \"Virtual Machine Start and Restart\",\r\n      \"Id\": \"7ed03a9f-b372-4341-ba8d-38ef8e614038\",\r\n      \"IsCustom\": true,\r\n      \"Description\": \"Can restart virtual machines but can't open support tickets.\",\r\n      \"Actions\": [\r\n        \"Microsoft.Compute\/virtualMachines\/start\/action\",\r\n        \"Microsoft.Compute\/virtualMachines\/restart\/action\"\r\n      ],\r\n      \"NotActions\": [\r\n        \"Microsoft.Support\/*\"\r\n      ],\r\n      \"AssignableScopes\": [\r\n        \"\/subscriptions\/aaaaaaaa-1111-1111-1111-111111111111\",\r\n        \"\/subscriptions\/aaaaaaaa-2222-2222-2222-222222222222\",\r\n        \"\/subscriptions\/aaaaaaaa-3333-3333-3333-333333333333\/resourceGroups\/RG-Prod-USE2\"\r\n      ]\r\n    }\r\n\r\nNotice the Action and NotAction area are set as per the requirements.\r\n\r\nAlso, note that under Assignable Scope the role is available for assignment to all Resources and Resource Groups in the first two subscriptions but only in Resource Group named \"RG-Prod-USE2\" for the third subscription in the list.\r\n\r\n### Creating New Custom role ###\r\n\r\nOnce you have the definition ready in a JSON file, you can use the \"**New-AzureRMRoleDefinition**\" cmdlet to create the Custom Role Definition, as shown below. Make sure to alter the path to the json file as per your environment.\r\n\r\n    New-AzureRMRoleDefinition -InputFile \"C:\\yourCustomRole01.json\"\r\n\r\nNow you will be able to use this new Custom Role while assigning access to someone. You will be able to tweak the access and provide only the access that you need to your internal and external resources.",
+		"addpost": "addpost",
+		"dated": "Feb 04, 2018",
+		"slug": "demystifying-azure-security-custom-rbac-roles",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>Before going through this blog, please ensure that you have visited the basics of RBAC Roles in general, explained in a primer here: <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-rbac-roles\/\" target=\"_blank\">Demystifying Azure Security - RBAC Roles<\/a>.<\/p>\n<p>This blog ex...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -77,12 +123,12 @@
 			"security",
 			"vm"
 		],
-		"category": "Azure",
+		"category": "Azure Security",
 		"body": "**Just in time VM access** is a feature under **Azure Security Center**. In simple terms it allows you to control access to a VM. When you enable JIT, all access is locked down on the VM on all ports. This is done via Network Security Group (NSG) rules. The access is granted only for the duration allowed and also only on the ports requested. And then everything is locked down again at the end of the duration.\r\n\r\nThe attackers are leveraging various ways to get into your environment. One such way is using Bots to automate and Brute Force method to attempt entering in your environment. If you need to access a VM, in your environment, from Internet without VPN (e.g. to change some files on a Web app VM) then you are potentially opening up 3389 port on the VM and that can become a target for the attackers. Locking down the VM except when you need it and only for the duration of the requirement, reduces these risks significantly. \r\n\r\n### Pre-requisites ###\r\n\r\nThe key pre-requisites to be able to use this feature are:\r\n\r\n 1. The Azure Security Center needs to be upgraded to Advanced Security as shown below\r\n 2. The VM on which you want to configure JIT access should have a Network Security Group (NSG) linked to it. If it doesn't have any then you can create one and associate it with the network interface of the VM.\r\n\r\nThe first pre-requisite requires you to upgrade the Security Center to Advanced Security that comes with **Standard Tier**. You can upgrade from any of the advanced features. The portal will automatically prompt you to upgrade as shown below:\r\n\r\n<img src=\"\/images\/15212356695aac36d55f4be.png\" alt=\"Advanced Security in Security Center\">\r\n\r\n### How to Access and Configure it ###\r\n\r\nTo configure this go to Azure **Security Center**. Within Security Center go to the \"Advanced Cloud Defense\" category and then click on \"Just in time VM access\" link as shown below:\r\n\r\n<img src=\"\/images\/15212354315aac35e7b2c2d.png\" alt=\"JIT in Security Center\">\r\n\r\nNext follow the below steps to enable JIT on a VM:\r\n\r\n 1. Ensure that you are in the JIT section of Security Center\r\n 2. Go to the \"Recommended\" tab. This will show you all the VMs in your environment. \r\n 3. Click on the VM for which you want to enable Just in Time access. You can select multiple VMs here.\r\n 4. Click on the \"Enable JIT on x VMs\" button\r\n\r\n<img src=\"\/images\/15212369445aac3bd0c8b26.png\" alt=\"Enabling JIT\">\r\n\r\nYou will be presented with various settings for enabling JIT. These settings can be configured as:\r\n\r\n 1. By default, various common ports are configured for JIT access with 3 hours time range. E.g. 3389 for RDP. Click on any of the default ports to tweak the settings.\r\n 2. You can add more ports and protocols by clicking on the \"Add\" button at the top.\r\n 3. Tweak the settings on the new blade that opens up.\r\n 4. Click on \"Save\" to save your settings.\r\n\r\n<img src=\"\/images\/15212369535aac3bd974b55.png\" alt=\"Settings while enabling JIT\">\r\n\r\nThat's all there is to it. Once JIT is configured you can view the VM in the \"Configured\" tab.\r\n\r\n### Requesting access and activity log in JIT ###\r\n\r\nYou can request access and perform various other management operations by following below steps:\r\n\r\n 1. Once the JIT is configured, the VM will show up in the \"Configured\" tab as shown below. \r\n 2. Click on the VM that you want to manage or request access to. \r\n 3. As soon as you click, \"Request access\" button will start showing. You can click the button and it will ask for the number of hours that you need the access and the corresponding ports on which you need the access. Please note that only ports configured earlier can be granted access.\r\n 4. Click on the ellipse i.e. 3 dots in front of the VM record and you will see various options. Using these options you can view Properties. You can view the Activity log for previous requests and any attempts on attack. You can also Edit or Remove the access.\r\n\r\n<img src=\"\/images\/15212369585aac3bde79755.png\" alt=\"Requesting access and activity log in JIT\">\r\n\r\n\r\n### Adding non-Azure computers ###\r\n\r\nYou can add non-Azure computers for an extra fee per Node. Cost is calculated based on 15 USD\/Node\/Month. Resources that count as a node are VMs and computers. The selected security tier will be applied to current and new resources. For more information, visit <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/security-center\/security-center-pricing\" target=\"_blank\">Microsoft Security Center's Standard tier for enhanced security<\/a> information page.\r\n\r\nEnsure that you have onboarded the non-Azure computers to a linked Azure Log Analytics workspace. This is required in order to onboard non-Azure computers to Security Center.",
 		"addpost": "addpost",
 		"dated": "Jan 10, 2018",
 		"slug": "demystifying-azure-security-just-in-time-vm-access",
-		"categoryslug": "azure",
+		"categoryslug": "azure-security",
 		"status": "publised",
 		"summary": "\n<p><strong>Just in time VM access<\/strong> is a feature under <strong>Azure Security Center<\/strong>. In simple terms it allows you to control access to a VM. When you enable JIT, all access is locked down on the VM on all ports. This is done via Network Security Group (NSG) rules. The access is gra...<\/p>\n",
 		"prevStatus": "publised"
@@ -106,6 +152,28 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>This is the second part of troubleshooting Azure Site Recovery (ASR) Data replication issues. Part 1 is located here:  <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data ...<\/a><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Demystifying Azure Security - RBAC Roles",
+		"postDate": "25-01-2018",
+		"tags": [
+			"azure",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"roles",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "Azure **RBAC Roles** are a great way to securely provide access to users with limited actions in Azure. The focus is to provide only the access necessary so that an account in your organization doesn't have more access than needed. In case the account gets compromised, this will ensure that does not leave your environment too much vulnerable. This means that if you grant an employee access to manage Virtual Machines in your environment, that employee can't alter the virtual networks by mistake or have any access to delete the storage accounts in the environment. \r\n\r\n### Roles Hierarchy ###\r\n\r\nThe RBAC Roles can be assigned at the following three levels in the order of hierarchy:\r\n\r\n 1. **Subscription**\r\n 2. **Resource Group**\r\n 3. **Resource**\r\n\r\nAny Resource in Azure, must belong to a Resource Group (under the ARM model). And every Resource Group in Azure must belong to a single subscription.\r\n\r\nIf a person is assigned scope at Subscription level then he\/she will get access to all Resource Groups and to all resources within those resource groups. Next, if a person is assigned access at a Resource Group level then they will automatically get access to all the Resources within that Resource Group. Finally, if a person is provided access only to an individual Resource then they will get access only to that Resource.\r\n\r\n### Built-in Roles ###\r\nThere are various inbuilt roles for this purpose like:\r\n\r\n 1. Contributor - create and manage but can't grant access to others\r\n 2. Reader - can only view\r\n 3. Owner - full access\r\n\r\nThe complete list of Built-in roles can be viewed here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/active-directory\/role-based-access-built-in-roles\" target=\"_blank\">Built-in roles for Azure role-based access control<\/a>\r\n\r\n### Viewing and Adding Access ###\r\n\r\nTo view or Add access, first decide the scope where you want to provide the access. Select the scope, e.g. a Resource Group on which you want to view existing access and grant the access to someone. Then follow these steps (as per the image below):\r\n\r\n 1. Click on \"Access Control (IAM)\" to access the RBAC access control\r\n 2. View the access in the center area. Scroll down to view all type of roles and Users, Groups or Apps with the access\r\n 3. Click on \"+Add\" button, as shown below, to add access to a new user, group or application\r\n 4. In the new popup blade, select the Role (e.g. Contributor), Assignment scope and name\/email address of the user or app to whom you want to grant the access. You can select multiple users\/apps as well.\r\n\r\n<img src=\"\/images\/15216952115ab339eba24e0.png\" alt=\"Viewing and Adding RBAC Access\">\r\n\r\nWithin each subscription, you can grant up to 2000 role assignments.\r\n\r\nLearn about creating Custom RBAC Roles here: <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-custom-rbac-roles\/\" target=\"_blank\">Demystifying Azure Security - Custom RBAC Roles<\/a>",
+		"addpost": "addpost",
+		"dated": "Dec 20, 2017",
+		"slug": "demystifying-azure-security-rbac-roles",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>Azure <strong>RBAC Roles<\/strong> are a great way to securely provide access to users with limited actions in Azure. The focus is to provide only the access necessary so that an account in your organization doesn't have more access than needed. In case the account gets compromised, this will ensu...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -252,7 +320,7 @@
 			"shell"
 		],
 		"category": "Azure",
-		"body": "**Azure Cloud Shell** is a very convenient option to run your automation scripts against your subscriptions. \r\n\r\nThe shell is provided in two flavors:\r\n\r\n - Bash based shell\r\n - PowerShell in Cloud Shell (currently in Preview)\r\n\r\nThe Cloud Shell is a Browser based experience. What this means is that you do not need to install any dependencies for the Azure commands to run. Also, there is no dependency on your machine's hardware. You can work irrespective of your local machine's configurations.\r\n\r\n### Support for various tools\r\nAzure Cloud Shell comes preloaded with various tools depending upon the shell type selected. It comes loaded with Linux tools like bash, sh, tmux and dig. The Azure tools which are preloaded are Azure CLI 2.0 and 1.0, AzCopy,etc.Text editors include vim and nano. Git source control tools are also included. Various other Build, Containers, Databases, etc. tools are also included. It also comes with language support for .net version 2.0.0, Java version 1.8, Node.js 6.9.4, PowerShell 6.0(beta) and Python 2.7 and 3.5 etc. Check the References section for the full list and up to date version of Tools and Language support.\r\n\r\n### Key Concepts\r\n\r\nBelow are some of the key concepts (in nutshell) about the cloud shell.\r\n\r\n 1. You can opt for any one of the two shell options available, as per your preferences. You can choose to have a **Bash shell** or **PowerShell in Cloud shell**\r\n 2. You can easily switch between the two shells at any time\r\n 3. If you are logged into Azure portal then you are also automatically authenticated into the Azure Cloud Shell\r\n\r\nOther important concepts as per Microsoft documentation are:\r\n\r\n 1. Cloud Shell runs on a temporary host provided on a per-session,\r\n    per-user basis \r\n 2. Cloud Shell times out after 20 minutes without\r\n    interactive activity \r\n 3. Cloud Shell requires an Azure file share to be\r\n    mounted \r\n 4. Cloud Shell uses the same Azure file share for both Bash and\r\n    PowerShell \r\n 5. Cloud Shell is assigned one machine per user account \r\n 6. Bash persists $Home using a 5-GB image held in your file share\r\n 7. Permissions are set as a regular Linux user in Bash\r\n\r\n### Pricing\r\n\r\nCloud Shell does not have any direct cost linked to it. The charge for Cloud Shell is only for the usage of the underlying Azure Storage. The exact charge depends on the amount you store on that storage and the type of the storage. By default, Locally Redundant Storage is created. \r\n\r\n**References**:\r\n\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/overview\" target=\"_blank\">Azure Cloud Shell Overview<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/features\" target=\"_blank\">Azure Cloud Shell Features and Tools<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/features-powershell\" target=_blank\">Features & tools for PowerShell in Azure Cloud Shell<\/a>\r\n",
+		"body": "**Azure Cloud Shell** is a very convenient option to run your automation scripts against your subscriptions. \r\n\r\nThe shell is provided in two flavors:\r\n\r\n - Bash based shell\r\n - PowerShell in Cloud Shell (currently in Preview)\r\n\r\nThe Cloud Shell is a Browser based experience. What this means is that you do not need to install any dependencies for the Azure commands to run. Also, there is no dependency on your machine's hardware. You can work irrespective of your local machine's configurations.\r\n\r\n### Support for various tools\r\nAzure Cloud Shell comes preloaded with various tools depending upon the shell type selected. It comes loaded with Linux tools like bash, sh, tmux and dig. The Azure tools which are preloaded are Azure CLI 2.0 and 1.0, AzCopy,etc.Text editors include vim and nano. Git source control tools are also included. Various other Build, Containers, Databases, etc. tools are also included. It also comes with language support for .net version 2.0.0, Java version 1.8, Node.js 6.9.4, PowerShell 6.0(beta) and Python 2.7 and 3.5 etc. Check the References section for the full list and up to date version of Tools and Language support.\r\n\r\n### Key Concepts\r\n\r\nBelow are some of the key concepts (in nutshell) about the cloud shell.\r\n\r\n 1. You can opt for any one of the two shell options available, as per your preferences. You can choose to have a **Bash shell** or **PowerShell in Cloud shell**\r\n 2. You can easily switch between the two shells at any time\r\n 3. If you are logged into Azure portal then you are also automatically authenticated into the Azure Cloud Shell\r\n\r\nOther important concepts as per Microsoft documentation are:\r\n\r\n 1. Cloud Shell runs on a temporary host provided on a per-session,\r\n    per-user basis \r\n 2. Cloud Shell times out after 20 minutes without\r\n    interactive activity \r\n 3. Cloud Shell requires an Azure file share to be\r\n    mounted \r\n 4. Cloud Shell uses the same Azure file share for both Bash and\r\n    PowerShell \r\n 5. Cloud Shell is assigned one machine per user account \r\n 6. Bash persists $Home using a 5-GB image held in your file share\r\n 7. Permissions are set as a regular Linux user in Bash\r\n\r\n### Pricing\r\n\r\nCloud Shell does not have any direct cost linked to it. The charge for Cloud Shell is only for the usage of the underlying Azure Storage. The exact charge depends on the amount you store on that storage and the type of the storage. By default, Locally Redundant Storage is created. \r\n\r\n**References**:\r\n\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/overview\" target=\"_blank\">Azure Cloud Shell Overview<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/features\" target=\"_blank\">Azure Cloud Shell Features and Tools<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cloud-shell\/features-powershell\" target=\"_blank\">Features & tools for PowerShell in Azure Cloud Shell<\/a>\r\n",
 		"addpost": "addpost",
 		"dated": "Oct 08, 2017",
 		"slug": "azure-cloud-shell-introduction",
@@ -1135,5 +1203,28 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Demystifying Azure Security - Azure Policies",
+		"postDate": "10-12-2017",
+		"tags": [
+			"azure",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"security",
+			"policies",
+			"azurepolicies",
+			"policy"
+		],
+		"category": "Azure Security",
+		"body": "Azure Policies are a great tool to make access to Azure more secure by prohibiting certain operations and enforcing various rules in your environment. ",
+		"addpost": "addpost",
+		"dated": "Dec 10, 2017",
+		"slug": "demystifying-azure-security-azure-policies",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>Azure Policies are a great tool to make access to Azure more secure by prohibiting certain operations and enforcing various rules in your environment. <\/p>...\n"
 	}
 ]
