@@ -79,7 +79,11 @@
 	"82": "roles",
 	"83": "customroles",
 	"84": "custom",
-	"90": "policies",
-	"91": "azurepolicies",
-	"92": "policy"
+	"85": "policies",
+	"86": "azurepolicies",
+	"87": "policy",
+	"88": "ebook",
+	"89": "book",
+	"90": "templates",
+	"91": "armtemplates"
 }

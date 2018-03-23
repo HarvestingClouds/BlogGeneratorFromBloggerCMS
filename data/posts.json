@@ -1,6 +1,29 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Book published on Amazon - Quick and Practical Guide to ARM Templates",
+		"postDate": "23-03-2018",
+		"tags": [
+			"arm",
+			"azure",
+			"microsoft",
+			"microsoftazure",
+			"ebook",
+			"book",
+			"templates",
+			"armtemplates"
+		],
+		"category": "Azure",
+		"body": "**Quick and Practical Guide to ARM Templates** is a very non-conventional book. The objective of the book is to help you \"Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge\". This book is for both a beginner and intermediate users. \r\n\r\nThis is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. \r\n\r\nThe book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.\r\n\r\nYou can view the book on Amazon.com at this link: <a href=\"https:\/\/www.amazon.com\/dp\/B07C8LSBSN\" target=\"_blank\">https:\/\/www.amazon.com\/dp\/B07C8LSBSN<\/a>\r\n\r\nYou can also search for the book in your local Amazon marketplace.\r\n\r\n<img src=\"\/images\/15217860175ab49ca149064.png\" alt=\"Quick and Practical Guide to ARM Templates\">",
+		"addpost": "addpost",
+		"dated": "Mar 23, 2018",
+		"slug": "book-published-on-amazon-quick-and-practical-guide-to-arm-templates",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Quick and Practical Guide to ARM Templates<\/strong> is a very non-conventional book. The objective of the book is to help you \"Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge\". This book is for both a beginner and intermediate users. <\/p>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure Site Recovery (ASR) - Series Index",
 		"postDate": "19-02-2018",
 		"tags": [
@@ -32,7 +55,7 @@
 			"security"
 		],
 		"category": "Azure Security",
-		"body": "Understanding the security is of utmost importance in designing any application architecture. When bringing your applications or infrastructure to Azure or even designing new applications in Azure, you need to be aware of all the ways you can make your application\/design more secure by leveraging various features Azure has to offer.\r\n\r\nThis series talks about various aspects of **security** as related to different aspects of Azure.\r\n\r\nThis blog is an **Index** of various blogs in the series \"Demystifying Azure Security\":\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-rbac-roles\/\" target=\"_blank\">Understanding RBAC Roles<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-custom-rbac-roles\/\" target=\"_blank\">Custom RBAC Roles<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-just-in-time-vm-access\/\" target=\"_blank\">Just In Time VM access<\/a>",
+		"body": "Understanding the security is of utmost importance in designing any application architecture. When bringing your applications or infrastructure to Azure or even designing new applications in Azure, you need to be aware of all the ways you can make your application\/design more secure by leveraging various features Azure has to offer.\r\n\r\nThis series talks about various aspects of **security** as related to different aspects of Azure.\r\n\r\nThis blog is an **Index** of various blogs in the series \"Demystifying Azure Security\":\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-rbac-roles\/\" target=\"_blank\">Understanding RBAC Roles<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-custom-rbac-roles\/\" target=\"_blank\">Custom RBAC Roles<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-just-in-time-vm-access\/\" target=\"_blank\">Just In Time VM access<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-azure-policies-1-basics\/\" target=\"_blank\">Azure Policies - 1 - Basics<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/demystifying-azure-security-azure-policies-2-assigning-a-policy\/\" target=\"_blank\">Azure Policies - 2 - Assigning a Policy<\/a>",
 		"addpost": "addpost",
 		"dated": "Mar 11, 2018",
 		"slug": "demystifying-azure-security-series-index",
@@ -156,6 +179,30 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Demystifying Azure Security - Azure Policies - 2 - Assigning a Policy",
+		"postDate": "27-12-2017",
+		"tags": [
+			"azure",
+			"azurepolicies",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"policies",
+			"policy",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "In this post, we will view the policies in action. Policy assignment is very easy on the Azure Portal. We will be assigning a built-in policy at a subscription scope.\r\n\r\n### Accessing the Policies in the Azure portal ###\r\n\r\nBegin by accessing the Policies in the Azure Portal. To do this follow the below steps:\r\n\r\n 1. Navigate to **Subscriptions** (via All Services or the navigation sidebar)\r\n 2. Select the subscription for which you want to view the Policies\r\n 3. Scroll down to the \"Settings\" category in the menu of the subscription\r\n 4. Click on \"**Policies**\" to access the policies in Azure\r\n\r\n### Assigning the Built-in Policies ###\r\n\r\nTo perform the assignment, click on \"Assign Policy\" from either Compliance or the Assignment tabs.\r\n\r\n<img src=\"\/images\/15217866825ab49f3a81d6a.png\" alt=\"Assign Policy\">\r\n\r\nIn the new blade, provide the value for the:\r\n\r\n 1. Policy to be applied\r\n 2. Name and Description of the Policy. The name will be the name of the policy selected by default. As a best practice ensure to provide the detailed description.\r\n 3. Assigned by will be your name by default\r\n 4. You can select the pricing tier between Free and Standard. You will get the compliance evaluation of the resources in your environment against the policy with the Standard pricing tier\r\n 5. Scope for the Policy\r\n 6. Exclusions from the Policy\r\n 7. Any additional parameters related to the policy\r\n\r\nTo select from the policies, click on the blue button with an ellipse (i.e. 3 dots) in front of the Policy box. This will popup another blade for all the Policy definitions.\r\n\r\n<img src=\"\/images\/15217894075ab4a9df6a23e.png\" alt=\"Assign Policy Blade details\">\r\n\r\nScroll through various Built-in policies. Once we define any custom user-defined policies, they will also be displayed here. Select the policy \"Allowed locations\" from the list of the policies as an example. Click on \"Select\" once done.\r\n\r\n<img src=\"\/images\/15217894445ab4aa0494a0d.png\" alt=\"Selecting Policy\">\r\n\r\nSelect the Scope for applying the policy. You can leave the default to the Subscription level. Or you can click on the blue button in front of scope text box and select the Resource Groups under the subscription on which you want to apply the policy.\r\n\r\nYou can also select the Exclusions if you require. These Resource Group or resources will not be evaluated against the policy.\r\n\r\n<img src=\"\/images\/15217894615ab4aa15470ec.png\" alt=\"Selecting Scope\">\r\n\r\nLastly, you will have additional parameters for the policy related values. These parameters will vary and will depend on the policy you have selected. E.g. For \"Allowed locations\" policy, you will see the parameter for allowed locations. Select \"East US\" and \"East US 2\" for the locations as an example.\r\n\r\n<img src=\"\/images\/15217894765ab4aa248f15f.png\" alt=\"Providing value for Policy related Parameters\">\r\n\r\nOnce you complete the configurations, click on the \"**Assign**\" button to apply the policy\r\n\r\n### Validating the Policy ###\r\n\r\nTo validate the policy for \"Allowed locations\" follow these steps:\r\n\r\n 1. Try to deploy a Storage Account or a VM or any other resource in a location that is NOT allowed. E.g. try deploying a storage account in the \"West US\" location. This should fail with the validation error stating the policy id.\r\n 2. Perform the same deployment but to one of the allowed location. E.g. try deploying a storage account in the \"East US\" location. This should succeed without any erros. ",
+		"addpost": "addpost",
+		"dated": "Dec 27, 2017",
+		"slug": "demystifying-azure-security-azure-policies-2-assigning-a-policy",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>In this post, we will view the policies in action. Policy assignment is very easy on the Azure Portal. We will be assigning a built-in policy at a subscription scope.<\/p>\n<h3>Accessing the Policies in the Azure portal<\/h3>\n<p>Begin by accessing the Policies in the Azure Portal. To do this follow ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Demystifying Azure Security - RBAC Roles",
 		"postDate": "25-01-2018",
 		"tags": [
@@ -174,6 +221,30 @@
 		"categoryslug": "azure-security",
 		"status": "publised",
 		"summary": "\n<p>Azure <strong>RBAC Roles<\/strong> are a great way to securely provide access to users with limited actions in Azure. The focus is to provide only the access necessary so that an account in your organization doesn't have more access than needed. In case the account gets compromised, this will ensu...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Demystifying Azure Security - Azure Policies - 1 - Basics",
+		"postDate": "10-12-2017",
+		"tags": [
+			"azure",
+			"azurepolicies",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"policies",
+			"policy",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "**Azure Policies** are a great tool to make access to Azure more secure by prohibiting certain operations and enforcing various rules in your environment. The policies make your environment compliant and ensure that you adhere to the service level agreements and standards set within your organization. If the end user tries to deploy a resource violating the policies then the deployment fails at the validation step ensuring that your environment remains compliant. If you already have resources which are not compliant then you will be able to review those and take necessary actions.\r\n\r\n\r\n### Examples of Azure Policies ###\r\n\r\nHere are a few of most commonly used policies:\r\n\r\n 1. **Restricting the Allowed locations** where a resource can be deployed. You can restrict the allowed locations where resources can be deployed to the ones that are closer to your geographic location. This also ensures that the users within your organization can't deploy resources to noncompliant locations. \r\n 2. **Enforcing a Tag** and it's Value. E.g. You have a Resource Group for the Finance department. You want to ensure that any resource deployed in that Resource Group should be tagged with a \"CostCenter\" and a specific value for that cost center. You can enforce this using a Policy.\r\n 3. **Not Allowed Resource Types**. Using this policy you can prohibit the deployment of certain resource types in your environment. \r\n\r\nThere are various other built-in Policies. You can also create your own policies which we will discuss in more detail later.\r\n\r\n### Scope where a Policy is Assigned ###\r\n\r\nA Policy can be assigned at the below levels:\r\n\r\n 1. **Subscription** level - Applied to all Resource Groups and Resources within the subscription\r\n 2. **Resource Group** level - Applied only to the Resources within the selected Resource Groups\r\n\r\n**Exclusions**: In addition to the assignment scope, you can exclude certain Resource Groups or individual Resources from the Policy assignments. The Policy will be applied to all the Resources in the scope except the ones excluded by defining the Exclusions. \r\n\r\n\r\n### How are Policies different from Role-Based Access Control (RBAC) ###\r\n\r\nThrough **Role-Based Access Control (RBAC)**, you focus on the role and scope of access that a user can have in Azure. You provide the access control (IAM) within Azure for Subscription, Resource Group or an individual Resource. You define a role for the user\/app\/group like Contributor, Reader etc.  You can use the built-in roles or can define custom roles.\r\n\r\nWith **Policies**, you focus on the properties of the resources with which the user can work at the defined scope. You define what properties are allowed and what is restricted. You can use the built-in policies or can define your own.\r\n\r\nE.g. Through RBAC you define that a particular user has Reader role at the subscription and Contributor role at a particular Resource Group. This will mean that the user can view all the resources in the subscription but can only modify or create resources in the Resource Group where he has Contributor access.\r\n\r\nNow if you define a policy which restricts the type of resources deployed ( as discussed in the examples above), the user will not be able to deploy the restricted resource types, even though he has contributor access to a Resource Group.\r\n\r\n### Accessing Policies in the Azure portal ###\r\n\r\nTo access the Policies in the Azure portal:\r\n\r\n 1. Navigate to **Subscriptions** (via All Services or the navigation sidebar)\r\n 2. Select the subscription for which you want to view the Policies\r\n 3. Scroll down to the \"Settings\" category in the menu of the subscription\r\n 4. Click on \"**Policies**\" to access the policies in Azure\r\n\r\n<img src=\"\/images\/15217849365ab4986888c88.png\" alt=\"Policies in Azure Portal\">\r\n\r\nWe will be discussing more about the Azure Policies in later blogs.",
+		"addpost": "addpost",
+		"dated": "Dec 10, 2017",
+		"slug": "demystifying-azure-security-azure-policies-1-basics",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Policies<\/strong> are a great tool to make access to Azure more secure by prohibiting certain operations and enforcing various rules in your environment. The policies make your environment compliant and ensure that you adhere to the service level agreements and standards set within ...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -1203,28 +1274,5 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Demystifying Azure Security - Azure Policies",
-		"postDate": "10-12-2017",
-		"tags": [
-			"azure",
-			"azuresecurity",
-			"microsoft",
-			"microsoftazure",
-			"security",
-			"policies",
-			"azurepolicies",
-			"policy"
-		],
-		"category": "Azure Security",
-		"body": "Azure Policies are a great tool to make access to Azure more secure by prohibiting certain operations and enforcing various rules in your environment. ",
-		"addpost": "addpost",
-		"dated": "Dec 10, 2017",
-		"slug": "demystifying-azure-security-azure-policies",
-		"categoryslug": "azure-security",
-		"status": "publised",
-		"summary": "\n<p>Azure Policies are a great tool to make access to Azure more secure by prohibiting certain operations and enforcing various rules in your environment. <\/p>...\n"
 	}
 ]
