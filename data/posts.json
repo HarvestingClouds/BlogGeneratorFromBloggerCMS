@@ -136,6 +136,30 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Demystifying Azure Security - Creating a Custom Policy - Part 3 - Defining your Custom Policy",
+		"postDate": "06-01-2018",
+		"tags": [
+			"azue",
+			"azuresecurity",
+			"custompolicy",
+			"microsoft",
+			"microsoftazure",
+			"policies",
+			"policy",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "As discussed earlier, the policies provide a way to control what is allowed and what is not allowed in your environment. Earlier we looked at how to view the definition of existing policies and discussed the structure of the policies in detail. Now it's time to put the knowledge together and define a policy.\r\n\r\n### Getting the JSON ready for the Policy Definition ###\r\n\r\nHave the JSON ready for the Policy Definition. If you are going to deploy the policy via Portal then all you need is the Policy Rule portion of the definition. For this post, let's use the sample policy definition for \"*Only allow a certain VM platform image*\" located here: https:\/\/docs.microsoft.com\/en-us\/azure\/azure-policy\/scripts\/allow-certain-vm-image\r\n\r\nVarious other samples are provided by Microsoft at this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-policy\/json-samples\" target=\"_blank\">Templates for Azure Policy<\/a>\r\n\r\nThis sample policy, enforces the end users to use only a certain version of the Ubuntu only. \r\n\r\nThe policy definition looks as below:\r\n\r\n    {\r\n        \"type\": \"Microsoft.Authorization\/policyDefinitions\",\r\n        \"name\": \"platform-image-policy\",\r\n        \"properties\": {\r\n            \"displayName\": \"Only allow a certain VM platform image\",\r\n            \"description\": \"This policy ensures that only UbuntuServer, Canonical is allowed from the image repository\",\r\n            \"parameters\": {},\r\n            \"policyRule\": {\r\n                \"if\": {\r\n                    \"allOf\": [\r\n                        {\r\n                            \"field\": \"type\",\r\n                            \"in\": [\r\n                                \"Microsoft.Compute\/disks\",\r\n                                \"Microsoft.Compute\/virtualMachines\",\r\n                                \"Microsoft.Compute\/VirtualMachineScaleSets\"\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"not\": {\r\n                                \"allOf\": [\r\n                                    {\r\n                                        \"field\": \"Microsoft.Compute\/imagePublisher\",\r\n                                        \"in\": [\r\n                                            \"Canonical\"\r\n                                        ]\r\n                                    },\r\n                                    {\r\n                                        \"field\": \"Microsoft.Compute\/imageOffer\",\r\n                                        \"in\": [\r\n                                            \"UbuntuServer\"\r\n                                        ]\r\n                                    },\r\n                                    {\r\n                                        \"field\": \"Microsoft.Compute\/imageSku\",\r\n                                        \"in\": [\r\n                                            \"14.04.2-LTS\"\r\n                                        ]\r\n                                    },\r\n                                    {\r\n                                        \"field\": \"Microsoft.Compute\/imageVersion\",\r\n                                        \"in\": [\r\n                                            \"latest\"\r\n                                        ]\r\n                                    }\r\n                                ]\r\n                            }\r\n                        }\r\n                    ]\r\n                },\r\n                \"then\": {\r\n                    \"effect\": \"deny\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\nLook at the policy rule section. Let's look at various sections more closely.\r\n\r\n 1. ***if*** condition defines the policy condition\r\n 2. ***allOf*** ensures that all the conditions must be true\r\n 3. ***field type*** is specified as Disks, Virtual Machines and VM scale sets under Microsoft.Compute\r\n 4. Next section defines a nested condition, which evaluates true if actual VM image used is not equal to combination of all of the conditions specified. \r\n 5. ***then*** section defines what should happen. In this case it says to ***deny*** the operation, i.e. the VM provisioning will fail with validation error for not conforming to the policy.\r\n\r\nNote that there are no parameters used in this policy definition.\r\n\r\n### Defining Policy using Portal ###\r\n\r\nFor defining the policies via Azure Portal, navigate to the Policies under settings of your Subscription. Click on the Definitions and then click on \"**+Policy Definition**\" at the top.\r\n\r\n<img src=\"\/images\/15218358115ab55f2336e11.png\" alt=\"Defining New Policy\">\r\n\r\nA new blade will open where you can define the policy. Provide the details as follows:\r\n\r\n 1. Provide the policy definition's location. This will be your subscription in which you want the definition to exist.\r\n 2. Provide a Display Name and Description of the policy. Try to be as descriptive as possible\r\n 3. Either create a new Category for the policy or use one of the existing ones\r\n 4. Copy and paste your policy definition. In the portal, only provide the \"policyRule\" section. The section will look something similar to:\r\n\r\n    {\r\n        \"policyRule\": {\r\n          <<all content here>>\r\n        }\r\n    }\r\n\r\n<img src=\"\/images\/15218358165ab55f28ad5a4.png\" alt=\"New Policy Definition Blade\">\r\n\r\nHit **Save** to create the Policy Definition. You can now start assigning this policy in your environment.\r\n\r\n### Defining Policy using PowerShell ###\r\n\r\nEnsure that you have latest version of Azure PowerShell installed. Then using PowerShell to deploy the policy is as easy as executing below two cmdlets:\r\n\r\n 1. ***New-AzureRmPolicyDefinition*** - to create the policy definition \r\n 2. ***New-AzureRMPolicyAssignment*** - to use the policy and assign the policy at a scope defined\r\n\r\nStore the policy in a json file on your computer. Ensure that you only save the \"if-then\" condition in curly parenthesis. This will be used as an input to the cmdlet. The file should look similar to below:\r\n\r\n    {\r\n                \"if\": { <<content here>>},\r\n                \"then\":{ <<content here>>}\r\n    }\r\n\r\n\r\nTo create the policy definition use a code similar to below. Ensure to update the file name and path as per your environment.\r\n\r\n    $definition = $definition = New-AzureRmPolicyDefinition -Name \"RestrictingUbuntuVMVersion\" -DisplayName \"Restrict Ubuntu version for VM Deployment\" -Description \"Detailed Description here\" -Policy \"C:\\temp\\CustomPolicyDefinition.json\"\r\n    \r\n    \r\n\r\nTo use the policy, do the assignment using a code similar to below:\r\n\r\n    $assignment = New-AzureRMPolicyAssignment -Name <customAssignmentName> -Scope <SubscriptionId>  -PolicyDefinition $definition\r\n    \r\nThat is all there is to defining and using your custom policy.\r\n",
+		"addpost": "addpost",
+		"dated": "Jan 14, 2018",
+		"slug": "demystifying-azure-security-creating-a-custom-policy-part-3-defining-your-custom-policy",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>As discussed earlier, the policies provide a way to control what is allowed and what is not allowed in your environment. Earlier we looked at how to view the definition of existing policies and discussed the structure of the policies in detail. Now it's time to put the knowledge together and defi...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Demystifying Azure Security - Just In Time VM access",
 		"postDate": "10-01-2018",
 		"tags": [
@@ -159,7 +183,7 @@
 	{
 		"author": "@20aman",
 		"title": "Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues - Part 2",
-		"postDate": "08-01-2018",
+		"postDate": "04-01-2018",
 		"tags": [
 			"azure",
 			"azuresiterecovery",
@@ -175,6 +199,55 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>This is the second part of troubleshooting Azure Site Recovery (ASR) Data replication issues. Part 1 is located here:  <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data ...<\/a><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Demystifying Azure Security - Creating a Custom Policy - Part 2 - Understanding the Policy Structure",
+		"postDate": "08-01-2018",
+		"tags": [
+			"azue",
+			"azuresecurity",
+			"custom",
+			"custompolicy",
+			"microsoft",
+			"microsoftazure",
+			"policy",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "### Structure of a Policy JSON Definition ###\r\n\r\nPolicy definitions are written in JSON. The policy definition contains elements for:\r\n\r\n - mode\r\n - parameters\r\n - display name\r\n - description\r\n - policy rule\r\n  - logical evaluation\r\n  - effect\r\n\r\nLet's understand these components with the help of an example. Earlier we saw how to find the definition of existing policies. One such policy is: \"Allowed locations\". This policy restricts the location in Azure where resources can be deployed. The definition for the policy looks like below:\r\n\r\n    {\r\n      \"properties\": {\r\n        \"mode\": \"all\",\r\n        \"parameters\": {\r\n          \"allowedLocations\": {\r\n            \"type\": \"array\",\r\n            \"metadata\": {\r\n              \"description\": \"The list of locations that can be specified when deploying resources\",\r\n              \"strongType\": \"location\",\r\n              \"displayName\": \"Allowed locations\"\r\n            }\r\n          }\r\n        },\r\n        \"displayName\": \"Allowed locations\",\r\n        \"description\": \"This policy enables you to restrict the locations your organization can specify when deploying resources.\",\r\n        \"policyRule\": {\r\n          \"if\": {\r\n            \"not\": {\r\n              \"field\": \"location\",\r\n              \"in\": \"[parameters('allowedLocations')]\"\r\n            }\r\n          },\r\n          \"then\": {\r\n            \"effect\": \"deny\"\r\n          }\r\n        }\r\n      }\r\n    }\r\n\r\n 1. **Mode** tells you the type of resources for which the policy will be applied. Allowed values are \"All\" (where all Resource Groups and Resources are evaluated) and \"indexed\" (where policy is evaluated only for resources which support tags and location)\r\n 2. **Parameters** are used for providing inputs to the policy. They can be reused at multiple locations within the policy. You can refer to a parameter as: \"***[parameters('allowedLocations')]***\"\r\n 3. **Display Name** is used to show the policy in the portal or programmatically.\r\n 4. A **description** is used to provide details for the policy.\r\n 5. **Policy Rule** is which defines the policies. This is the section where the restrictions are defined in a Poicy Definition. To understand a policy you need to focus most of your efforts on this section. Every Policy rule has two key sections defined under \"if-then\" blocks. \r\n  6. **Logical Evaluation** is defined under the \"if\" block. It defines the condition which is evaluated to determine the policy should be applied or not.\r\n  7. **Effect** is defined in the \"then\" block. This defines what will happen if the condition is met. \r\n\r\n### Policy Rules ###\r\n\r\nLet's look at the policy rules in more details. The general syntax of the \"if-then\" block is as shown below:\r\n\r\n    {\r\n      \"if\": {\r\n        <condition> | <logical operator>\r\n      },\r\n      \"then\": {\r\n        \"effect\": \"deny | audit | append\"\r\n      }\r\n    }\r\n\r\n\r\nSupported logical operators are:\r\n\r\n* `\"not\": {condition  or operator}`\r\n* `\"allOf\": [{condition or operator},{condition or operator}]`\r\n* `\"anyOf\": [{condition or operator},{condition or operator}]`\r\n\r\n**Not** operator means that the opposit of the condition should be true for the policy to be applied. **AllOf** requires all the conditions defined to be true at the same time. **AnyOf** requires any one of the conditions to be true for the policy to be applied.\r\n\r\nIn the previous example, the policy rule section is as shown below:\r\n\r\n        \"policyRule\": {\r\n          \"if\": {\r\n            \"not\": {\r\n              \"field\": \"location\",\r\n              \"in\": \"[parameters('allowedLocations')]\"\r\n            }\r\n          },\r\n          \"then\": {\r\n            \"effect\": \"deny\"\r\n          }\r\n        }\r\n\r\nIn simple terms, the rule above says that if the location is not in the list of allowed locations, defined by the parameter ***allowedLocations***, then the effect will be ***deny*** i.e. the resource creation will not be allowed.\r\n\r\nYou can find the complete list of operators and conditional constructs here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-policy\/policy-definition\" target=\"_blank\">Azure Policy definition structure\r\n<\/a>",
+		"addpost": "addpost",
+		"dated": "Dec 30, 2017",
+		"slug": "demystifying-azure-security-creating-a-custom-policy-part-2-understanding-the-policy-structure",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<h3>Structure of a Policy JSON Definition<\/h3>\n<p>Policy definitions are written in JSON. The policy definition contains elements for:<\/p>\n<ul><li>mode<\/li>\n<li>parameters<\/li>\n<li>display name<\/li>\n<li>description<\/li>\n<li>policy rule\n<ul><li>logical evaluation<\/li>\n<li>effect<\/li>\n<\/ul><\/li>\n<\/ul>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Demystifying Azure Security - Creating a Custom Policy - Part 1 - Viewing Definition of an existing Policy",
+		"postDate": "07-01-2018",
+		"tags": [
+			"azure",
+			"azuresecurity",
+			"custom",
+			"custompolicy",
+			"microsoft",
+			"microsoftazure",
+			"policies",
+			"policy",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "Creating a custom policy to enforce your custom requirements in the Azure environment is very easy. This provides you with granular control over what a policy should perform and what should be allowed and what should be denied.\r\n\r\nPolicies are writing in JSON format. It is always good to base your custom policy definition on one of the built-in policies if one exists which is closer to what you are trying to do. \r\n\r\n### Viewing Definition of Existing Policies ###\r\n\r\nYou have two options to view the definition of an existing policy.\r\n\r\n 1. Using PowerShell\r\n 2. Using Azure Portal\r\n\r\n### Using PowerShell ###\r\n\r\n**Using PowerShell** run the below cmdlet to view all the policies in your environment.\r\n\r\n    Get-AzureRmPolicyDefinition\r\n\r\nThen go through the list and find the policy that you want to use. Find the ResourceId of that policy and then run the below cmdlet to fetch the details of that policy.\r\n\r\n    Get-AzureRmPolicyDefinition -Id \"\/providers\/Microsoft.Authorization\/policyDefinitions\/e56962a6-4747-49cd-b67b-bf8b01975c4c\"\r\n\r\n### Using Azure Portal ###\r\n\r\n**Using Azure Portal** to view the Definition is also very easy. Simply navigate to:\r\n\r\n - the Subscription section in the Azure Portal\r\n - Select your subscription\r\n - Click on \"Policies\" under settings. \r\n - Within the Policies blade, click on \"Definitions\"\r\n\r\nWithin the Policy Definitions, select the Policy from the list for which you want to view the definition. Click on the 3 dots to the right. From the context menu select \"View definition\".\r\n\r\n<img src=\"\/images\/15218187805ab51c9c095ce.png\" alt=\"Policy Definitions\">\r\n\r\nThis will open up another blade. Click on the \"Json\" tab at the top and this will show you the rule part of the definition of the policy. the rule is the most important part of the policy. We will look at other components of the policies later as well.\r\n\r\n<img src=\"\/images\/15218187845ab51ca0c313d.png\" alt=\"Policy Definition Details\">\r\n\r\nE.g. The JSON for \"Allowed storage account SKUs\" built-in policy looks as shown below.\r\n\r\n\r\n    {\r\n      \"if\": {\r\n        \"allOf\": [\r\n          {\r\n            \"field\": \"type\",\r\n            \"equals\": \"Microsoft.Storage\/storageAccounts\"\r\n          },\r\n          {\r\n            \"not\": {\r\n              \"field\": \"Microsoft.Storage\/storageAccounts\/sku.name\",\r\n              \"in\": \"[parameters('listOfAllowedSKUs')]\"\r\n            }\r\n          }\r\n        ]\r\n      },\r\n      \"then\": {\r\n        \"effect\": \"Deny\"\r\n      }\r\n    }\r\n\r\n\r\nNext, we will dissect and understand the Policy structure in details.",
+		"addpost": "addpost",
+		"dated": "Dec 29, 2017",
+		"slug": "demystifying-azure-security-creating-a-custom-policy-part-1-viewing-definition-of-an-existing-policy",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>Creating a custom policy to enforce your custom requirements in the Azure environment is very easy. This provides you with granular control over what a policy should perform and what should be allowed and what should be denied.<\/p>\n<p>Policies are writing in JSON format. It is always good to base...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
