@@ -89,5 +89,18 @@
 	"92": "custompolicy",
 	"93": "initiative",
 	"94": "initiativedefinition",
-	"95": "definitions"
+	"95": "definitions",
+	"96": "data",
+	"97": "datasecurity",
+	"98": "transparent",
+	"99": "encryption",
+	"100": "transparentdataencryption",
+	"101": "threat",
+	"102": "detection",
+	"103": "audit",
+	"104": "auditing",
+	"105": "sql",
+	"106": "azuresql",
+	"107": "database",
+	"108": "sqldatabase"
 }
