@@ -41,11 +41,12 @@
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-rbac-roles/" target="_blank">Understanding RBAC Roles</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-custom-rbac-roles/" target="_blank">Custom RBAC Roles</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-just-in-time-vm-access/" target="_blank">Just In Time VM access</a></li>
-<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-1-basics/" target="_blank">Azure Policies - 1 - Basics</a></li>
-<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-2-assigning-a-policy/" target="_blank">Azure Policies - 2 - Assigning a Policy</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-1-basics/" target="_blank">Azure Policies - Basics</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-2-assigning-a-policy/" target="_blank">Azure Policies - Assigning a Policy</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-1-viewing-definition-of-an-existing-policy/" target="_blank">Creating a Custom Policy - Part 1 - Viewing Definition of an existing Policy</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-2-understanding-the-policy-structure/" target="_blank">Creating a Custom Policy - Part 2 - Understanding the Policy Structure</a></li>
 <li><a href="http://harvestingclouds.com/post/demystifying-azure-security-creating-a-custom-policy-part-3-defining-your-custom-policy/" target="_blank">Creating a Custom Policy - Part 3 - Defining your Custom Policy</a></li>
+<li><a href="http://harvestingclouds.com/post/demystifying-azure-security-azure-policies-initiative-definitions/" target="_blank">Azure Policies - Initiative Definitions</a></li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/demystifying-azure-security-series-index</link>
 <pubDate>Sun, 11 Mar 2018 00:00:00 +0500</pubDate>
@@ -163,7 +164,7 @@ Get-AzureRMProviderOperation Microsoft.Network/*</code></pre>
 <item>
 <title>Demystifying Azure Security - Azure Policies - Initiative Definitions</title>
 <description><![CDATA[<p>This blog post is part of the <strong>Demystifying Azure Security</strong> series. All posts in the series can be found here: <a href="http://harvestingclouds.com/post/demystifying-azure-security-series-index/" target="_blank">Demystifying Azure Security - Series Index</a></p>
-<p><strong>Initiative Definitions</strong> are a great way to combine and apply multiple policies together. They are a group of policy definitions to achieve a singular goal. These are the Microsoft recommended way to use the Policies. </p>
+<p><strong>Initiative Definitions</strong> are a great way to combine and apply multiple policies together. They are a group of policy definitions to achieve a singular goal. These are the Microsoft recommended way to use the Policies.  </p>
 <p>E.g. You want to combine a set of policy definitions for the compute and related resources. You want to apply following set of policies:</p>
 <ol>
 <li>Allowed locations - to restrict locations where resources can be deployed</li>
