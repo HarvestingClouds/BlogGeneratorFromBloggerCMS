@@ -102,5 +102,8 @@
 	"105": "sql",
 	"106": "azuresql",
 	"107": "database",
-	"108": "sqldatabase"
+	"108": "sqldatabase",
+	"109": "compute",
+	"110": "console",
+	"111": "serial"
 }

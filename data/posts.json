@@ -5,42 +5,46 @@
 		"postDate": "23-03-2018",
 		"tags": [
 			"arm",
+			"armtemplates",
 			"azure",
+			"book",
+			"ebook",
 			"microsoft",
 			"microsoftazure",
-			"ebook",
-			"book",
-			"templates",
-			"armtemplates"
+			"templates"
 		],
 		"category": "Azure",
-		"body": "**Quick and Practical Guide to ARM Templates** is a very non-conventional book. The objective of the book is to help you \"Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge\". This book is for both a beginner and intermediate users. \r\n\r\nThis is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. \r\n\r\nThe book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.\r\n\r\nYou can view the book on Amazon.com at this link: <a href=\"https:\/\/www.amazon.com\/dp\/B07C8LSBSN\" target=\"_blank\">https:\/\/www.amazon.com\/dp\/B07C8LSBSN<\/a>\r\n\r\nYou can also search for the book in your local Amazon marketplace.\r\n\r\n<img src=\"\/images\/15217860175ab49ca149064.png\" alt=\"Quick and Practical Guide to ARM Templates\">",
+		"body": "**Quick and Practical Guide to ARM Templates** is a very non-conventional book. The objective of the book is to help you \"Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge\". This book is for both a beginner and intermediate users. \r\n\r\n**Update [03-27-2018]**: This book is available for **FREE** for a limited time only (on 27, 28 and 29th March, 2018 till midnight Pacific Time). <a href=\"https:\/\/www.amazon.com\/dp\/B07C8LSBSN\" target=\"_blank\">**Download Now!!!**<\/a>\r\n\r\nThis is a quick and practical approach to learning ARM Templates for Azure. It covers only the most essential topics that you will need 95% of the time while working with ARM Templates. The goal is to have you working faster and quicker on ARM Templates without compromising any of the best practices. \r\n\r\nThe book assumes that you do not have prior knowledge of ARM Templates. If you have no development background then this book is for you. It starts by building the fundamentals on which ARM Templates are built.  The more practical approach means less theory and more focus on the practical aspects that can help you start working and delivering on ARM Templates.\r\n\r\nYou can view the book on Amazon.com here:\r\n \r\n<iframe style=\"width:120px;height:240px;\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" frameborder=\"0\" src=\"\/\/ws-na.amazon-adsystem.com\/widgets\/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=qf_sp_asin_til&ad_type=product_link&tracking_id=harvestingclo-20&marketplace=amazon&region=US&placement=B07C8LSBSN&asins=B07C8LSBSN&linkId=961e9d0dd6262ef7737bb6418f772a82&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff\">\r\n    <\/iframe>\r\n\r\nYou can also search for the book in your local Amazon marketplace.\r\n\r\n<img src=\"\/images\/15217860175ab49ca149064.png\" alt=\"Quick and Practical Guide to ARM Templates\">",
 		"addpost": "addpost",
-		"dated": "Mar 23, 2018",
+		"dated": "Mar 27, 2018",
 		"slug": "book-published-on-amazon-quick-and-practical-guide-to-arm-templates",
 		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p><strong>Quick and Practical Guide to ARM Templates<\/strong> is a very non-conventional book. The objective of the book is to help you \"Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge\". This book is for both a beginner and intermediate users. <\/p>\n"
+		"summary": "\n<p><strong>Quick and Practical Guide to ARM Templates<\/strong> is a very non-conventional book. The objective of the book is to help you \"Become Experts in Developing ARM Templates for Microsoft Azure without any prior knowledge\". This book is for both a beginner and intermediate users. <\/p>\n",
+		"prevStatus": "publised"
 	},
 	{
 		"author": "@20aman",
-		"title": "Azure Site Recovery (ASR) - Series Index",
-		"postDate": "19-02-2018",
+		"title": "Getting Started with Virtual Machine Serial Console access",
+		"postDate": "26-03-2018",
 		"tags": [
-			"asr",
-			"azure",
-			"azuresiterecovery",
+			"azue",
+			"compute",
+			"console",
 			"microsoft",
-			"microsoftazure"
+			"microsoftazure",
+			"serial",
+			"virtualmachine",
+			"vm"
 		],
 		"category": "Azure",
-		"body": "Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. \r\n\r\nThis series talks about various aspects of working with **Azure Site Recovery** or **ASR**. \r\n\r\nThis blog is an **Index** of various blogs in the series:\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/azure-site-recovery-asr-new-feature-added-to-target-resource-groups\/\" target=\"_blank\">Azure Site Recovery (ASR) - New feature added to target Resource Groups<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers\/\" target=\"_blank\">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access\/\" target=\"_blank\">ASR Setup for VMs running in VMWare without VMware level User Access<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/getting-started-azure-site-recovery-asr-in-new-azure-portal\/\" target=\"_blank\">Getting Started - Azure Site Recovery (ASR) In New Azure Portal<\/a>",
+		"body": "This is the feature we all have been waiting for. This gives power back to administrators in the cloud. **Virtual Machine Console Access** is now available in Preview in Azure. The console is called **Special Administrative Console** (SAC). With this you can perform advanced troubleshooting like correcting firewall rules by fixing iptables, recovering filesystems, locking down the network, interacting and modifying the bootloader etc. \r\n\r\n**Note**: Windows images on Azure do not have **Special Administrative Console** (SAC) enabled by default. SAC is supported on server versions of Windows but is not available on client versions (e.g. Windows 10, Windows 8 or Windows 7).\r\n\r\n### How to Enable SAC on Windows VM ###\r\n\r\nOn a Linux VM, the serial access will be available but for Windows VM you need to perform additional steps in the VM to enable this. The steps to enable are:\r\n\r\n - Login to your VM via Remote Desktop\r\n - From an Administrative command prompt run the following commands \r\n\r\n     `bcdedit \/ems {current} on`\r\n    \r\n `bcdedit \/emssettings EMSPORT:1 EMSBAUDRATE:115200`\r\n\r\n- Reboot the system for the SAC console to be enabled\r\n\r\n### How to Access ###\r\n\r\nCurrently, this option (in Preview at the time of writing this blog) is available only via the portal. To access the Serial Console go to:\r\n\r\n 1. The Virtual Machine (VM) for which you want to access the Serial Console\r\n 2. Ensure that the VM is up and running\r\n 3. Navigate to the  \"**Serial console (Preview)**\" option under \"Support + Troubleshooting\" section in VM settings\r\n\r\nIf the VM is not up and running then you will view the below error.\r\n\r\n    The serial console connection to the VM encountered an error: 'Bad Request'\r\n     (400) - The VM is in a stopped deallocated state.  Please start the VM and retry the serial console connection.\r\n\r\nWhen the VM is starting you will see the below message, which you are connected to the Serial Console.\r\n\r\n<img src=\"\/images\/15222511335abbb57d69110.png\" alt=\"Connecting to SAC\">\r\n\r\n\r\nOnce connected you can run commands like `ch -?` for information on using channels and simply type `?` for general help.\r\n<img src=\"\/images\/15222511405abbb5841a716.png\" alt=\"Connected SAC and Help options\">\r\n\r\n**Note**: The console automatically will disconnect after a period of inactivity.\r\n\r\nThe access is being opened to more and more subscriptions and regions. If you don't see the access today, you just need to wait and it should be coming soon.\r\n",
 		"addpost": "addpost",
-		"dated": "Mar 19, 2018",
-		"slug": "azure-site-recovery-asr-series-index",
+		"dated": "Mar 26, 2018",
+		"slug": "getting-started-with-virtual-machine-serial-console-access",
 		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. <\/p>\n<p>This ser...<\/p>\n",
+		"summary": "\n<p>This is the feature we all have been waiting for. This gives power back to administrators in the cloud. <strong>Virtual Machine Console Access<\/strong> is now available in Preview in Azure. The console is called <strong>Special Administrative Console<\/strong> (SAC). With this you can perform adva...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -66,6 +70,27 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Azure Site Recovery (ASR) - Series Index",
+		"postDate": "19-02-2018",
+		"tags": [
+			"asr",
+			"azure",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. \r\n\r\nThis series talks about various aspects of working with **Azure Site Recovery** or **ASR**. \r\n\r\nThis blog is an **Index** of various blogs in the series:\r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-not-working\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Not Working<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/troubleshooting-azure-site-recovery-asr-data-replication-initiation-issues-part-2\/\" target=\"_blank\">Troubleshooting Azure Site Recovery (ASR) - Data Replication Initiation Issues<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/azure-site-recovery-asr-new-feature-added-to-target-resource-groups\/\" target=\"_blank\">Azure Site Recovery (ASR) - New feature added to target Resource Groups<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/suspending-and-resuming-azure-site-recovery-asr-replication-on-a-single-or-multiple-servers\/\" target=\"_blank\">Suspending and Resuming Azure Site Recovery (ASR) Replication on a single or multiple servers<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/asr-setup-for-vms-running-in-vmware-without-vmware-level-user-access\/\" target=\"_blank\">ASR Setup for VMs running in VMWare without VMware level User Access<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/getting-started-azure-site-recovery-asr-in-new-azure-portal\/\" target=\"_blank\">Getting Started - Azure Site Recovery (ASR) In New Azure Portal<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 19, 2018",
+		"slug": "azure-site-recovery-asr-series-index",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Outages can happen anytime. There can be different reasons that you may encounter disruptions in the service. It is always good to be prepared. Azure Site Recovery (ASR) ensure business continuity by providing you with a backup plan in case of an outage or a disaster level event. <\/p>\n<p>This ser...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Resources - New Azure Log Analytics Language Cheat Sheets",
 		"postDate": "19-02-2018",
 		"tags": [
@@ -81,7 +106,7 @@
 			"querylanguage"
 		],
 		"category": "Azure",
-		"body": "Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporated into the new language. This blog post talks about the resources to quickly learn the new syntax. Specifically, if you know the older syntax or you know T-SQL syntax then how to translate that knowledge.\r\n\r\n### Older to new Query Language syntax ###\r\n\r\nIf you have been working with the older Log Analytics query syntax, then you have two options to convert that knowledge to newer query language syntax:\r\n\r\n 1. Use the in portal legacy syntax converter and learn as you convert\r\n 2. Use the Microsoft provided Cheat Sheet\r\n\r\nWhen you navigate to OMS log analytics portal and go to the Log search section, there you will see a link above the query text window for \"**Show legacy language converter**\". When you click on this link a new text box will appear above the query text box. Type your legacy query and then click on \"**Convert**\" button. The query will be converted into the new language syntax. Click Run to execute the query. If there will be any errors in the query you will be notified of the same. \r\n\r\n<img src=\"\/images\/15212342425aac314289ed9.png\" alt=\"OMS Language Converter\">\r\n\r\nIn the above example, \"Event\" type is being fetched and then only Source, EventLog, EventID properties are selected. In the older format the query syntax used to be:\r\n\r\n    Type=Event | select Source, EventLog, EventID\r\n\r\nIn the newer format the same query looks as below:\r\n\r\n    Event | project Source, EventLog, EventID\r\n\r\nPointers for key query syntax can be found in the complete cheat sheet which can be found here: <a href=\"https:\/\/docs.loganalytics.io\/docs\/Learn\/References\/Legacy-to-new-to-Azure-Log-Analytics-Language\" target=\"_blank\">Legacy to new Azure Log Analytics Query Language cheat sheet<\/a>\r\n\r\n### T-SQL to new Query Language syntax ###\r\n\r\nIf you are well versed in the T-SQL query syntax and are new to OMS Azure Log Analytics, then you can easily translate that to the Log Analytics query language with the help of the cheat sheet provided by Microsoft for the key syntax.\r\n\r\nE.g. if we want to select records for only columns name and resultCode from a table named dependencies then the query syntax in T-SQL will look like:\r\n\r\n    SELECT name, resultCode FROM dependencies\r\n\r\nSyntax for the same query in newer Log Analytics language will look like:\r\n\r\n    dependencies \r\n    | project name, resultCode\r\n\r\nAs you might have guessed already, \"project\" is a key word in newer language to select specific columns. Selecting a table is as simple as typing the name of the table.\r\n\r\nThe complete cheat sheet can be found here: <a href=\"https:\/\/docs.loganalytics.io\/docs\/Learn\/References\/SQL-to-Azure-Log-Analytics\" target=\"_blank\">SQL to Azure Log Analytics query language cheat sheet<\/a>",
+		"body": "Azure Log Analytics (part of the OMS suite) has a very versatile query language. To investigate and report on the data you need to know the query language at least at the basic level. Recently the language had a complete overhaul with new syntax coming in and various new features being incorporated into the new language. This blog post talks about the resources to quickly learn the new syntax. Specifically, if you know the older syntax or you know T-SQL syntax then how to translate that knowledge. \r\n\r\n### Older to new Query Language syntax ###\r\n\r\nIf you have been working with the older Log Analytics query syntax, then you have two options to convert that knowledge to newer query language syntax:\r\n\r\n 1. Use the in portal legacy syntax converter and learn as you convert\r\n 2. Use the Microsoft provided Cheat Sheet\r\n\r\nWhen you navigate to OMS log analytics portal and go to the Log search section, there you will see a link above the query text window for \"**Show legacy language converter**\". When you click on this link a new text box will appear above the query text box. Type your legacy query and then click on \"**Convert**\" button. The query will be converted into the new language syntax. Click Run to execute the query. If there will be any errors in the query you will be notified of the same. \r\n\r\n<img src=\"\/images\/15212342425aac314289ed9.png\" alt=\"OMS Language Converter\">\r\n\r\nIn the above example, \"Event\" type is being fetched and then only Source, EventLog, EventID properties are selected. In the older format the query syntax used to be:\r\n\r\n    Type=Event | select Source, EventLog, EventID\r\n\r\nIn the newer format the same query looks as below:\r\n\r\n    Event | project Source, EventLog, EventID\r\n\r\nPointers for key query syntax can be found in the complete cheat sheet which can be found here: <a href=\"https:\/\/docs.loganalytics.io\/docs\/Learn\/References\/Legacy-to-new-to-Azure-Log-Analytics-Language\" target=\"_blank\">Legacy to new Azure Log Analytics Query Language cheat sheet<\/a>\r\n\r\n### T-SQL to new Query Language syntax ###\r\n\r\nIf you are well versed in the T-SQL query syntax and are new to OMS Azure Log Analytics, then you can easily translate that to the Log Analytics query language with the help of the cheat sheet provided by Microsoft for the key syntax.\r\n\r\nE.g. if we want to select records for only columns name and resultCode from a table named dependencies then the query syntax in T-SQL will look like:\r\n\r\n    SELECT name, resultCode FROM dependencies\r\n\r\nSyntax for the same query in newer Log Analytics language will look like:\r\n\r\n    dependencies \r\n    | project name, resultCode\r\n\r\nAs you might have guessed already, \"project\" is a key word in newer language to select specific columns. Selecting a table is as simple as typing the name of the table.\r\n\r\nThe complete cheat sheet can be found here: <a href=\"https:\/\/docs.loganalytics.io\/docs\/Learn\/References\/SQL-to-Azure-Log-Analytics\" target=\"_blank\">SQL to Azure Log Analytics query language cheat sheet<\/a>",
 		"addpost": "addpost",
 		"dated": "Feb 19, 2018",
 		"slug": "resources-new-azure-log-analytics-language-cheat-sheets",
