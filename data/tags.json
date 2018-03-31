@@ -105,5 +105,21 @@
 	"108": "sqldatabase",
 	"109": "compute",
 	"110": "console",
-	"111": "serial"
+	"111": "serial",
+	"112": "preview",
+	"113": "firewall",
+	"114": "server",
+	"115": "network",
+	"116": "virtual",
+	"117": "service",
+	"118": "endpoint",
+	"119": "endpoints",
+	"120": "virtualnetwork",
+	"121": "dynamic",
+	"122": "datamask",
+	"123": "mask",
+	"124": "masking",
+	"125": "dynamicdatamasking",
+	"126": "dnamicdatamask",
+	"127": "tde"
 }
