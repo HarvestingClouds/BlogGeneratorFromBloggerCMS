@@ -222,6 +222,150 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Script Sample - Apply Locks on Various Azure Resources",
+		"postDate": "11-10-2018",
+		"tags": [
+			"arm",
+			"automation",
+			"azure",
+			"lock",
+			"locks",
+			"microsoft",
+			"microsoftazure",
+			"powershell"
+		],
+		"category": "Azure Script Sample",
+		"body": "Locks is a very important but very less known feature in Azure. This feature is available for all resources in Azure. This prevents unintended operation on a particular resource. \r\n\r\nYou have two types of locks in Azure:\r\n\r\n 1. **ReadOnly** - You won't' be able to alter any configuration of the resource\r\n 2. **DoNotDelete** - You will be able to add configurations but will not be able to remove configurations or even delete the resource\r\n\r\n**Do Not Delete** is the lock, that as a best practice, you should apply on all critical resources in the environment. Once this lock is there on the resources, even the global administrator will not be able to delete the resources. The only way to delete the resources will be to delete the lock first and then delete the resources. \r\n\r\n### The Script Sample Details ###\r\n\r\nThis script sample leverages this concept of locks and uses the below cmdlet to apply the locks on various critical resources in the environment. \r\n\r\n    New-AzureRmResourceLock -LockLevel CanNotDelete -LockName DoNotDelete -ResourceName $vNet.Name -ResourceType $vNet.Type -ResourceGroupName $vNet.ResourceGroupName -LockNotes \"Do Not Delete Lock\" -Confirm -Force\r\n\r\nThe above command uses ***New-AzureRmResourceLock*** cmdlet to create the Do Not Delete lock on a Virtual Network. \r\n\r\nThis script iterates through all subscriptions that your account has access to and then applies the lock to all resources of type:\r\n\r\n 1. Virtual Network\r\n 2. Route Tables\r\n 3. Express Routes\r\n 4. Virtual Network Gateways\r\n 5. Virtual Network Gateway Connections\r\n 6. Recovery Services Vaults (i.e. ASR Vaults)\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Apply-LocksOnVariousAzureResources\" target=\"_blank\">Apply-LocksOnVariousAzureResources.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Oct 11, 2018",
+		"slug": "script-sample-apply-locks-on-various-azure-resources",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>Locks is a very important but very less known feature in Azure. This feature is available for all resources in Azure. This prevents unintended operation on a particular resource. <\/p>\n<p>You have two types of locks in Azure:<\/p>\n<ol><li><strong>ReadOnly<\/strong> - You won't' be able to alter any...<\/li><\/ol>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Azure Automation - Check VM Availability",
+		"postDate": "05-10-2018",
+		"tags": [
+			"azure",
+			"azureautomation",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"sample",
+			"virtualmachine",
+			"vm"
+		],
+		"category": "Azure Script Sample",
+		"body": "One of the most common scenarios is to check if a VM is available or not. If you want to connect to a VM and take some actions, it is a best practice to first check if the VM is available and responsive or not. This script sample performs multiple checks. You can tweak these checks to include only the ones that you need. \r\n\r\nAlso, there are some pieces of information that you can get only from inside the VM. E.g. the domain to which a VM is connected. This scripts ensures that the script is available. If it is available then it can also fetch such pieces of information for you. \r\n\r\n### What does the Script check ###\r\n\r\nThe script makes multiple checks which include:\r\n\r\n 1. Ping check using the ***Test-Connection*** cmdlet\r\n 2. PS Remoting checking by trying to open a PS Session using ***New-PSSession*** cmdlet\r\n 3. The script also tries to connect to the WMI and list various object using ***Get-Wmiobject*** cmdlet\r\n 4. Similar to the PS Remoting check it also checks for WS Man by using the ***Test-WSMan*** cmdlet\r\n\r\nIt can then fetch VM related information by either remoting into it or by using WMI. E.g. it can fetch domain of the VM by using below WMI cmdlet.\r\n\r\n    $Domain = $wmi.GetStringValue($HKLM, $MachineKey, \"NV Domain\").sValue\r\n\r\n### Script Inputs and Requirements ###\r\n\r\nThe script only takes below two input parameters:\r\n\r\n 1. NameOfTheVM\r\n 2. IPOfVM\r\n\r\nThe script requires a credential object with the name as \"***AutomationCredentialName***\". These credential should have login and remoting access into the VM. \r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20Automation%20-%20Check%20VM%20Availability\" target=\"_blank\">Check-VMAvailability.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Oct 05, 2018",
+		"slug": "script-sample-azure-automation-check-vm-availability",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>One of the most common scenarios is to check if a VM is available or not. If you want to connect to a VM and take some actions, it is a best practice to first check if the VM is available and responsive or not. This script sample performs multiple checks. You can tweak these checks to include onl...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Azure Automation - Get VM Information from actual Azure Virtual Machine",
+		"postDate": "22-09-2018",
+		"tags": [
+			"automation",
+			"azure",
+			"azureautomation",
+			"microsoft",
+			"microsoftazure",
+			"virtualmachine",
+			"virtualnetwork",
+			"vm"
+		],
+		"category": "Azure Script Sample",
+		"body": "Many times, when automating your infrastructure, you will need to work with Azure Virtual Machines. Based on just the name of the VM and it's Resource Group, you will need to know about it's Network Interfaces and it's IP address. \r\n\r\nThis Runbook sample connects to Azure using Service Principal and fetches various VM properties. The Runbook can be tweaked to fetch more or less information as per the requirements. \r\n\r\n### Script Input and Requirements ###\r\n\r\nThe script takes the below inputs:\r\n\r\n 1. VM Name - name of the VM \r\n 2. ResourceGroupNameofVM - name fo the Resource Group in which the VM exists\r\n 3. Azure Tenant Id - Id of the Tenant. This is the Azure Active Directory's Id which can be found in Azure AD properties in the portal\r\n 4. Subscription Id - Id of the Subscription in which the VM exists\r\n\r\nThe VM also requires a credential Object i.e. a Service Pricipal, which will have access to the Virtual machine. \r\n\r\n### Working of the Script ###\r\n\r\nThe script uses the below command to log into the Azure using the Service Principal.\r\n\r\n    $AzureRMConn = Login-AzureRmAccount -ServicePrincipal -Credential $Cred -TenantId $AzureTenantId -ErrorAction SilentlyContinue -ErrorVariable LoginError\r\n\r\nIf the connection is successful then the Subscription is selected using below cmdlet.\r\n\r\n    $ConnSubs = Select-AzureRmSubscription -SubscriptionId $SubscriptionID\r\n\r\nThen the actual VM information is fetched using below cmdlet.\r\n\r\n    $VM = Get-AzureRmVM -ResourceGroupName $VMResourceGroup -Name $VMName\r\n\r\nThis fetches basic VM information. To fetch detailed information regarding the network interface of the VM, below cmdlets are used.\r\n\r\n    $nicId = $VM.NetworkProfile.NetworkInterfaces[0].Id\r\n    $VMNetowrkInterface = Get-AzureRmNetworkInterface -ResourceGroupName $VMResourceGroup -Name $nicId.Split('\/')[8]\r\n    $VMMainIPConfig = $VMNetowrkInterface | Get-AzureRmNetworkInterfaceIpConfig\r\n    $strVMMainNicName = $VMMainIPConfig.Name\r\n    $strVMMainNicIPAddress = $VMMainIPConfig.PrivateIpAddress\r\n\r\nThe first cmdlet above fetches the Id of the first Network Interface on the VM. Then the second cmdlet uses this Id to fetch the actual network interface. The third cmdlet uses Get-AzureRmNetwrokInterfaceIpConfig to fetch the IP configuration on this network interface. Then last two lines use this Ip configuration to fetch the Private IP address on the VM. \r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20Automation%20-%20Get%20VM%20Information%20From%20Azure\" target=\"_blank\">Get-VMInfoFromAzure.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Sep 24, 2018",
+		"slug": "script-sample-azure-automation-get-vm-information-from-actual-azure-virtual-machine",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>Many times, when automating your infrastructure, you will need to work with Azure Virtual Machines. Based on just the name of the VM and it's Resource Group, you will need to know about it's Network Interfaces and it's IP address. <\/p>\n<p>This Runbook sample connects to Azure using Service Princi...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Azure Automation - Sending Email Notification",
+		"postDate": "22-09-2018",
+		"tags": [
+			"automation",
+			"azure",
+			"azureautomation",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"email",
+			"notification"
+		],
+		"category": "Azure Script Sample",
+		"body": "Sending email notifications from Azure Automation is a requirement that you will encounter a lot when working with any automation scenario. You may want to send an email notification on the completion of the job or on the failure of the job. \r\n\r\nThis script sample helps you bootstrap the Runbook for you. \r\n\r\n### Script Inputs and Requirements ###\r\n\r\nThe script takes the following **input parameters**:\r\n\r\n 1. SMTP Server URL\r\n 2. SMTP Server Port\r\n 3. User Credentials - Boolean value to check if user credentials are required or not\r\n 4. Credential Name - Credential name for the credential asset in your Azure Automation Account\r\n 5. EnableSsl - Boolean value to select if you want to enable SSL or not\r\n 6. Email From - From address for the email\r\n 7. Email To - Receipient of the email\r\n 8. Email Subject - Subject of the email\r\n 9 Message Body - This can be html. So you can compose your email to make it look more professional\r\n\r\nThe script also requires you to have a Credential asset in your Azure Automation Account. It's name is specified in the 4rth parameter above. This credential is used to connect to the SMTP server. In the sample this smtp server is an O365 email account. \r\n\r\n### Script Working ###\r\n\r\nThe script uses a SMTP Client to send the email. This client is created using the below cmdlet.\r\n\r\n    $SmtpClient = New-Object System.Net.Mail.SmtpClient $SMTPServerUrl, $SMTPServerPort\r\n\r\nwhere $SMTPServerUrl is the URL of the SMTP server and $SMTPServerPort is the port number used by the SMTP server.\r\n\r\nLater, this client is used to send the email by using it's ***send*** function as below. \r\n\r\n    $SmtpClient.Send($Message)\r\n\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20Automation%20-%20Send%20Email%20Notification\" target=\"_blank\">Send-EmailNotificationFromAzureAutomationRunbook.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Sep 22, 2018",
+		"slug": "script-sample-azure-automation-sending-email-notification",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>Sending email notifications from Azure Automation is a requirement that you will encounter a lot when working with any automation scenario. You may want to send an email notification on the completion of the job or on the failure of the job. <\/p>\n<p>This script sample helps you bootstrap the Runb...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Azure Automation - Get VM Information from ASR Recovery Plan Context",
+		"postDate": "12-09-2018",
+		"tags": [
+			"asr",
+			"automation",
+			"azure",
+			"azureautomation",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure Script Sample",
+		"body": "This script sample is to parse the Recovery Plan Context from Azure Site Recovery. When an Azure Automation Runbook is invoked directly from Azure Site Recovery, it passes an object called **Recovery Plan Context**.  This has all the crucial information regarding the failover operation like:\r\n\r\n 1. Recovery Plan Name\r\n 2. Failover Type\r\n 3. Failover DIrection\r\n 4. Subscription Name\r\n 5. Resource Group Name\r\n 6. VM Name\r\n\r\n### Sample Recovery Plan Context ###\r\n\r\nA sample Recovery Plan Context looks like below. Please note that this is formatted appropriately here. In the Runbook it will look flattened i.e. instead of multiple lines, the context will be contiguous and will be presented in a single long line. Its data type is Object when coming from ASR Recovery Plan.\r\n\r\n    {\r\n       \"RecoveryPlanName\":\"RecoveryPlan-Test\",\r\n       \"FailoverType\":\"Test\",\r\n       \"FailoverDirection\":\"PrimaryToSecondary\",\r\n       \"GroupId\":\"Group1\",\r\n       \"VmMap\":{\r\n          \"aaaaaa-1111-1111-1111-aaaaaaaaaaa\":{\r\n             \"SubscriptionId\":\"bbbbbbbb-2222-2222-2222-bbbbbbbbbbb\",\r\n             \"ResourceGroupName\":\"rg-dr-test-asr\",\r\n             \"CloudServiceName\":null,\r\n             \"RoleName\":\"VMName-test\",\r\n             \"RecoveryPointId\":\"cccccccccc-3333-3333-3333-cccccccccccc\",\r\n             \"RecoveryPointTime\":\"\\\/Date(1550773609103)\\\/\"\r\n          }\r\n       }\r\n    }\r\n\r\n### How does this Script work ###\r\n\r\nThe script first uses \"***ConvertFrom-Json***\" cmdlet to parses the object to valid PowerShell object. It then uses the VMMap property of the Recovery Plan Context object to get various pieces of the information. \r\n\r\nThe script also uses a ***foreach*** look to factor for multiple Vms in the Recovery Plan. It will **output** an array of the VMs with the required information, which can then be consumed in your logic to perform actual functions on the VMs. E.g. You can then connect to the VM and install some extensions on it. \r\n\r\n### How to Invoke This Runbook\/Script ###\r\n\r\nThis script can be directly invoked from Azure Site Recovery (ASR)'s Recovery Plan or can be invoked from a master Runbook. It is a best practice to invoke this Runbook from a master Runbook. A sample for this Runbook is provided and discussed here: <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-runbook-for-asr-recovery-plan\/\" target=\"_blank\">Script Sample - Azure Automation - Runbook for ASR Recovery Plan<\/a>\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20Automation%20-%20ASR%20Recovery%20Plan\" target=\"_blank\">ASR-Get-VMSInfoFromASRContext.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Sep 12, 2018",
+		"slug": "script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>This script sample is to parse the Recovery Plan Context from Azure Site Recovery. When an Azure Automation Runbook is invoked directly from Azure Site Recovery, it passes an object called <strong>Recovery Plan Context<\/strong>.  This has all the crucial information regarding the failover operati...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Azure Automation - Runbook for ASR Recovery Plan",
+		"postDate": "05-09-2019",
+		"tags": [
+			"asr",
+			"automation",
+			"azure",
+			"azureautomation",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery",
+			"runbook"
+		],
+		"category": "Azure Script Sample",
+		"body": "When you are automating Azure Site Recovery, you will be working with **Azure Automation Runbooks**. You will invoke these from within the **Azure Site Recovery Plan**.  The input parameter to this Runbook will be a **Recovery Plan Context**, that will automatically be passed by the ASR Recovery Plan. This Recovery plan context will contain information like: \r\n\r\n 1. Recovery Plan Name\r\n 2. Failover Type\r\n 3. Failover DIrection\r\n 4. Subscription Name\r\n 5. Resource Group Name\r\n 6. VM Name\r\n\r\nThe Azure Automation Runbook should be able to receive this information and parse it. \r\n\r\n### Best Practice and this Script Sample ###\r\n\r\nAs a best practice, you should leverage the main Runbook to perform operational functions. E.g. If the automation that you want to trigger on Failover, requires connection to the company's internal network, then you would want it to run on a Hybrid worker (which will be connected to your internal network). As such, I recommend that the parsing of the recovery plan context should be done in another Runbook, which should be invoked by the main Runbook. \r\n\r\nThis sample PowerShell Runbook accepts the Recovery Plan context and passes it to the second Runbook. That Runbook may or may not run on a Hybrid worker. \r\n\r\n### Sample Recovery Plan Context ###\r\n\r\nA sample Recovery Plan Context looks like below. Please note that this is formatted appropriately here. In the Runbook it will look flattened i.e. instead of multiple lines, the context will be contiguous and will be presented in a single long line. Its data type is Object when coming from ASR Recovery Plan. \r\n\r\n    {\r\n       \"RecoveryPlanName\":\"RecoveryPlan-Test\",\r\n       \"FailoverType\":\"Test\",\r\n       \"FailoverDirection\":\"PrimaryToSecondary\",\r\n       \"GroupId\":\"Group1\",\r\n       \"VmMap\":{\r\n          \"aaaaaa-1111-1111-1111-aaaaaaaaaaa\":{\r\n             \"SubscriptionId\":\"bbbbbbbb-2222-2222-2222-bbbbbbbbbbb\",\r\n             \"ResourceGroupName\":\"rg-dr-test-asr\",\r\n             \"CloudServiceName\":null,\r\n             \"RoleName\":\"VMName-test\",\r\n             \"RecoveryPointId\":\"cccccccccc-3333-3333-3333-cccccccccccc\",\r\n             \"RecoveryPointTime\":\"\\\/Date(1550773609103)\\\/\"\r\n          }\r\n       }\r\n    }\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20Automation%20-%20ASR%20Recovery%20Plan\" target=\"_blank\">ASR-RunbookForRecoveryPlans.ps1<\/a>\r\n\r\n### Runbook for Parsing the Recovery Plan Context ###\r\n\r\nThe Runbook for parsing the Recovery Plan Context is discussed here: <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context\/\" target=\"_blank\">Script Sample - Get VM's Information from ASR Context<\/a>. The Runbook\/script in that link is the one that is being invoked by the Runbook discussed in this blog post. \r\n\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Sep 05, 2018",
+		"slug": "script-sample-azure-automation-runbook-for-asr-recovery-plan",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>When you are automating Azure Site Recovery, you will be working with <strong>Azure Automation Runbooks<\/strong>. You will invoke these from within the <strong>Azure Site Recovery Plan<\/strong>.  The input parameter to this Runbook will be a <strong>Recovery Plan Context<\/strong>, that will autom...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Updating a Custom RBAC Role in Azure",
 		"postDate": "29-08-2018",
 		"tags": [
@@ -1939,5 +2083,26 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Check for Pending Reboots on various VMs in your environment",
+		"postDate": "15-10-2018",
+		"tags": [
+			"automation",
+			"azure",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"sample"
+		],
+		"category": "Azure Script Sample",
+		"body": "Often times you will need to check if there are any VMs\/Servers in your environment which have Pending Reboot on them. You will want to schedule and perform a planned reboot on these VMs after going through proper processes.\r\n\r\nThe script sample in this post is about checking multiple Vms in your environment and check if there is any Pending Reboot on any of the VMs. The script uses WMI queries to check if there is any pending reboot on the machine. \r\n\r\nThis script was not authored by me. I received it from one of my colleagues and I couldn't track the original author of this script. Nevertheless, this is a very useful script for system administrators. \r\n\r\n### Script Usage ###\r\n\r\nThe script can be used as shown below:\r\n\r\n    C:\\Users\\aman\\Downloads> import-module .\\Get-PendingReboot.ps1\r\n    C:\\Users\\aman\\Downloads> $Servers = Get-Content C:\\Users\\aman\\Downloads\\Servers.txt\r\n    C:\\Users\\aman\\Downloads> Get-PendingReboot -Computer $Servers | Export-Csv C:\\Users\\aman\\Downloads\\PendingRebootReport.csv -NoTypeInformation\r\n\r\nIn the 2nd command above, the Server.txt file should simply have the list of names of the computers in your environment with one computer name per line. \r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Get-PendingReboot\" target=\"_blank\">Get-PendingReboot.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Oct 15, 2018",
+		"slug": "script-sample-check-for-pending-reboots-on-various-vms-in-your-environment",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>Often times you will need to check if there are any VMs\/Servers in your environment which have Pending Reboot on them. You will want to schedule and perform a planned reboot on these VMs after going through proper processes.<\/p>\n<p>The script sample in this post is about checking multiple Vms in ...<\/p>\n"
 	}
 ]
