@@ -149,5 +149,9 @@
 	"154": "email",
 	"155": "notification",
 	"156": "locks",
-	"157": "lock"
+	"157": "lock",
+	"158": "rbac",
+	"159": "report",
+	"160": "tags",
+	"161": "tag"
 }
