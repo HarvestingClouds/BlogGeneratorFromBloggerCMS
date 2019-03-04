@@ -153,5 +153,11 @@
 	"158": "rbac",
 	"159": "report",
 	"160": "tags",
-	"161": "tag"
+	"161": "tag",
+	"162": "resourcegroups",
+	"163": "resourcegroup",
+	"164": "backup",
+	"165": "hub",
+	"166": "licensing",
+	"167": "license"
 }

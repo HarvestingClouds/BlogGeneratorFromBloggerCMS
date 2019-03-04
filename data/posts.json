@@ -222,6 +222,68 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Script Sample - VM Operations - Setting up the VM Backup",
+		"postDate": "23-11-2018",
+		"tags": [
+			"azure",
+			"backup",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"recovery",
+			"sample"
+		],
+		"category": "Azure Script Sample",
+		"body": "If you want to set up VM Backup for multiple VMs in your environment you can leverage this script. This script lets you provide a CSV file as an input to the script and configures the Backup on all the VMs as per the configurations.\r\n\r\n\r\n### Script Requirements ###\r\n\r\nThe script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:\r\n\r\n 1. Computer - Name of the VM in Azure\r\n 2. OSType - Windows or Linux\r\n 3. ResourceGroupName - Resource Group of the VM\r\n 4. EnableBackup - yes or no\r\n 5. RecoveryServicesVaultName - Recovery Services Vault Name for the Backup\r\n 6. BackupProtectionPolicy - Backup Protection Policy name inside the Recovery Services Vault. E.g. Daily-30--Weekly-8--Monthly-6\r\n\r\n### Script Working ###\r\n\r\nThe script first fetches the Azure Recovery Services vault using the below command.\r\n\r\n    $recoveryServicesVault = Get-AzureRmRecoveryServicesVault -Name $RecoveryServicesVaultName\r\n\r\nIt then uses this information to set the Recovery Services Vault Context as shown below.\r\n\r\n    $recoveryServicesVault | Set-AzureRmRecoveryServicesVaultContext -ErrorAction Stop\r\n\r\nIt then fetches the container for the VM Backup using below command. Through this, it checks if the Backup is already configured on the VM or not. If it is already configured then no further action is taken. \r\n\r\n    $namedContainerCheck = Get-AzureRmRecoveryServicesBackupContainer -ContainerType \"AzureVM\" -Status \"Registered\" -FriendlyName $virtualMachineName\r\n\r\nThe Backup policy is fetched next:\r\n\r\n    $policy = Get-AzureRmRecoveryServicesBackupProtectionPolicy -WorkloadType \"AzureVM\" | where {$_.Name -eq $BackupProtectionPolicy}\r\n\r\nFinally, the Backup is configured on the VM using the below command.\r\n\r\n    Enable-AzureRmRecoveryServicesBackupProtection -Policy $policy -Name $virtualMachineName -ResourceGroupName $ResourceGroupName -ErrorAction Stop\r\n\r\nOnce the Backup is successfully configured, as a best practice, we need to trigger an initial Backup of the VM. The same is performed by the below commands.\r\n\r\n    Write-Host \"Fetching the Recovery Services Backup Container\"\r\n    $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType \"AzureVM\" -Status \"Registered\" -FriendlyName $virtualMachineName\r\n    Write-Host \"Fetching the Recovery Services Backup Item\"\r\n    $item = Get-AzureRmRecoveryServicesBackupItem -Container $namedContainer -WorkloadType \"AzureVM\"\r\n    Write-Host \"Triggering a Backup on the VM\"\r\n    $job = Backup-AzureRmRecoveryServicesBackupItem -Item $item\r\n    \r\n\r\nThe script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function. \r\n**Note**: Check the comments marked with \"**ToDo**\" where you should be making the changes. \r\n\r\n\r\n\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20VM%20Operations\" target=\"_blank\">Enable-VMBackup.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Nov 23, 2018",
+		"slug": "script-sample-vm-operations-setting-up-the-vm-backup",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>If you want to set up VM Backup for multiple VMs in your environment you can leverage this script. This script lets you provide a CSV file as an input to the script and configures the Backup on all the VMs as per the configurations.<\/p>\n<h3>Script Requirements<\/h3>\n<p>The script requires you to p...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Checking if the Prompt for current script is Elevated or not",
+		"postDate": "19-11-2018",
+		"tags": [
+			"powershell"
+		],
+		"category": "Azure Script Sample",
+		"body": "Multiple times I have run into scenarios where the end users were reporting issues with the script but eventually, it turned out to be an access issue. The script required to be executed from an Elevated console (i.e. Run As Administrator) but the end user was trying to execute it as a normal user. Wouldn't it be nice if the script can check itself if it is being executed from an Elevated prompt or not and would report the same as a requirement.\r\n\r\nThis script sample can be reused in multiple scenarios and in multiple scripts. It will ensure that the script is executed only via an elevated prompt or else it will throw error with relevant details for the end user to take corrective action. \r\n\r\n### Script workings ###\r\n\r\nThe script first fetches the current Windows security principal by using the below commands:\r\n\r\n    $WindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent()\r\n    $WindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($WindowsID)\r\n\r\nIt then fetches the Administrator Role related details using below commands:\r\n\r\n    $adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator\r\n\r\nNow that it have both the required information, the script checks if the current Windows Principal is part of the Administrator role or not by using below condition:\r\n\r\n    if ($WindowsPrincipal.IsInRole($adminRole))\r\n\t{\r\n\t\treturn $True\r\n\t}\r\n\telse\r\n\t{\r\n\t\treturn $False\r\n\t}\r\n\r\nThe **complete script sample** turns this into a reusable logic and provides a template for using this with other code. \r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Get-IsElevated\" target=\"_blank\">Get-IsElevated.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Nov 19, 2018",
+		"slug": "script-sample-checking-if-the-prompt-for-current-script-is-elevated-or-not",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>Multiple times I have run into scenarios where the end users were reporting issues with the script but eventually, it turned out to be an access issue. The script required to be executed from an Elevated console (i.e. Run As Administrator) but the end user was trying to execute it as a normal use...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - Creating Multiple Resource Groups with RBAC Role Assignment",
+		"postDate": "15-11-2018",
+		"tags": [
+			"automation",
+			"azure",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"resourcemanager",
+			"resourcegroups",
+			"resourcegroup"
+		],
+		"category": "Azure Script Sample",
+		"body": "You can automate the creation of the **Resource Groups** and also assign **RBAC roles** to these Resource Groups. This script sample shows you how you can accomplish this. It serves as a starting point for the automation of the resource group creation. You can modify the script as per your requirements.\r\n\r\n### How the Script works ###\r\n\r\nThe script takes the names of the Resource groups to be created as an array. You can modify the script to take this input from a CSV file along with other parameters like the location of the Resource Group and the related role assignments. \r\n\r\nThe script uses the below command to create a Resource Group.\r\n\r\n    New-AzureRmResourceGroup -Name $rg -Location eastus\r\n\r\nNote that the location is hard-coded in the above command. This can also be parameterized. \r\n\r\nIt then uses the below command to make the role assignments on this Resource Group.\r\n\r\n    New-AzureRmRoleAssignment -ObjectId $ADGroup01.Id -RoleDefinitionName \"Contributor\" -ResourceGroupName $rg\r\n\r\nNote that you can use the same command to make the assignments for a group, user or an app registration. You just need to provide the appropriate Id for the ObjectId parameter. \r\n\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Create-ResourceGroupsWithRBACAssignments\" target=\"_blank\">Create-ResourceGroupsWithRBACAssignments.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Nov 15, 2018",
+		"slug": "script-sample-creating-multiple-resource-groups-with-rbac-role-assignment",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>You can automate the creation of the <strong>Resource Groups<\/strong> and also assign <strong>RBAC roles<\/strong> to these Resource Groups. This script sample shows you how you can accomplish this. It serves as a starting point for the automation of the resource group creation. You can modify the...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Script Sample - Set Tags on Azure Resources",
 		"postDate": "07-11-2018",
 		"tags": [
@@ -2189,5 +2251,95 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - VM Operations - Convert VM to Managed Disk VM",
+		"postDate": "02-12-2018",
+		"tags": [
+			"azure",
+			"manageddisks",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"virtualmachine",
+			"vm"
+		],
+		"category": "Azure Script Sample",
+		"body": "If you want to convert multiple VMs from older Storage Account disks to Managed Disks you can leverage the automation capabilities provided by Microsoft via PowerShell. This script sample uses these capabilities in a managed and reusable way.\r\n\r\n\r\n### Script Requirements ###\r\n\r\nThe script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:\r\n\r\n 1. Computer - Name of the VM in Azure\r\n 2. OSType - Windows or Linux\r\n 3. ResourceGroupName - Resource Group of the VM\r\n 4. ManagedDiskConversion - yes or no. Set this to yes for the VMs for which you want to perform the conversion from older disk type to Managed Disk VMs\r\n\r\n\r\n### Script Working ###\r\n\r\nThe process of Managed Disk conversion is different for a VM with Availability Set and one without it. For this reason the script first checks for the Availability Set of the VM.\r\n\r\n    $avSet = Get-AzureRmAvailabilitySet -ResourceGroupName $rgName -Name $asName -ErrorAction Stop\r\n\r\nIt then checks and sets the **Managed** flag on the Availability Set by using the following command.\r\n\r\n    Update-AzureRmAvailabilitySet -AvailabilitySet $avSet -Managed -ErrorAction Stop\r\n\r\nIt then stops the VM, converts it to Managed Disk Vm and then waits for 600 seconds. The conversion is performed by following command.\r\n\r\n    ConvertTo-AzureRmVMManagedDisk -ResourceGroupName $rgName -VMName $vm.Name\r\n\r\n**Note**: The script does not start the VM to avoid unnecessary costs. E.g. if the VM was stopped to begin with and you didn't want to start it. Unnecessary starting of a VM will incur you charges that you do not want. You can still update the script to start the VMs by simply adding the cmdlet for ***Start-AzureRmVM*** if you want.\r\n\r\nThe script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function. \r\n**Note**: Check the comments marked with \"**ToDo**\" where you should be making the changes. \r\n\r\n\r\n\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20VM%20Operations\" target=\"_blank\">Convert-VMToManagedDisk.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Dec 02, 2018",
+		"slug": "script-sample-vm-operations-convert-vm-to-managed-disk-vm",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>If you want to convert multiple VMs from older Storage Account disks to Managed Disks you can leverage the automation capabilities provided by Microsoft via PowerShell. This script sample uses these capabilities in a managed and reusable way.<\/p>\n<h3>Script Requirements<\/h3>\n<p>The script require...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - VM Operations - Change Azure VM Size",
+		"postDate": "03-12-2018",
+		"tags": [
+			"azure",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"virtualmachine",
+			"vm"
+		],
+		"category": "Azure Script Sample",
+		"body": "If you want to change the size of multiple Azure VMs in your environment, then you can leverage this script sample to update the sizes in one go. You will want to change the size of the VMs periodically after thoroughly reviewing the consumption. This can optimize your environment and can save you money in the process as well. \r\n\r\n\r\n### Script Requirements ###\r\n\r\nThe script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:\r\n\r\n 1. Computer - Name of the VM in Azure\r\n 2. OSType - Windows or Linux\r\n 3. ResourceGroupName - Resource Group of the VM\r\n 4. SizeConversionNeeded - yes or no\r\n 5. NewVMComputeSize - new size of the VM. e.g. Standard_DS4_v2. This should conform to the VM size names. For Windows VMs these names can be found by navigating to one of the sizes related link here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-machines\/windows\/sizes\" target=\"_blank\">Sizes for Windows virtual machines in Azure<\/a>\r\n\r\n\r\n### Script Working ###\r\n\r\nThe script works in 3 simple steps. In the first step the script fetches the Azure VM using Get-AzureRmVM cmdlet and ensures that it exists. \r\n\r\n    $currentVm = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $virtualMachineName -ErrorAction Stop\r\n\r\nThe second step is to update the size property for the Hardware profile of the vm object.\r\n\r\n    $currentVm.HardwareProfile.VmSize = $vmSize \r\n\r\nLastly, the script updates the VM using the below command.\r\n\r\n    Update-AzureRmVM -VM $currentVm -ResourceGroupName $ResourceGroupName\r\n\r\n**Note** that there will be a restart on the VM during the size conversion. Do plan for an outage although very minimal. Do keep some buffer in the outage window to account for any unforeseen issues that may occur during the conversion. I have converted various VMs and have never encountered any issues. Still, when I plan for an outage, as a best practice I do plan for a larger window. \r\n\r\nThe script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function. \r\n**Note**: Check the comments marked with \"**ToDo**\" where you should be making the changes. \r\n\r\n\r\n\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20VM%20Operations\" target=\"_blank\">Change-AzureVMSize.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Dec 03, 2018",
+		"slug": "script-sample-vm-operations-change-azure-vm-size",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>If you want to change the size of multiple Azure VMs in your environment, then you can leverage this script sample to update the sizes in one go. You will want to change the size of the VMs periodically after thoroughly reviewing the consumption. This can optimize your environment and can save yo...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - VM Operations - Apply HUB Licensing to Existing VMs",
+		"postDate": "07-12-2018",
+		"tags": [
+			"automation",
+			"azure",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"virtualmachine",
+			"vm",
+			"hub",
+			"licensing",
+			"license"
+		],
+		"category": "Azure Script Sample",
+		"body": "If you have older VMs in the environment and you wan to leverage Microsoft's Hybrid Use Benefit i.e. HUB licensing then this script can update multiple VMs in your environment in an automated way for you. \r\n\r\n**NOTE**: \r\n\r\n - Before you apply the HUB licensing, please make sure whether you are eligible for HUB licensing benefits or not. Refer the official documentation here: <a href=\"https:\/\/azure.microsoft.com\/en-ca\/pricing\/hybrid-benefit\/\" target=\"_blank\">Azure Hybrid Benefit<\/a>\r\n\r\n\r\n### Script Requirements ###\r\n\r\nThe script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:\r\n\r\n 1. Computer - Name of the VM in Azure\r\n 2. OSType - Windows or Linux\r\n 3. ResourceGroupName - Resource Group of the VM\r\n 4. HUBLicensingNeeded - yes or no. The HUB Licensing is set for only the VMs for which this value is set to yes.\r\n\r\n### Script Working ###\r\n\r\nIn its entirety, the HUB licensing is just a switch for \"**LicenseType**\" on the VM. For Windows servers, if it's value is set to \"**Windows_Server**\" then this means that you own a Windows Server license and are claiming the HUB Licensing benefits on this VM. \r\n\r\nThe script applied the HUB licensing in 3 steps. First, it fetches the VM.\r\n\r\n    $currentVm = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $virtualMachineName -ErrorAction Stop\r\n\r\nThen it applies the HUB licensing as shown below.\r\n\r\n    $currentVm.LicenseType = \"Windows_Server\"\r\n\r\nLastly, it updates the VM object.\r\n\r\n    Update-AzureRmVM -VM $currentVm -ResourceGroupName $ResourceGroupName\r\n\r\n**Note**: As a best practice, the script also checks whether the HUB Licensing is already applied or not. If the HUB licensing is already there on the VM then the Script does applies it again. There may be small downtime when the VM is updating and therefore a short downtime should be planned when doing this operation. \r\n\r\nThe script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function. \r\n**Note**: Check the comments marked with \"**ToDo**\" where you should be making the changes. \r\n\r\nYou can find more related details in official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-machines\/windows\/hybrid-use-benefit-licensing#convert-an-existing-vm-using-azure-hybrid-benefit-for-windows-server\" target=\"_blank\">Azure Hybrid Benefit for Windows Server<\/a>\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20VM%20Operations\" target=\"_blank\">Apply-HubLicensing.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Dec 07, 2018",
+		"slug": "script-sample-vm-operations-apply-hub-licensing-to-existing-vms",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>If you have older VMs in the environment and you wan to leverage Microsoft's Hybrid Use Benefit i.e. HUB licensing then this script can update multiple VMs in your environment in an automated way for you. <\/p>\n<p><strong>NOTE<\/strong>: <\/p>\n<ul><li>Before you apply the HUB licensing, please make...<\/li><\/ul>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Script Sample - VM Operations - Export VM Configurations",
+		"postDate": "11-12-2018",
+		"tags": [
+			"automation",
+			"azure",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"virtualmachine",
+			"vm"
+		],
+		"category": "Azure Script Sample",
+		"body": "Exporting a VM configuration is a best practice that you should be doing before altering any configurations on the Virtual Machine. Any action that can corrupt the VM or its configurations should be preceded by exporting of VM's configurations. This allows you to be able to refer back to these configurations and recreate the VM in case of any unexpected scenario. \r\n\r\nWith the Script sample in this post, you can take the export of multiple VMs by providing the same in a csv configuration file. This file is very simple and the creation of this file itself can also be automated. \r\n\r\nThe script can also be altered to take an export of all the VMs in the environment. \r\n\r\n### Script Requirements ###\r\n\r\nThe script requires you to populate the configurations CSV file. The sample CSV file is also provided along with the script. This configurations file should have the following columns:\r\n\r\n 1. Computer - Name of the VM in Azure\r\n 2. ResourceGroupName - Resource Group of the VM\r\n\r\n### Script Working ###\r\n\r\nThis is a very simple but one of the most reusable script. It simply takes the export in two steps.\r\n\r\nFirst it fetches the VM as shown below:\r\n\r\n    $currentVm = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $virtualMachineName -ErrorAction Stop\r\n\r\nThen, it takes the export by using the below command.\r\n\r\n    $currentVm | ConvertTo-Json -Depth 100 | Out-File -FilePath $fileName\r\n\r\n**The Trick**: The most important thing is the Depth parameter when using ConvertTo-Json cmdlet. If you do not specify this then nested properties may not export properly. Specifying a large enough depth ensures that all nested properties are also exported. \r\n\r\n\r\nThe script encapsulates all this logic into a reusable function. It also provides the best practices template to invoke this function. \r\n**Note**: Check the comments marked with \"**ToDo**\" where you should be making the changes. \r\n\r\n\r\n\r\n\r\n### Location of the Script ###\r\n\r\nYou can find this script in GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/PowerShellSamples\/tree\/master\/Scripts\/Azure%20VM%20Operations\" target=\"_blank\">Export-VMConfig.ps1<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Dec 11, 2018",
+		"slug": "script-sample-vm-operations-export-vm-configurations",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>Exporting a VM configuration is a best practice that you should be doing before altering any configurations on the Virtual Machine. Any action that can corrupt the VM or its configurations should be preceded by exporting of VM's configurations. This allows you to be able to refer back to these co...<\/p>\n"
 	}
 ]
