@@ -159,5 +159,12 @@
 	"164": "backup",
 	"165": "hub",
 	"166": "licensing",
-	"167": "license"
+	"167": "license",
+	"168": "snapshots",
+	"169": "udr",
+	"170": "routetables",
+	"171": "subnet",
+	"172": "subnets",
+	"173": "routetable",
+	"181": "index"
 }

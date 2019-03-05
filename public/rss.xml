@@ -35,6 +35,42 @@
 <pubDate>Mon, 25 Feb 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
+<title>Azure Script Samples - Series Index</title>
+<description><![CDATA[<p>This blog is an <strong>Index</strong> of various blogs and related script samples in the series &quot;<strong>Azure Script Samples</strong>&quot;:</p>
+<ol>
+<li><a href="http://harvestingclouds.com/post/script-sample-format-ea-billing-usage-csv-for-tags/" target="_blank">Format EA Billing Usage Csv for Tags</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-export-all-azure-automation-account-runbooks-and-variables/" target="_blank">Export All Azure Automation Account Runbooks and Variables</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-export-all-oms-log-analytics-saved-searches/" target="_blank">Export All OMS Log Analytics Saved Searches</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-check-azure-site-recovery-asr-prerequisite-services/" target="_blank">Check Azure Site Recovery (ASR) Prerequisite Services</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-set-azure-site-recovery-asr-prerequisite-services/" target="_blank">Set Azure Site Recovery (ASR) Prerequisite Services</a></li>
+<li><a href="http://harvestingclouds.com/post/updating-a-custom-rbac-role-in-azure/" target="_blank">Updating a Custom RBAC Role in Azure</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-azure-automation-runbook-for-asr-recovery-plan/" target="_blank">Azure Automation - Runbook for ASR Recovery Plan</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context/" target="_blank">Azure Automation - Get VM Information from ASR Recovery Plan Context</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-azure-automation-sending-email-notification/" target="_blank">Azure Automation - Sending Email Notification</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-azure-automation-get-vm-information-from-actual-azure-virtual-machine/" target="_blank">Azure Automation - Get VM Information from actual Azure Virtual Machine</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-azure-automation-check-vm-availability/" target="_blank">Azure Automation - Check VM Availability</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-apply-locks-on-various-azure-resources/" target="_blank">Apply Locks on Various Azure Resources</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-check-for-pending-reboots-on-various-vms-in-your-environment/" target="_blank">Check for Pending Reboots on various VMs in your environment</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-apply-rbac-role-to-users-on-resources/" target="_blank">Apply RBAC Role to Users on Resources</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-getting-azure-resource-reports/" target="_blank">Getting Azure Resource Reports</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-generate-azure-resources-report-by-tags-v30/" target="_blank">Generate Azure Resources Report by Tags v3.0</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-set-tags-on-azure-resources/" target="_blank">Set Tags on Azure Resources</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-creating-multiple-resource-groups-with-rbac-role-assignment/" target="_blank">Creating Multiple Resource Groups with RBAC Role Assignment</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-checking-if-the-prompt-for-current-script-is-elevated-or-not/" target="_blank">Checking if the Prompt for current script is Elevated or not</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-vm-operations-setting-up-the-vm-backup/" target="_blank">VM Operations - Setting up the VM Backup</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-vm-operations-convert-vm-to-managed-disk-vm/" target="_blank">VM Operations - Convert VM to Managed Disk VM</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-vm-operations-change-azure-vm-size/" target="_blank">VM Operations - Change Azure VM Size</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-vm-operations-apply-hub-licensing-to-existing-vms/" target="_blank">VM Operations - Apply HUB Licensing to Existing VMs</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-vm-operations-export-vm-configurations/" target="_blank">VM Operations - Export VM Configurations</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-vm-operations-working-with-vm-snapshots-and-moving-the-managed-vms-across-subscriptions-and-regions/" target="_blank">VM Operations - Working with VM Snapshots and moving the Managed VMs across subscriptions and regions</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-removing-locks-from-azure-resources/" target="_blank">Removing Locks from Azure Resources</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information/" target="_blank">Generate Report for Route Tables with associated Subnets and related information</a></li>
+<li><a href="http://harvestingclouds.com/post/script-sample-disassociate-and-associate-subnets-to-route-tables/" target="_blank">Disassociate and Associate Subnets to Route Tables</a></li>
+</ol>]]></description>
+<link>http://HarvestingClouds.com/post/azure-script-samples-series-index</link>
+<pubDate>Sat, 23 Feb 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Tips & Tricks - Quickly assign and check the Azure Policy and Initiative Compliance status of your resources with new Azure feature</title>
 <description><![CDATA[<p>Now you can assign policies, initiatives directly from the resource blade. You can also check the compliance status of the policies and take corrective actions on them.
 You can now access this feature, not just from the <strong>Subscriptions</strong> blade but also from the <strong>Resource Group</strong> and <strong>individual resources</strong> blade.</p>
@@ -140,6 +176,99 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <p>That's all there is to it. For more information you can check the official documentation that can be found here: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/run-command" target="_blank">Run PowerShell scripts in your Windows VM with Run Command</a></p>]]></description>
 <link>http://HarvestingClouds.com/post/azure-tips-tricks-quickly-run-commands-or-script-on-an-azure-virtual-machine-vm-without-logging-into-the-vm</link>
 <pubDate>Thu, 10 Jan 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Disassociate and Associate Subnets to Route Tables</title>
+<description><![CDATA[<p>If you need to test connectivity of your environment without the User Defined Routes then the easiest and most non-disruptive way is to simply disassociate the subnets from the Route Tables. Once your testing is complete, then you can simply reassociate the subnets back to the original Route Tables. </p>
+<p><strong>Note</strong>: Use these scripts with caution as these will affect the networking and communication between resources. Go through the scripts and ensure that you know what the scripts are doing before executing these in your environment. Also, always test these in a dev environment before running in any other environment. </p>
+<h3>Script samples and how they work</h3>
+<p>The scripts in this sample are:</p>
+<ol>
+<li><strong>Disassociate-SubnetsFromUDRs.ps1</strong> - This script disassociates the subnets from the Route Tables</li>
+<li><strong>Associate-SubnetsToUDRs.ps1</strong> - This script reassociates the subnets back to the Route Tables. This uses a CSV file as an input. A sample of the CSV file is also provided along with the script. </li>
+</ol>
+<p>The <strong>disassociation script</strong> fetches the Route Tables and then gets the associated Subnet details from there. It then removes the association by setting the route table property on the subnet to <strong><em>$null</em></strong> as shown below:</p>
+<pre><code>Set-AzureRmVirtualNetworkSubnetConfig `
+-Name $subnetName `
+-VirtualNetwork $virtualNetwork `
+-AddressPrefix $subnetAddressPrefix `
+-RouteTable $null |
+Set-AzureRmVirtualNetwork</code></pre>
+<p>The <strong>association script</strong> works in an exactly opposite way. The major difference is that this script fetches the information from a CSV file as provided along with the sample. This can also be autogenerated (prior to disassociation). The script sample for generating this CSV can be found here: <a href="http://harvestingclouds.com/post/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information/" target="_blank">Generate Report for Route Tables with associated Subnets and related information</a></p>
+<p>The command for creating the association of Subnet to the Route Table looks like below. </p>
+<pre><code>Set-AzureRmVirtualNetworkSubnetConfig `
+-Name $subnetName `
+-VirtualNetwork $virtualNetwork `
+-AddressPrefix $subnetAddressPrefix `
+-RouteTable $routeTable |
+Set-AzureRmVirtualNetwork </code></pre>
+<h3>Location of the Scripts</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/User%20Defined%20Routes%20(UDRs)%20or%20Route%20Tables%20Related%20Scripts" target="_blank">User Defined Routes (UDRs) or Route Tables Related Scripts</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-disassociate-and-associate-subnets-to-route-tables</link>
+<pubDate>Mon, 07 Jan 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Generate Report for Route Tables with associated Subnets and related information</title>
+<description><![CDATA[<p>When you have custom User Defined Routes (UDRs) in your environment on your Route Tables, you will have these Route Tables associated with various Subnets. If you want to <strong>report on the association of Route Tables with Subnets</strong> and any related information then you can use this sample script. </p>
+<p>One use case is to use this script to export the associations so that if any association gets deleted then you can recreate later by reference to this report. Another script sample uses the output of this script to perform the association of the subnets to the Route Tables. That sample can be found here: <a href="http://harvestingclouds.com/post/script-sample-disassociate-and-associate-subnets-to-route-tables/" target="_blank">Disassociate and Associate Subnets to Route Tables</a></p>
+<h3>Script Requirements and Workings</h3>
+<p>The script only requires you to update the path for the output csv report. </p>
+<p>The script connects to the Azure and fetches all Route Tables by using the below command.</p>
+<pre><code>$routeTables = Get-AzureRmRouteTable</code></pre>
+<p>It then finds all the subnet linked on those Route Tables by using the Subnets property on the route table object as shown below.</p>
+<pre><code>$routeSubnets = $routeTable.Subnets</code></pre>
+<p>The script then iterates over all the subnets one by one. It then finds the related subnet information like Subscription id, the virtual network of the subnet and the Resource Group of the Virtual Network. It saves all this information to an array object named <strong>$results</strong>.</p>
+<p>Finally, the script outputs all the results using the Export-Csv cmdlet:</p>
+<pre><code>$results | Export-Csv -Path $PathToOutputCSVReport -NoTypeInformation</code></pre>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/User%20Defined%20Routes%20(UDRs)%20or%20Route%20Tables%20Related%20Scripts" target="_blank">Report-UDRsWithSubnetInfo.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information</link>
+<pubDate>Sun, 06 Jan 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - Removing Locks from Azure Resources</title>
+<description><![CDATA[<p>In one of the earlier posts, we discussed the benefits of using locks and why you should apply these (to avoid accidental deletion) to any critical and important resources in Azure. We also saw a script sample to apply the locks on all key resources in your environment. The same can be reviewed again here: <a href="http://harvestingclouds.com/post/script-sample-apply-locks-on-various-azure-resources/" target="_blank">Apply Locks on Various Azure Resources</a>.</p>
+<p>Now once you have locks, you won't be able to remove the resources or remove configurations from them. To be able to remove configurations or to remove the resources itself you will need to remove the locks. You can do so in an automated fashion by using this script sample.</p>
+<h3>Script Requirements and Workings</h3>
+<p>The script does not have any specific requirements. </p>
+<p>The script sample removes lock from all Azure Route Tables, but the same concept can be applied to any type of resource. It first fetches the Route Tables by using the below command:</p>
+<pre><code>$routeTables = Get-AzureRmRouteTable</code></pre>
+<p>Then it simply removes the lock by using the below command:</p>
+<pre><code>Remove-AzureRmResourceLock -LockName DoNotDelete -ResourceGroupName $routeTable.ResourceGroupName -ResourceName $routeTable.Name -ResourceType $routeTable.Type -Force</code></pre>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Remove-Locks" target="_blank">Remove-Locks.ps1</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-removing-locks-from-azure-resources</link>
+<pubDate>Sun, 16 Dec 2018 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Script Sample - VM Operations - Working with VM Snapshots and moving the Managed VMs across subscriptions and regions</title>
+<description><![CDATA[<p>This script sample is a combination of two scripts. At the time of the writing of this blog, the feature to move managed disks or images built using Managed disk VMs is not available in Azure. A workaround for this is as follows.</p>
+<h3>The two scripts</h3>
+<p>The two scripts provided are: </p>
+<ol>
+<li><strong>Copy-SnapshotToStorage.ps1</strong> - This copies the Snapshot to a Storage account. This storage account can be in different subscription or even different region. The script uses the &quot;<strong><em>Start-AzureStorageBlobCopy</em></strong>&quot; cmdlet and also shows the progress of the copy operation. </li>
+<li><strong>Create-VMFromSnapshot.ps1</strong> - This creates a VM from a Snapshot in a Storage account. It creates a Managed Disks VM leveraging the snapshot.</li>
+</ol>
+<h3>Scenario 1 - Moving a Managed VM or a Disk across subscriptions or regions</h3>
+<p>You will need to follow the below steps to move a VM built using Managed disks across subscriptions or regions: </p>
+<ol>
+<li>First, create a snapshot on the VM</li>
+<li>Then move the snapshot to a Storage account in the target area. Use the first script here.</li>
+<li>Then create a VM using the snapshot by leveraging the second script provided in this post.</li>
+</ol>
+<h3>Scenario 2 - Moving the Image across subscriptions or regions</h3>
+<p>You will need to follow the below steps to move an Image built using Managed disks across subscriptions or regions: </p>
+<ol>
+<li>Create a new VM using the image</li>
+<li>Create a snapshot on the VM</li>
+<li>Move the snapshot across to a Storage Account in the target area. Use the first script here.</li>
+<li>Create a VM using the snapshot in the target area using the second script.</li>
+<li>Finally, capture the VM to an image. Delete the image and snapshots from both source and target once image is created in the target area.</li>
+</ol>
+<h3>Location of the Script</h3>
+<p>You can find this script in GitHub at this location: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Working%20with%20Azure%20VM%20Snapshots" target="_blank">Working with Azure VM Snapshots</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/script-sample-vm-operations-working-with-vm-snapshots-and-moving-the-managed-vms-across-subscriptions-and-regions</link>
+<pubDate>Fri, 14 Dec 2018 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Script Sample - VM Operations - Export VM Configurations</title>
