@@ -1,6 +1,33 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Differences between Azure Functions and Azure Logic Apps",
+		"postDate": "19-03-2019",
+		"tags": [
+			"app",
+			"appservice",
+			"automation",
+			"azure",
+			"azureautomation",
+			"function",
+			"functions",
+			"logic",
+			"logicapps",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "**Azure Functions** and **Azure Logic Apps** are key offerings from Microsoft Azure that provide you **Serverless Computing**. They both can help run business logic for your applications and can also automate a lot of tasks in Azure. Azure Functions\u00a0which can execute code in almost any modern language. Whereas Azure Logic Apps\u00a0which are designed in a web-based designer and can execute logic triggered by Azure services without writing any code.\r\n\r\nThe major difference between the two is that Azure Functions provide you with lot more control over the code that gets executed but you have to author and manage that code. Whereas with Azure Logic Apps you are working only in a designer and configuring the activities. You get less control but at the same time, you do not have to manage the underlying code as well. You only need to manage the properties of your activities (or *logic blocks*) in your ***workflow***.\r\n\r\nAdditionally, here are more differences between these two services:\r\n<style>\r\ntable {\r\n  font-family: arial, sans-serif;\r\n  border-collapse: collapse;\r\n  width: 100%;\r\n}\r\n\r\ntd, th {\r\n  border: 1px solid #dddddd;\r\n  text-align: left;\r\n  padding: 8px;\r\n}\r\n\r\ntr:nth-child(even) {\r\n  background-color: #dddddd;\r\n}\r\n<\/style>\r\n\r\n<table>\r\n<thead>\r\n<tr>\r\n<th><\/th>\r\n<th>Functions<\/th>\r\n<th>Logic Apps<\/th>\r\n<\/tr>\r\n<\/thead>\r\n<tbody>\r\n<tr>\r\n<td><b>State<\/b><\/td>\r\n<td>Normally stateless, but Durable Functions provide state<\/td>\r\n<td>Stateful<\/td>\r\n<\/tr>\r\n<tr>\r\n<td><b>Development<\/b><\/td>\r\n<td>Code-first (imperative)<\/td>\r\n<td>Designer-first (declarative)<\/td>\r\n<\/tr>\r\n<tr>\r\n<td><b>Connectivity<\/b><\/td>\r\n<td>About a dozen built-in binding types, write code for custom bindings<\/td>\r\n<td>Large collection of connectors, Enterprise Integration Pack for B2B scenarios, build custom connectors<\/td>\r\n<\/tr>\r\n<tr>\r\n<td><b>Actions<\/b><\/td>\r\n<td>Each activity is an Azure function; write code for activity functions<\/td>\r\n<td>Large collection of ready-made actions<\/td>\r\n<\/tr>\r\n<tr>\r\n<td><b>Monitoring<\/b><\/td>\r\n<td>Azure Application Insights, Log Analytics via Application Insights connector<\/td>\r\n<td>Azure portal, Log Analytics<\/td>\r\n<\/tr>\r\n<tr>\r\n<td><b>Management<\/b><\/td>\r\n<td>REST API, Visual Studio<\/td>\r\n<td>Azure portal, REST API, PowerShell, Visual Studio<\/td>\r\n<\/tr>\r\n<tr>\r\n<td><b>Execution context<\/b><\/td>\r\n<td>Can run locally or in the cloud<\/td>\r\n<td>Runs only in the cloud.<\/td>\r\n<\/tr>\r\n<\/tbody>\r\n<\/table>",
+		"addpost": "addpost",
+		"dated": "Mar 19, 2019",
+		"slug": "differences-between-azure-functions-and-azure-logic-apps",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Functions<\/strong> and <strong>Azure Logic Apps<\/strong> are key offerings from Microsoft Azure that provide you <strong>Serverless Computing<\/strong>. They both can help run business logic for your applications and can also automate a lot of tasks in Azure. Azure Functions&nbsp;whi...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure Awareness Month - Webinar #1 Video - Getting Started with Azure \u2013 Basics, Tips, and Tricks",
 		"postDate": "03-03-2019",
 		"tags": [
@@ -46,6 +73,29 @@
 		"status": "publised",
 		"summary": "\n<p>Microsoft Azure has lots of services to offer. Sometimes you can feel overwhelmed and lost. These tips and tricks will be your guiding star to make your tasks a bit easier. These will increase your efficiency. Even if you save a few seconds on the task at hand it can accumulate to huge time savin...<\/p>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Script Samples - Series Index",
+		"postDate": "23-02-2019",
+		"tags": [
+			"automation",
+			"azure",
+			"microsoft",
+			"microsoftazure",
+			"powershell",
+			"script",
+			"series",
+			"index"
+		],
+		"category": "Azure Script Sample",
+		"body": "This blog is an **Index** of various blogs and related script samples in the series \"**Azure Script Samples**\":\r\n\r\n 1. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-format-ea-billing-usage-csv-for-tags\/\" target=\"_blank\">Format EA Billing Usage Csv for Tags<\/a>\r\n 2. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-export-all-azure-automation-account-runbooks-and-variables\/\" target=\"_blank\">Export All Azure Automation Account Runbooks and Variables<\/a>\r\n 3. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-export-all-oms-log-analytics-saved-searches\/\" target=\"_blank\">Export All OMS Log Analytics Saved Searches<\/a>\r\n 4. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-check-azure-site-recovery-asr-prerequisite-services\/\" target=\"_blank\">Check Azure Site Recovery (ASR) Prerequisite Services<\/a>\r\n 5. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-set-azure-site-recovery-asr-prerequisite-services\/\" target=\"_blank\">Set Azure Site Recovery (ASR) Prerequisite Services<\/a>\r\n 6. <a href=\"http:\/\/harvestingclouds.com\/post\/updating-a-custom-rbac-role-in-azure\/\" target=\"_blank\">Updating a Custom RBAC Role in Azure<\/a>\r\n 7. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-runbook-for-asr-recovery-plan\/\" target=\"_blank\">Azure Automation - Runbook for ASR Recovery Plan<\/a>\r\n 8. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context\/\" target=\"_blank\">Azure Automation - Get VM Information from ASR Recovery Plan Context<\/a>\r\n 9. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-sending-email-notification\/\" target=\"_blank\">Azure Automation - Sending Email Notification<\/a>\r\n 10. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-get-vm-information-from-actual-azure-virtual-machine\/\" target=\"_blank\">Azure Automation - Get VM Information from actual Azure Virtual Machine<\/a>\r\n 11. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-check-vm-availability\/\" target=\"_blank\">Azure Automation - Check VM Availability<\/a>\r\n 12. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-apply-locks-on-various-azure-resources\/\" target=\"_blank\">Apply Locks on Various Azure Resources<\/a>\r\n 13. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-check-for-pending-reboots-on-various-vms-in-your-environment\/\" target=\"_blank\">Check for Pending Reboots on various VMs in your environment<\/a>\r\n 14. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-apply-rbac-role-to-users-on-resources\/\" target=\"_blank\">Apply RBAC Role to Users on Resources<\/a>\r\n 15. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-getting-azure-resource-reports\/\" target=\"_blank\">Getting Azure Resource Reports<\/a>\r\n 16. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-generate-azure-resources-report-by-tags-v30\/\" target=\"_blank\">Generate Azure Resources Report by Tags v3.0<\/a>\r\n 17. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-set-tags-on-azure-resources\/\" target=\"_blank\">Set Tags on Azure Resources<\/a>\r\n 18. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-creating-multiple-resource-groups-with-rbac-role-assignment\/\" target=\"_blank\">Creating Multiple Resource Groups with RBAC Role Assignment<\/a>\r\n 19. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-checking-if-the-prompt-for-current-script-is-elevated-or-not\/\" target=\"_blank\">Checking if the Prompt for current script is Elevated or not<\/a>\r\n 20. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-setting-up-the-vm-backup\/\" target=\"_blank\">VM Operations - Setting up the VM Backup<\/a>\r\n 21. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-convert-vm-to-managed-disk-vm\/\" target=\"_blank\">VM Operations - Convert VM to Managed Disk VM<\/a>\r\n 22. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-change-azure-vm-size\/\" target=\"_blank\">VM Operations - Change Azure VM Size<\/a>\r\n 23. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-apply-hub-licensing-to-existing-vms\/\" target=\"_blank\">VM Operations - Apply HUB Licensing to Existing VMs<\/a>\r\n 24. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-export-vm-configurations\/\" target=\"_blank\">VM Operations - Export VM Configurations<\/a>\r\n 25. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-working-with-vm-snapshots-and-moving-the-managed-vms-across-subscriptions-and-regions\/\" target=\"_blank\">VM Operations - Working with VM Snapshots and moving the Managed VMs across subscriptions and regions<\/a>\r\n 26. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-removing-locks-from-azure-resources\/\" target=\"_blank\">Removing Locks from Azure Resources<\/a>\r\n 27. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information\/\" target=\"_blank\">Generate Report for Route Tables with associated Subnets and related information<\/a>\r\n 28. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-disassociate-and-associate-subnets-to-route-tables\/\" target=\"_blank\">Disassociate and Associate Subnets to Route Tables<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Feb 23, 2019",
+		"slug": "azure-script-samples-series-index",
+		"categoryslug": "azure-script-sample",
+		"status": "publised",
+		"summary": "\n<p>This blog is an <strong>Index<\/strong> of various blogs and related script samples in the series \"<strong>Azure Script Samples<\/strong>\":<\/p>\n<ol><li><a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-format-ea-billing-usage-csv-for-tags\/\" target=\"_blank\">Format EA Billing Usage C...<\/a><\/li><\/ol>\n"
 	},
 	{
 		"author": "@20aman",
@@ -95,6 +145,27 @@
 		"status": "draft",
 		"summary": "\n<p>hh<\/p>...\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Updates - New VM-series for Confidential Computing",
+		"postDate": "04-02-2019",
+		"tags": [
+			"azure",
+			"compute",
+			"microsoft",
+			"microsoftazure",
+			"virtualmachine",
+			"vm"
+		],
+		"category": "Azure",
+		"body": "A new VM-series backed by specialized hardware, which will include the latest generation of Intel SGX. \r\n\r\n - Based on Trusted Execution Environments: Intel SGX, Virtualization Based Security (VBS) \r\n - Comm application patterns: Protect data confidentiality, integrity, and sensitive IP \r\n - Protect data and code in use: Isolated portion of processor and memory, code and data cannot be viewed\/modified \r\n - Cloud offering: TEE-enabled compute platform, cloud attestation, first-party\u2012enabled services \r\n - Centrally combine data sources, Communicate with secure endpoints, licensing and DRM\r\n\r\n<img src=\"\/images\/15538714305c9e324654528.png\" alt=\"Marking a Service as Favorite\">\r\n\r\nAt the time of writing of this blog, this feature is limited preview access under NDA (announced via blog) of a specialized Virtual Machine Series (DC-series) that will become part of the\u00a0 Azure Compute portfolio and the first installment of the broader Azure Confidential Computing (ACC) initiative. Put simply, confidential computing offers protection that to date has been missing from public clouds: **encryption of data while in use**.\r\n\r\nYou can read more about this here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/azure-confidential-computing\/\" target=\"_blank\">Azure confidential computing\r\n<\/a>",
+		"addpost": "addpost",
+		"dated": "Feb 04, 2019",
+		"slug": "azure-updates-new-vm-series-for-confidential-computing",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>A new VM-series backed by specialized hardware, which will include the latest generation of Intel SGX. <\/p>\n<ul>\n<li>Based on Trusted Execution Environments: Intel SGX, Virtualization Based Security (VBS) <\/li>\n<li>Comm application patterns: Protect data confidentiality, integrity, and sensitive ...<\/li><\/ul>\n"
 	},
 	{
 		"author": "@20aman",
@@ -2444,25 +2515,81 @@
 	},
 	{
 		"author": "@20aman",
-		"title": "Azure Script Samples - Series Index",
-		"postDate": "23-02-2019",
+		"title": "Azure Awareness Month - Webinar #2 Video - Automate Your Azure Environment with Azure Automation and Azure Functions",
+		"postDate": "09-03-2019",
 		"tags": [
-			"automation",
 			"azure",
 			"microsoft",
-			"microsoftazure",
-			"powershell",
-			"script",
-			"series",
-			"index"
+			"microsoftazure"
 		],
-		"category": "Azure Script Sample",
-		"body": "This blog is an **Index** of various blogs and related script samples in the series \"**Azure Script Samples**\":\r\n\r\n 1. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-format-ea-billing-usage-csv-for-tags\/\" target=\"_blank\">Format EA Billing Usage Csv for Tags<\/a>\r\n 2. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-export-all-azure-automation-account-runbooks-and-variables\/\" target=\"_blank\">Export All Azure Automation Account Runbooks and Variables<\/a>\r\n 3. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-export-all-oms-log-analytics-saved-searches\/\" target=\"_blank\">Export All OMS Log Analytics Saved Searches<\/a>\r\n 4. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-check-azure-site-recovery-asr-prerequisite-services\/\" target=\"_blank\">Check Azure Site Recovery (ASR) Prerequisite Services<\/a>\r\n 5. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-set-azure-site-recovery-asr-prerequisite-services\/\" target=\"_blank\">Set Azure Site Recovery (ASR) Prerequisite Services<\/a>\r\n 6. <a href=\"http:\/\/harvestingclouds.com\/post\/updating-a-custom-rbac-role-in-azure\/\" target=\"_blank\">Updating a Custom RBAC Role in Azure<\/a>\r\n 7. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-runbook-for-asr-recovery-plan\/\" target=\"_blank\">Azure Automation - Runbook for ASR Recovery Plan<\/a>\r\n 8. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-get-vm-information-from-asr-recovery-plan-context\/\" target=\"_blank\">Azure Automation - Get VM Information from ASR Recovery Plan Context<\/a>\r\n 9. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-sending-email-notification\/\" target=\"_blank\">Azure Automation - Sending Email Notification<\/a>\r\n 10. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-get-vm-information-from-actual-azure-virtual-machine\/\" target=\"_blank\">Azure Automation - Get VM Information from actual Azure Virtual Machine<\/a>\r\n 11. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-azure-automation-check-vm-availability\/\" target=\"_blank\">Azure Automation - Check VM Availability<\/a>\r\n 12. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-apply-locks-on-various-azure-resources\/\" target=\"_blank\">Apply Locks on Various Azure Resources<\/a>\r\n 13. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-check-for-pending-reboots-on-various-vms-in-your-environment\/\" target=\"_blank\">Check for Pending Reboots on various VMs in your environment<\/a>\r\n 14. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-apply-rbac-role-to-users-on-resources\/\" target=\"_blank\">Apply RBAC Role to Users on Resources<\/a>\r\n 15. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-getting-azure-resource-reports\/\" target=\"_blank\">Getting Azure Resource Reports<\/a>\r\n 16. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-generate-azure-resources-report-by-tags-v30\/\" target=\"_blank\">Generate Azure Resources Report by Tags v3.0<\/a>\r\n 17. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-set-tags-on-azure-resources\/\" target=\"_blank\">Set Tags on Azure Resources<\/a>\r\n 18. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-creating-multiple-resource-groups-with-rbac-role-assignment\/\" target=\"_blank\">Creating Multiple Resource Groups with RBAC Role Assignment<\/a>\r\n 19. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-checking-if-the-prompt-for-current-script-is-elevated-or-not\/\" target=\"_blank\">Checking if the Prompt for current script is Elevated or not<\/a>\r\n 20. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-setting-up-the-vm-backup\/\" target=\"_blank\">VM Operations - Setting up the VM Backup<\/a>\r\n 21. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-convert-vm-to-managed-disk-vm\/\" target=\"_blank\">VM Operations - Convert VM to Managed Disk VM<\/a>\r\n 22. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-change-azure-vm-size\/\" target=\"_blank\">VM Operations - Change Azure VM Size<\/a>\r\n 23. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-apply-hub-licensing-to-existing-vms\/\" target=\"_blank\">VM Operations - Apply HUB Licensing to Existing VMs<\/a>\r\n 24. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-export-vm-configurations\/\" target=\"_blank\">VM Operations - Export VM Configurations<\/a>\r\n 25. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-vm-operations-working-with-vm-snapshots-and-moving-the-managed-vms-across-subscriptions-and-regions\/\" target=\"_blank\">VM Operations - Working with VM Snapshots and moving the Managed VMs across subscriptions and regions<\/a>\r\n 26. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-removing-locks-from-azure-resources\/\" target=\"_blank\">Removing Locks from Azure Resources<\/a>\r\n 27. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information\/\" target=\"_blank\">Generate Report for Route Tables with associated Subnets and related information<\/a>\r\n 28. <a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-disassociate-and-associate-subnets-to-route-tables\/\" target=\"_blank\">Disassociate and Associate Subnets to Route Tables<\/a>\r\n",
+		"category": "Azure",
+		"body": "In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. \r\n\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/Bl_6atthAOk\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
 		"addpost": "addpost",
-		"dated": "Feb 23, 2019",
-		"slug": "azure-script-samples-series-index",
-		"categoryslug": "azure-script-sample",
+		"dated": "Mar 09, 2019",
+		"slug": "azure-awareness-month-webinar-2-video-automate-your-azure-environment-with-azure-automation-and-azure-functions",
+		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p>This blog is an <strong>Index<\/strong> of various blogs and related script samples in the series \"<strong>Azure Script Samples<\/strong>\":<\/p>\n<ol><li><a href=\"http:\/\/harvestingclouds.com\/post\/script-sample-format-ea-billing-usage-csv-for-tags\/\" target=\"_blank\">Format EA Billing Usage C...<\/a><\/li><\/ol>\n"
+		"summary": "\n<p>In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. <\/p>\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/Bl_6...\"><\/iframe>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Awareness Month - Webinar #3 Video - ARM Template Basics: Automated & Repeatable Deployments in Microsoft Azure",
+		"postDate": "17-03-2019",
+		"tags": [
+			"azure",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated & repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the development. \r\n\r\nYou can check the video recording here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/MZTb9NtZOh4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
+		"addpost": "addpost",
+		"dated": "Mar 17, 2019",
+		"slug": "azure-awareness-month-webinar-3-video-arm-template-basics-automated-repeatable-deployments-in-microsoft-azure",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated &amp; repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the devel...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Awareness Month - Webinar #4 Video - Security in Azure - How to Make Your Environment More Secure",
+		"postDate": "23-03-2019",
+		"tags": [
+			"azure",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. \r\n\r\nYou can check the video recording here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/L95Ax9W-L2c\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
+		"addpost": "addpost",
+		"dated": "Mar 23, 2019",
+		"slug": "azure-awareness-month-webinar-4-video-security-in-azure-how-to-make-your-environment-more-secure",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. <\/p>\n<p>You can check the video recording here:<\/p>\n<iframe width=\"560\" ...><\/iframe>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Awareness Month - Webinar #5 Video - How to Use Azure Site Recovery for Backup, Migration, and Disaster Recovery",
+		"postDate": "30-03-2019",
+		"tags": [
+			"azure",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery",
+			"migration",
+			"dr",
+			"disasterrecovery"
+		],
+		"category": "Azure",
+		"body": "This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy session.\r\n\r\nYou can check the video here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/NpAc1XFdkJM\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
+		"addpost": "addpost",
+		"dated": "Mar 30, 2019",
+		"slug": "azure-awareness-month-webinar-5-video-how-to-use-azure-site-recovery-for-backup-migration-and-disaster-recovery",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy sess...<\/p>\n"
 	}
 ]

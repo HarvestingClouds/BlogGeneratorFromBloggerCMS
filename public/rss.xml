@@ -6,6 +6,108 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure Awareness Month - Webinar #5 Video - How to Use Azure Site Recovery for Backup, Migration, and Disaster Recovery</title>
+<description><![CDATA[<p>This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy session.</p>
+<p>You can check the video here:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NpAc1XFdkJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-5-video-how-to-use-azure-site-recovery-for-backup-migration-and-disaster-recovery</link>
+<pubDate>Sat, 30 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Awareness Month - Webinar #4 Video - Security in Azure - How to Make Your Environment More Secure</title>
+<description><![CDATA[<p>The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. </p>
+<p>You can check the video recording here:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L95Ax9W-L2c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-4-video-security-in-azure-how-to-make-your-environment-more-secure</link>
+<pubDate>Sat, 23 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Differences between Azure Functions and Azure Logic Apps</title>
+<description><![CDATA[<p><strong>Azure Functions</strong> and <strong>Azure Logic Apps</strong> are key offerings from Microsoft Azure that provide you <strong>Serverless Computing</strong>. They both can help run business logic for your applications and can also automate a lot of tasks in Azure. Azure Functions which can execute code in almost any modern language. Whereas Azure Logic Apps which are designed in a web-based designer and can execute logic triggered by Azure services without writing any code.</p>
+<p>The major difference between the two is that Azure Functions provide you with lot more control over the code that gets executed but you have to author and manage that code. Whereas with Azure Logic Apps you are working only in a designer and configuring the activities. You get less control but at the same time, you do not have to manage the underlying code as well. You only need to manage the properties of your activities (or <em>logic blocks</em>) in your <strong><em>workflow</em></strong>.</p>
+<p>Additionally, here are more differences between these two services:</p>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Functions</th>
+<th>Logic Apps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>State</b></td>
+<td>Normally stateless, but Durable Functions provide state</td>
+<td>Stateful</td>
+</tr>
+<tr>
+<td><b>Development</b></td>
+<td>Code-first (imperative)</td>
+<td>Designer-first (declarative)</td>
+</tr>
+<tr>
+<td><b>Connectivity</b></td>
+<td>About a dozen built-in binding types, write code for custom bindings</td>
+<td>Large collection of connectors, Enterprise Integration Pack for B2B scenarios, build custom connectors</td>
+</tr>
+<tr>
+<td><b>Actions</b></td>
+<td>Each activity is an Azure function; write code for activity functions</td>
+<td>Large collection of ready-made actions</td>
+</tr>
+<tr>
+<td><b>Monitoring</b></td>
+<td>Azure Application Insights, Log Analytics via Application Insights connector</td>
+<td>Azure portal, Log Analytics</td>
+</tr>
+<tr>
+<td><b>Management</b></td>
+<td>REST API, Visual Studio</td>
+<td>Azure portal, REST API, PowerShell, Visual Studio</td>
+</tr>
+<tr>
+<td><b>Execution context</b></td>
+<td>Can run locally or in the cloud</td>
+<td>Runs only in the cloud.</td>
+</tr>
+</tbody>
+</table>]]></description>
+<link>http://HarvestingClouds.com/post/differences-between-azure-functions-and-azure-logic-apps</link>
+<pubDate>Tue, 19 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Awareness Month - Webinar #3 Video - ARM Template Basics: Automated & Repeatable Deployments in Microsoft Azure</title>
+<description><![CDATA[<p>This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated &amp; repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the development. </p>
+<p>You can check the video recording here:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MZTb9NtZOh4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-3-video-arm-template-basics-automated-repeatable-deployments-in-microsoft-azure</link>
+<pubDate>Sun, 17 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Awareness Month - Webinar #2 Video - Automate Your Azure Environment with Azure Automation and Azure Functions</title>
+<description><![CDATA[<p>In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. </p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Bl_6atthAOk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></description>
+<link>http://HarvestingClouds.com/post/azure-awareness-month-webinar-2-video-automate-your-azure-environment-with-azure-automation-and-azure-functions</link>
+<pubDate>Sat, 09 Mar 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>Azure Awareness Month - Webinar #1 Video - Getting Started with Azure – Basics, Tips, and Tricks</title>
 <description><![CDATA[<p>We started the Azure Awareness month with the first webinar in the series last Friday. This session was about &quot;Getting Started with Azure – Basics, Tips, and Tricks&quot;. If you missed this session then you can watch this recorded webinar below on YouTube.</p>
 <p>In this session we talked about:</p>
@@ -83,6 +185,23 @@ You can now access this feature, not just from the <strong>Subscriptions</strong
 <img src="/images/15513126205c7726ec59bc7.png" alt="Policies Compliance status after taking corrective action">]]></description>
 <link>http://HarvestingClouds.com/post/azure-tips-tricks-quickly-assign-and-check-the-azure-policy-and-initiative-compliance-status-of-your-resources-with-new-azure-feature</link>
 <pubDate>Thu, 21 Feb 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure Updates - New VM-series for Confidential Computing</title>
+<description><![CDATA[<p>A new VM-series backed by specialized hardware, which will include the latest generation of Intel SGX. </p>
+<ul>
+<li>Based on Trusted Execution Environments: Intel SGX, Virtualization Based Security (VBS) </li>
+<li>Comm application patterns: Protect data confidentiality, integrity, and sensitive IP </li>
+<li>Protect data and code in use: Isolated portion of processor and memory, code and data cannot be viewed/modified </li>
+<li>Cloud offering: TEE-enabled compute platform, cloud attestation, first-party‒enabled services </li>
+<li>Centrally combine data sources, Communicate with secure endpoints, licensing and DRM</li>
+</ul>
+<img src="/images/15538714305c9e324654528.png" alt="Marking a Service as Favorite">
+<p>At the time of writing of this blog, this feature is limited preview access under NDA (announced via blog) of a specialized Virtual Machine Series (DC-series) that will become part of the  Azure Compute portfolio and the first installment of the broader Azure Confidential Computing (ACC) initiative. Put simply, confidential computing offers protection that to date has been missing from public clouds: <strong>encryption of data while in use</strong>.</p>
+<p>You can read more about this here: <a href="https://azure.microsoft.com/en-us/blog/azure-confidential-computing/" target="_blank">Azure confidential computing
+</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-updates-new-vm-series-for-confidential-computing</link>
+<pubDate>Mon, 04 Feb 2019 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Tips & Tricks - Quickly navigate Azure Portal and search documentation with ease</title>

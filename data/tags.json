@@ -166,5 +166,14 @@
 	"171": "subnet",
 	"172": "subnets",
 	"173": "routetable",
-	"181": "index"
+	"174": "index",
+	"175": "function",
+	"176": "functions",
+	"177": "logic",
+	"178": "app",
+	"179": "appservice",
+	"180": "logicapps",
+	"186": "migration",
+	"187": "dr",
+	"188": "disasterrecovery"
 }
