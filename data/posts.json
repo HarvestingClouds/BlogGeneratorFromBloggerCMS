@@ -1,6 +1,72 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Azure Awareness Month - Webinar #5 Video - How to Use Azure Site Recovery for Backup, Migration, and Disaster Recovery",
+		"postDate": "30-03-2019",
+		"tags": [
+			"azure",
+			"azuresiterecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery",
+			"migration",
+			"dr",
+			"disasterrecovery"
+		],
+		"category": "Azure",
+		"body": "This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy session.\r\n\r\nYou can check the video here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/NpAc1XFdkJM\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
+		"addpost": "addpost",
+		"dated": "Mar 30, 2019",
+		"slug": "azure-awareness-month-webinar-5-video-how-to-use-azure-site-recovery-for-backup-migration-and-disaster-recovery",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy sess...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Windows Virtual Desktop in Azure - Public Preview Alert",
+		"postDate": "25-03-2019",
+		"tags": [
+			"azure",
+			"desktop",
+			"microsoft",
+			"microsoftazure",
+			"virtual",
+			"virtualdesktop",
+			"windows"
+		],
+		"category": "Azure",
+		"body": "**Windows Virtual Desktop** is a new service that is available as a Public Preview at the time of writing of this blog. This is a desktop and app virtualization service that runs on the cloud.\r\n\r\n\r\n### Pre-requisites ###\r\n\r\nYou need the following to be able to use this service:\r\n\r\n 1. Azure AD (Active Directory) - If you have an Azure subscription, then you already have this. \r\n 2. Windows Server Active Directory in sync with Azure Active Directory\r\n 3. Azure subscription, containing a virtual network that either contains or is connected to the Windows Server Active Directory - this is where the virtualization will be created and configured\r\n\r\nAdditionally, the Azure VM you create for Windows Virtual Desktop must be:\r\n\r\n 1. Standard domain-joined or Hybrid AD-joined. Virtual machines can't be Azure AD-joined.\r\n 2. Running one of the following supported OS images: Windows 10 Enterprise multi-session or Windows Server 2016\r\n\r\n\r\n### Working with the Service ###\r\n\r\nAt a very high level the steps involve the following:\r\n\r\n 1. Grant Azure Active Directory permissions to the Windows Virtual Desktop Preview service\r\n 2. Assign the TenantCreator application role to a user in your Azure Active Directory tenant\r\n 3. Create a Windows Virtual Desktop Preview tenant\r\n 4. Create a Windows Virtual Desktop Host Pool - available as an offering from the Azure Marketplace right now\r\n\r\n\r\n<img src=\"\/images\/15540720605ca141fc3f08c.png\" alt=\"Provision a host pool\">\r\n\r\nYou can learn more about this preview and detailed step by step getting started guide here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-desktop\/overview\" target=\"_blank\">Windows Virtual Desktop Preview<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 25, 2019",
+		"slug": "windows-virtual-desktop-in-azure-public-preview-alert",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Windows Virtual Desktop<\/strong> is a new service that is available as a Public Preview at the time of writing of this blog. This is a desktop and app virtualization service that runs on the cloud.<\/p>\n<h3>Pre-requisites<\/h3>\n<p>You need the following to be able to use this service:<\/p>\n<...><\/...>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Awareness Month - Webinar #4 Video - Security in Azure - How to Make Your Environment More Secure",
+		"postDate": "23-03-2019",
+		"tags": [
+			"azure",
+			"azuresecurity",
+			"microsoft",
+			"microsoftazure",
+			"security"
+		],
+		"category": "Azure Security",
+		"body": "The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. \r\n\r\nYou can check the video recording here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/L95Ax9W-L2c\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
+		"addpost": "addpost",
+		"dated": "Mar 23, 2019",
+		"slug": "azure-awareness-month-webinar-4-video-security-in-azure-how-to-make-your-environment-more-secure",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. <\/p>\n<p>You can check the video recording here:<\/p>\n<iframe width=\"560\" ...><\/iframe>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Differences between Azure Functions and Azure Logic Apps",
 		"postDate": "19-03-2019",
 		"tags": [
@@ -25,6 +91,42 @@
 		"status": "publised",
 		"summary": "\n<p><strong>Azure Functions<\/strong> and <strong>Azure Logic Apps<\/strong> are key offerings from Microsoft Azure that provide you <strong>Serverless Computing<\/strong>. They both can help run business logic for your applications and can also automate a lot of tasks in Azure. Azure Functions&nbsp;whi...<\/p>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Awareness Month - Webinar #3 Video - ARM Template Basics: Automated & Repeatable Deployments in Microsoft Azure",
+		"postDate": "17-03-2019",
+		"tags": [
+			"azure",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated & repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the development. \r\n\r\nYou can check the video recording here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/MZTb9NtZOh4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
+		"addpost": "addpost",
+		"dated": "Mar 17, 2019",
+		"slug": "azure-awareness-month-webinar-3-video-arm-template-basics-automated-repeatable-deployments-in-microsoft-azure",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated &amp; repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the devel...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Awareness Month - Webinar #2 Video - Automate Your Azure Environment with Azure Automation and Azure Functions",
+		"postDate": "09-03-2019",
+		"tags": [
+			"azure",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. \r\n\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/Bl_6atthAOk\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
+		"addpost": "addpost",
+		"dated": "Mar 09, 2019",
+		"slug": "azure-awareness-month-webinar-2-video-automate-your-azure-environment-with-azure-automation-and-azure-functions",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. <\/p>\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/Bl_6...\"><\/iframe>\n"
 	},
 	{
 		"author": "@20aman",
@@ -2512,84 +2614,5 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Azure Awareness Month - Webinar #2 Video - Automate Your Azure Environment with Azure Automation and Azure Functions",
-		"postDate": "09-03-2019",
-		"tags": [
-			"azure",
-			"microsoft",
-			"microsoftazure"
-		],
-		"category": "Azure",
-		"body": "In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. \r\n\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/Bl_6atthAOk\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
-		"addpost": "addpost",
-		"dated": "Mar 09, 2019",
-		"slug": "azure-awareness-month-webinar-2-video-automate-your-azure-environment-with-azure-automation-and-azure-functions",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p>In this session around automating your environment, we looked at how to work with Azure Automation and Azure Functions. The session included demos to get you started in these technologies. You can check the video below. <\/p>\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/Bl_6...\"><\/iframe>\n"
-	},
-	{
-		"author": "@20aman",
-		"title": "Azure Awareness Month - Webinar #3 Video - ARM Template Basics: Automated & Repeatable Deployments in Microsoft Azure",
-		"postDate": "17-03-2019",
-		"tags": [
-			"azure",
-			"microsoft",
-			"microsoftazure"
-		],
-		"category": "Azure",
-		"body": "This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated & repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the development. \r\n\r\nYou can check the video recording here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/MZTb9NtZOh4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
-		"addpost": "addpost",
-		"dated": "Mar 17, 2019",
-		"slug": "azure-awareness-month-webinar-3-video-arm-template-basics-automated-repeatable-deployments-in-microsoft-azure",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p>This third webinar in the Azure Awareness month series was around ARM Template Basics. In this session, I talked about how to perform automated &amp; repeatable deployments in Microsoft Azure leveraging ARM Templates. We discussed how to author ARM Templates as well as how to kick start the devel...<\/p>\n"
-	},
-	{
-		"author": "@20aman",
-		"title": "Azure Awareness Month - Webinar #4 Video - Security in Azure - How to Make Your Environment More Secure",
-		"postDate": "23-03-2019",
-		"tags": [
-			"azure",
-			"azuresecurity",
-			"microsoft",
-			"microsoftazure",
-			"security"
-		],
-		"category": "Azure Security",
-		"body": "The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. \r\n\r\nYou can check the video recording here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/L95Ax9W-L2c\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
-		"addpost": "addpost",
-		"dated": "Mar 23, 2019",
-		"slug": "azure-awareness-month-webinar-4-video-security-in-azure-how-to-make-your-environment-more-secure",
-		"categoryslug": "azure-security",
-		"status": "publised",
-		"summary": "\n<p>The fourth session in the Azure Awareness month was all about security in Azure. We discussed different options around security features available in Azure. The focus of this session was to make your environment more secure. <\/p>\n<p>You can check the video recording here:<\/p>\n<iframe width=\"560\" ...><\/iframe>\n"
-	},
-	{
-		"author": "@20aman",
-		"title": "Azure Awareness Month - Webinar #5 Video - How to Use Azure Site Recovery for Backup, Migration, and Disaster Recovery",
-		"postDate": "30-03-2019",
-		"tags": [
-			"azure",
-			"azuresiterecovery",
-			"microsoft",
-			"microsoftazure",
-			"recovery",
-			"migration",
-			"dr",
-			"disasterrecovery"
-		],
-		"category": "Azure",
-		"body": "This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy session.\r\n\r\nYou can check the video here:\r\n\r\n<iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/NpAc1XFdkJM\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>",
-		"addpost": "addpost",
-		"dated": "Mar 30, 2019",
-		"slug": "azure-awareness-month-webinar-5-video-how-to-use-azure-site-recovery-for-backup-migration-and-disaster-recovery",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p>This last session in the Azure Awareness month covered Azure Site Recovery services which include Azure Backup and Azure Recovery Services. The session discussed how to provide Backup and Disaster Recovery. It also provided a brief strategy overview for Migration. As usual this is demo heavy sess...<\/p>\n"
 	}
 ]

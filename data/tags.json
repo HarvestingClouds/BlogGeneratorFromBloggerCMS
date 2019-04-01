@@ -173,7 +173,10 @@
 	"178": "app",
 	"179": "appservice",
 	"180": "logicapps",
-	"186": "migration",
-	"187": "dr",
-	"188": "disasterrecovery"
+	"181": "migration",
+	"182": "dr",
+	"183": "disasterrecovery",
+	"184": "desktop",
+	"185": "windows",
+	"186": "virtualdesktop"
 }
