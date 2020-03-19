@@ -6,6 +6,740 @@
 <description>Blog about all things regarding private and public clouds</description>
 <language>en-us</language>
 <item>
+<title>Azure SQL Basics - Managing Backups for Azure SQL Database</title>
+<description><![CDATA[<p>In this post, we will discuss managing the backup for the Azure SQL database. Azure takes the back up at the most convenient time when the database is not much in use. We can’t control at what time the back up took but we can set up the days/week/years for how long we want to keep the backup files.</p>
+<p>To manage the backup setting, go to the <strong>Azure SQL Server</strong> under which our Azure SQL Database has been created. Navigate to the &quot;<em>Manage Backups</em>&quot; option under the Settings.
+Select the Azure SQL database from the list. Once you select the Database, it will enable the &quot;Configure retention&quot; button.</p>
+<img src="/images/15845865455e72df31cd825.png" alt="Managing Backups">
+<p>The configurations have mainly four types of retentions configurations settings.</p>
+<ol>
+<li><strong>PITR – Point in time restore</strong> configuration – This allows you to set the number of days you want to keep the backup. All Azure SQL databases (single, pooled, and managed instance databases) have a default backup retention period of seven days. You can change it to 14/21/28/35 days.</li>
+<li>
+<p><strong>Long-Term Retention Configurations</strong></p>
+<ul>
+<li><strong>Weekly LTR backups</strong> – You can specify the number between 1 and 520. This is for how many weeks you want to retains the backup.</li>
+<li><strong>Monthly LTR backups</strong> – You must specify the number between 1 and 120 month(s) and select the Months from the dropdown.</li>
+</ul>
+</li>
+</ol>
+<img src="/images/15845865535e72df397b04a.png" alt="Configuring Retention policies">]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-managing-backups-for-azure-sql-database</link>
+<pubDate>Fri, 29 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Azure Active Directory Admin - manage Azure SQL via AD Users</title>
+<description><![CDATA[<p><strong>Azure active directory admin</strong> allows managing the other active directory user to manage the Azure SQL database. SSMS provides an option to connect with the server using the &quot;<em>Azure active directory authentication</em>&quot;. To leverage this functionality, the Azure active directory admin has to provide access to the user.</p>
+<p>In this post, we are looking at this option and checking the way to add the Azure Active directory admin through Azure Portal.</p>
+<p>Go to All resources-&gt; SQL server -&gt; Settings-&gt; Active Directory Admin-&gt; Set Admin</p>
+<img src="/images/15845861825e72ddc67f2d8.png" alt="Set AD Admin option">
+<p>Add the user from the select dropdown. Once selected, you will be able to see the added user on the home page of active directory admin.</p>
+<img src="/images/15845861945e72ddd2511bd.png" alt="Add Admin wizard">
+<p>Now you are ready to have this AD user manage the database. Now this user can add other AD users to the database (instead of simple SQL users)</p>
+<p>To get more details about this, please refer to the Microsoft official link <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-aad-authentication" target="_blank">Use Azure Active Directory Authentication for authentication with SQL</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-azure-active-directory-admin-manage-azure-sql-via-ad-users</link>
+<pubDate>Wed, 27 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Creating Elastic Pool in Azure SQL Server</title>
+<description><![CDATA[<p>Azure SQL Database <strong>Elastic Pools</strong> are a simple, cost-effective solution for managing and scaling multiple databases that have varying and unpredictable usage demands. The databases in an elastic pool are on a single Azure SQL Database server and share a set number of resources at a set price.</p>
+<p>Elastic Pools exist only at the SQL Server level in Azure. These help to pool resources when you are building multiple databases on the same server. In this post, we will be checking how to create the elastic pool in the <strong>Azure SQL Server</strong>.</p>
+<p>To Navigate to the creation of an elastic pool, go to the server under which you want to create the elastic pool. </p>
+<img src="/images/15845857295e72dc01424da.png" alt="Option for New Elastic Pool">
+<p>To create the elastic pool, mention the valid name in the Elastic pool name section.
+To select the compute and storage, click on the configure elastic pool and it will show below the blade.</p>
+<img src="/images/15845857355e72dc07bc483.png" alt="Basic settings for new Elastic Pool creation">
+<p>Here you assign the total number of DTU’s and max database size of all the databases in the elastic pool.</p>
+<img src="/images/15845857475e72dc1334a17.png" alt="Standard configurations">
+<p>In the Databases section, you can add the databases which you want to add into this elastic pool that we are creating.</p>
+<img src="/images/15845857535e72dc1985b1e.png" alt="Adding Databases to the Elastic Pool">
+<p>In the ‘Per database settings’ section, you can provide the min and max DTU assigned to each database added in the elastic pool.</p>
+<img src="/images/15845857635e72dc23df3bd.png" alt="Per database settings">
+<p>You can also apply Tags during the creation (which is highly recommended). Finally, you review and create the resources. The deployment will be submitted and the pool created for you. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-creating-elastic-pool-in-azure-sql-server</link>
+<pubDate>Sat, 23 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Automatic Tuning and Performance recommendation</title>
+<description><![CDATA[<p>In this post, we will be discussing the performance recommendation and automatic tuning provided by Azure.   To make your SQL database perform better we need some insights to get better recommendations and it is provided by default by Azure.</p>
+<h3>Performance Recommendations</h3>
+<p>Performance overview provides a summary of your database performance and helps you with performance tuning and troubleshooting.</p>
+<img src="/images/15845063695e71a601ea489.png" alt="Performance recommendation">
+<p>(Per Microsoft documentation) the performance recommendation options available for single and pooled databases in Azure SQL Database are:</p>
+<ul>
+<li>Create index recommendations - Recommends the creation of indexes that may improve the performance of your workload.    </li>
+<li>Drop index recommendations - Recommends removal of redundant and duplicate indexes daily, except for unique indexes, and indexes that were not used for a long time (&gt;90 days). Please note that this option is not compatible with applications using partition switching and index hints. Dropping unused indexes is not supported for Premium and Business Critical service tiers.   </li>
+<li>Parameterize queries recommendations (preview) - Recommends forced parameterization in cases when you have one or more queries that are constantly being recompiled but end up with the same query execution plan.  </li>
+<li>Fix schema issues recommendations (preview) - Recommendations for schema correction appear when the SQL Database service notices an anomaly in the number of scheme-related SQL errors that are happening on your SQL database. Microsoft is currently deprecating the &quot;Fix schema issue&quot; recommendations.</li>
+</ul>
+<h3>Automatic Tuning</h3>
+<img src="/images/15845063775e71a60998da5.png" alt="Automatic Tuning">
+<p>Azure SQL Database automatic tuning provides peak performance and stable workloads through continuous performance tuning based on AI and machine learning.
+Automatic tuning is a fully managed intelligent performance service that uses built-in intelligence to continuously monitor queries executed on a database, and it automatically improves their performance. This is achieved by dynamically adapting the database to the changing workloads and applying tuning recommendations. Automatic tuning learns horizontally from all databases on Azure through AI and it dynamically improves its tuning actions. The longer a database runs with automatic tuning on, the better it performs.
+Azure SQL Database automatic tuning might be one of the most important features that you can enable to provide stable and peak performing database workloads.</p>
+<p>What can automatic tuning do for you:</p>
+<ul>
+<li>Automated performance tuning of Azure SQL databases</li>
+<li>Automated verification of performance gains</li>
+<li>Automated rollback and self-correction</li>
+<li>Tuning history</li>
+<li>Tuning action T-SQL scripts for manual deployments</li>
+<li>Proactive workload performance monitoring</li>
+<li>Scale-out capability on hundreds of thousands of databases</li>
+<li>The positive impact to DevOps resources and the total cost of ownership</li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-automatic-tuning-and-performance-recommendation</link>
+<pubDate>Thu, 21 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Query Performance Insights</title>
+<description><![CDATA[<p>In this post, we will be discussing the Azure SQL Database query performance insights which provide intelligent query analysis for single and pooled databases. It helps identify the top resource consuming and long-running queries in your workload. This helps you find the queries to optimize to improve overall workload performance and efficiently use the resource that you are paying for.</p>
+<p>To Navigate to the Query Performance Insight, navigate to All resources-&gt; SQL Databases-&gt; Select the database. Under the menu on the left hand side go to the Intelligent Performance category -&gt; select Query Performance Insights</p>
+<ul>
+<li>The panel describes the Deeper insight into your databases resource (DTU) consumption</li>
+<li>Details on top database queries by CPU, duration, and execution count </li>
+<li>The ability to drill down into details of a query, to view the query text and history of resource utilization</li>
+<li>Annotations that show performance recommendations from database advisors</li>
+</ul>
+<img src="/images/15845060335e71a4b13cd66.png" alt="Query Performance Insights">
+<p>Optionally, you can select the Custom tab to customize the view for:</p>
+<ul>
+<li>Metric (CPU, duration, execution count).</li>
+<li>Time interval (last 24 hours, past week, or past month).</li>
+<li>The number of queries.</li>
+<li>Aggregation function.</li>
+</ul>
+<img src="/images/15845060425e71a4ba590a8.png" alt="Customizations">]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-query-performance-insights</link>
+<pubDate>Sun, 17 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Advanced Data Security</title>
+<description><![CDATA[<p>In this post, we will be discussing the <strong>Advanced Data Security</strong> feature on the Azure SQL Servers. It is enabled at the server level and will be automatically enabled at the database level. It is a charged service. Once you enabled it, you will be charged per month for this service.
+To access the advanced data security, go to all resources and select the server for which you want to enable the ADS to feature and go to the Security section, and click on advanced data security.</p>
+<img src="/images/15845009925e7191001b780.png" alt="The ADS setting at the server level">
+<p>Below are the settings for ADS:</p>
+<ol>
+<li>Select the ‘On’ to enable the ADS.</li>
+<li>Select the subscription from the subscripton dropdown. You need to have the storage account for this. If you don’t have a storage account previously created, it will ask you to create the new one.</li>
+<li>Provide the appropriate email address to get any activity notification. </li>
+<li>You can select the type of protection from the list as highlighted in the screenshot.</li>
+</ol>
+<img src="/images/15845009995e7191079b3c6.png" alt="Details of the ADS">
+<p>Different types of Advanced Thread Protection types include:</p>
+<ol>
+<li>SQL Injection – to protect you from such attacks</li>
+<li>SQL injection vulnerability – to check if there is any such vulnerabilities in the database</li>
+<li>Data exfiltration</li>
+<li>Unsafe action</li>
+<li>Brute Force</li>
+<li>Anomalous client logins</li>
+</ol>
+<img src="/images/15845010055e71910d5beb7.png" alt="Advanced Threat Protection">
+<p>You can also view and update the Advanced Data Security settings from the Azure SQL Database as shown below. </p>
+<img src="/images/15845010125e719114a67d4.png" alt="ADS at the Database level">
+<p>Although, as the settings are applied and billed at the server level, you get more control to view the settings from the server. The graphs and analytics of data security are shown at the Database level.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-advanced-data-security</link>
+<pubDate>Fri, 15 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Exploring the new Query Editor in the Azure Portal</title>
+<description><![CDATA[<p>In this post, we will see how to use a query editor in the Azure portal. Query Editor helps us to query the tables, view and stored procedure on the selected SQL databases.</p>
+<p>To navigate to the Query editor, go to the <em>All Resources-&gt; SQL database -&gt; select the database</em>.</p>
+<p>On the left-hand side, you can select the &quot;query editor(preview)&quot; menu option. It will give you the option for providing the login credentials to connect to the Database within your SQL Server.</p>
+<img src="/images/15844993115e718a6ff10a6.png" alt="Connecting to the Query Editor">
+<p>Once you log in, you can view all the tables, views and stored procedure resides in the selected SQL database. In the query panel, you can write down the query and see the results immediately at the bottom of the screen.</p>
+<img src="/images/15844993195e718a773845d.png" alt="Running Queries in the Query Editor">]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-exploring-the-new-query-editor-in-the-azure-portal</link>
+<pubDate>Thu, 07 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Data Masking of sensitive information</title>
+<description><![CDATA[<p>In this post, we will be managing the security of data within Azure SQL Databases by implementing the data masking on data. Via this option, you can mask the sensitive information from your database like credit card details, email addresses, etc. </p>
+<p>Select the Azure SQL Database on which you want to implement the data masking. As shown below, it is under the security section. Once you click on it, it will open the blade on which you can set up the mask for different schema under your database. </p>
+<img src="/images/15844989265e7188eeb5982.png" alt="Data masking option">
+<p>SQL Users excluded from masking (administrators are always excluded): This option means the data will be visible without any masking to the admin users. You can add other users to whom you want to make all the data visible.</p>
+<p>Click ‘<strong>Add Mask</strong>’, Select the schema, table, and column on which you want to do masking.</p>
+<img src="/images/15844989345e7188f6aec3d.png" alt="Setting up new Data masking">
+<p>We have different Masking field formats. These include, but not limited to Email addresses, Credit card information, etc.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-data-masking-of-sensitive-information</link>
+<pubDate>Sun, 03 Nov 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Enabling Geo-Replication for Disaster Recovery</title>
+<description><![CDATA[<p>In this post, we will be checking how to enable Geo-replication for the Azure SQL database. Through this feature, you set up active replication to a different Geo location. This enables you to recover your database in case there is a disaster level event in your primary region. </p>
+<p>To begin, select the Azure SQL database for which you want to enable the geo-replication as shown below.</p>
+<img src="/images/15844983315e71869b77f9a.png" alt="Your Azure SQL Database">
+<p>Once you click on the Azure SQL database, it will open up the properties of that SQL database. Click on the geo-replication as highlighted in the screenshot and it will open up the geo-replication window. #1 shows you the primary region we selected while creating the SQL database. #2 will provide the list of regions you can select for the replication. Once you select the region, the new blade will open to set up the secondary region for the SQL database.</p>
+<img src="/images/15844983395e7186a328a36.png" alt="Geo-Replication Option">
+<p>Create the Target server and select the pricing tier for the new region. </p>
+<img src="/images/15844983455e7186a9653f2.png" alt="Detailed Settings during Geo-Replication setup">
+<p>It will take some time to set up the resources, but once it's done, you can switch between the primary and the secondary region in case of failover.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-enabling-geo-replication-for-disaster-recovery</link>
+<pubDate>Tue, 29 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Connecting to Azure SQL DB using SSMS</title>
+<description><![CDATA[<h3>Connecting Azure SQL DB using SSMS</h3>
+<p>In this post, we will be showing how to connect SSMS (SQL Server Management Studio) to Azure SQL databases. Launch SSMS and the &quot;Connect to Server&quot; popup should open up automatically. Azure doesn’t support Windows Authentication. So you will need to log in using SQL server authentication with the username and password created in the Azure portal for the server or via AAD options. </p>
+<img src="/images/15844873805e715bd4012ad.png" alt="SSMS - Connect to SQL Server">
+<p>Before login, you will need the connectivity details and to get that follow the below steps.</p>
+<ol>
+<li>Get the server details to which you will connect. Make sure you get the server name instead of the database name. Sometimes people get confused. The server will have the naming convention as servername.Database.windows.net </li>
+<li>Set up the server firewall in the Azure portal. Otherwise, you will not be able to connect with the server. It will throw an error.</li>
+</ol>
+<p>To set up the Server Firewall: Go to all resources and select SQL Databases, it will show up all the databases you have created in your subscription.</p>
+<img src="/images/15844873975e715be5da8bd.png" alt="Finding Azure SQL Databases">
+<p>Select the database to which you want the connectivity. Let’s take an example of the selected database below. Once you click on your database (test01 in the example below), it will open up the blade for that specific database. Go to the &quot;<strong>Set server Firewall</strong>&quot; option as selected.</p>
+<img src="/images/15844874265e715c02ef51e.png" alt="Option to Set Firewall">
+<p>Here you can add the IP ranges and/or specific IP addresses from where you want the access allowed to this Database. In the below example, we are adding the <strong>Client IP</strong> (i.e. the IP address of the client from where you are accessing the Azure portal. </p>
+<img src="/images/15844874355e715c0b484f0.png" alt="Adding the Client IP for connectivity in the Firewall">
+<p>By default, there will be no IP added under the Client IP address section. Once you click on step 1, then it will populate the IP address of your machine. In the large organization, you can set up the start and end IP.</p>
+<p>Note that there is a radio button to allow Azure services and resources to access this server, this will ensure the azure services can monitor your database performance to do analytics for the diagnostic operations.
+Once you click Save, you should be able to connect the Azure SQL databases using SSMS.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-connecting-to-azure-sql-db-using-ssms</link>
+<pubDate>Fri, 25 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Creating Azure SQL Databases</title>
+<description><![CDATA[<p>In my previous blog, I showed you how to search for Azure SQL databases. In this post we will see how to create the databases. To create the Azure SQL database, you need to know the subscription under you want to create the Azure SQL database.</p>
+<p>Below is the first screen to start with the creation of the SQL database. Here you do the following:</p>
+<ol>
+<li>Select the <strong>Subscription</strong> under which you want to create the SQL database.</li>
+<li>You can select the <strong>Resource group</strong> from the dropdown of already created resource groups or you can create a new one as highlighted below. The next section defines the properties of the new SQL database.</li>
+<li>Give the appropriate <strong>name</strong> of the SQL database</li>
+<li>Select the already existing <strong>server</strong> under which you want to create the SQL database or you can create the new server.</li>
+<li>Select ‘No’ under the SQL Elastic pool option. Select ‘Yes’ if you want your resources to be shared between multiple databases.</li>
+<li>The next one is <strong>compute and storage</strong>, Azure automatically selected the basic one for me. In case you want more powerful resources, you can change this configuration by clicking on the Configure database link.</li>
+</ol>
+<img src="/images/15844868925e7159ec6ce2e.png" alt="Basic settings">
+<p>The next screen is for Networking. Leave be the default setting as shown in the below screenshot.</p>
+<img src="/images/15844869015e7159f531b66.png" alt="Networking settings">
+<p>Next Screen is <strong>Additional settings</strong>. This screen is used to set the Collation of the SQL database, data source, and advanced data security.
+Data source by default is None.  If you want to import the backup file of some existing database then select the Backup. If you select the ‘Sample’ option then AdventureWorksLT will be created as the sample database.</p>
+<p>Database Collation keeps the default one until unless you have another collation to select based upon different regions.</p>
+<p><strong>Advanced Data Security</strong>: Azure charges extra if you select this option. For the time being, I am selecting as ‘Not now’. We will revisit this setting in detail in a later blog post.</p>
+<img src="/images/15844869095e7159fd104cc.png" alt="Additional settings">
+<p>The next screen is about Tags. Tags are used to categorize your resources. These can later be used in billing and automation etc.</p>
+<img src="/images/15844869165e715a042d59e.png" alt="Tags">
+<p>The final screen is ‘Review + Create’. You can review all the options selected in previous screens and it will provide you the estimated cost per month based upon your selection. If you are ok with it then click on the Create button at the bottom of the screen.</p>
+<img src="/images/15844869475e715a234c628.png" alt="Review and Create">
+<p>You can see the progress at the top right-hand side.</p>
+<img src="/images/15844869545e715a2a01864.png" alt="Checking Deployment Status">
+<p>Once the deployment is done, You can see the newly created databases under All services -&gt; SQL databases.</p>
+<img src="/images/15844869605e715a30a059d.png" alt="Locating deployed Database">]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-creating-azure-sql-databases</link>
+<pubDate>Mon, 21 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure SQL Basics - Finding Azure SQL Databases in the Azure Portal</title>
+<description><![CDATA[<p>Azure SQL Database is Microsoft's Platform as a Service (PaaS) offering for the Microsoft SQL Server Database. In the next few weeks, we will be going back to the basics and delving into this service from basic to intermediate. We will visit all it's nitty gritty's and understanding in detail what this service has to offer. </p>
+<p>Let's start with where to find Azure SQL Databases with the Azure Portal. </p>
+<p>Start by going to <a href="http://portal.azure.com">http://portal.azure.com</a> and clicking on the “All services” as shown below. </p>
+<img src="/images/15844859395e7156334a480.png" alt="All Services">
+<p>It will open up the featured services on the screen as shown below. You can select the SQL Databases from the featured services and if it's not there then you can search in the search box as highlighted in the image.</p>
+<img src="/images/15844859455e715639e42c8.png" alt="SQL Databases category">
+<p>The next screen will give the option to create SQL databases and you can see previously created SQL databases in the current subscription or selected subscription.</p>
+<img src="/images/15844859515e71563fa504d.png" alt="Finding your database">
+<p>That's all there is to it.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-sql-basics-finding-azure-sql-databases-in-the-azure-portal</link>
+<pubDate>Sun, 20 Oct 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 04 Viewing the Run History of VMSS</title>
+<description><![CDATA[<p>When you have an active Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> it is imperative that you monitor how your VMSS has been running over the period of time. This helps you tweak the autoscaling settings of your VMSS. You should monitor this continuously for any critical applications in your environment. Ideally, to begin with, this should be done in a test or QA environment with a simulated load on your application running for a long period of time. And then you should keep doing this in upper environments as a best practice. </p>
+<p>To access this setting, navigate to your VM scale set and navigate to the &quot;Scaling&quot; option under the Settings menu. Here click on the &quot;<strong>Run history</strong>&quot; tab. All the history for how the instances were scaled up and down will be visible here. You can filter the data based on time to reduce the window. At the bottom you also have Operations list view what operations occurred on the VMSS and at what times. </p>
+<img src="/images/15845936465e72faeeb9450.png" alt="Scaling Run History">
+<p>This option should be used in conjunction with the performance data for the app or workloads running on your VMSS for a complete picture. If you view any performance drops, you should tweak the settings to scale out earlier than what it is configured. E.g. If the scale out operation is configured if the Average CPU percentage goes above 75% and you still see performance hits, then you should tweak that setting from 75% to a lower value like 65%. </p>
+<p>There may also be some times during the day or week when there will be more load on your application. To ease this, you can add a schedule for scaling based on time. Note that there is no single best combination. The best settings for you depends upon your application. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-04-viewing-the-run-history-of-vmss</link>
+<pubDate>Sat, 20 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 03 Updating the Scaling policies of VMSS</title>
+<description><![CDATA[<p>In Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>, understanding and setting up appropriate scaling settings is paramount. You have the option to either set the scaling settings manually or set them to auto-scale based on different criteria. </p>
+<p>To access these settings, navigate to your VMSS and go to the <strong>Scaling</strong> option under Settings. Ensure that &quot;Custom autoscale&quot; is selected. Then click on the &quot;<strong>Configure</strong>&quot; button from the top.</p>
+<img src="/images/15845924135e72f61d7810a.png" alt="Scaling configurations">
+<p>In the next screen, you can &quot;scale based on a metric&quot; to scale based on different metrics on the VM. Examples of such metrics include CPU percentage, Memory consumption, etc. Here you define: </p>
+<ul>
+<li><strong>Scale out</strong> - This is the setting for how the instance count should <em>increase</em>. E.g. if the Average CPU percentage increases beyond 75% then increase the count by 1.</li>
+<li><strong>Scale in</strong> - This is the setting for how the instance count should <em>decrease</em>. E.g. if the Average CPU percentage decreases below 25% then decrease the count by 1.</li>
+</ul>
+<p>You also have the option to scale to a specific instance count based on a time schedule.</p>
+<p>Another setting you have control over here is to set the <strong>Instance Limits</strong>. You define a minimum and a maximum number of instances with what the default or an initial number of instances is going to be. Note that the default value can only be between a minimum and a maximum number of instances. </p>
+<img src="/images/15845924185e72f622efeb6.png" alt="Scaling rules">
+<p>Another key point to note is that you can add multiple scaling conditions to ensure autoscaling occurs as you require. Now that you have the autoscaling set up, next you should simulate load on your application running on VMSS and validate that you are not facing any performance issues. If you do then you should tweak the autoscaling numbers.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-03-updating-the-scaling-policies-of-vmss</link>
+<pubDate>Thu, 18 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 02 View Running Instances in VMSS</title>
+<description><![CDATA[<p>When you have a Microsoft Azure <strong>Virtual Machine Scale Set</strong> or <strong>VMSS</strong> you want to view how many and what instances are running in your VMSS. You can do so very easily by navigating to your VMSS. </p>
+<p>From All Service -&gt; go to Virtual machine scale sets. Click on your VMSS to open up in it's own blade. Then from the left hand menu, navigate to the Settings category and click on <strong>Instances</strong>. This will show you all the instances in your VMSS along with their status. </p>
+<p>E.g. in the screen below, you can view 3 instances, 1 of which is in Running state and 2 are in Creating state. </p>
+<img src="/images/1111111.png" alt="Running Instances in VMSS">]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-02-view-running-instances-in-vmss</link>
+<pubDate>Mon, 15 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 01 Creating VMSS - Part 2</title>
+<description><![CDATA[<p>This is part 2 of the post for creating Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong>. Let's dive right in.</p>
+<p>In continuation of the creation of VMSS wizard, next up you have the <strong>Scaling</strong> options. You provide the initial instance count. If you want to set up autoscaling, I recommend you to set up Custom policy rather than manual. You can automate based on various conditions like CPU exceeding certain thresholds etc. You can also tweak these settings once the VMSS has been set up and can add multiple criteria.</p>
+<img src="/images/15845877715e72e3fb7a2ce.png" alt="Scaling Options">
+<p>Next, you have Management settings. Here you can provide Upgrade policies, set up monitoring for diagnostics, Identity, Automatic OS upgrades, Instance termination notifications etc. </p>
+<img src="/images/15845877795e72e40354599.png" alt="Management settings">
+<p>To monitor health, you can set up rules here. E.g. Let's say you have a web app running on the VMs in VMSS. You can set to monitor health by monitoring port HTTP 80 at a particular path of the app running on your workloads.</p>
+<img src="/images/15845896975e72eb811e4d8.png" alt="Monitoring Health">
+<p>Various advanced settings can be set up on the next screen. If you are running Linux VMs in your VMSS then you can leverage &quot;Cloud init&quot; to automate the configurations on the start-up of every new instance in VMSS. Proximity placement groups ensure that the different instances in your VMSS are deployed closer to each other physically in a datacenter. </p>
+<p>You can also decide between the VM generation etc. </p>
+<img src="/images/15845897035e72eb874aa00.png" alt="Advanced settings">
+<p>You can provide Tags next to better categorize the resources. </p>
+<img src="/images/15845897085e72eb8ccda8e.png" alt="Tags">
+<p>Finally, you review all the settings and hit Create to create the VMSS.</p>
+<img src="/images/15845897145e72eb9290347.png" alt="Review and Create">]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-2</link>
+<pubDate>Fri, 12 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Auto Scaling - Azure - 01 Creating VMSS - Part 1</title>
+<description><![CDATA[<p>Microsoft Azure <strong>Virtual Machine Scale Sets</strong> or <strong>VMSS</strong> lets you deploy your workload into identical Virtual machines. These VMs are load-balanced internally and the load is also managed automatically for you. You can define various autoscaling schedules to scale your resources up and down based on the demand. E.g. if Average CPU percentage increases beyond a number then you can automate to increase the number of running instances i.e. scale up. Similarly, you can configure to reduce the instances i.e. scale down if the average CPU percentage goes down a certain number. This auto-scaling is provided out of the box with VMSS. </p>
+<p>Let's start working with VMSS by creating one.</p>
+<p>You will find VMSS under the <strong>Compute</strong> category.</p>
+<img src="/images/15845631905e7283f6d0d93.png" alt="VMSS under All Services">
+<p>When in the blade for VMSS, click on the &quot;+Add&quot; button</p>
+<img src="/images/15845631995e7283ffe9bdf.png" alt="Adding a new VMSS">
+<p>Provide the subscription and Resource Group just like for any other resource creation in Azure. Provide a name for the VMSS, a region where it will be deployed and Availability set if you want any.</p>
+<img src="/images/15845659695e728ed10ab92.png" alt="Creating VMSS - Basics">
+<p>Next, you provide the Instance details. This is very important. This is the underlying Image and it's compute size. This is the consumption that you will be having in your VMSS based on the number of instances running.</p>
+<p>You also provide authentication information for connectivity.</p>
+<img src="/images/15845659755e728ed77de6f.png" alt="Creating VMSS - More Basics">
+<p>Next, we need to provide the disk details (just like for a single VM). Here you can decide the type of disk to use for OS disk. You can also create and attach data disks here.</p>
+<img src="/images/15845659805e728edcda944.png" alt="Creating VMSS - Disk related options">
+<p>Next up we have networking details. You provide information regarding which virtual network the underlying VMs will be connected to in this VMSS. You also provide the Network Interface that VMSS will be using for connectivity.</p>
+<img src="/images/15845659885e728ee482698.png" alt="Creating VMSS - Networking details">
+<p>In part 2 we will continue with the wizard and setting up of VMSS. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-1</link>
+<pubDate>Thu, 11 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - AWS - Working with AWS Batch Service</title>
+<description><![CDATA[<h3>AWS Batch Service</h3>
+<p>AWS Batch Service has below main concepts:</p>
+<ul>
+<li><strong>Job</strong> - This is what is sent for execution to the Job Queue. This is the main work that you are trying to accomplish e.g. processing an image.</li>
+<li><strong>Job Queue</strong> - When you submit a job, it is sent to a job queue. This has linked compute resources. <strong>AWS Batch Scheduler</strong> places the job on a compute resource within a compute resource environment</li>
+<li><strong>Compute Environment</strong> - This is the logical grouping of compute resources i.e. EC2 instances that can receive jobs from a job queue</li>
+</ul>
+<p>AWS Batch automatically scales out your compute resources when there are jobs to work upon. It later scales it back when the job queue is empty.</p>
+<h3>Working with the Service</h3>
+<p>AWS Batch service can be found under all Services and then navigating to the Compute category. Click on <strong>Batch</strong> to launch the AWS Batch service.</p>
+<img src="/images/15844277715e7072fb5c4a9.png" alt="AWS Batch Service">
+<p>Here you are presented with the default &quot;<strong>Getting Started</strong>&quot; screen.  It gives you an overview of how the service works. </p>
+<p>Clicking on the Getting Started button takes you to the wizard to set up the service.</p>
+<img src="/images/15844277935e707311769a0.png" alt="Getting Started">
+<p>First, you define the Job and its details. You start with where you want to run your job and defining a run time for the job.</p>
+<img src="/images/15844278105e707322dfe0c.png" alt="Defining the Job and it's Runtime">
+<p>Next, you provide the container properties for the job. The command you define is what is executed when this job is run. This is where you define what compute power will be required to run the job. E.g. 2 vCPUs and 2000 MiB of Memory. You also define the number of attempts to be made to run the job successfully. Job Execution timeout is another thing you define here in the number of seconds. If the job does not finish up in this time then it is stopped and moved to the Failed queue.</p>
+<img src="/images/15844278255e70733101239.png" alt="Container Properties">
+<p>You can optionally define parameters and environment variables as well. </p>
+<img src="/images/15844278375e70733d56135.png" alt="Job Parameters and Environment Variables">
+<p>Under <strong>Step 2</strong>, you define the compute environment and set up the Job queue. Compute environment is where the job is run. You define its behavior in this section. You can choose between:</p>
+<ul>
+<li><strong>On-Demand</strong> - for any critical and business impacting jobs. This is most predictable</li>
+<li><strong>Spot</strong> - very cost-effective option. The cost savings are up to 90% of the On-demand option. It uses the EC2 Spot instances to do so.</li>
+</ul>
+<p>You can also define a minimum, desired and a maximum number of vCPUs here.</p>
+<img src="/images/15844278495e70734941b33.png" alt="Compute Environment">
+<p>You set up your networking next. Also, this is where you define the Job Queue and link it to the Compute environment. </p>
+<img src="/images/15844278605e707354139bf.png" alt="Networking for Compute Environment and Job Queue">
+<p>Hit <strong>Create</strong> and you should be all set. AWS creates the underlying resources and shows you the status. </p>
+<h3>Viewing the Resources and Logs</h3>
+<p>You can now navigate to the Dashboard and view the newly created resources.</p>
+<img src="/images/15844692465e7114fe97480.png" alt="AWS Batch Dashboard"> 
+<p>You can navigate to the Jobs section and find your job that was executed. It will look like a guid. Click on this job. In the popup, click on &quot;<strong>View logs</strong>&quot;. This will take you to the CloudWatch window and will show you the logs.</p>
+<img src="/images/15844695395e71162355651.png" alt="Log for the Jobs"> 
+<p>That's all there is to it. You can define simple jobs like execute some applications to very complex jobs like image and video processing.</p>
+<p>For more information check these link: </p>
+<ul>
+<li><a href="https://aws.amazon.com/batch/" target="_blank">AWS Batch service</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-aws-working-with-aws-batch-service</link>
+<pubDate>Mon, 08 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 4 Creating Tasks in a Batch Job</title>
+<description><![CDATA[<p>So far we have seen that to consume Azure Batch service we need a <strong>Batch account</strong>. Within this Batch account, we create a <strong>Pool</strong>. Next, we create a <strong>Job</strong> that runs on this Pool. Finally, every Job has multiple <strong>Tasks</strong> that are actually executed within the Job (and on the Pool)</p>
+<p>In this post, we will create on such Task in a Job. </p>
+<p>To create a Task, you begin by navigating to your Batch account (if not there already). Next click on the Jobs option under the Features category. Find your job and click on the same.</p>
+<img src="/images/15843974675e6ffc9b9660f.png" alt="Navigating to Jobs">
+<p>Within the job, find the Tasks menu and click on that. You will see &quot;+Add&quot; option here to add a new Task.</p>
+<img src="/images/15843974735e6ffca175d8f.png" alt="Tasks section">
+<p>Next, a wizard will open up to add a new Task. Here primarily you provide a task Id, display name and Command line. Note, that this command line is where you specify what to run. </p>
+<p>A simple command line may look like below. This displays the Batch environment variable and then waits for 180 seconds. This is used in the screenshots and later output.</p>
+<p><code>cmd /c "set AZ_BATCH &amp; timeout /t 180 &gt; NUL"</code></p>
+<p>A more complex command line, to execute an app package may look like:</p>
+<p><code>cmd /c %AZ_BATCH_APP_PACKAGE_app01#1.0%\\myapp.exe</code></p>
+<img src="/images/15843974795e6ffca706a55.png" alt="Add Task wizard">
+<p>You can configure more settings like environment settings, task dependencies, and Application packages etc. Hit Submit when ready to create the Task.</p>
+<img src="/images/15843975025e6ffcbe8536b.png" alt="More settings">
+<p>To check the output of the task execution we will check the output stream. Navigate to your task. And then under the &quot;<strong>Task Files</strong>&quot; section click on the &quot;<strong>Files on node</strong>&quot; option. Here you will find the &quot;<strong>stdout.txt</strong>&quot; file. Click on this file to view the output.</p>
+<img src="/images/15843975075e6ffcc3b3739.png" alt="Checking the output">
+<p>The output stream (for the simple command line from above) will look like below. You can download this for offline usage if you require it.</p>
+<img src="/images/15843975135e6ffcc9bc468.png" alt="Checking the Task output stream">
+<p>This concludes a brief overview of how to consume Azure Batch service.</p>
+<p>For more information check this link: <a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-4-creating-tasks-in-a-batch-job</link>
+<pubDate>Fri, 05 Jul 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 3 Creating Job in the Batch Pool</title>
+<description><![CDATA[<p>Once you have a Batch account set up with a Pool (of compute nodes) running, you will need a job running in this pool to consume all that computing power. </p>
+<p>To create a Job in the Batch Pool, you first navigate to your Batch account (if not there already). Then scroll down and select <strong>Jobs</strong>. Click on &quot;<strong>+Add</strong>&quot; to add new jobs.</p>
+<img src="/images/15843967305e6ff9ba4b7bb.png" alt="Jobs section">
+<p>In the blade to Add Job, provide a unique Job Id. Add this job to the appropriate pool by clicking on the &quot;<em>Select a pool to run the job on</em>&quot;. This will bring up another blade where all your pools will be listed. Selected the one you want and hit <strong>Select</strong> button.</p>
+<img src="/images/15843967365e6ff9c0b0724.png" alt="Adding a New Job">
+<p>Now that the job is also ready, you can start adding Tasks to this job. You can add multiple tasks to one job. We will check that next. </p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-3-creating-job-in-the-batch-pool</link>
+<pubDate>Mon, 24 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 2 Creating Batch Pool in an Account</title>
+<description><![CDATA[<p>Once we have a Batch account, we will need a pool of compute nodes. You can do that by creating a Pool in the Batch account. </p>
+<p>First, we will need to navigate to the Batch account. To do this first go to <strong>All Services</strong> in the Azure portal menu. </p>
+<img src="/images/15843956425e6ff57adedc0.png" alt="All Services">
+<p>Next, find <strong>Batch accounts</strong> under the Compute category.</p>
+<img src="/images/15843956515e6ff58397575.png" alt="Batch accounts">
+<p>Under Batch accounts, all your accounts will be listed. Click on the account in which you want to create the pool. Under the account settings, scroll down to the <strong>Features</strong> category and click on <strong>Pools</strong>. You will not have any pools. Click on &quot;+Add&quot; to create a new one.</p>
+<img src="/images/15843956625e6ff58e9db8f.png" alt="Option to Add Pool">
+<p>&quot;<strong>Add Pool</strong>&quot; blade will open up. Provide a pool ID and an optional display name. Provide the Operating system details that you want to target. You can use custom images or one of the marketplace image. E.g. in the screenshot below, the marketplace image for windows server 2016 Datacenter with small disk is selected.</p>
+<img src="/images/15843956685e6ff594b25aa.png" alt="Pool details and OS settings">
+<p>You can provide the node size for each compute node in the pool. You will be charged based on the no. of nodes and the size of each node. You can provide Scale settings. It can be pre-configured as shown below or can be set to auto-scale. </p>
+<img src="/images/15843957245e6ff5cc6fc98.png" alt="Node size and scaling options">
+<p>You can next configure a task to start on setting up the pool. You also have various other settings to customize the pool setup. </p>
+<img src="/images/15843957335e6ff5d50a9f0.png" alt="Task and other optional settings">
+<p>If you scroll down further, you will see the options to configure virtual network connectivity to the pool. E.g. if you want to run an app that has some network dependency, that you can also run that by configuring your pool to connect to your virtual network.  </p>
+<p>If you already own Windows Server licenses then you can configure Hybrid Use Benefit or HUB licensing. Note that this option will only show up for Windows server related compute nodes.</p>
+<img src="/images/15843957385e6ff5dacde39.png" alt="Virtual Network and HUB license settings">
+<p>Click Ok to create the pool. </p>
+<p>In the next post, we will create a Job in this pool. </p>
+<p>For more information check this link: <a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-2-creating-batch-pool-in-an-account</link>
+<pubDate>Fri, 21 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure - 1 Creating Batch account</title>
+<description><![CDATA[<p>To consume the Azure Batch service, you need a <strong>Batch account</strong>. </p>
+<p>To create a Batch account navigate to Create a new service (from the 3 lines on the top left corner), then in the menu under the Compute category, find the &quot;<strong>Batch Services</strong>&quot; option.</p>
+<img src="/images/15843943555e6ff0737c790.png" alt="Creating Batch Service">
+<p>Just like any other resource, you provide a Subscription and a Resource Group. You also provide a name for the account. This name should only contain lowercase letters and should be unique in Azure's DNS space. This is used to uniquely identify your Batch account. You also select the location for your Batch service account.</p>
+<img src="/images/15843943635e6ff07b6da9f.png" alt="New Batch account wizard">
+<p>Next, you have advanced settings. Here you select the Pool allocation mode. You have a Batch Service or User subscription as two options. This setting specifies whether to provision compute node pools in a subscription managed by the Batch service, or in the subscription in which you are creating the new Batch account. In most cases, this should be set to default i.e. managed by Batch service.</p>
+<img src="/images/15843943555e6ff0737c790.png" alt="Advanced options">
+<p>Next, you can apply tags to categorize the resource and get better control over automation, reporting, and billing, etc. </p>
+<img src="/images/15843944135e6ff0ad21a6f.png" alt="Applying Tags">
+<p>Finally, you review the setting and create the Batch account. Note that you have the option to download the template here so that you can automate the deployment next time you need to deploy this or deploy it uniformly across different environments. </p>
+<img src="/images/15843944265e6ff0ba4b4a2.png" alt="Review and Create">
+<p>Azure immediately shows you the status of your deployment. This screen refreshes automatically and will update to show when the deployment is complete.</p>
+<img src="/images/15843944415e6ff0c9c13df.png" alt="Deployment Status">
+<p>In the next post, we will look at creating a <strong>Pool</strong> within the Batch account.</p>
+<p>For more information check this link: <a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-1-creating-batch-account</link>
+<pubDate>Thu, 20 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Batch Services - Azure vs AWS</title>
+<description><![CDATA[<p>Both Microsoft Azure and Amazon Web Services provide Batch service. These services are very similar in nature as they are trying to solve the same issue. Both are trying to run large-scale parallel and high-performance computing applications efficiently in the cloud.</p>
+<p>Both the services leverage underlying computing infrastructure to execute the Jobs. Both have different mechanisms to save you cost. Where Microsoft leverages Hybrid Use Benefit (or HUB) licensing to reduce the cost of having Windows Server, AWS has integrated the usage of Spot instances directly to the AWS Batch service to reduce the cost of the underlying compute.</p>
+<p>We will explore each platform's service in detail in the upcoming posts.</p>
+<p>For more information check these link: </p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/services/batch/#overview" target="_blank">Azure Batch service</a></li>
+<li><a href="https://aws.amazon.com/batch/" target="_blank">AWS Batch service</a></li>
+</ul>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-batch-services-azure-vs-aws</link>
+<pubDate>Wed, 19 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 11 - Protecting Azure VMs</title>
+<description><![CDATA[<p>For your mission-critical workloads, you can configure active replication of the VM to secondary geolocation. You can do so right from the settings of the VM. Under the hood it uses <strong>Azure Site Recovery</strong> to set up this disaster recovery.</p>
+<p>Navigate to your VM and under the Operations category, click on the &quot;<strong>Disaster recovery</strong>&quot;. Here you can select the Target region for the replication. This region becomes your secondary location and should be factored in your Disaster Recovery strategy. E.g. There should be appropriate infrastructure in place to allow for connectivity to this secondary location. </p>
+<img src="/images/15843419925e6f23e8d325d.png" alt="Disaster Recovery for a VM">
+<p>Next, you have Advanced Settings for the Disaster Recovery. You can select the settings for the <strong>Target</strong>, i.e. what the Resource Group, Virtual Network etc. is going to be in the target region, if we failover the VM to that region. You also have <strong>Storage</strong> settings, where you define the cache storage account (used to replicate the managed disks) and the source to target managed disk mappings. </p>
+<p>Replication and Extension settings can also be updated here if you require. I recommend that under Replication settings you ensure that the vault selected is appropriate one if you have more than one vaults in your environment. </p>
+<img src="/images/15843419995e6f23ef8d7d2.png" alt="DR advanced settings">
+<p>Finally, review all the settings and start the replication by click on the button as shown below. It triggers an initial replication. </p>
+<img src="/images/15843420065e6f23f61141f.png" alt="Review and start replication">
+<p>You always have an active copy of the VM in the secondary location (delay of up to 15 mins, depending on your replication policy). You can trigger Failover if anything goes wrong in the primary region. Once the DR even is over, you can also Failback to the original location.</p>
+<p>For more information check this link: <a href="https://docs.microsoft.com/en-us/azure/site-recovery/azure-to-azure-quickstart" target="_blank">Set up disaster recovery to a secondary Azure region for an Azure VM</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms</link>
+<pubDate>Sun, 16 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 10 - Backing up Azure VMs</title>
+<description><![CDATA[<p>Backing up a VM is the best practice from an operations perspective. The VM should be backed up on periodic intervals and these backups should be retained for some time as well.</p>
+<p>You can backup a VM, right from its settings. After you navigate to Azure Virtual Machines, click on the VM for which you want to configure backup. Then under the Operations category, click on the <strong>Backup</strong> option. Here to configure the backup, you select the Backup vault, Resource Group and the backup policy. </p>
+<p>You can also create a new backup policy on the fly. To do so, you need to click on the &quot;Create (or edit) a new policy&quot; link.</p>
+<img src="/images/15843409935e6f2001ca1a5.png" alt="Azure Backup from VM settings">
+<p>Under the create or edit Backup policy, you can configure how often and when the backup should be taken. You also configure for how long the backup should be retained. </p>
+<img src="/images/15843411115e6f207736d06.png" alt="Creating backup policy">
+<p>For more information check this link: <a href="https://docs.microsoft.com/en-in/azure/backup/backup-azure-vms-first-look-arm" target="_blank">Back up an Azure VM from the VM settings</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-10-backing-up-azure-vms</link>
+<pubDate>Wed, 12 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 3</title>
+<description><![CDATA[<p>In this post, we will see how to create an <strong>on-demand backup</strong>. This type of backup is typically needed when you want to perform a critical operation and this can impact the functionality of the instance. Therefore, prior to performing such an operation, you want to ensure that you have the latest backup of the instance. </p>
+<p>You access the option to create the on-demand backup by navigating to the AWS Backup service and then selecting the &quot;<strong>Protected resources</strong>&quot;. You will see the button for creating the on-demand backup here.</p>
+<img src="/images/15843382255e6f15318fc95.png" alt="">
+<p>In the wizard to create the on-demand backup, you provide the resource for which you want to create the on-demand backup. You can trigger the backup rightaway or delay the start by specifying a backup window. You can also set the expiration of the backup under Lifecycle. You can select an existing vault or create a new one. </p>
+<img src="/images/15843382305e6f15364af96.png" alt="">
+<p>Finally, you select the IAM role that backup service will use to impersonate while creating the recovery point. Optionally you can also create and apply Tags. </p>
+<img src="/images/15843382345e6f153ab16b9.png" alt="">
+<p>For more information please check this link:
+<a href="https://aws.amazon.com/backup/?nc2=h_ql_prod_st_bu" target="_blank">AWS Backup</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-3</link>
+<pubDate>Sun, 09 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 2</title>
+<description><![CDATA[<p>In the previous post, we configured the backup plans in <strong>AWS Backup</strong>. Now we will use those backup plans and assign some resources to that plan. Specifically, we will assign the EC2 instance to configure the backup for that instance</p>
+<h3>Assigning Resources</h3>
+<p>Once the Backup Plan has been created or there is one already in the system, then when you navigate to AWS Backup service, your view will be similar to below. From the left menu, click on Backup Plans (if not already selected). Click on &quot;<strong>Assign Resources</strong>&quot; button.</p>
+<img src="/images/15843325645e6eff1405a8e.png" alt="Assigning Resources">
+<p>In the <strong>Assign Resources</strong> wizard, provide a name to the resource assignment. Also, provide an IAM role that the backup service will use to create the recovery points. Next, you select the resources you want to assign. Below is the combination of selections to select the EC2 instance. </p>
+<img src="/images/15843325825e6eff2698333.png" alt="Assigning by Resource ID">
+<p>You have two options for assigning resources. The first is to assign multiple resources by <strong>Tags</strong>. Second is to provide a <strong>Resource Id</strong> (which is unique for every resource).</p>
+<img src="/images/15843358635e6f0bf7c57d9.png" alt="Options for Assigning Resources">
+<p>You have different types of resources that you can backup using AWS Backup service. These include:</p>
+<ol>
+<li>EC2 instances</li>
+<li>Elastic Block Store or EBS</li>
+<li>Relational Database Service or RDS </li>
+<li>Elastic File System or EFS</li>
+<li>Storage Gateway</li>
+<li>Dynamo DB</li>
+</ol>
+<img src="/images/15843358705e6f0bfe20045.png" alt="Resource Types">
+<p>Once you click on Assign resources, the ec2 instance will be assigned to the backup plan. It will not show up under the protected resources until the next schedule of the backup plan creates a recovery point for the resource. </p>
+<p>For more information please check this link:
+<a href="https://aws.amazon.com/backup/?nc2=h_ql_prod_st_bu" target="_blank">AWS Backup</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-2</link>
+<pubDate>Wed, 05 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 09 - Backing up EC2 instances Part 1</title>
+<description><![CDATA[<p>To backup EC2 instances, you use the <strong>AWS Backup</strong> service. This is a fully managed, centralized backup service simplifying the management of your backups for your Amazon Elastic Block Store (EBS) volumes, your databases (Amazon Relational Database Service (RDS) or Amazon DynamoDB), AWS Storage Gateway and your Amazon Elastic File System (EFS) filesystems. </p>
+<h3>Configuring Backup Plans</h3>
+<p>To be able to use AWS Backup you need Backup Plans configured and created. </p>
+<p>Let's first navigate to the service by going to <strong>Services</strong> and then &quot;<strong>AWS Backup</strong>&quot; service under the Storage category.</p>
+<img src="/images/15843315955e6efb4bd033b.png" alt="AWS Backup service navigation">
+<p>When you launch this service for the very first time, you are provided with loads of information regarding the service. The first thing that you need to do is to create a <strong>Backup Plan</strong>. Click on the button to &quot;<strong><em>Create Backup plan</em></strong>&quot;.</p>
+<img src="/images/15843316025e6efb524ea63.png" alt="Creating Backup plan">
+<p>You can either start from an existing plan (to copy all it's settings) or build a new plan. If you don't have anything configured then you will have to select the option to Build a new plan. Provide a name for the plan and scroll down.</p>
+<img src="/images/15843316225e6efb66b1ab8.png" alt="Building a new plan">
+<p>Next, provide the Backup rule configurations. With every backup plan, you can have multiple backup rules. Basically, these define when a backup is taken, how often it is taken, when does this backup expires and so on. You start by specifying a name for the rule. Then you specify a Schedule for the backup. The options include Daily, Weekly, Monthly etc. You can also customize the backup window, i.e. at what hour of the day the backup is taken.</p>
+<p>Under <strong>Lifecycle</strong>, you define when the backup should transition to Cold storage and when it should expire. You also select a Vault for the backup. This is the vault resource where the recovery points created by the Backup service are organized. </p>
+<img src="/images/15843316275e6efb6be8850.png" alt="Backup rule configuration">
+<p>Next, you can copy the backup to multiple regions. In this way you get redundancy. If the backup primary region goes down, you can use the copy from a different region to restore.</p>
+<p>Here you also specify the Tags to add to a backup plan to organize and categorize this in a better way. </p>
+<img src="/images/15843316355e6efb731b88c.png" alt="Copy to region and tags settings">
+<p>Click on the &quot;<strong>Create plan</strong>&quot; button once done. As you can see from the two notes above, once the plan is created, you can assign resources to this backup plan. We want to add our EC2 instance to this plan. We will do this in the next blog post. </p>
+<p>For more information please check this link:
+<a href="https://aws.amazon.com/backup/?nc2=h_ql_prod_st_bu" target="_blank">AWS Backup</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-1</link>
+<pubDate>Tue, 04 Jun 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 08 - Azure VM Insights</title>
+<description><![CDATA[<p><strong>Azure Monitor for VMs</strong> or <strong>Insights</strong> is the enhanced version of the analytics on the VM. It includes the performance and dependencies related data for the virtual machines.</p>
+<p>This is very similar to &quot;<strong>Enable Detailed Monitoring</strong>&quot; using <strong>CloudWatch</strong> in AWS.</p>
+<h2>Setting Up</h2>
+<p>To set this up navigate to your virtual machine and then click on the <strong>Insights</strong> section under the <strong>Monitoring</strong> category. Click on the Enable button to start. Note that the VM should be in the running state for you to be able to enable this setting.</p>
+<img src="/images/15843246435e6ee023c978d.png" alt="Enabling Insights">
+<p>If you get any error while clicking on the Enable button, ensure that the VM is running. If it is already running then wait and retry after few minutes. Sometimes the VM bootup takes time to finish (depending on the Compute capacity of the VM).</p>
+<p>For the VM Insights to work, it needs to connect to a &quot;<strong>Log Analytics Workspace</strong>&quot;. When you will click Enable button, it will ask to connect to a workspace. When you click Enable, a Microsoft Monitoring Agent (MMA) extension is installed on the VM and is connected to the workspace selected.</p>
+<img src="/images/15843246505e6ee02a4df1a.png" alt="Configuring Workspace for Insights">
+<h2>Analytics Data</h2>
+<p>Once successfully enabled and the extension deployed, the Insights data will update to show actual data from the VM. If you don't see it or can't refresh the view, then navigate to any other section and come back to this section to force the refresh.</p>
+<p>The first tab is for the <strong>Performance</strong> data. This shows you interactive and filterable data. Some of the data includes Logical Disk Performance, CPU Utilization, Available Memory, Logical Disk analytics, Network data etc. </p>
+<img src="/images/15843250275e6ee1a30f550.png" alt="Performance Data">
+<p>Next tab is for Map or Service Map. This shows you the dependencies data. This shows you a graphical and interactive view of how the VM interacts with other VMs and outside the network, what ports it is communicating on, etc.</p>
+<img src="/images/15843250335e6ee1a9cf2a0.png" alt="Service Map">
+<p>For more information check this link:</p>
+<p><a href="https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview" target="_blank">Azure Monitor for VMs</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-08-azure-vm-insights</link>
+<pubDate>Fri, 31 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 07 - Boot Diagnostics of Azure VMs</title>
+<description><![CDATA[<p>Azure VM <strong>Boot diagnostics</strong> lets you diagnose what is happening under the hood during the boot up. If you face any issues with the boot up of the VM then this is where you will go to find the diagnostics data. </p>
+<h3>Where is this setting</h3>
+<p>You can find this setting when you navigate to the Azure Virtual Machines section and click on your VM. Under the settings menu, scroll all the way down to &quot;Support + troubleshooting&quot; category. You will find the Boot diagnostics option here.</p>
+<img src="/images/15843185965e6ec88424baa.png" alt="Boot Diagnostics setting">
+<h3>Setting up Boot Diagnostics</h3>
+<p>If this is not set up for your VM then you can do so easily. All you need is a storage account. You can also change this anytime. Click on the settings button at the top. Click <strong>On</strong> and select the storage account. You can also create a new one if you require it.</p>
+<img src="/images/15843192145e6ecaee02936.png" alt="Configuring Boot Diagnostics">
+<h3>Checking the Boot Diagnostics data</h3>
+<p>You can view the screenshot to check where the VM is at with the boot-up process under the hood. If you are not able to log into the VM then this is the main area you want to check to see if the VM is ready (or if there are any updates being applied to the VM). </p>
+<img src="/images/15843195455e6ecc39b0efa.png" alt="Screenshots">
+<p>You can download the Serial logs data for the VM as well if you need to do advanced troubleshooting. This is especially helpful in case of the Linux VMs.</p>
+<img src="/images/15843195525e6ecc401b32d.png" alt="Serial log">
+<p>For more information click here:
+<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/troubleshooting/boot-diagnostics" target="_blank">How to use boot diagnostics to troubleshoot virtual machines in Azure</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-07-boot-diagnostics-of-azure-vms</link>
+<pubDate>Wed, 29 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 06 - Monitoring of Azure VMs</title>
+<description><![CDATA[<p>Within Azure, when you click on the Virtual Machine, you have a lot of control of various aspects of the VM right from one screen. When you navigate to the Azure Virtual Machines section, you are presented with all the virtual machines in your environment. Here when you click on any one VM, a new screen pops up. Microsoft calls this as new <strong>Blade</strong>. In this blade, the Overview section is the first one and is selected by default. It shows you lots of information for the VM like it's a subscription, resource group, public and private IP address, a button to connect to the VM, etc. </p>
+<p>When you scroll a little bit down you get the out of the box metrics for the VM. These metrics include CPU data, Network data, Disk IOPS, etc. You also have time filter at the top.</p>
+<img src="/images/15843136965e6eb56023024.png" alt="Azure VM Overview">
+<p>From the left-hand side menu of the selected Virtual Machine, scroll down to the Monitoring section. This has loads of information and options. The key option you want to explore is the &quot;<strong>Metrics</strong>&quot; option. Here you can build custom graphs to monitor different metrics by adding each one. Click on Add Metrics and select the same from the drop-down list. The graph will update to show all the selected matrices.</p>
+<img src="/images/15843137025e6eb566f2239.png" alt="Azure VM Metrics">
+<p>We will explore more options in the subsequent posts as well.</p>
+<p>For more information, refer to the below links:
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-06-monitoring-of-azure-vms</link>
+<pubDate>Sat, 25 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 05 - Monitoring of EC2 instances</title>
+<description><![CDATA[<p>Monitoring is centralized in AWS via <strong>Cloud Watch</strong>. Few out of the box metrics are integrated into the EC2 instances screen. Various in-depth and detailed metrics are available in the Cloud Watch product. </p>
+<p>To view the monitoring data, navigate to the EC2 section and then go to the Instances section. Click on the EC2 instance for which you want to view the metrics. Then in the below section, you are showed the data for the instance. Here select the <strong>Monitoring</strong> tab. You have different settings here that can help you with monitoring your EC2 instance. The key settings include:</p>
+<ul>
+<li><strong>CloudWatch alarms</strong> - this is a way to set up the alarms or alerts</li>
+<li><strong>Enable Detailed Monitoring</strong> - this is to enable advanced diagnostics data capturing on the instance. With this, you get detailed monitoring of various metrics that you can also control</li>
+<li><strong>View all CloudWatch metrics</strong> - when you click on this option, it will take you to CloudWatch resource. There you can pick and choose various metrics for your EC2 instance and visualize the same.</li>
+<li>The <strong>bottom pane</strong> is where by default the key metrics for the instance are displayed. These metrics include CPU Utilization, Disk Read and Writes, Network analytics etc.</li>
+</ul>
+<img src="/images/15843122925e6eafe48349d.png" alt="AWS EC2 Instance monitoring">
+<p>For more information, refer to the below links:
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p>
+<p><a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-05-monitoring-of-ec2-instances</link>
+<pubDate>Wed, 15 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 04 - Differences in IOPS</title>
+<description><![CDATA[<p>Deciding the <strong>IOPS</strong> (Input/Output Operations Per Second, pronounced i-ops) is one of the most critical decisions when building your virtual machines. But this is also one of the most ignored aspect of the deployment. This performance measurement of your OS and Data Disks can alter your experience significantly. Let's see how it differs in the two platforms.</p>
+<h2>In AWS</h2>
+<ul>
+<li>For <strong>Provisioned IOPS (SSD)</strong> volumes, you can provision up to 50 IOPS per GiB. Provisioned IOPs (SSD) volumes can deliver up to 64000 IOPS, and are best for EBS-optimized instances.  </li>
+<li>For <strong>General Purpose (SSD)</strong> volumes, baseline performance is 3 IOPS per GiB, with a minimum of 100 IOPS and a maximum of 16000 IOPS. General Purpose (SSD) volumes
+under 1000 GiB can burst up to 3000 IOPS. </li>
+<li><strong>Magnetic volumes</strong>, previously called standard volumes, deliver 100 IOPS on average and
+can burst to hundreds of IOPS.</li>
+</ul>
+<p>If you remember when we were building the EC2 instances, you have the option to Add/tweak the storage in Step 4. Here you can see that you can select between the different type of Storage disks that we discussed above.</p>
+<img src="/images/15843064775e6e992deb746.png" alt="AWS1 - Adding Storage">
+<p>When you select the &quot;<em>Provisioned IOPS SSD (io1)</em>&quot; option, the column for IOPS turns into a text box and you can tweak the IOPS to your hearts' content. Please note that you can not go beyond 50 IOPS per GiB. E.g. If the disk you selected is 8 GiB in Size then you can't go beyond a maximum of 400 IOPS (i.e. 8x50). </p>
+<img src="/images/15843064855e6e9935a9a3a.png" alt="AWS2 - Provisioned IOPS">
+<h2>In Azure</h2>
+<ul>
+<li><strong>Premium SSD disks</strong> offer high-performance, low-latency disk support for I/O-intensive applications and production workloads. </li>
+<li><strong>Standard SSD Disks</strong> is a cost-effective storage option optimized for workloads that need consistent performance at lower IOPS levels. </li>
+<li>Use <strong>Standard HDD</strong> disks for Dev/Test scenarios and less critical workloads at the lowest cost.</li>
+</ul>
+<p>You can directly update the type of the disk for OS under the second screen of the Virtual Machine creation wizard i.e. under Disks category. You can select between the three types. The OS Disk size is determined by the VM Size selected. This can be increased later. You can click on &quot;Create and attach a new disk&quot; link and add a Data Disk to the VM.</p>
+<img src="/images/15843065145e6e99523d907.png" alt="Az1 Storage Types">
+<p>In the &quot;Create a new disk&quot; wizard, you can change the size of the disk. Now here you are shown based on the size, how much IOPS you will get. Microsoft defines different tiers and provides IOPS based on the tier selected i.e. based on the disk size selected. </p>
+<p>Below you see the IOPS for <strong>Premium SSD</strong> tiers.</p>
+<img src="/images/15843065925e6e99a0ab239.png" alt="Az2 ">
+<p>Below you see the IOPS for <strong>Standard SSD</strong> tiers.</p>
+<img src="/images/15843066025e6e99aa74b35.png" alt="Az3 ">
+<p>Below you see the IOPS for <strong>Standard HDD</strong> tiers.</p>
+<img src="/images/15843066145e6e99b6ba2ee.png" alt="Az4 ">
+<p>For more information, refer to the below links:
+<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/managed-disks-overview" target="_blank">Microsoft Azure managed disks</a></p>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html" target="_blank">Amazon EBS Volume Types</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-04-differences-in-iops</link>
+<pubDate>Thu, 09 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 03 - Creating Azure VMs</title>
+<description><![CDATA[<p>In the previous post, we covered how to create EC2 instances in AWS. You can revisit that post here: <a href="http://harvestingclouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances/" target="_blank">Creating EC2 Instances in AWS</a></p>
+<p>In this post, we will check how to create a Virtual Machine in Azure. If you know one, it is very easy to translate the information to another platform. The essential part is to look out for the quirks of each platform and note how these differ from each other. Let's dive in.</p>
+<p>You can create the VM resource in one of the two ways. Either by navigating to &quot;<em>Create a resource</em>&quot; and then finding the VM you want to build. </p>
+<img src="/images/15843034905e6e8d82e484b.png" alt="1 Create a resource">
+<p>Or you can navigate to the VMs section and then click on the <strong>Add</strong> button to build the VM.</p>
+<img src="/images/15843034975e6e8d89a4c41.png" alt="2 Add a VM">
+<p>You are presented with the &quot;Create a virtual machine&quot; wizard. Here you ensure that the subscription and the resource group is correct. <strong>Subscription</strong> is how to buy and use Azure. You have different plans like &quot;Pay as you go&quot; when subscribing to Azure. <strong>Resource Groups</strong> are nothing but a logical grouping of resources in Azure. </p>
+<p>You also provide the Instance details like the name of the VM, the region where the VM will be deployed, any redundancy options etc.</p>
+<p>You select the VM image that you want to build e.g. Windows Server 2016 Datacenter. This is similar to selecting the AMI or Amazon machine image in AWS. The Size decides how many vCPUs and Memory in GiB is allocated to the VM. This is also how you will be billed per month for the VM. Note that you only pay when the VM is running. If the VM is in Stopped and Deallocated state then you are not charged for the Compute consumption of the VM. Then you are only charged for the storage component of the VM.</p>
+<img src="/images/15843035325e6e8dacf35ce.png" alt="3_1 Creating a VM">
+<p>When you scroll down, this is also where you provide the credentials to be used with the VM. You also configure allowed ports for the VM. E.g. RDP is opened here. You can tweak this further in the Networking section ahead.</p>
+<p>The biggest difference here is that, if you own a Windows license on-premises then you can leverage that to <strong>save up to 49%</strong> in Azure via Azure Hybrid Benefit.</p>
+<img src="/images/15843035705e6e8dd294530.png" alt="3_1 Creating a VM">
+<p>Next, you select the VM disks. Here based on your selection you get faster and slower IOPS. You can also add new or existing disks as data disks.</p>
+<img src="/images/15843035815e6e8ddde551f.png" alt="4 VM Disks">
+<p>In the networking section, you can select an existing Virtual network or create a new one. You can select subnets within that network or create a new one as well. Same goes for the Public IP. This is also where you can tweak the network security group.</p>
+<img src="/images/15843035995e6e8def01069.png" alt="5 VM Networking">
+<p>Under the management section, you can configure Monitoring options. You can also configure Auto-shutdown configurations on the VM as well.</p>
+<img src="/images/15843036465e6e8e1e54144.png" alt="6 VM Management">
+<p>Under Advanced settings, you can install Microsoft or Third party extensions like Chef, Puppet etc. You can also automate one time installations in your linux VMs via Cloud init. </p>
+<img src="/images/15843036705e6e8e36f01e4.png" alt="7 Advanced settings">
+<p>Next, you can assign Tags to categorize the resources. These come in very handy when creating billing reports. Note that not just the VM but underlying resources like OS and Data disks, network interface cards, etc. will also be tagged.</p>
+<img src="/images/15843037255e6e8e6d768e8.png" alt="8 Adding Tags">
+<p>Finally, you can review the settings. Azure also gives you the option to &quot;Download a template for automation&quot;. This is your ARM Template including the JSON file, that you can leverage to automate or replicate the deployment of the instance multiple times across different environments.</p>
+<img src="/images/15843037395e6e8e7b2fa0c.png" alt="9 Reviewing Settings and Creating VM">
+<p>Then you are prompted with a screen where you can check the deployment status. Once succeeded you are provided with a link to directly navigate to the virtual machine resource.</p>
+<img src="/images/15843037505e6e8e86bb433.png" alt="10 Checking Deployment Status">
+<p>You can now view the provisioned VM under the Virtual Machines section.</p>
+<img src="/images/15843037695e6e8e99a4c74.png" alt="11 Viewing the provisioned VM">
+<p>For more information, refer to the below links:
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms</link>
+<pubDate>Thu, 02 May 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 02 - Creating EC2 Instances</title>
+<description><![CDATA[<p>In this post, we will look at how to create EC2 instances in Amazon Web Service (AWS). </p>
+<p>You start by selecting the option to create or launch the instances.</p>
+<img src="/images/15842968305e6e737ee3631.png" alt="1 Creating Instances">
+<p>In the Instance creation wizard, the breadcrumb at the top show you where in the wizard you are currently at. The first screen is to choose an image for the VM or EC2 instance. The image is called an <strong>Amazon machine image</strong> or <strong>AMI</strong>. You can also search for an AMI. Under the image name, you can view the details of the image. Make sure you select the right image. Click on the Select button once decided. </p>
+<img src="/images/15842969145e6e73d2658a7.png" alt="2 Chossing the Amazon Machine Image or AMI">
+<p>Next, select the instance type. Here you are selecting the actual compute details i.e. the number of vCPUs and the Memory in GiB. You are billed as per the instance type you select.</p>
+<img src="/images/15842969265e6e73dee9670.png" alt="3 Choosing the Instance Type">
+<p>Next, you select various Instance details. This screen is very vast and makes your deployment very configurable. In this post we will not go into each of these settings. Here you can decide to create an Auto Scaling Group, request spot instances, add placement group, select domain join directory, decide shutdown behavior etc. One key setting that you select here is the <strong>Networking details</strong>. You select your VPC (Virtual Private Cloud) network and the subnet for the instance.</p>
+<img src="/images/15842971165e6e749cf1a37.png" alt="4_1 Configuring Instance Details">
+<img src="/images/15842971535e6e74c198196.png" alt="4_2 Configuring Instance Details">
+<p>Next, you configure the Storage details. You can tweak the default storage assigned and can also add more storage. Based on the IOPS requirements you select the Volume type. You can encrypt the storage as well.</p>
+<img src="/images/15842971705e6e74d26ab0e.png" alt="5 Adding Storage">
+<p>Next, you add tags to your instance and underlying volumes. <strong>Tags</strong> are a great way to categorize resources. Below is just an example of a couple of tags assigned to the instance and underlying volumes. </p>
+<img src="/images/15842972035e6e74f3d9532.png" alt="6 Adding Tags">
+<p>Now you configure the firewall on the Instance via Security Groups. You can create a new one or select an existing one. This is where you decide what can connect to your instance and what can not. In the screenshot below the RDP connectivity on port 3389 is open. Please note that the Source of &quot;0.0.0.0/0&quot; means that it is open for all internet. It is highly recommended that you change this setting to only your IP addresses from where you will connect. </p>
+<img src="/images/15842972215e6e750563278.png" alt="7 Configuring Security Group">
+<p>Finally, you review the details. If you need to view the details in detail just expand that category. Click the Edit buttons on the right to edit that setting. Hit Launch to trigger the instance provisioning.</p>
+<img src="/images/15842972375e6e751597c65.png" alt="8 Review details">
+<p>Before the instance can be provisioned, you are prompted with a popup to select a key pair or create a new one. This is a Private and Public key pair that is used to authenticate. You download and keep the Private key. Note that you can only download the Private key at the time of creation. You will not be able to access it later.</p>
+<img src="/images/15842972555e6e7527c1a67.png" alt="9 Creating or selecting Key Pair to connect to Instance">
+<p>You can check the launch status on the next screen. </p>
+<img src="/images/15842972725e6e75383a905.png" alt="10 Checking Launch Status">
+<p>Finally, you can view and check your instance. It will be listed in the list under the Instances section under EC2 service.</p>
+<img src="/images/15842972895e6e7549a0a1c.png" alt="11 Instance in the console">
+<p>For more information, refer to the below links:
+<a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances</link>
+<pubDate>Mon, 29 Apr 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Virtual Machines vs EC2 instances - 01 - Finding resources</title>
+<description><![CDATA[<p>Virtual Machines is one of the key services for Infrastructure as a Service or <strong>IaaS</strong>. It is the virtualization of the OS and allows you to run your workloads in the cloud. Microsoft and Amazon have different branding and implementation of these services. Where Microsoft calls this as <strong>Azure Virtual Machines</strong>, Amazon refers to a similar offering as <strong>Elastic Compute Cloud</strong> or <strong>EC2</strong>.</p>
+<p>Let's look at where you find the EC2 services. You navigate to the All Services section in AWS and then under the <strong>Compute</strong> category, you find the <strong>EC2</strong> option. </p>
+<img src="/images/15842933915e6e660f0bdd7.png" alt="AWS - EC2 under all Services">
+<p>EC2 category has loads of information and your virtual machines or Instances are not shown right away. You have to click on Instances under Instances category as shown below. Then you will be able to view all your existing instances. Here you will also have the option to create a new Instance by click on &quot;<em>Launch Instance</em>&quot;. </p>
+<img src="/images/15842933975e6e66155b983.png" alt="AWS - Finding Instances">
+<p>Similarly, in Azure, you navigate to the 3 lines on the top left. Then you can either click on &quot;<strong>All Services</strong>&quot; (4th option) or you will see &quot;<strong>Virtual machines</strong>&quot; as an option directly. You can also drag and reorder these options as per your preference. </p>
+<img src="/images/15842934035e6e661b547d6.png" alt="Azure - VMs under All Services">
+<p>In the next screen, you can directly access all your <strong>Virtual machines or VMs</strong>. You can click on your VM or create a new one right from here. You just need to click on the <em>Add</em> button as shown below. </p>
+<img src="/images/15842934085e6e662019800.png" alt="Azure - VMs">
+<p>Next, we will dig deeper and view how the creation of these resources differ.</p>
+<p>For more information, refer to the below links:
+<a href="https://azure.microsoft.com/en-us/services/virtual-machines/" target="_blank">Microsoft Azure Virtual Machines</a></p>
+<p><a href="https://aws.amazon.com/ec2/" target="_blank">Amazon Elastic Compute Cloud (EC2)</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-01-finding-resources</link>
+<pubDate>Wed, 24 Apr 2019 00:00:00 +0500</pubDate>
+</item>
+<item>
 <title>General Availability Alert - Azure AD Password Protection is now GA</title>
 <description><![CDATA[<p>Azure Active Directory (AD) Password Protection feature is now generally available. </p>
 <p>In nutshell, this feature provides you with the ability to enforce or audit users who set passwords to common and weak passwords. When set in enforce mode this feature stops them from being able to set a weak or common password. E.g. you could stop the end users from using a password like &quot;test123&quot; or &quot;password1&quot; etc. You can add as many general passwords to ban. As a good practice, you should add your organization's name or any common internal password to this list with any variants you believe end users may use. The end goal is to try and make the password as much difficult and secure as possible. </p>
