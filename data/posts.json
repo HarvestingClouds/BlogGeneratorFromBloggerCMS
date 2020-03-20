@@ -283,6 +283,26 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Azure for AWS professionals - Storage - Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)",
+		"postDate": "24-08-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"storage"
+		],
+		"category": "Azure vs AWS",
+		"body": "For storing your blobs like your photos, videos and any other files, both the cloud platform have great services to offer. AWS calls its service as **Simple Storage Service** or more popularly known as **S3**. Microsoft Azure calls it's service as **Storage Accounts**. Microsoft has bundled below services within Storage Accounts:\r\n\r\n - Blob storage - to securely store your blobs like photos, videos, and other files, etc.\r\n - File shares - SMB file shares\r\n - Table storage - Tabular storage to store non-relational data\r\n - Queue storage - to scale apps\r\n\r\nFrom all these services, Azure blob storage within Storage accounts is the key comparable service to S3.  \r\n\r\nTo access AWS S3, you can do so by navigating to all Services and navigating to S3 under the Storage category as shown below.\r\n\r\n<img src=\"\/images\/15847321275e7517dfd8bdb.png\" alt=\"AWS S3\">\r\n\r\nTo access Microsoft Azure Storage Accounts, navigate to All services -> Storage category -> Storage accounts. \r\n\r\n<img src=\"\/images\/15847321445e7517f07eece.png\" alt=\"Storage accounts\">\r\n\r\nWe will review how to get started with each of these services in the next couple of blogs.\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Aug 24, 2019",
+		"slug": "azure-for-aws-professionals-storage-microsoft-azure-storage-accounts-vs-aws-simple-storage-service-s3",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p>For storing your blobs like your photos, videos and any other files, both the cloud platform have great services to offer. AWS calls its service as <strong>Simple Storage Service<\/strong> or more popularly known as <strong>S3<\/strong>. Microsoft Azure calls it's service as <strong>Storage Account...<\/strong><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure for AWS professionals - Azure Managed Disks vs AWS Elastic Block Store (EBS)",
 		"postDate": "21-08-2019",
 		"tags": [
