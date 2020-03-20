@@ -1,6 +1,47 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Azure SQL Basics - Setting up Private Endpoints on an Azure SQL Server",
+		"postDate": "20-02-2020",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "A **Private Endpoint** is a fundamental block for a private link in Azure. It enables Azure resources, like Virtual Machines (VMs), to communicate privately with linked resources. Under the hood, it creates a network interface card (NIC) on the Azure SQL Server and attaches that to your Virtual network. That way you get a private IP address assigned to your Azure SQL Server. Now from any other resource on this network, you can securely access the Azure SQL Server without the communication leaving the network at all. \r\n\r\nMicrosoft also goes one step further by creating a **Private DNS integration**. It leverages a private DNS zone to provide a DNS name for your Azure SQL Database Server which is mapped to the Private IP address (instead of the usual Public). \r\n\r\nIn this post, you will be setting up the private endpoints to the SQL server through Azure Portal. Then, you can securely access the Azure SQL Database Server from the VM.\r\n\r\n### Create a private endpoint ###\r\n\r\nIn this section, you will create a private endpoint to it.\r\n\r\nOn the upper-left side of the screen in the Azure portal, select *Create a resource > Private Link Center (Preview)*.\r\n\r\n\r\n<img src=\"\/images\/15846633065e740b0ad1dc6.png\" alt=\"Private Link Center\">\r\n\r\nIn Private Link Center - Overview, on the option select Private Endpoints and click Add. \r\n\r\n<img src=\"\/images\/15846633135e740b11c2d24.png\" alt=\"Adding new Private Endpoint\">\r\n\r\nEnter or select this information:\r\n\r\n -  **Subscription** - Select your subscription.\r\n - **Resource group** - Select myResourceGroup. You created this in the previous section.\r\n\r\nUnder instance details provide:\r\n\r\n - **Name** - Enter myPrivateEndpoint. If this name is taken, create a unique name.\r\n - **Region** - Select the geo region where you want to deploy the underlying resources\r\n\r\n\r\n<img src=\"\/images\/15846633635e740b43efd9a.png\" alt=\"Creating a private endpoint wizard\">\r\n\r\nIn the next screen for \"Create a private endpoint - Resource\", enter or select this information:\r\n\r\n - **Connection method** - Select the radio button for \"*Connect to an Azure resource in my directory*\"\r\n - **Subscription** - Select your subscription.\r\n - **Resource type** - Select Microsoft.Sql\/servers.\r\n - **Resource** - Select your server\r\n - **Target sub-resource** - Select sqlServer\r\n\r\nClick next once done. \r\n\r\n<img src=\"\/images\/15846633725e740b4c2d6b4.png\" alt=\"Adding resources\">\r\n\r\nIn **Create a private endpoint (Preview) - Configuration**, enter or select this information:\r\n\r\nUnder the networking section, provide:\r\n\r\n - **Virtual network** - Select MyVirtualNetwork.\r\n - **Subnet** - Select mySubnet.\r\n\r\nUnder the Private DNS integration, provide:\r\n\r\n - **Integrate with private DNS zone** - Select Yes.\r\n - **Private DNS Zone** - Select (New)privatelink.database.windows.net\r\n\r\n\r\n<img src=\"\/images\/15846633795e740b53043e2.png\" alt=\"Networking and DNS integration configurations\">\r\n\r\nSelect Review + create. You're taken to the Review + create page where Azure validates your configuration. When you see the \"Validation passed\" message, select Create.\r\n\r\n<img src=\"\/images\/15846634125e740b746581c.png\" alt=\"Review and Create\">\r\n\r\nOnce the private endpoint is created your Azure SQL Server is ready to be connected via it's new Private IP address. This address will be in the Virtual network you connected it to. There will also be a network interface card (NIC) resource that actually links the Azure SQL Server to the Virtual Network.\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Feb 20, 2020",
+		"slug": "azure-sql-basics-setting-up-private-endpoints-on-an-azure-sql-server",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>A <strong>Private Endpoint<\/strong> is a fundamental block for a private link in Azure. It enables Azure resources, like Virtual Machines (VMs), to communicate privately with linked resources. Under the hood, it creates a network interface card (NIC) on the Azure SQL Server and attaches that to y...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure SQL Basics - Restoring Azure SQL Database from the backup",
+		"postDate": "02-12-2019",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "From time to time, you will need to restore your database from an earlier backup. In this post, we will be discussing the restoring the Azure SQL database from the backup file.\r\n\r\nTo restore the database, go to the Azure SQL database you want to restore. Once you select the SQL database, you can click on Restore as marked in the screenshot.\r\n\r\n<img src=\"\/images\/15846591425e73fac672e6d.png\" alt=\"Restore Option\">\r\n\r\nIt will open the options to select the backfile for restore as shown below.\r\n\r\n<img src=\"\/images\/15846591495e73facdc658b.png\" alt=\"Settings to restore database backup\">\r\n\r\nThe first dropdown is to select the type of backup. You can either select Point-in-time or the LTR (Long Term backup retention) to select the file. When you select the Point-in-time, it shows the earliest date when the restore is taken. It is the first time the Azure has taken the back up of your SQL database. Database Name would be the name by which the database will be restored at the server. You can change the name as per your requirement.\r\n\r\nThe next one is the Restore point selection, it will show the dates highlighted for which backup is available. \r\n\r\nThen it will ask on which server you want to restore the backup. Once selected, then you can set up the tiered pricing for the restored SQL database.  \r\n\r\nThat's it! You are all set now. Hit that button and restore your database.",
+		"addpost": "addpost",
+		"dated": "Dec 02, 2019",
+		"slug": "azure-sql-basics-restoring-azure-sql-database-from-the-backup",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>From time to time, you will need to restore your database from an earlier backup. In this post, we will be discussing the restoring the Azure SQL database from the backup file.<\/p>\n<p>To restore the database, go to the Azure SQL database you want to restore. Once you select the SQL database, you ...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure SQL Basics - Managing Backups for Azure SQL Database",
 		"postDate": "29-11-2019",
 		"tags": [
@@ -238,6 +279,27 @@
 		"categoryslug": "azure-sql",
 		"status": "publised",
 		"summary": "\n<p>Azure SQL Database is Microsoft's Platform as a Service (PaaS) offering for the Microsoft SQL Server Database. In the next few weeks, we will be going back to the basics and delving into this service from basic to intermediate. We will visit all it's nitty gritty's and understanding in detail wha...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Auto Scaling - AWS - 01 All Related Resources for Auto Scaling",
+		"postDate": "03-08-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"scale",
+			"scaleset"
+		],
+		"category": "Azure vs AWS",
+		"body": "AWS has various features that provide autoscaling features. Each resource type has it's unique functionality and these resources can work with each other. \r\n\r\nThese services are:\r\n\r\n - **Launch Templates** - the latest addition - this is a template for the EC2 instances. It has all the relevant information to launch a new EC2 instance. You can configure the compute, storage, networking, etc. inside your launch template. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.\r\n - **Launch Configurations** - this is very similar to launch templates. This is the older way of doing things. You can have multiple versions of a launch template but not for a launch configuration. \r\n - **Auto Scale Groups** - This is how you can have multiple instances hosting the same application running at the same time in AWS. This is what provides you with high availability. These scale in and out based on your scaling conditions. You can create auto scale groups in AWS using any one of the Launch Template or Launch configurations. Templates are the recommended way to go. \r\n - **AWS Auto Scaling** - This is the latest offering from AWS that enables you to quickly discover all scalable resources in your environment and then set up application scaling for you. You can either choose one of the AWS recommended settings to optimize performance or cost or both. Or you can also define your own custom scaling conditions. \r\n\r\nIn the next few blog posts, we will take a practical look at these resources and how to work with each of these. \r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Aug 03, 2019",
+		"slug": "azure-for-aws-professionals-auto-scaling-aws-01-all-related-resources-for-auto-scaling",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p>AWS has various features that provide autoscaling features. Each resource type has it's unique functionality and these resources can work with each other. <\/p>\n<p>These services are:<\/p>\n<ul>\n<li><strong>Launch Templates<\/strong> - the latest addition - this is a template for the EC2 instances. I...<\/li><\/ul>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -3398,5 +3460,25 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Auto Scaling - AWS - 02 Creating Launch Configurations",
+		"postDate": "05-08-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"scale",
+			"scaleset"
+		],
+		"category": "Azure vs AWS",
+		"body": "**Launch Configuration** is the configuration information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. Inside your launch configurations. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), instance type, key pair, and security groups, etc. This helps you to provide a predictable and repeatable way of deploying multiple EC2 instances in your environment.\r\n\r\nPlease note that these provide similar functionality as **Launch Templates** (which we will check in the next blog). This is the older way of doing things. You can have multiple versions of a launch template but not for a launch configuration. Any new features are being added to the Launch Templates and that is what AWS recommends to use. \r\n\r\nThis (or Launch Template) is also required for creating Auto Scaling Groups in AWS.\r\n\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n<img src=\"\/images\/1111111.png\" alt=\"\">\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Aug 05, 2019",
+		"slug": "azure-for-aws-professionals-auto-scaling-aws-02-creating-launch-configurations",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p><strong>Launch Configuration<\/strong> is the configuration information about how to create an EC2 instance. It has all the relevant information to launch a new EC2 instance. Inside your launch configurations. It also contains other instance-level settings, such as the Amazon Machine Image (AMI), ...<\/p>\n"
 	}
 ]
