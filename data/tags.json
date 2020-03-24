@@ -192,5 +192,7 @@
 	"198": "s3",
 	"199": "s3bucket",
 	"200": "bucket",
-	"201": "vpc"
+	"201": "vpc",
+	"202": "datafactory",
+	"203": "factory"
 }
