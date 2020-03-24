@@ -303,6 +303,131 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Azure for AWS professionals - Networking - Azure - 05 Creating rules in NSGs and assigning NSGs",
+		"postDate": "17-10-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"virtualnetwork"
+		],
+		"category": "Azure vs AWS",
+		"body": "In the last post, we created a new Network Security Group or NSG. Now in this post, we will work with these NSGs and create some rules. We will also check how to assign these to a subnet (or network interface) in Azure. \r\n\r\nThere are two types of rules that you define in an NSG:\r\n\r\n 1. **Inbound Rules** - these rules dictate what incoming traffic will be allowed. \r\n 2. **Outbound Rules** - these rules determine what outgoing traffic will be allowed.\r\n\r\nYou define the source and destination for each rule along with the protocol and port information. For **inbound** traffic, the destination will be the associated subnet or network interface. Similarly, for the **outbound** traffic, the source will be the associate subnet or network interface. \r\n\r\nThe rules in an NSG has a priority number. Smaller the priority, the higher in the order it is and it will be executed first. When inbound or outbound traffic hits the NSG then the rules are evaluated in the order based on their priority. If a matching rule is found, then the subsequent rules are NOT evaluated. The traffic is either allowed or denied, as per what is defined in the matching rule.\r\n\r\nNavigate to your Network Security Groups (NSGs) and check the overview screen. You will notice that there are default rules for both Inbound and Outbound rules. These allow connectivity between subnets within the same virtual network. You can update these as well, but the best practice is to overwrite these by writing another rule with higher priority. **Note** that a lower number means a higher priority.\r\n\r\n<img src=\"\/images\/15850320575e79ab79810f1.png\" alt=\"NSG and Rules\">\r\n\r\n### Adding Inbound and Outbound Rules ###\r\nYou can add\/update the Inbound and Outbound Rules from the settings. Since these two are very similar, we will only be looking at the Inbound security rules. These are more important as these dictate who can talk to the VM from the outside world( i.e. out of your virtual network).\r\n\r\nClick on the \"Inbound security rules\" option under the Settings menu. Check all the default rules. To create a new rule, click on the \"*+Add*\" button.\r\n\r\n<img src=\"\/images\/15850320685e79ab844d47a.png\" alt=\"Adding Inbound Security Rules\">\r\n\r\nOne Inbound rule consists of:\r\n\r\n 1. **Source** (IP address in CIDR format) and it's port ranges\r\n 2. **Destination** (IP address in CIDR format) and it's port ranges\r\n 3. **Protocol** for the communication\r\n 4. **Action** - this is either *allow* or *deny* and based upon this select the traffic will be either allowed or dropped\r\n 5. **Priority** - a number depicting the priority of a rule in NSG. Lower this number, higher the priority of a rule\r\n 6. Provide a **name** and **description** for the rule as well. \r\n\r\n<img src=\"\/images\/15850320775e79ab8dd06c9.png\" alt=\"Inbound rule\">\r\n\r\nFor defining Source or Destination you have various template options that you can choose from. These include:\r\n\r\n 1. Any\r\n 2. IP Addresses\r\n 3. Virtual Network\r\n 4. Application security group\r\n\r\nThat's it! Hit create and the NSG rule is ready.\r\n\r\n<img src=\"\/images\/15850332125e79affc65963.png\" alt=\"Destination\">\r\n\r\n### Assigning the NSGs ###\r\n\r\nThese NSGs can be assigned at two levels: \r\n\r\n 1. **Subnet level** - At this level, all the inbound and outbound rules in the NSG are applied to all the Network Interfaces (i.e. VMs) inside the subnet.\r\n 2. **Network Interface level** - At this level, the rules only apply to that particular network interface and other interfaces are not affected.\r\n\r\nSimply navigate to either one of those as per your requirements. In the below screenshot, we are at the subnet level. Click on the \"***+Associate***\" button. In the popup select the virtual network and the subnet in it, with which you want to link this NSG. Hit Save to save these configurations. \r\n\r\n<img src=\"\/images\/15850332185e79b002c509d.png\" alt=\"Associating Subnets and Network interfaces\">\r\n\r\n\r\nThat's it! You are all set. Now you can control the traffic via NSGs and allow only the traffic that adheres to the standard at your organizations with utmost importance to security aspects.\r\n",
+		"addpost": "addpost",
+		"dated": "Oct 17, 2019",
+		"slug": "azure-for-aws-professionals-networking-azure-05-creating-rules-in-nsgs-and-assigning-nsgs",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p>In the last post, we created a new Network Security Group or NSG. Now in this post, we will work with these NSGs and create some rules. We will also check how to assign these to a subnet (or network interface) in Azure. <\/p>\n<p>There are two types of rules that you define in an NSG:<\/p>\n<ol>\n<li>...<\/li><\/ol>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Networking - Azure - 04 Creating Network Security Groups",
+		"postDate": "14-10-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"virtualnetwork"
+		],
+		"category": "Azure vs AWS",
+		"body": "**Network Security Groups** or **NSGs** are kind of a firewall, where you define what traffic will be allowed and what traffic will be blocked. \r\n\r\n**Note** that whereas AWS has Network ACLs at the subnet level and Security Groups at the EC2 instance level, Microsoft Azure only has NSGs. These can be applied both at the subnet level as well as at the network interface level (i.e. VM level). The way these are designed, they resemble Network ACLs a lot.\r\n\r\n\r\nYou start by navigating to all services -> Networking category -> Network security groups. \r\n\r\n<img src=\"\/images\/15850293135e79a0c109953.png\" alt=\"Network Security Groups\">\r\n\r\nAll your existing NSGs are listed here. To create a new one click on the \"*+Add*\" button.\r\n\r\n<img src=\"\/images\/15850293205e79a0c86e92d.png\" alt=\"Add new NSG\">\r\n\r\nProvide the subscription and resource group for the NSG. Also, provide a name and the region where the NSG will be deployed. \r\n\r\n<img src=\"\/images\/15850293255e79a0cdbe430.png\" alt=\"Basics\">\r\n\r\nProvide the tagging information to better categorize the resources. \r\n\r\n<img src=\"\/images\/15850293495e79a0e52dcb5.png\" alt=\"Tags\">\r\n\r\nReview all the settings and hit create. \r\n\r\n<img src=\"\/images\/15850293555e79a0eb75cb7.png\" alt=\"Review and Create\">\r\n\r\nNow that the NSG is created for us we will see how we can define rules in this and assign it to subnets or network interfaces, in the next post. ",
+		"addpost": "addpost",
+		"dated": "Oct 14, 2019",
+		"slug": "azure-for-aws-professionals-networking-azure-04-creating-network-security-groups",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p><strong>Network Security Groups<\/strong> or <strong>NSGs<\/strong> are kind of a firewall, where you define what traffic will be allowed and what traffic will be blocked. <\/p>\n<p><strong>Note<\/strong> that whereas AWS has Network ACLs at the subnet level and Security Groups at the EC2 instance lev...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Networking - Azure - 03 Service Endpoints",
+		"postDate": "13-10-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"virtualnetwork"
+		],
+		"category": "Azure vs AWS",
+		"body": "**Service Endpoints** in Azure Virtual Networks provide the ability to connect to various Microsoft public services (like Azure SQL and Azure storage) securely. From official documentation: \"The endpoints also extend the identity of your VNet to the Azure services over a direct connection. Endpoints allow you to secure your critical Azure service resources to only your virtual networks. Traffic from your VNet to the Azure service always remains on the Microsoft Azure backbone network.\". \r\n\r\nWhen you enable Service Endpoints, the IP address for a Microsoft service, switches from a public IP address to a private IP address. If you have any firewall rules in place then those will need to be updated. E.g. a VM connecting to a Microsoft Azure SQL database. \r\n\r\n**Note** that a service endpoint is always enabled on a **Subnet** level. \r\n\r\nTo begin, navigate to the Virtual Networks and select the virtual network you require. Under settings menu, click on the \"Service endpoints\". To create a new service endpoint click on the \"+Add\" button.\r\n\r\n<img src=\"\/images\/15850264655e7995a16747c.png\" alt=\"Service Endpoints\">\r\n\r\nYou are prompted to enter a service. You can pick from one of the service available. *Microsoft.Storage* and *Microsoft.Sql* are the most common use cases from the list. Microsoft keeps updating this list over a period of time.\r\n\r\n<img src=\"\/images\/15850264715e7995a732e35.png\" alt=\"Selecting the Service\">\r\n\r\nOnce the service is selected, next select the subnet for which you want to enable the service endpoint. Hit Ok and you are done. It will take some time for the configurations to finish at the backend, but now you will have connectivity from your network to the service leveraging private IP addresses internally (instead of public IP addresses).\r\n\r\n<img src=\"\/images\/15850276965e799a70e94fe.png\" alt=\"Linking the Service to the Subnet\">\r\n\r\n\r\nFor more information check this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-network\/virtual-network-service-endpoints-overview\" target=\"_blank\">Virtual Network service endpoints<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Oct 13, 2019",
+		"slug": "azure-for-aws-professionals-networking-azure-03-service-endpoints",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p><strong>Service Endpoints<\/strong> in Azure Virtual Networks provide the ability to connect to various Microsoft public services (like Azure SQL and Azure storage) securely. From official documentation: \"The endpoints also extend the identity of your VNet to the Azure services over a direct ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Networking - Azure - 02 Working with Virtual Networks (vNets) and Subnets",
+		"postDate": "12-10-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "In this post, we will start working with the **Virtual Networks** (or **vNets**) and **Subnets**. To start, navigate to all services and then go to the Networking category. Find the option for Virtual network (the very first option) and click on this. All your vNets will be listed here. Find the one on which you want to work and click on the same.\r\n\r\n<img src=\"\/images\/15850252995e7991134eb50.png\" alt=\"Virtual Networks\">\r\n\r\nUnder the Settings category, you will find the option for \"**Address space**\". This is where you can view the complete address space for your virtual network. Also, this is where you can expand your virtual network by adding more address spaces. \r\n\r\n<img src=\"\/images\/15850253055e799119629eb.png\" alt=\"Address Spaces\">\r\n\r\nNext up, you have:\r\n\r\n 1. **Connected Devices** - These are all the network interfaces (i.e. NIC cards on the virtual machines or VMs) that are connected to this virtual network. You can also filter through the data by name or even IP address. \r\n 2. **Subnets** - All the subnets on the virtual network are listed here.\r\n 3. **Adding Subnets** - You can add more subnets to the vNet by clicking on the \"+ Subnet\" button. E.g. you can have a subnet hosting an internet-facing application. And then you can have another subnet, hosting a database, that will only be accessible from the application.\r\n 4. **IPv4 available addresses** - These are the number of IP addresses available in a subnet. This gives you an indicator of how many devices can connect to a subnet and when your subnet is about to fill up.\r\n\r\n<img src=\"\/images\/15850253125e79912026f25.png\" alt=\"Subnets\">\r\n\r\nThere is much more that can be done on a virtual network and we will keep on exploring the key areas that will be most useful to you. \r\n",
+		"addpost": "addpost",
+		"dated": "Oct 12, 2019",
+		"slug": "azure-for-aws-professionals-networking-azure-02-working-with-virtual-networks-vnets-and-subnets",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In this post, we will start working with the <strong>Virtual Networks<\/strong> (or <strong>vNets<\/strong>) and <strong>Subnets<\/strong>. To start, navigate to all services and then go to the Networking category. Find the option for Virtual network (the very first option) and click on this. All yo...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Networking - Azure - 01 Creating Virtual Network",
+		"postDate": "10-10-2019",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"virtualnetwork"
+		],
+		"category": "Azure vs AWS",
+		"body": "Microsoft Azure's virtual network capabilities as part of the **Infrastructure as a Service** (**IaaS**) offering is called **Virtual Network** or unofficially known as **vNet**. It provides connectivity between various virtual machines (or VMs) in that network. It can also extend the connectivity to other networks. You can also extend the virtual networks to your on-premises networks. \r\n\r\nIn this post, we will be creating a new Virtual Network. To start creating the virtual networks, click on the 3 lines on the top left and then click on the \"**+New**\" button. Here click on the Virtual Network option under the Networking category.\r\n\r\n<img src=\"\/images\/15849562375e78834d45fca.png\" alt=\"Virtual Networks\">\r\n\r\nAlternatively, you can navigate to all services and then go to the Networking category. Find the option for Virtual network (the very first option) and click on this. All your vNets will be listed here (as shown below). You can click on the \"**+Add**\" button to create a new virtual network.\r\n\r\n<img src=\"\/images\/15849908735e790a997ac68.png\" alt=\"Virtual Networks section\">\r\n\r\nTo start with, provide the subscription and the Resource Group details. Provide a name for the virtual network and also the region where you want this to be deployed.\r\n\r\n<img src=\"\/images\/15849562435e788353301bf.png\" alt=\"Create wizard\">\r\n\r\nThe second screen is the most important in the wizard. This is where you define the address spaces for your vNet in CIDR notation. You also define your subnets here. Every virtual network should have at least one subnet. \r\n\r\n<img src=\"\/images\/15849562485e788358d945e.png\" alt=\"IP Addresses and subnets\">\r\n\r\nIn the next screen for security, you can enable the DDoS protection (i.e. protection from the DDoS attacks on your network) and Firewall (i.e. Azure Firewall).\r\n\r\n<img src=\"\/images\/15849576845e7888f479ae4.png\" alt=\"Security\">\r\n\r\nNext, provide the tags to categorize your network resource.\r\n\r\n<img src=\"\/images\/15849577115e78890fe07f8.png\" alt=\"Tags\">\r\n\r\nFinally, review all the settings and create the  virtual network.\r\n\r\n<img src=\"\/images\/15849577175e78891584f58.png\" alt=\"Review and Create\">\r\n\r\n\r\nNow that the virtual network is created for us, in the next few posts, we will start working with this and perform more tweaks and configurations.",
+		"addpost": "addpost",
+		"dated": "Oct 10, 2019",
+		"slug": "azure-for-aws-professionals-networking-azure-01-creating-virtual-network",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p>Microsoft Azure's virtual network capabilities as part of the <strong>Infrastructure as a Service<\/strong> (<strong>IaaS<\/strong>) offering is called <strong>Virtual Network<\/strong> or unofficially known as <strong>vNet<\/strong>. It provides connectivity between various virtual machines (or VMs)...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Networking - AWS - 06 Network ACLs vs Security Groups",
+		"postDate": "07-10-2019",
+		"tags": [
+			"aws",
+			"network",
+			"virtualnetwork",
+			"vpc"
+		],
+		"category": "Azure vs AWS",
+		"body": "**Network ACLs** (or Access Control Lists) and **Security Groups** are very similar in their functionality. Both are acting as a firewall and restricting the traffic. There are few key differences between the two that we need to understand so that we can create and apply this appropriately to any situation at hand. \r\n\r\n### Scope ###\r\n\r\n**Network ACLs** are applied at the **Subnet** level. These restrict the traffic, coming in or out of the subnet. ACLs are therefore automatically applied to all resources (e.g. EC2 instances) in the subnet. \r\n\r\nWhereas the **Security Groups** are applied at the **EC2 instances** level. \r\n\r\nNetwork ACLs act as a secondary layer of defense. Also, if anyone forgets to apply Security Groups at the EC2 instances then Network ACLs assist in setting up standards in terms of allowed and blocked traffic in your environment. \r\n\r\n<img src=\"\/images\/15849551955e787f3b35cf1.png\" alt=\"Traffic Diagram with Network ACLs and Security Groups\">\r\n\r\n(Image source: https:\/\/docs.aws.amazon.com\/vpc\/latest\/userguide\/VPC_Security.html)\r\n\r\n### Rule Types ###\r\n\r\nIn a Security Group, all the traffic is automatically denied. You can only define \"Allow\" rules. And the traffic is allowed as per these rules. \r\n\r\nWhereas in Network ACLs you decide and configure for each rule if the traffic is Allowed or Denied\r\n\r\n### Rules Evaluation ###\r\n\r\nIn a Security Group, all rules are evaluated, regardless of their order, to determine what traffic is allowed. As all traffic is denied by default and you can only specify allow rules (with no priority or rule number), all the rules need to be evaluated to determine if the traffic is allowed or not. \r\n\r\nIn contrast, in Network ACLs, the rules are evaluated in order. If a matching rule is found for the traffic, then subsequent rules are NOT evaluated and the traffic is either Allowed or Denied as mentioned in the first matching rule.\r\n\r\n### Statefulness ###\r\n\r\nA Security Group is **Stateful**. Return traffic is automatically allowed, regardless of any rules. In contrast, the Network ACLs are **Stateless**. Return traffic must be explicitly allowed by the rules.\r\n\r\nFor more information please check the official information here: <a href=\"https:\/\/docs.aws.amazon.com\/vpc\/latest\/userguide\/VPC_Security.html\" target=\"_blank\">Internetwork Traffic Privacy in Amazon VPC<\/a>",
+		"addpost": "addpost",
+		"dated": "Oct 07, 2019",
+		"slug": "azure-for-aws-professionals-networking-aws-06-network-acls-vs-security-groups",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p><strong>Network ACLs<\/strong> (or Access Control Lists) and <strong>Security Groups<\/strong> are very similar in their functionality. Both are acting as a firewall and restricting the traffic. There are few key differences between the two that we need to understand so that we can create and apply...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure for AWS professionals - Networking - AWS - 05 Security Groups",
 		"postDate": "06-10-2019",
 		"tags": [
