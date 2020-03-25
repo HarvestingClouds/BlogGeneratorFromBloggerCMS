@@ -101,6 +101,86 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Leveraging Service Tags to define better rules in Network Security Groups",
+		"postDate": "12-01-2020",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"security",
+			"virtualnetwork"
+		],
+		"category": "Azure Security",
+		"body": "**Service Tags** comes in very handy when you want to specify Sources for Inbound rules and Destination for Outbound rules. It makes your life a lot easier to define a complete service without specifying each and every IP address in that service. \r\n\r\nE.g. you can specify a complete Virtual Network or Microsoft Azure Backup as a source for Inbound rules very easily by simply leveraging Service tags. Even if the address space of that virtual network changes in the future, you will not need to alter its related Network Security Group (NSG) rules.\r\n\r\nSimply navigate to any NSG and then go to Inbound rules (or Outbound rules). Edit one of the existing rules or create a new one. For Souce in case of inbound rules (and destination in case of outbound rules), select \"Service Tag\" from the drop-down. From the drop-down for the \"Source service tag\" select the service tag for the service, for which you need the rule.\r\n\r\n<img src=\"\/images\/15851213745e7b085e3ba29.png\" alt=\"Service Tags\">\r\n\r\n**Note** from the arrow in the above screenshot that the vertical scrollbar is huge. Since this feature was launched, so many services have been configured as Service Tags and have made administrators' life easier in terms of configurations required.\r\n\r\n\r\nFor more information please check this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-network\/service-tags-overview\" target=\"_blank\">Virtual network service tags<\/a>",
+		"addpost": "addpost",
+		"dated": "Jan 12, 2020",
+		"slug": "leveraging-service-tags-to-define-better-rules-in-network-security-groups",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p><strong>Service Tags<\/strong> comes in very handy when you want to specify Sources for Inbound rules and Destination for Outbound rules. It makes your life a lot easier to define a complete service without specifying each and every IP address in that service. <\/p>\n<p>E.g. you can specify a comple...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Data Factory Basics - Creation of Azure SSIS Integration Runtime (IR) into Azure Data Factory",
+		"postDate": "10-01-2020",
+		"tags": [
+			"database",
+			"datafactory",
+			"microsoft",
+			"microsoftazure",
+			"ssis"
+		],
+		"category": "Azure SQL",
+		"body": "To run\/migrate the SSIS packages to Azure Data factory, we need the **Azure SSIS IR** (**Integration Runtime**) in the **Azure Data Factory**. Azure-SSIS IR is the runtime environment that runs SSIS packages on Azure. \r\n\r\nAn Azure-SSIS IR provisions:\r\n\r\n - Running packages deployed into the SSIS catalog (SSISDB) hosted by an Azure SQL Database server or a managed instance (Project Deployment Model).\r\n - Running packages deployed into file systems, file shares, or Azure Files (Package Deployment Model).\r\n\r\nYou can create the self-hosted Azure-SSIS IR with your desired configuration or you can use the run time integration used by the Azure.\r\n\r\n<img src=\"\/images\/15851224855e7b0cb528a7d.png\" alt=\"Default IR\">\r\n\r\nLet\u2019s create the Azure-SSIS IR as per below steps:\r\n\r\n1.)\tGo to data factory created in Azure Portal and Select the Author & Monitor tile to open its Let's get started a page on a separate tab. There, you can continue to create your Azure-SSIS IR.\r\n\r\n<img src=\"\/images\/15851224935e7b0cbd8bce6.png\" alt=\"Configure SSIS Integrations\">\r\n\r\n 2.)\tAfter clicking on Configure SSIS Integration, it will open the integration runtime setup window. It requires as following parameters:\r\n\r\n  1.\tName \u2013 Provide the appropriate Name to your integration runtime\r\n  2.\tDescription \u2013 it\u2019s not a mandatory parameter to provide\r\n  3.\tType is the default setting. You can\u2019t change this one.\r\n  4.\tSet the location\r\n  5.\tNode size \u2013 Select the node size for your integration runtime cluster. Choose the higher number if you want to run packages that require more memory\/computing power.\r\n  6.\tNode Number \u2013 Choose the number from the list. Higher number if you want to run the many packages in parallel.\r\n  7.\tEdition\/license \u2013 Select the SQL server edition of your integration runtime. Select the enterprise if you want to choose the advanced features of integration runtime.\r\n  8.\tSave money - select the Azure Hybrid Benefit option for your integration runtime: Yes or No. Select Yes if you want to bring your SQL Server license with Software Assurance to benefit from cost savings with hybrid use. \r\n\r\nNext is the Integration runtime setup general settings.\r\n\r\n<img src=\"\/images\/15851225005e7b0cc465fe3.png\" alt=\"IR Setup 1 - General settings\">\r\n\r\nNext up we have the Integration runtime setup SQL settings.\r\n\r\n<img src=\"\/images\/15851225075e7b0ccb8236c.png\" alt=\"IR Setup 2 - SQL Settings\">\r\n\r\nNext up we have the Integration runtime setup Advanced settings.\r\n\r\n<img src=\"\/images\/15851225735e7b0d0d5207f.png\" alt=\"IR Setup 3 - Advanced settings\">\r\n\r\nFinally, we have a summary for the IR setup.\r\n\r\n<img src=\"\/images\/15851225805e7b0d1475046.png\" alt=\"IR Setup 4\" - Summary>\r\n\r\nAs you can see below in the screenshot, the self-hosted Azure-SSIS IR has been created.\r\n\r\n<img src=\"\/images\/15851225875e7b0d1bf3edb.png\" alt=\"Created IR for SSIS\">\r\n\r\nAlternatively, to create the Azure-SSIS IR on Azure Data Factory UI portal go to Edit tab -> Connections -> Integration runtimes and click New. \r\n\r\n<img src=\"\/images\/15851225955e7b0d236f516.png\" alt=\"New IR\">\r\n\r\nIn the Integration Runtime Setup panel, select the Lift-and-shift existing SSIS packages to execute in Azure tile, and then select Next and proceed to create IR setup from here, similar to what we did earlier.\r\n\r\n<img src=\"\/images\/15851226245e7b0d406364c.png\" alt=\"IR Setup\">\r\n\r\nNow once we have the Integration Runtime we can start importing and running SSIS packages. \r\n",
+		"addpost": "addpost",
+		"dated": "Jan 10, 2020",
+		"slug": "azure-data-factory-basics-creation-of-azure-ssis-integration-runtime-ir-into-azure-data-factory",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>To run\/migrate the SSIS packages to Azure Data factory, we need the <strong>Azure SSIS IR<\/strong> (<strong>Integration Runtime<\/strong>) in the <strong>Azure Data Factory<\/strong>. Azure-SSIS IR is the runtime environment that runs SSIS packages on Azure. <\/p>\n<p>An Azure-SSIS IR provisions:<\/p>...\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Data Factory Basics - Exploring the Azure Data Factory layout",
+		"postDate": "08-01-2020",
+		"tags": [
+			"datafactory",
+			"factory",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure SQL",
+		"body": "In this post, we will be looking at the Data factories section in Azure in detail. \r\n\r\nTo manage the data factory pipelines, go to All resources -> Data factories. You will see all the data factories have been added or created. Select the data factory you want to manage.\r\n\r\n<img src=\"\/images\/15851220815e7b0b21ae939.png\" alt=\"Data factories\">\r\n\r\nOnce you select the data factory, it will open the new window (known as a blade in Azure) where you can manage your Data Factory.\r\n\r\n<img src=\"\/images\/15851220875e7b0b27f36e5.png\" alt=\"Data factory details\">\r\n\r\nLet\u2019s discuss a few sections of the Data Factory page.\r\n\r\n###Section 1: General properties ###\r\n\r\n 1. Overview: The first page when you land on this window is the overview page. \r\n 2. Activity log: Platform logs provide detailed diagnostic and auditing information for Azure resources and the Azure platform they depend on. They are automatically generated although you need to configure certain platform logs to be forwarded to one or more destinations to be retained.\r\n 3. Access Control (IAM): Review the level of access a user, group, service principal, or managed identity has to this resource.\r\n 4. Tags: This is used to provide some keywords to your resource.\r\n 5. Diagnostic and solve problems: This provides you the list of troubleshooting links for the known issues a user can come across.\r\n\r\n###Section 2 Getting Started###\r\n\r\nQuick Start: This provide the basic tutorial\/videos link on how to work with the Data factory. They have been provided by Microsoft and you can see the documentation about the subject. It is really helpful as it gives a quick understanding of the topic.\r\n\r\n###Section 3 Monitoring###\r\n\r\n 1.\tAlerts: Configure alert rules and attend to fired alerts to efficiently monitor your Azure resources.\r\n 2.\tMetrics: Configure alert rules and attend to fired alerts to efficiently monitor yourAzure resources. For more details, please refer to the Microsoft official documentation for Metrics \r\nat https:\/\/docs.microsoft.com\/en-us\/azure\/azure-monitor\/platform\/metrics-getting-started\r\n 3.\tDiagnostic settings: They are used to collect platform logs and metrics in Azure. To get more information on how to create the diagnostic settings using Azure Portal\/CLI\/Powershell, please refer to the official Microsoft documentation at https:\/\/docs.microsoft.com\/en-us\/azure\/azure-monitor\/platform\/diagnostic-settings\r\n\r\n###Section 4 Author & Monitor###\r\n\r\nAuthor and Monitor link is the most important link which takes you to the authoring console. This console opens up the new window. This is where you can create Azure-SSIS IR, pipelines, linked services, data sets, and data flow, etc.\r\nI will be explaining this more in the upcoming posts.\r\n\r\n###Section 5 Monitoring ###\r\n\r\nThis section is the summarization of the activities happening in the Azure Data Factory. Pipelines status whether it was successful or failed. TriggerRun information that when the pipelines ran. You can also check the CPU and Memory utilization of the IR. You can view or set up all these monitoring status on the Metrics mentioned in section 3.\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Jan 08, 2020",
+		"slug": "azure-data-factory-basics-exploring-the-azure-data-factory-layout",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>In this post, we will be looking at the Data factories section in Azure in detail. <\/p>\n<p>To manage the data factory pipelines, go to All resources -&gt; Data factories. You will see all the data factories have been added or created. Select the data factory you want to manage.<\/p>\n<img src=\"\/ima...\">\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Expose an Azure Function App via API Management",
+		"postDate": "07-01-2020",
+		"tags": [
+			"function",
+			"functions",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Web Development",
+		"body": "You can expose an **Azure Function App** via **API Management** directly from within an Azure Function app. This functionality is provided out of the box and all you need to do is, configure the link between an Azure Function App and an existing (or new) API Management App.\r\n\r\nTo start, navigate to your Azure Function and click on the \"*Platform Features*\" tab. Here you will see the option for \"*API Management*\" as shown below.\r\n\r\n<img src=\"\/images\/15851181855e7afbe967613.png\" alt=\"Option for API Management\">\r\n\r\nOnce you click on API Management, it takes you to a new blade. Here you can simply link your Function app to an existing API Management or even create a new one and then link the app. \r\n\r\n<img src=\"\/images\/15851181975e7afbf58e686.png\" alt=\"Linking API Management\">\r\n\r\nNow that the app is linked, you can now manage API operations, apply policies, edit and download OpenAPI specification files, or navigate to API Management instance for a full-featured experience.\r\n\r\nFor more information please check this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-functions\/functions-openapi-definition\" target=\"_blank\">Create an OpenAPI definition for a serverless API using Azure API Management<\/a>",
+		"addpost": "addpost",
+		"dated": "Jan 07, 2020",
+		"slug": "expose-an-azure-function-app-via-api-management",
+		"categoryslug": "web-development",
+		"status": "publised",
+		"summary": "\n<p>You can expose an <strong>Azure Function App<\/strong> via <strong>API Management<\/strong> directly from within an Azure Function app. This functionality is provided out of the box and all you need to do is, configure the link between an Azure Function App and an existing (or new) API Management A...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure Data Factory Basics - Creating a Data Factory",
 		"postDate": "04-01-2020",
 		"tags": [
@@ -120,6 +200,27 @@
 		"categoryslug": "azure-sql",
 		"status": "publised",
 		"summary": "\n<p><strong>Note<\/strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href=\"http:\/\/harvestingclouds.com\/post\/azure-sql-and-data-factory-basics-index\" target=\"_blank\">Azure SQL and Data Factory Basics - Index<\/a><\/b><\/p>\n<p><strong>Azure Data Factory<\/strong><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Managing cost for both Microsoft Azure and AWS from within Azure",
+		"postDate": "18-12-2019",
+		"tags": [
+			"aws",
+			"billing",
+			"cost",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure vs AWS",
+		"body": "If you are leveraging both Microsoft Azure and Amazon's AWS for the cloud, you now have **AWS Cloud connector** to view your AWS **billing data**, directly from within the Microsoft Azure portal. Let's check out how to set this up.\r\n\r\nStart by navigating to the \"***Cost Management + Billing***\" section. Click on the \"**Cost Management**\" management option. In the new blade, click on the \"Connectors for AWS (Preview)\" option under the settings menu. You will see the option to configure the sync from AWS to Azure here by clicking on the \"***Add connector***\" button.\r\n\r\n<img src=\"\/images\/15851189455e7afee1f0d49.png\" alt=\"The option for Connection\">\r\n\r\nUnder basic settings, just provide a display name, management group and a subscription for the connector. \r\n\r\n<img src=\"\/images\/15851189575e7afeed0fcc1.png\" alt=\"Creating Connector - Basics\">\r\n\r\nIn the \"AWS properties\" section provide the value for:\r\n\r\n - Role ARN\r\n - External ID\r\n - Report Name\r\n\r\nYou need to take some steps in AWS to get these values. These steps are described in detail here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cost-management-billing\/costs\/aws-integration-set-up-configure#create-a-role-and-policy-in-aws\" target=\"_blank\">Create a role and policy in AWS for Billing Connector in Azure<\/a>\r\n\r\n<img src=\"\/images\/15851189655e7afef56cc06.png\" alt=\"Creating Connector - AWS Properties\">\r\n\r\nFinally, review all the settings and create the connector. Now you can view all the cost and billing data for both Microsoft Azure and Amazon's AWS in one place.\r\n\r\nFor more information please check this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/cost-management-billing\/costs\/aws-integration-set-up-configure\" target=\"_blank\">For more information please check this link: <a href=\"\" target=\"_blank\"><\/a><\/a>",
+		"addpost": "addpost",
+		"dated": "Dec 18, 2019",
+		"slug": "managing-cost-for-both-microsoft-azure-and-aws-from-within-azure",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p>If you are leveraging both Microsoft Azure and Amazon's AWS for the cloud, you now have <strong>AWS Cloud connector<\/strong> to view your AWS <strong>billing data<\/strong>, directly from within the Microsoft Azure portal. Let's check out how to set this up.<\/p>\n<p>Start by navigating to the &amp;quot...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -557,6 +658,24 @@
 		"status": "publised",
 		"summary": "\n<p><strong>Note<\/strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-index\" target=\"_blank\">Azure for AWS professionals - Index<\/a><\/b><\/p>\n<p><strong>Network ACLs<\/strong> or <strong>Acc...<\/strong><\/p>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Introducing Azure VMware Solutions",
+		"postDate": "02-10-2019",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"vmware"
+		],
+		"category": "General",
+		"body": "Microsoft and VMWare have been competitors in the private cloud space. But in the public cloud space, this is no less than revolutionary to see VMWare VMs being supported on the Microsoft Azure platform. These solutions help customers to extend (and maybe move) their on-premises VMWare environments to Azure.\r\n\r\n\r\nWhen you go to create a new resource, search for VMWare and you will see the following 3 solutions:\r\n\r\n - **VMware Solution by CloudSimple - Service** - enables you to consume dedicated VMware Cloud environments on Azure. \r\n - **VMware Solution by CloudSimple - Node** - dedicated, isolated Azure bare metal infrastructure to create native VMware Cloud environments on Azure.\r\n - **VMware Solution by CloudSimple - Virtual Machine** - unified, consistent management of Virtual Machines deployed on your VMware Cloud.\r\n\r\n<img src=\"\/images\/15851036775e7ac33d5a1ec.png\" alt=\"VMWare Solutions\">\r\n\r\n\r\nFor more information please check this link: <a href=\"https:\/\/azure.microsoft.com\/en-us\/overview\/azure-vmware\/\" target=\"_blank\">Azure VMware Solutions\r\n<\/a>",
+		"addpost": "addpost",
+		"dated": "Oct 02, 2019",
+		"slug": "introducing-azure-vmware-solutions",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>Microsoft and VMWare have been competitors in the private cloud space. But in the public cloud space, this is no less than revolutionary to see VMWare VMs being supported on the Microsoft Azure platform. These solutions help customers to extend (and maybe move) their on-premises VMWare environmen...<\/p>\n"
 	},
 	{
 		"author": "@20aman",
@@ -1064,6 +1183,46 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Azure AD activity logs now integrated with Log Analytics in Azure Monitor",
+		"postDate": "25-07-2019",
+		"tags": [
+			"azuread",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "General",
+		"body": "I believe that there should be a **single pane of glass** approach to monitoring in Microsoft Azure where you can monitor different aspects of Azure in one place. Microsoft's latest logs integration is a step forward towards this vision. Now Azure AD activity logs are integrated with the Diagnostics Logs for Azure Monitor and Log Analytics in Azure Monitor. These Azure AD logs can now be retained for long term as well, leveraging Azure Storage accounts.\r\n\r\nOne side benefit is that these logs can now be sent to any 3rd party SIEM tools as well.  \r\n\r\nTo get started with this service, simply navigate to your Azure Active Directory and then scroll all the way down to Diagnostic settings. Click on \"***+Add Diagnostic Setting***\" to get started.\r\n\r\n<img src=\"\/images\/15851017635e7abbc3a48ec.png\" alt=\"Azure AD Diagnostic Settings\">\r\n\r\nSelect the log type for \"Audit logs\" and for destination select \"Send to Log Analytics\" and configure your workspace. Save your settings.\r\n\r\n<img src=\"\/images\/15851017755e7abbcfde306.png\" alt=\"Integration with Log Analytics\">\r\n\r\nNow the Azure AD logs will start appearing in the Log Analytics workspace. You can query this data and can analyze the data in various ways as well.\r\n\r\n\r\nFor more information check this official blog on this functionality in detail: \r\n\r\n - <a href=\"https:\/\/techcommunity.microsoft.com\/t5\/azure-active-directory-identity\/azure-active-directory-activity-logs-in-azure-log-analytics-now\/ba-p\/274843\" target=\"_blank\">Azure Active Directory Activity logs in Azure Log Analytics<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/active-directory\/reports-monitoring\/howto-integrate-activity-logs-with-log-analytics\" target=\"_blank\">How to set up the integration<\/a>",
+		"addpost": "addpost",
+		"dated": "Jul 25, 2019",
+		"slug": "azure-ad-activity-logs-now-integrated-with-log-analytics-in-azure-monitor",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>I believe that there should be a <strong>single pane of glass<\/strong> approach to monitoring in Microsoft Azure where you can monitor different aspects of Azure in one place. Microsoft's latest logs integration is a step forward towards this vision. Now Azure AD activity logs are integrated with...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure SQL Database now has a Serverless Compute Tier",
+		"postDate": "24-07-2019",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase",
+			"serverless"
+		],
+		"category": "Azure SQL",
+		"body": "Azure SQL Database now has a **Serverless** Compute Tier. Note that this option is only available with the newer vCore based pricing. This provides you with loads of advantages as this optimizes the pricing and enables all the goodness of the Serverless architecture for your SQL Databases.\r\n\r\nThe key points are:\r\n\r\n - The underlying compute resources (i.e. CPU and memory) are auto-scaled based on the demand\r\n - The billing is done on a per-second basis based on the usage of vCores\r\n\r\nWhen you go to Configure pricing on your database (either during the creation or afterward from the settings), under the vCore based pricing model you now select the **Serverless** option. \r\n\r\n<img src=\"\/images\/15851070515e7ad06b0dc18.png\" alt=\"Azure SQL Database Serverless Compute Tier\">\r\n\r\nFor more information please check this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/sql-database\/sql-database-serverless\" target=\"_blank\">Azure SQL Database serverless<\/a>",
+		"addpost": "addpost",
+		"dated": "Jul 24, 2019",
+		"slug": "azure-sql-database-now-has-a-serverless-compute-tier",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>Azure SQL Database now has a <strong>Serverless<\/strong> Compute Tier. Note that this option is only available with the newer vCore based pricing. This provides you with loads of advantages as this optimizes the pricing and enables all the goodness of the Serverless architecture for your SQL Data...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure for AWS professionals - Auto Scaling - Azure - 04 Viewing the Run History of VMSS",
 		"postDate": "20-07-2019",
 		"tags": [
@@ -1228,6 +1387,27 @@
 		"categoryslug": "azure-vs-aws",
 		"status": "publised",
 		"summary": "\n<p><strong>Note<\/strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-index\" target=\"_blank\">Azure for AWS professionals - Index<\/a><\/b><\/p>\n<p>So far we have seen that to consume Azure Ba...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure App Service now has a free Linux tier and supports Python and Java",
+		"postDate": "30-06-2019",
+		"tags": [
+			"app",
+			"appservice",
+			"microsoft",
+			"microsoftazure",
+			"python"
+		],
+		"category": "General",
+		"body": "Azure App Service has expanded its capabilities to include Linux as it's hosting Operating System. With the goodness of Linux also comes the support for Python and Java natively. \r\n\r\nNow when you will create a new App Service in Microsoft Azure, you can view different Python versions that are currently supported.\r\n\r\n<img src=\"\/images\/15851055505e7aca8e0e0a4.png\" alt=\"Python support in App Service\">\r\n\r\nYou can also view various supported Java versions.\r\n\r\n<img src=\"\/images\/15851059115e7acbf74afb6.png\" alt=\"Java Support\">\r\n\r\nUnder the Operating System settings you can see the Linux as an option. Note that based on the Runtime stack selected, this option maybe pre-selected for you and you won't be able to change this setting. If you will select a Runtime Stack that is supported on both OS then you will have the option to switch between the two platforms. E.g. for .Net core you can select any one of the two platforms.\r\n\r\n<img src=\"\/images\/15851059215e7acc01c3f2f.png\" alt=\"Linux Tier\">\r\n\r\nFor more information please check this link: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/azure-app-service-update-free-linux-tier-python-and-java-support-and-more\/\" target=\"_blank\"><\/a>",
+		"addpost": "addpost",
+		"dated": "Jun 30, 2019",
+		"slug": "azure-app-service-now-has-a-free-linux-tier-and-supports-python-and-java",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>Azure App Service has expanded its capabilities to include Linux as it's hosting Operating System. With the goodness of Linux also comes the support for Python and Java natively. <\/p>\n<p>Now when you will create a new App Service in Microsoft Azure, you can view different Python versions that are...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -1463,6 +1643,27 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Azure App Configuration Service",
+		"postDate": "30-05-2019",
+		"tags": [
+			"app",
+			"configuration",
+			"configurations",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "General",
+		"body": "Azure App Configuration Service is a new service that let's application developers save their application related configurations separately in this service. These configurations are saved securely in this service. This service also allows for your application to scale without any dependency on the configuration data. \r\n\r\nAs the configurations are stored separately from the application code, the developers and designers now have the flexibility to modify the app behavior without them requiring to alter the code multiple time and performing multiple deployments of the application.\r\n\r\nWhen you navigate to the new service creation wizard in Microsoft Azure, search for App Configurations. This should bring up this new service as shown below.\r\n\r\n<img src=\"\/images\/15851052455e7ac95d09346.png\" alt=\"App Configurations\">\r\n\r\nFor more information please check this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-app-configuration\/overview\" target=\"_blank\">Azure App Configuration<\/a>",
+		"addpost": "addpost",
+		"dated": "May 30, 2019",
+		"slug": "azure-app-configuration-service",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>Azure App Configuration Service is a new service that let's application developers save their application related configurations separately in this service. These configurations are saved securely in this service. This service also allows for your application to scale without any dependency on th...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure for AWS professionals - Virtual Machines vs EC2 instances - 07 - Boot Diagnostics of Azure VMs",
 		"postDate": "30-05-2019",
 		"tags": [
@@ -1506,6 +1707,26 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "New Tiers in Azure Application Gateway - Standard v2 and WAF v2 SKUs",
+		"postDate": "17-05-2019",
+		"tags": [
+			"gateway",
+			"microsoft",
+			"microsoftazure",
+			"waf"
+		],
+		"category": "General",
+		"body": "New tiers have been made generally available since last week for Application Gateway. These tiers are:\r\n\r\n - Standard v2\r\n - WAF v2\r\n\r\nThese tiers are backed by Microsoft's SLA of 99.95% availability. These tiers have various optimizations in terms of Autoscaling, Zone redundancy, faster provisioning, improved performance, etc.\r\n\r\nYou can see these new tiers when creating a new Application Gateway. For the **Tier** settings, in the drop-down, now you will see these two new SKUs also listed and available as well.\r\n\r\n<img src=\"\/images\/15851034525e7ac25c699cb.png\" alt=\"New Tiers in Application Gateway\">\r\n\r\n\r\nFor more information please check this link: <a href=\"https:\/\/azure.microsoft.com\/en-us\/services\/application-gateway\/\" target=\"_blank\">Application Gateway<\/a>",
+		"addpost": "addpost",
+		"dated": "May 17, 2019",
+		"slug": "new-tiers-in-azure-application-gateway-standard-v2-and-waf-v2-skus",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>New tiers have been made generally available since last week for Application Gateway. These tiers are:<\/p>\n<ul>\n<li>Standard v2<\/li>\n<li>WAF v2<\/li>\n<\/ul>\n<p>These tiers are backed by Microsoft's SLA of 99.95% availability. These tiers have various optimizations in terms of Autoscaling, Zone redu...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure for AWS professionals - Virtual Machines vs EC2 instances - 05 - Monitoring of EC2 instances",
 		"postDate": "15-05-2019",
 		"tags": [
@@ -1527,6 +1748,25 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Azure now supports GitHub identity single sign-on",
+		"postDate": "14-05-2019",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"github",
+			"identity"
+		],
+		"category": "General",
+		"body": "Azure now supports **GitHub identity single sign-on**. Now when you will try to log into the Azure portal you can use GitHub as an identity provider. If you already have a GitHub account then you don't need to create a new account. You can use the same account to log into the Azure portal (provided someone has given you access on some subscription).\r\n\r\nWhen you click on this link, it takes you to the GitHub website to authenticate you and then bring you back to the Azure portal once authenticated. \r\n\r\n\r\n<img src=\"\/images\/15851077475e7ad323e447d.png\" alt=\"GitHub as a login option\">\r\n\r\n\r\nFor more information please check this link: <a href=\"https:\/\/azure.microsoft.com\/en-ca\/updates\/azure-now-supports-github-identity-single-sign-on-2\/\" target=\"_blank\">Azure now supports GitHub identity single sign-on<\/a>",
+		"addpost": "addpost",
+		"dated": "May 14, 2019",
+		"slug": "azure-now-supports-github-identity-single-sign-on",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>Azure now supports <strong>GitHub identity single sign-on<\/strong>. Now when you will try to log into the Azure portal you can use GitHub as an identity provider. If you already have a GitHub account then you don't need to create a new account. You can use the same account to log into the Azure p...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure for AWS professionals - Virtual Machines vs EC2 instances - 04 - Differences in IOPS",
 		"postDate": "09-05-2019",
 		"tags": [
@@ -1544,6 +1784,26 @@
 		"categoryslug": "azure-vs-aws",
 		"status": "publised",
 		"summary": "\n<p><strong>Note<\/strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-index\" target=\"_blank\">Azure for AWS professionals - Index<\/a><\/b><\/p>\n<p>Deciding the <strong>IOPS<\/strong> (Input\/Ou...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "PowerShell support in Azure Functions",
+		"postDate": "06-05-2019",
+		"tags": [
+			"function",
+			"functions",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "General",
+		"body": "PowerShell support is now available in Azure Functions. This is the feature that I have been waiting for and many others have as well. If you have any reusable functions in your PowerShell scripts, now you can run those in the Serverless way via Azure Functions. Microsoft announced that this includes native support for PowerShell Core 6 as well as the Azure Az modules.\r\n\r\nTo get started, create a new Function App in Azure. While you are creating a new one, now for the \"**Runtime stack**\" you can select \"**PowerShell Core**\" as the option. \r\n\r\n<img src=\"\/images\/15851027185e7abf7e5de6c.png\" alt=\"Function App creation\">\r\n\r\nFor more information please check this link: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/serverless-automation-using-powershell-preview-in-azure-functions\/\" target=\"_blank\">Serverless automation using PowerShell preview in Azure Functions<\/a>",
+		"addpost": "addpost",
+		"dated": "May 06, 2019",
+		"slug": "powershell-support-in-azure-functions",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>PowerShell support is now available in Azure Functions. This is the feature that I have been waiting for and many others have as well. If you have any reusable functions in your PowerShell scripts, now you can run those in the Serverless way via Azure Functions. Microsoft announced that this incl...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -1587,6 +1847,44 @@
 		"categoryslug": "azure-vs-aws",
 		"status": "publised",
 		"summary": "\n<p><strong>Note<\/strong> that this post is a part of the series. You can view all posts in this series here:<b> <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-index\" target=\"_blank\">Azure for AWS professionals - Index<\/a><\/b><\/p>\n<p>In this post, we will look at how to create ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Updates: Azure Front Door Service",
+		"postDate": "28-04-2019",
+		"tags": [
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "General",
+		"body": "**Azure Front Door** is one of the latest services announced by Microsoft. This is a game-changer as it can do lot of heavy lifting for your applications. If your application is deployed in multiple regions then Front Door service is a no-brainer for your organization. \r\n\r\nIt works at the application layer, i.e. layer 7. It monitors the global routing and automatically routes to the best available host to optimize the performance. The routing is based on the URL paths. It also provides instant failover at the global level. It uses smart health probes to check if your application is available or not. It can also perform SSL offloading to encrypt all the traffic.\r\n\r\nTo configure a Front Door, you define:\r\n\r\n - Frontend host\r\n - Backend pools\r\n - Routing rules\r\n\r\n<img src=\"\/images\/15850995455e7ab319037b6.png\" alt=\"3 steps to configure Front Door\">\r\n\r\n\r\nFor more information check this official links: \r\n\r\n - <a href=\"https:\/\/azure.microsoft.com\/en-us\/services\/frontdoor\/\" target=\"_blank\">Azure Front Door<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/frontdoor\/front-door-overview\" target=\"_blank\">Front Door Overview<\/a>",
+		"addpost": "addpost",
+		"dated": "Apr 28, 2019",
+		"slug": "azure-updates-azure-front-door-service",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Front Door<\/strong> is one of the latest services announced by Microsoft. This is a game-changer as it can do lot of heavy lifting for your applications. If your application is deployed in multiple regions then Front Door service is a no-brainer for your organization. <\/p>\n<p>It wor...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Updates: ExpressRoute Direct and Global Reach",
+		"postDate": "27-04-2019",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"update",
+			"updates"
+		],
+		"category": "General",
+		"body": "ExpressRoute Direct and ExpressRoute Global Reach are available to be used now. These services extend the capabilities of ExpressRoute. \r\n\r\n**ExpressRoute Direct** gives you the ability to connect directly into Microsoft\u2019s global network at peering locations strategically distributed across the world. This is different from simple ExpressRoute connectivity in the way that now you are not just connecting to one region but getting access to the complete Microsoft global network. It helps you with massive data ingestion to storage, physical isolation, dedicated capacity, and burst capacity to use Microsoft\u2019s global backbone to access Azure regions at tremendous scale.\r\n\r\n**ExpressRoute Global Reach** is the service where if you have two datacenters, which are located at different geo-locations and both are connected to Microsoft Azure via Express Route then these two datacenters can also connect to each other securely via Microsoft's backbone. \r\n\r\nAs shown in the below example, the two locations i.e. San Francisco and London are connected to Azure via ExpressRoute. Due to the Global Reach feature, now the traffic between these two datacenters can also traverse on the Microsoft backbone securely (as shown in the green color).\r\n\r\n<img src=\"\/images\/15850965485e7aa764c6048.png\" alt=\"Global Reach\">\r\n\r\n(Image source: Microsoft)\r\n\r\nFor more information check here: \r\n\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/expressroute\/expressroute-erdirect-about\" target=\"_blank\">ExpressRoute Direct<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/expressroute\/expressroute-global-reach\" target=\"_blank\">ExpressRoute Global Reach<\/a>",
+		"addpost": "addpost",
+		"dated": "Apr 27, 2019",
+		"slug": "azure-updates-expressroute-direct-and-global-reach",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>ExpressRoute Direct and ExpressRoute Global Reach are available to be used now. These services extend the capabilities of ExpressRoute. <\/p>\n<p><strong>ExpressRoute Direct<\/strong> gives you the ability to connect directly into Microsoft&rsquo;s global network at peering locations strategically d...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{

@@ -194,5 +194,20 @@
 	"200": "bucket",
 	"201": "vpc",
 	"202": "datafactory",
-	"203": "factory"
+	"203": "factory",
+	"204": "update",
+	"205": "updates",
+	"206": "azuread",
+	"207": "gateway",
+	"208": "waf",
+	"209": "vmware",
+	"210": "configuration",
+	"211": "configurations",
+	"212": "python",
+	"213": "serverless",
+	"214": "github",
+	"215": "identity",
+	"216": "cost",
+	"217": "billing",
+	"218": "ssis"
 }
