@@ -81,6 +81,69 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Troubleshooting Azure Networking - Using Network Watcher",
+		"postDate": "11-02-2020",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"troubleshooting",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "**Network Watcher** is like a swiss knife for various things related to networking. This is a one-stop-shop for monitoring and troubleshooting your networks and related components. In this post, we will be focusing on the troubleshooting related aspects of Network Watcher.\r\n\r\n### Enabling Network Watcher ###\r\n\r\nFirst of all, you need to enable network watcher. You should do so for every region where you have a virtual network deployed or will deploy in the near future. To do so simply navigate to the Network Watcher service (by searching for it). In the Overview screen, expand the regions area as shown below. Right-click on the region for which you want to enable this service and select \"*Enable network watcher*\". \r\n\r\nThe first time you do this, it will create a new resource group called \"NetworkWatcherRG\". If you check this resource group after enabling network watcher for any region, it will look empty, but it actually contains hidden resources of type \"*microsoft.network\/networkwatchers*\".\r\n\r\n<img src=\"\/images\/15851936465e7c22ae8edbe.png\" alt=\"Enabling Network Watcher\">\r\n\r\nOnce the network watcher is enabled, you are ready for consuming various mini tools (or different sections) that give you troubleshooting features.\r\n\r\n### IP Flow Verify ###\r\n\r\nThis is to check the IP Flow. If you want to check if the traffic is able to flow or is being blocked then this is the section you want to check. Select the VM and its network interface for which you want to check the IP Flow. The Local IP address will be auto-populated. Fill in the details for the Remote IP address and Remote port and click on the Check button. It will simulate the traffic and will let you know the results. \r\n\r\n<img src=\"\/images\/15851936555e7c22b7e441a.png\" alt=\"IP Flow Verify\">\r\n\r\n### Next Hop ###\r\n\r\nIf you have various Route tables and you want to verify that the traffic follows a particular route or not then \"Next Hop\" is the section you want to check. You can check if traffic from a source to destination will go via network virtual appliance or not based on a route defined in a route table or not. \r\n\r\nSimply select the source and destination. The Source IP address will populate based on the network interface selected. And the destination IP address will be input by you. Click on the \"Next hop\" button once you are ready. The output will show you what the next hop will be and the route along with the route table that is directing that traffic to that next hop.\r\n\r\n<img src=\"\/images\/15851936625e7c22be7dc81.png\" alt=\"Next Hop\">\r\n\r\n### Effective Security Rules ###\r\n\r\nYou may have various Network Security Groups (NSGs) applied to a VM i.e. one NSG applied directly on its network interface and another one applied at the subnet level. If you want to check what is the result set of these NSGs and which NSGs are effectively applied on your VM, then this is the section that you can use. Simply select your Virtual Machine (VM) and the effective security rules will be displayed in the bottom section. \r\n\r\n<img src=\"\/images\/15851936705e7c22c6906dc.png\" alt=\"Effective Security Rules\">\r\n\r\n\r\nFor more information please check this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/network-watcher\/network-watcher-monitoring-overview\" target=\"_blank\">Azure Network Watcher<\/a>\r\n",
+		"addpost": "addpost",
+		"dated": "Feb 11, 2020",
+		"slug": "troubleshooting-azure-networking-using-network-watcher",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Network Watcher<\/strong> is like a swiss knife for various things related to networking. This is a one-stop-shop for monitoring and troubleshooting your networks and related components. In this post, we will be focusing on the troubleshooting related aspects of Network Watcher.<\/p>\n<h3>En...<\/h3>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Troubleshooting Azure Networking - Checking Allowed and Denied Traffic in Network Security Groups (NSGs) via Log Analytics Queries",
+		"postDate": "04-02-2020",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"troubleshooting",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "In the last post, we set up the NSG Flow Logs to be sent to the Log Analytics workspace. In this post, we will run Log queries on this workspace to check the traffic data. We can easily see allowed vs denied traffic on the NSGs leveraging these queries.\r\n\r\n\r\nTo start first navigate to the Log Analytics workspaces. Click on the workspace which is the target for NSG Flow Logs in your Network Security Groups (NSGs). Within this workspace, click on the **Logs** section. If you are opening this for the first time, you will see a \"Getting Started\" button. Click on that and go through the tutorial if you want. \r\n\r\nOnce the Logs section is opened up (as shown below), you can type the queries we will discuss next in the main area (marked number 3 below). The results will appear in the bottom section. You can use the time filters (also shown below as number 2) to filter the data to a specific date and time range.\r\n\r\n<img src=\"\/images\/15851741605e7bd69073d9a.png\" alt=\"Log Analytics - Checking Logs\">\r\n\r\nAll the logs from NSG Flow Logs are sent to the \"**AzureNetworkAnalytics_CL**\" table in the Log Analytics. You can start querying this table for the data. Below are various queries that have helped me a lot in troubleshooting NSGs. \r\n\r\n**NOTE**: In the below examples, \"10.20.\" uniquely identify my virtual network. You will need to tweak this value as per the IP address space of your virtual network. You can even specify multiple address spaces for both sources and destinations. \r\n\r\n### Checking all Denied Traffic ###\r\n\r\n    AzureNetworkAnalytics_CL| extend NSGRuleAction=split(NSGRules_s,'|',3)[0]| extend NSGRuleName=tostring(split(NSGRules_s,'|',1)[0])| where NSGRuleAction == \"D\" | summarize count() by VM_s,VMIP_s,SrcIP_s,DestIP_s,DestPort_d\r\n\r\nTo extend the above query, we can also check the denied Traffic with Time Generated, NSG Name and Rule Name, Subnet Names and more info:\r\n\r\n\r\n    AzureNetworkAnalytics_CL| extend NSGRuleAction=split(NSGRules_s,'|',3)[0]| extend NSGRuleName=tostring(split(NSGRules_s,'|',1)[0])| extend NSGName=tostring(split(NSGList_s,'\/',2)[0])| where NSGRuleAction == \"D\" | summarize count() by SourceIP=SrcIP_s, DestinationIP=DestIP_s, DestinationPort=DestPort_d, TimeGenerated, NSGName, NSGRuleName, SourceSubnet=Subnet1_s, DestinationSubnet=Subnet2_s\r\n\r\n\r\n### Intra vNet allowed traffic for a specific rule ###\r\n\r\n    AzureNetworkAnalytics_CL| extend NSGRuleAction=split(NSGRules_s,'|',3)[0]| extend NSGRuleName=tostring(split(NSGRules_s,'|',1)[0])\r\n    | extend NSGName=tostring(split(NSGList_s,'\/',2)[0])\r\n    | where NSGRuleAction == \"A\"\r\n    | where NSGRuleName == \"privateipinbound-allow\" \r\n    | where SrcIP_s contains \"10.20.\"\r\n    | where DestIP_s contains \"10.24.\"\r\n    | summarize count() by SourceIP=SrcIP_s, DestinationIP=DestIP_s, DestinationPort=DestPort_d, TimeGenerated, NSGName, NSGRuleName, SourceSubnet=Subnet1_s,     DestinationSubnet=Subnet2_s, L4Protocol_s\r\n\r\n### Query to review specific rule for specific IP and only Allowed traffic ###\r\n\r\n    AzureNetworkAnalytics_CL| extend NSGRuleAction=split(NSGRules_s,'|',3)[0]| extend NSGRuleName=tostring(split(NSGRules_s,'|',1)[0])| where NSGRuleAction == \"A\"\r\n    | where NSGRuleName == \"temp-allowall-inbound\" \r\n    | where SrcIP_s contains \"10.20.\" \r\n\r\n\r\n### Intra vNet allowed traffic for a specific rule ###\r\n\r\n    AzureNetworkAnalytics_CL| extend NSGRuleAction=split(NSGRules_s,'|',3)[0]| extend NSGRuleName=tostring(split(NSGRules_s,'|',1)[0])\r\n    | extend NSGName=tostring(split(NSGList_s,'\/',2)[0])\r\n    | where NSGRuleAction == \"A\"\r\n    | where NSGRuleName == \"privateipinbound-allow\" \r\n    | where SrcIP_s contains \"10.20.\"\r\n    | where DestIP_s contains \"10.20.\"\r\n    | summarize count() by SourceIP=SrcIP_s, DestinationIP=DestIP_s, DestinationPort=DestPort_d, TimeGenerated, NSGName, NSGRuleName, SourceSubnet=Subnet1_s, DestinationSubnet=Subnet2_s, L4Protocol_s\r\n\r\n\r\n### Intra vNet allowed traffic for a specific NSG ###\r\n\r\n    AzureNetworkAnalytics_CL| extend NSGRuleAction=split(NSGRules_s,'|',3)[0]| extend NSGRuleName=tostring(split(NSGRules_s,'|',1)[0])\r\n    | extend NSGName=tostring(split(NSGList_s,'\/',2)[0])\r\n    | where NSGRuleAction == \"A\"\r\n    | where NSGName contains \"systemcenter\"\r\n    | where SrcIP_s contains \"10.20.\"\r\n    | where DestIP_s contains \"10.20.\"\r\n    | summarize count() by DestinationPort=DestPort_d, NSGName, NSGRuleName, SourceSubnet=Subnet1_s, DestinationSubnet=Subnet2_s, L4Protocol_s, TimeGenerated\r\n\r\n\r\n### Intra vNet allowed traffic for a specific NSG for Inbound Traffic Only ###\r\n\r\n    AzureNetworkAnalytics_CL| extend NSGRuleAction=split(NSGRules_s,'|',3)[0]| extend NSGRuleName=tostring(split(NSGRules_s,'|',1)[0])\r\n    | extend NSGName=tostring(split(NSGList_s,'\/',2)[0])\r\n    | where NSGRuleAction == \"A\"\r\n    | where NSGName contains \"systemcenter\"\r\n    | where SrcIP_s contains \"10.20.\"\r\n    | where DestIP_s contains \"10.20.\"\r\n    | where FlowDirection_s == \"I\"\r\n    | summarize count() by DestinationPort=DestPort_d, NSGName, NSGRuleName, SourceSubnet=Subnet1_s, DestinationSubnet=Subnet2_s, L4Protocol_s, TimeGenerated\r\n\r\n\r\n\r\nPlease note that the above queries are only to help you kick start the troubleshooting. These should be used as a reference. Note how the properties are expanded and details extracted (using split and extend functions). If you want me to explain any of these queries in detail, please mention so in the comments below and I can provide details.\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Feb 04, 2020",
+		"slug": "troubleshooting-azure-networking-checking-allowed-and-denied-traffic-in-network-security-groups-nsgs-via-log-analytics-queries",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In the last post, we set up the NSG Flow Logs to be sent to the Log Analytics workspace. In this post, we will run Log queries on this workspace to check the traffic data. We can easily see allowed vs denied traffic on the NSGs leveraging these queries.<\/p>\n<p>To start first navigate to the Log A...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Troubleshooting Azure Networking - Setting up Flow Logs Monitoring on Network Security Groups (NSGs)",
+		"postDate": "03-02-2020",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"nsg",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "To be able to troubleshoot traffic being allowed or blocked on the **Network Security Group** (NSGs), Flow Logs should be enabled and should be sent to a Storage Account and Log Analytics, etc. Setting this up is very easy. This needs to be set up on each of the NSG in your environment. \r\n\r\n**Note** that the **Network Watcher** is a pre-requisite for this. It will be auto-enabled for the region of the NSG when the Flow Logs is set up.\r\n\r\nTo start, navigate to the Network Security Groups in the Azure Portal. Select the NSG for which you want to enable the Flow Logs. Scroll all the way down in the settings and select the \"**NSG Flow Logs**\" setting. Click on the Flow Logs in the middle area to open up the settings for it.\r\n\r\n<img src=\"\/images\/15851646075e7bb13f901c3.png\" alt=\"NSG Flow Logs optoin\">\r\n\r\nFlow logs status should be turned On to be able to log all the flow logs. **Version 2** has more information for throughput etc. Click on the Storage option to configure the storage account to be used to export the flow logs.\r\n\r\n<img src=\"\/images\/15851646275e7bb1539e826.png\" alt=\"Enabling logging to storage\">\r\n\r\nScroll down further to check the Log Analytics workspace settings. Turn on the **traffic analysis status**. For better and detailed logging set the \"Traffic Analysis processing interval\" to \"Every 10 mins\" instead of every 1 hour. Finally, select the Log Analytics workspace where you want the logs to be sent. Try to be uniform and select the same workspace for all NSG flow logs. \r\n\r\n<img src=\"\/images\/15851646355e7bb15bb6704.png\" alt=\"Enabling logging to Log Analytics workspace\">\r\n\r\n\r\nNow the flow logs will automatically capture and you are ready to start troubleshooting the traffic. We will check how to do this and common queries that you can reuse in the next few blog posts.\r\n",
+		"addpost": "addpost",
+		"dated": "Feb 03, 2020",
+		"slug": "troubleshooting-azure-networking-setting-up-flow-logs-monitoring-on-network-security-groups-nsgs",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>To be able to troubleshoot traffic being allowed or blocked on the <strong>Network Security Group<\/strong> (NSGs), Flow Logs should be enabled and should be sent to a Storage Account and Log Analytics, etc. Setting this up is very easy. This needs to be set up on each of the NSG in your environme...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure for AWS professionals - Storage - Azure - 06 Geo Replication on Storage accounts",
 		"postDate": "11-09-2019",
 		"tags": [
