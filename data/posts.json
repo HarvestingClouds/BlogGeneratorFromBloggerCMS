@@ -4632,5 +4632,26 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Service Tags are now supported for Defining Routes in Route Tables",
+		"postDate": "27-03-2021",
+		"tags": [
+			"Azure",
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"routetables",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP addresses corresponding to the Azure Storage service. Microsoft publishes all these IP addresses in a JSON format that you can leverage. This JSON file is available here: <a href=\"https:\/\/www.microsoft.com\/en-us\/download\/details.aspx?id=56519\" target=\"_blank\">Azure IP Ranges and Service Tags \u2013 Public Cloud<\/a>\r\n\r\nThis current process will involve around 504 routes corresponding to each IP address space published by Microsoft for Azure Storage service alone. To make matters even more complex, you have a limit on the total number of routes allowed in a subscription. You can have a max of 200 Route Tables and only 400 routes allowed per Route Tables. You can check all the service limits here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-resource-manager\/management\/azure-subscription-service-limits\" target=\"_blank\">Azure subscription and service limits, quotas, and constraints<\/a>\r\n\r\n### Solution ###\r\n\r\nMicrosoft has published the solution for this problem. You can now leverage the Service Tags when defining User Defined Routes (or UDRs) in a Route Table. I believe this addresses a long-requested feature and makes the task to route any Microsoft service-related communication easy. \r\n\r\nThis service is currently in **Public Preview** (at the time of writing this blog post). Also, this service is only available via APIs i.e. via REST, PowerShell, CLI, and can also be used in ARM templates. This feature is **not** currently available through the Azure Portal.\r\n\r\nYou can now specify a Service Tag for the address prefix parameter in a user-defined route for your route table. You can choose from tags representing over 60 Microsoft and Azure services to simplify route creation and maintenance. \r\n\r\n - You no longer need to manually update routes when services change or add to their list of endpoints. Routes with Service Tags will update automatically to include new changes. \r\n - This also eliminates the need for regularly updating routes based on the IP data in the weekly JSON file downloads that Microsoft provides. \r\n - This also helps reduce the likelihood of running into the routes per route table limit (400) which is common when configuring routing for multiple Microsoft and Azure services. By using Service Tags, you can avoid this, since the tag condenses all ranges for that service into one group. \r\n - For example, Microsoft lists more than 4,500 prefixes that collectively represent the Azure address space. You can now use one route with the AzureCloud Service Tag which will include all of these. \r\n\r\nLearn more about this capability here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/public-preview-service-tags-for-user-defined-routing\/\" target=\"_blank\">Public preview: Service Tags for User Defined Routing<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 27, 2021",
+		"slug": "service-tags-are-now-supported-for-defining-routes-in-route-tables",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP a...<\/p>\n"
 	}
 ]
