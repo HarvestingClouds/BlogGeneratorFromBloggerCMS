@@ -126,6 +126,51 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Configuring the Azure Route Server",
+		"postDate": "15-03-2021",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"routetable",
+			"routetables",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "In the last 2 posts, we looked at what Azure Route Server is and how to configure it. You can view those posts here: \r\n\r\n - <a href=\"\" target=\"_blank\">Understanding the Azure Route Server<\/a>\r\n - <a href=\"\" target=\"_blank\">Creating the Azure Route Server<\/a>\r\n\r\nIn this post, we will look at configuring the Azure Route Server. The below steps are involved in configuring the Route Server:\r\n\r\n 1. Set up the peering by adding a Peer. This could be a Network Virtual Appliance or NVA. \r\n 2. Establish BGP session from the NVA\r\n 3. Optionally you can configure route exchange if you are trying to connect to ExpressRoute gateway or a VPN gateway. \r\n\r\nLet's look at these steps in detail. \r\n\r\n### Set up the peering ###\r\n\r\nNavigate to the Route server by click on this link: <a href=\"https:\/\/aka.ms\/routeserver\" target=\"_blank\">Azure Route Server<\/a>.\r\n\r\nClick on the \"**Peers**\" and then on the right side click on the \"**+ Add**\" button to add the peering. A pop-up window will open on the side to \"**Add Peer**\". In here enter the values for the NVA. Specifically, enter a name you want to give to this peering. And enter the ASN or *Autonomous Systems Number* for your NVA. Also, enter the  IP address of the NVA the Route Server will communicate with to establish BGP.\r\n\r\n**Note**: The virtual network where you deployed the Route Server should have connectivity to the IPv4 IP address of the NVA.\r\n\r\n<img src=\"\/images\/1617039597606210ed9fa47.png\" alt=\"Adding a peer\">\r\n\r\n### Establish BGP session from the NVA ###\r\n\r\nThe connection with the NVA will not be established until you finish the configurations on the NVA. These configurations will vary depending on the type of NVA (e.g. Check Point, Palo Alto, to name a few). To complete the connection you will need to provide the NVA team with 2 pieces of information regarding the Route Server. These are:\r\n\r\n 1. Peer IPs for the Route Server\r\n 2. ASN number of the Route Server\r\n\r\nYou can get this information from the Overview page of the Route Server as shown below.\r\n\r\n<img src=\"\/images\/1617039616606211003a605.png\" alt=\"Getting information for IP and ASN of Route Server\">\r\n\r\n### Configure route exchange - for ExpressRoute gateway or a VPN gateway ###\r\n\r\nIf you have an ExpressRoute gateway or VPN gateway or both and you want them to exchange routes with the Route Server, you can enable route exchange. It is simply a toggle setting in the Route server. You can access this from the Configurations section under the settings. Select \"Enabled\" for the \"Branch-to-branch\" setting and click on the Save button to save the settings.\r\n\r\n<img src=\"\/images\/16170396306062110ea0a26.png\" alt=\"Configuring Route Exchange\">\r\n\r\nYou can find all the Route Server related official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/route-server\/\" target=\"_blank\">Azure Route Server documentation<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 15, 2021",
+		"slug": "configuring-the-azure-route-server",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In the last 2 posts, we looked at what Azure Route Server is and how to configure it. You can view those posts here: <\/p>\n<ul>\n<li><a href=\"\" target=\"_blank\">Understanding the Azure Route Server<\/a><\/li>\n<li><a href=\"\" target=\"_blank\">Creating the Azure Route Server<\/a><\/li>\n<\/ul>\n<p>In this post...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Creating the Azure Route Server",
+		"postDate": "15-03-2021",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"routetable",
+			"routetables",
+			"routing",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "In the previous blog post we looked at what an Azure Route Server is and what are its benefits. You can view the previous post here: <a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-azure-route-server\/\" target=\"_blank\">Understanding the Azure Route Server<\/a>\r\n\r\nIn this blog post, we will be setting up an **Azure Route Server** via the Azure Portal.\r\n\r\n### Pre-requisite ###\r\n\r\nIf you are setting up Azure Route Server for your Network Virtual Appliance or NVA, the two key pre-requisites are:\r\n\r\n 1. For you to be able to set up an Azure Route Server, you need to have an empty subnet in your virtual network with the name \"**RouteServerSubnet**\". This subnet should have an address space with a prefix of at least \"**\/27**\" or higher.\r\n 2. The NVA should allow the BGP protocol to leverage the benefits of having the Azure Route Server.\r\n\r\n### Finding the Route Server section ###\r\n\r\nTo find the section for Route Server navigate to this direct link: <a href=\"https:\/\/aka.ms\/routeserver\" target=\"_blank\">Azure Route Server<\/a>\r\n\r\nTo create a new Route Server, simply click on the \"**+ Create new route server**\" button.\r\n\r\n<img src=\"\/images\/16170339076061fab3c3d27.png\" alt=\"Route Servers\">\r\n\r\n### Configurations ###\r\n\r\nIn the Basics section, provide the values for Subscription, Resource Group, Instance name of the route server, and Region for the deployment. Next you will need to select the Virtual network in the same region where you want to deploy the route server. The wizard will automatically select the subnet with the name \"RouteServerSubnet\". As noted earlier, this subnet should have at least a \"\/27\" prefix for the address space.\r\n\r\n<img src=\"\/images\/16170345396061fd2b4b162.png\" alt=\"Basics\">\r\n\r\nNext, provide any Tags, and then click on \"Review + create\" and finally click on the \"Create\" button to create the route server.\r\n\r\n<img src=\"\/images\/16170347226061fde24cce5.png\" alt=\"Create the Route Server\">\r\n\r\nBehind the scene it creates two resources of following types:\r\n\r\n - Microsoft.Network\/**virtualHubs**\r\n - Microsoft.Network\/virtualHubs\/**ipConfigurations**\r\n\r\nIf you check the Resource Group that you used for deployment, it will look empty. But when you click on the check box for \"Show hidden types\" you will be able to view the Virtual Hub that was deployed for the Route Server. \r\n\r\n<img src=\"\/images\/161703712860620748445e8.png\" alt=\"Hidden type for Virtual Hub\">\r\n\r\nIn the next post, we will look at configuring the Route Server.\r\n",
+		"addpost": "addpost",
+		"dated": "Mar 15, 2021",
+		"slug": "creating-the-azure-route-server",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In the previous blog post we looked at what an Azure Route Server is and what are its benefits. You can view the previous post here: <a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-azure-route-server\/\" target=\"_blank\">Understanding the Azure Route Server<\/a><\/p>\n<p>In this blog post, ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Understanding the Azure Route Server",
 		"postDate": "11-03-2021",
 		"tags": [
