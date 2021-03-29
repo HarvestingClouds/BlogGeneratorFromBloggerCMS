@@ -1,6 +1,296 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Service Tags are now supported for Defining Routes in Route Tables",
+		"postDate": "27-03-2021",
+		"tags": [
+			"Azure",
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"routetables",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP addresses corresponding to the Azure Storage service. Microsoft publishes all these IP addresses in a JSON format that you can leverage. This JSON file is available here: <a href=\"https:\/\/www.microsoft.com\/en-us\/download\/details.aspx?id=56519\" target=\"_blank\">Azure IP Ranges and Service Tags \u2013 Public Cloud<\/a>\r\n\r\nThis current process will involve around 504 routes corresponding to each IP address space published by Microsoft for Azure Storage service alone. To make matters even more complex, you have a limit on the total number of routes allowed in a subscription. You can have a max of 200 Route Tables and only 400 routes allowed per Route Tables. You can check all the service limits here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-resource-manager\/management\/azure-subscription-service-limits\" target=\"_blank\">Azure subscription and service limits, quotas, and constraints<\/a>\r\n\r\n### Solution ###\r\n\r\nMicrosoft has published the solution for this problem. You can now leverage the Service Tags when defining User Defined Routes (or UDRs) in a Route Table. I believe this addresses a long-requested feature and makes the task to route any Microsoft service-related communication easy. \r\n\r\nThis service is currently in **Public Preview** (at the time of writing this blog post). Also, this service is only available via APIs i.e. via REST, PowerShell, CLI, and can also be used in ARM templates. This feature is **not** currently available through the Azure Portal.\r\n\r\nYou can now specify a Service Tag for the address prefix parameter in a user-defined route for your route table. You can choose from tags representing over 60 Microsoft and Azure services to simplify route creation and maintenance. \r\n\r\n - You no longer need to manually update routes when services change or add to their list of endpoints. Routes with Service Tags will update automatically to include new changes. \r\n - This also eliminates the need for regularly updating routes based on the IP data in the weekly JSON file downloads that Microsoft provides. \r\n - This also helps reduce the likelihood of running into the routes per route table limit (400) which is common when configuring routing for multiple Microsoft and Azure services. By using Service Tags, you can avoid this, since the tag condenses all ranges for that service into one group. \r\n - For example, Microsoft lists more than 4,500 prefixes that collectively represent the Azure address space. You can now use one route with the AzureCloud Service Tag which will include all of these. \r\n\r\nLearn more about this capability here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/public-preview-service-tags-for-user-defined-routing\/\" target=\"_blank\">Public preview: Service Tags for User Defined Routing<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 27, 2021",
+		"slug": "service-tags-are-now-supported-for-defining-routes-in-route-tables",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP a...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "How to Copy data from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob",
+		"postDate": "25-03-2021",
+		"tags": [
+			"copy",
+			"gcp",
+			"googlecloud",
+			"microsoft",
+			"microsoftazure",
+			"storage"
+		],
+		"category": "Azure",
+		"body": "Copying from Google Cloud to Microsoft Azure has been a challenge that Microsoft has addressed in the latest release of AzCopy. Via the latest release i.e. **v10.9.0**, Microsoft has brought the capabilities importing from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob. Additionally, this latest release will also have support for scanning logs that can have low or high output based on the requirements. Tags will be preserved when copying the blobs and the list command will include \"Last Modified Time\" related information.\r\n\r\nGeneral syntax to copy is as shown below:\r\n\r\n    azcopy copy 'https:\/\/storage.cloud.google.com\/<bucket-name>\/<object-name>' 'https:\/\/<storage-account-name>.blob.core.windows.net\/<container-name>\/<blob-name>'\r\n\r\nAn example is as below:\r\n\r\n    azcopy copy 'https:\/\/storage.cloud.google.com\/mybucket\/myobject' 'https:\/\/mystorageaccount.blob.core.windows.net\/mycontainer\/myblob'\r\n\r\nThis feature is currently in preview at the time of writing of this blog. You can read more about how to practically use AzCopy to copy form the GCP Storage to Microsoft Azure Storage block blob here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/common\/storage-use-azcopy-google-cloud?toc=\/azure\/storage\/blobs\/toc.json\" target=\"_blank\">Copy data from Google Cloud Storage to Azure Storage by using AzCopy<\/a>.",
+		"addpost": "addpost",
+		"dated": "Mar 25, 2021",
+		"slug": "how-to-copy-data-from-google-cloud-platform-gcp-storage-to-microsoft-azure-storage-block-blob",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Copying from Google Cloud to Microsoft Azure has been a challenge that Microsoft has addressed in the latest release of AzCopy. Via the latest release i.e. <strong>v10.9.0<\/strong>, Microsoft has brought the capabilities importing from Google Cloud Platform (GCP) Storage to Microsoft Azure Storag...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Simplified process for publishing VM Images to Azure Marketplace",
+		"postDate": "23-03-2021",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"publish",
+			"vmimage"
+		],
+		"category": "Azure",
+		"body": "Microsoft has announced a new capability now to publish the VM Images to Marketplace. You can now publish a VM Image in Shared Image Gallery (SIG) to Azure Marketplace. This capability simplifies your image preparation, testing, and submission process as you no longer have to extract VHDs, upload them, and generate SAS URIs. With this capability, you can now manage the full image lifecycle within Azure. You can simply create your image from the VM or a VHD into Shared Image Gallery, then select the SIG Image to publish it in Partner Center.\r\n\r\n## Step by step process ##\r\n\r\nHere is how the step by step process looks like:\r\n\r\n 1. Select an approved base image. This is the Windows or Linux Operating System image that Microsoft has approved to be leveraged as a base for the OS image.\r\n 2. Create a VM from the approved base image. \r\n 3. Configure the VM. In this step, you install the binaries and perform configurations as per your requirements. You also install all the required updates and patches on the VM and ensure that the VM meets the security standards.\r\n 4. Generalize the VM and Capture the image for the VM. \r\n 5. Publish the VM from the Shared Image Gallery (SIG) to the Marketplace\r\n\r\n\r\nThe option to Capture the image is from the VM blade click on the Capture button at the top.\r\n\r\n<img src=\"\/images\/1616970203606101db85ee0.png\" alt=\"Capture option\">\r\n\r\nDuring the Capture process ensure to use the option to \"Share image to Shared image gallery\"\r\n\r\n<img src=\"\/images\/1616970211606101e3f0fae.png\" alt=\"Option to share image to gallery\">\r\n\r\nTo check the detailed walkthrough check this official documentation: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/marketplace\/azure-vm-create-using-approved-base\" target=\"_blank\">How to create a virtual machine using an approved base<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 23, 2021",
+		"slug": "simplified-process-for-publishing-vm-images-to-azure-marketplace",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Microsoft has announced a new capability now to publish the VM Images to Marketplace. You can now publish a VM Image in Shared Image Gallery (SIG) to Azure Marketplace. This capability simplifies your image preparation, testing, and submission process as you no longer have to extract VHDs, upload...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Dynamic data masking granular permissions for Azure SQL and Azure Synapse Analytics",
+		"postDate": "18-03-2021",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "**Dynamic Data Masking** now supports granular permissions. This support is now available for:\r\n\r\n - Azure SQL Database, \r\n - Azure Synapse Analytics, and \r\n - Azure SQL Managed Instance\r\n\r\nThis feature allows you to grant and deny **UNMASK permission** at the schema-level, the table-level, and the column-level. This enhancement provides a more granular way to control and limit unauthorized access to SQL assets on Azure and improve data security management.\r\n\r\n\r\nYou can read more about this feature towards the end of the doucmentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-sql\/database\/dynamic-data-masking-overview#permissions\" target=\"_blank\">Dynamic data masking - Permissions section<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 18, 2021",
+		"slug": "dynamic-data-masking-granular-permissions-for-azure-sql-and-azure-synapse-analytics",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p><strong>Dynamic Data Masking<\/strong> now supports granular permissions. This support is now available for:<\/p>\n<ul>\n<li>Azure SQL Database, <\/li>\n<li>Azure Synapse Analytics, and <\/li>\n<li>Azure SQL Managed Instance<\/li>\n<\/ul>\n<p>This feature allows you to grant and deny <strong>UNMASK permissio...<\/strong><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "SQL insights in Azure Monitor",
+		"postDate": "18-03-2021",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "Microsoft Azure Monitor now has SQL monitoring capabilities. This feature is provided out of the box now. \r\n\r\nUsing this you can monitor:\r\n\r\n 1.  Azure SQL Databases\r\n 2. Azure SQL Managed Instance\r\n 3. SQL Server on Azure VM\r\n\r\nNow you can monitor things like:\r\n\r\n - CPU Utilization percentage\r\n - Memory Utilization percentage\r\n - Data IO percentage\r\n - Number of User Connections\r\n - Active Temp Tables\r\n - Memory Grants Pending\r\n - Processes blocked\r\n - Deadlocks\/sec\r\n - Total data file size\r\n - Total log file size\r\n - Total log file used size\r\n - Free space in tempdb\r\n - Memory broker clerk size, etc.\r\n\r\n## Where are the SQL Insights ##\r\n\r\nYou can access the SQL insights by navigating to the Monitor in the Azure portal. And then in the Insights section, you can navigate to the \"**SQL (preview)**\" option.\r\n\r\n<img src=\"\/images\/16169741476061114326387.png\" alt=\"SQL Monitoring solution\">\r\n\r\n## Pricing ##\r\n\r\nThere is no separate pricing for the SQL Insights. All costs are incurred by the virtual machines that gather the data, the Log Analytics workspaces that store the data, and any alert rules configured on the data.\r\n\r\nYou can learn more about the SQL insights from the official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-monitor\/insights\/sql-insights-overview\" target=\"_blank\">Monitor your SQL deployments with SQL insights<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 18, 2021",
+		"slug": "sql-insights-in-azure-monitor",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>Microsoft Azure Monitor now has SQL monitoring capabilities. This feature is provided out of the box now. <\/p>\n<p>Using this you can monitor:<\/p>\n<ol>\n<li>Azure SQL Databases<\/li>\n<li>Azure SQL Managed Instance<\/li>\n<li>SQL Server on Azure VM<\/li>\n<\/ol>\n<p>Now you can monitor things like:<\/p>\n<ul...><\/ul...>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Creating alerts based on Azure Forecasts for spending",
+		"postDate": "16-03-2021",
+		"tags": [
+			"cost",
+			"costmanagement",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "You can now create alerts based on the Azure Forecasts. This can help adjust your spending before you hit the budget target. Think about it, if you are going to hit the budget on the 25th day of the month instead of the last day you would want to know about it as early as possible. The earlier you know, the better you can get to manage the spending.\r\n\r\nYou can customize notifications and also take action if the alert is triggered by leveraging the Action Groups in Azure. You can check how to create Action Groups in this post: <a href=\"http:\/\/harvestingclouds.com\/post\/creating-the-action-groups-for-alerts-in-microsoft-azure\/\" target=\"_blank\">Creating the Action Groups for alerts in Microsoft Azure<\/a>.\r\n\r\n### How to configure Alerts based on Forecasts ###\r\n\r\nNavigate to \"Cost Management + Billing\" and select the \"**Cost Management**\" option.\r\n\r\n<img src=\"\/images\/1616979222606125161f60d.png\" alt=\"Cost Management\">\r\n\r\nIn the Cost Management blade, select the option for \"**Budgets**\" and then click on \"**+ Add**\".\r\n\r\n<img src=\"\/images\/161697925560612537d527b.png\" alt=\"Budgets inside Cost Management\">\r\n\r\nIn the next screen under \"**Create a budget**\" select the appropriate values for the following:\r\n\r\n - Budget scope\r\n - Budget name\r\n - Reset period - under most circumstances this should be Billing month\r\n - Creation date\r\n - Expiration date\r\n - Provide an amount for the Budget\r\n\r\n<img src=\"\/images\/16169792766061254c6544e.png\" alt=\"Create Budget\">\r\n\r\nIn the next screen for \"Set alerts\", under the Alert conditions, select the type as \"**Forecasted**\". Provide the percentage of budget. E.g. if you provided the budget as $150 and selected the percentage of budget as 80% then the alert would be triggered at $120.\r\n\r\nProvide the Action Group to alert via SMS or emails. You can alert via email by providing individual email ids or distribution list's id for \"Alert recipients (email)\" entry.\r\n\r\n<img src=\"\/images\/16169792926061255c9682b.png\" alt=\"Set alerts section\">\r\n\r\nYou can read more about this feature at the official blog here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/blog\/prevent-exceeding-azure-budget-with-forecasted-cost-alerts\/\" target=\"_blank\">Prevent exceeding Azure budget with forecasted cost alerts<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 16, 2021",
+		"slug": "creating-alerts-based-on-azure-forecasts-for-spending",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>You can now create alerts based on the Azure Forecasts. This can help adjust your spending before you hit the budget target. Think about it, if you are going to hit the budget on the 25th day of the month instead of the last day you would want to know about it as early as possible. The earlier yo...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Enabling soft delete for blobs in an Azure Storage Account",
+		"postDate": "15-02-2021",
+		"tags": [
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery",
+			"storage"
+		],
+		"category": "Azure",
+		"body": "Data protection is a key feature that should always factor into the security posture of your organization. Imagine if someone gets access to your Storage Account and deletes the contents of a Storage Account. Or if an employee accidentally deletes the contents of a container inside the Storage account. \r\n\r\nMicrosoft has added the support for soft delete. You can enable this while creating the storage account under the \"Data protection\". You have 4 key options that you can enable. These options are:\r\n\r\n 1. Turn on point-in-time restore for container\r\n 2. Turn on soft delete for blobs\r\n 3. Turn on soft delete for containers\r\n 4. Turn on soft delete for file shares\r\n\r\nThese options are shown below.\r\n\r\n<img src=\"\/images\/161699099660615314d836a.png\" alt=\"Soft delete options in a Storage Account creation\">\r\n\r\n### Accessing the Soft Delete capabilities for a blob ###\r\n\r\nIf you have enabled the soft delete for blobs, then you will view a toggle to \"**Show deleted blobs**\". Any deleted blobs which was deleted within the configured number of days during the creation of the storage account will show up with the status as \"Deleted\". \r\n\r\n<img src=\"\/images\/16169913746061548e330dd.png\" alt=\"Soft delete option after blob deletion\">\r\n\r\nYou can then either right-click or click on the three dots at the end of the line for the blob with Status as \"Deleted\". You will see the option for \"View previous versions\". Click on this option to see any deleted versions of this blob.\r\n\r\n<img src=\"\/images\/16169915476061553bf39a3.png\" alt=\"View Previous Versions\">\r\n\r\nFrom the deleted versions of the blob, you can select any of the version and then you can either download that blob (by clicking on the **Download version** button) or restore it (by clicking on the **Make current version** button).\r\n\r\nAlternatively, you can click on the deleted blob's name and a pane will open up. In this pane, you can click on the \"Undelete\" button. If you have multiple versions then to undelete you will have to select the version first.\r\n\r\n<img src=\"\/images\/161699157160615553cb0ef.png\" alt=\"Restore or Download Previous version\">\r\n\r\nAfter restoring the blob, it will show up with the status as Active.\r\n\r\n**Note**: \r\n\r\n 1. The soft delete feature retains the data for only a fixed number of days. You define this number based on your recovery strategy during the creation of the storage account. \r\n 2. If you delete the Storage Account then you can't restore the blobs. \r\n\r\nYou can read more about this feature in the official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/blobs\/soft-delete-blob-overview\" target=\"_blank\">Soft delete for blobs<\/a>",
+		"addpost": "addpost",
+		"dated": "Feb 15, 2021",
+		"slug": "enabling-soft-delete-for-blobs-in-an-azure-storage-account",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Data protection is a key feature that should always factor into the security posture of your organization. Imagine if someone gets access to your Storage Account and deletes the contents of a Storage Account. Or if an employee accidentally deletes the contents of a container inside the Storage ac...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Setting up the Routing Preferences in Azure",
+		"postDate": "10-02-2021",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"routing",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "Routing preferences determine how your traffic routes between Azure and the Internet. There are two options to select when it comes to routing:\r\n\r\n 1. Microsoft Network\r\n 2. Internet\r\n\r\nSelecting **Microsoft global network** delivers traffic via Microsoft global network closest to the user. **Internet** route option uses transit ISP network. Egress data transfer price varies based on the routing selection. The Microsoft global network has lower latency and is very fast. It is also very secure and is the default choice. You should select this option for any enterprise customers. Internet option on the other hand provides a cost-optimized alternative. \r\n\r\n### How to set Routing Preferences for a VM ###\r\n\r\nYou can set the Route Preferences for a **VM** via its public IP address. The public IP address can be associated with resources such as virtual machines, virtual machine scale sets, internet-facing load balancers, etc. \r\n\r\nWhile creating the public IP address, you can provide the preference as shown below.\r\n\r\n<img src=\"\/images\/1616986538606141aa081ec.png\" alt=\"Routing Preference\">\r\n\r\n### How to set Routing Preferences for a Storage Account ###\r\n\r\nYou can also set the routing preference for **Azure storage** resources such as blobs, files, web, and Azure DataLake. This is done when creating the Azure Storage Account. The setting is under the **Networking** part of the creation wizard as shown below.\r\n\r\n<img src=\"\/images\/16169902506061502acf0c0.png\" alt=\"Routing preferences for a Storage Account\">\r\n\r\n**Note**: \r\n\r\n 1. The routing preference option of a Public IP can\u2019t be changed once created.\r\n 2. By default, traffic is routed via the Microsoft global network for all Azure services.\r\n\r\nYou can read more about Routing preferences here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-network\/routing-preference-overview\" target=\"_blank\">Routing Preference - Microsoft documentation<\/a>",
+		"addpost": "addpost",
+		"dated": "Feb 10, 2021",
+		"slug": "setting-up-the-routing-preferences-in-azure",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Routing preferences determine how your traffic routes between Azure and the Internet. There are two options to select when it comes to routing:<\/p>\n<ol>\n<li>Microsoft Network<\/li>\n<li>Internet<\/li>\n<\/ol>\n<p>Selecting <strong>Microsoft global network<\/strong> delivers traffic via Microsoft global ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Backup Center in Microsoft Azure",
+		"postDate": "10-10-2020",
+		"tags": [
+			"backup",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure",
+		"body": "The **Backup Center** provides a single pane of glass into the whole backup posture of the Azure environment. It provides a **single unified management experience** in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.\r\n\r\nWith the Backup Center you can manage:\r\n\r\n 1. Backup instances - all instances across different vaults\r\n 2. Backup policies - all policies across different vaults\r\n 3. Vaults - all Recovery Services Vaults\r\n\r\nYou can also monitor:\r\n\r\n 1. All backup jobs and filter for Failed jobs\r\n 2. Fetch backup reports\r\n\r\nYou can also control the policy compliance for Backup directly from the backup center.\r\n\r\nThe backup center is currently supported for Azure VM backup, SQL in Azure VM backup, SAP HANA in Azure VM backup, Azure Files backup, Azure Blobs backup, Azure Managed Disks backup, and Azure Database for PostgreSQL Server backup.\r\n\r\n<img src=\"\/images\/16169881876061481b27edc.png\" alt=\"Backup Center\">\r\n\r\nYou can learn more about the Backup Center here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/backup\/backup-center-overview\" target=\"_blank\">Overview of Backup center<\/a>",
+		"addpost": "addpost",
+		"dated": "Oct 10, 2020",
+		"slug": "backup-center-in-microsoft-azure",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>The <strong>Backup Center<\/strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience<\/strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.<\/p>\n<p>With the Backup...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "How to get alerts based on your spending in Azure",
+		"postDate": "30-05-2020",
+		"tags": [
+			"alert",
+			"alerts",
+			"costmanagement",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "Azure has very advanced Cost Management capabilities. One of these capabilities is to create alerts based on your spending. You can define budgets and if you are close to spending more than a percentage of that budget then you can get alerted via email, SMS, App push notification, or even a voice call. You can even take actions if the budget exceeds a certain percentage. \r\n\r\nYou take action if the alert is triggered by leveraging the Action Groups in Azure. You can check how to create Action Groups in this post: <a href=\"http:\/\/harvestingclouds.com\/post\/creating-the-action-groups-for-alerts-in-microsoft-azure\/\" target=\"_blank\">Creating the Action Groups for alerts in Microsoft Azure<\/a>.\r\n\r\n### How to configure the Alerts ###\r\n\r\nNavigate to \"Cost Management + Billing\" and select the \"**Cost Management**\" option.\r\n\r\n<img src=\"\/images\/1616979222606125161f60d.png\" alt=\"Cost Management\">\r\n\r\nIn the Cost Management blade, select the option for \"**Budgets**\" and then click on \"**+ Add**\".\r\n\r\n<img src=\"\/images\/161697925560612537d527b.png\" alt=\"Budgets inside Cost Management\">\r\n\r\nIn the next screen under \"**Create a budget**\" select the appropriate values for the following:\r\n\r\n - Budget scope\r\n - Budget name\r\n - Reset period - under most circumstances this should be Billing month\r\n - Creation date\r\n - Expiration date\r\n - Provide an amount for the Budget\r\n\r\n<img src=\"\/images\/16169792766061254c6544e.png\" alt=\"Create Budget\">\r\n\r\nIn the next screen for \"Set alerts\", under the Alert conditions, provide the percentage of the budget. E.g. if you provided the budget as $150 and selected the percentage of budget as 80% then the alert would be triggered at $120.\r\n\r\nProvide the Action Group to alert via SMS or emails. You can alert via email by providing individual email ids or distribution list's id for \"Alert recipients (email)\" entry.\r\n\r\n<img src=\"\/images\/16169834056061356dbd7ce.png\" alt=\"Set alerts section\">\r\n\r\nThat's it! Now the alert is up and running. If you want to test the alert then update the budget and the alert percentage to close the spending and the alert should be triggered in short while. \r\n\r\nThis is a very helpful feature that lets you take the control of your spending and stay on top of the overall usage. ",
+		"addpost": "addpost",
+		"dated": "May 30, 2020",
+		"slug": "how-to-get-alerts-based-on-your-spending-in-azure",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Azure has very advanced Cost Management capabilities. One of these capabilities is to create alerts based on your spending. You can define budgets and if you are close to spending more than a percentage of that budget then you can get alerted via email, SMS, App push notification, or even a voice...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Creating the Action Groups for alerts in Microsoft Azure",
+		"postDate": "26-05-2020",
+		"tags": [
+			"alerts",
+			"microsoft",
+			"microsoftazure",
+			"monitoring"
+		],
+		"category": "Azure",
+		"body": "In the previous post, we discussed what the Action Groups are and what they are used for. You can read the previous blog at this link: <a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-action-groups-for-alerts-in-microsoft-azure\/\" target=\"_blank\">Understanding the Action Groups for alerts in Microsoft Azure<\/a>. In this post, we are taking a look in the Azure portal to understand how to create the Action Groups. \r\n\r\n### Action Groups Location ###\r\n\r\nThe action groups are located under the Azure Monitor, in the Alerts section. Here, click on the \"**Manage actions**\" button to modify and create action groups.\r\n\r\n<img src=\"\/images\/161698167360612ea9b1846.png\" alt=\"Manage actions\">\r\n\r\n### Creating Action Groups ###\r\n\r\nIn the Manage actions blade, click on the \"**+ Add action group**\" button. \r\n\r\n<img src=\"\/images\/161698169360612ebd3cde3.png\" alt=\"Add action group\">\r\n\r\nEnter the basics information in the first blade to Create an action group.\r\n\r\n<img src=\"\/images\/161698170760612ecb01b15.png\" alt=\"Basics information\">\r\n\r\nIn the notifications tab, select the type of notifications. Also add additional information for Email, SMS, Azure app Push Notifications, and Voice, etc.\r\n\r\n<img src=\"\/images\/161698172360612edbd40bc.png\" alt=\"Notification settings\">\r\n\r\nUnder the Actions tab, select if you want to perform any action. The possible values for action are:\r\n\r\n 1. Automation Runbook\r\n 2. Azure Function\r\n 3. ITSM\r\n 4. Logic App\r\n 5. Secure Webhook\r\n 6. Webhook\r\n\r\n<img src=\"\/images\/161698175260612ef807104.png\" alt=\"Actions inside Action Group\">\r\n\r\nNext, add the Tags and review the final information. Click on the Create button once done.\r\n\r\nNow that the Action Group is ready, you can use this in any alerts that you will create. The notifications and actions inside the Action Group will be triggered whenever the alert is triggered.\r\n\r\nFor further details, you can refer the official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-monitor\/alerts\/action-groups\" target=\"_blank\">Create and manage action groups in the Azure portal<\/a>",
+		"addpost": "addpost",
+		"dated": "May 26, 2020",
+		"slug": "creating-the-action-groups-for-alerts-in-microsoft-azure",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In the previous post, we discussed what the Action Groups are and what they are used for. You can read the previous blog at this link: <a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-action-groups-for-alerts-in-microsoft-azure\/\" target=\"_blank\">Understanding the Action Groups for aler...<\/a><\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Understanding the Action Groups for alerts in Microsoft Azure",
+		"postDate": "25-05-2020",
+		"tags": [
+			"actiongroups",
+			"alerts",
+			"microsoft",
+			"microsoftazure",
+			"monitoring"
+		],
+		"category": "Azure",
+		"body": "Action Groups is a very useful concept in Microsoft Azure. It is used to define two things when an alert is triggered. The first is to define how to send notifications and to whom when an action group is triggered via an alert. Secondly, it defines if any action should be taken when an alert is fired.\r\n\r\nUsing the Action Groups you can **send notifications** via the following methods when an action group triggers:\r\n\r\n 1. Group emails, \r\n 2. SMS, \r\n 3. Azure app notifications, and \r\n 4. Voice calls. \r\n 5. You can also send emails to an Azure Resource Manager role using Action Groups. \r\n\r\nOptionally, you can also **take actions** using the following features of Azure, when an action group is triggered:\r\n\r\n 1. Automation Runbook\r\n 2. Azure Function\r\n 3. ITSM\r\n 4. Logic App\r\n 5. Secure Webhook\r\n 6. Webhook\r\n\r\nAction Groups are located in the Azure Monitor under the \"Alerts\" section. Navigate to \"Manage actions\" to create or modify action groups.\r\n\r\nIn the next blog post, we will look at how to create Action Groups in the Azure Portal. You can check the next blog here: <a href=\"http:\/\/harvestingclouds.com\/post\/creating-the-action-groups-for-alerts-in-microsoft-azure\/\" target=\"_blank\">Creating the Action Groups for alerts in Microsoft Azure<\/a>",
+		"addpost": "addpost",
+		"dated": "May 25, 2020",
+		"slug": "understanding-the-action-groups-for-alerts-in-microsoft-azure",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Action Groups is a very useful concept in Microsoft Azure. It is used to define two things when an alert is triggered. The first is to define how to send notifications and to whom when an action group is triggered via an alert. Secondly, it defines if any action should be taken when an alert is f...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Index",
+		"postDate": "05-03-2020",
+		"tags": [
+			"aws",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure vs AWS",
+		"body": "This is the Index for the series regarding **Microsoft Azure**  and **Amazon's AWS** services comparisons. This series takes a very **practical** and **hands-on** approach (rather than just focusing on the theory). You don't need to follow all the blog posts. You can only check the ones where you want to draw the comparison or check how to work with specific services.\r\n\r\nIf you are well versed with one platform this series is to cross-train you on the competitor platform. The intention is to know the pros and cons of each platform and begin with the basic services. You need to know the competition well before you can advocate any platform.\r\n\r\n**Disclaimer**: I am a Microsoft Azure MVP and a bit biased towards Azure. I make every attempt to view both platforms impartially and list pros and cons as they are without any personal opinions. \r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n\r\n 1. **Virtual Machines vs EC2 instances**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-01-finding-resources\" target=\"_blank\">Finding Resources<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-04-differences-in-iops\" target=\"_blank\">Differences in IOPS<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms\" target=\"_blank\">Creating Azure Virtual Machines<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-06-monitoring-of-azure-vms\" target=\"_blank\">Monitoring of Azure VMs<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-07-boot-diagnostics-of-azure-vms\" target=\"_blank\">Boot Diagnostics of Azure VMs<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-08-azure-vm-insights\" target=\"_blank\">Azure VM Insights<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-10-backing-up-azure-vms\" target=\"_blank\">Backing up Azure VMs<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms\" target=\"_blank\">Protecting Azure VMs<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances\" target=\"_blank\">Creating EC2 Instances<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-05-monitoring-of-ec2-instances\" target=\"_blank\">Monitoring of EC2 instances<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-1\" target=\"_blank\">Backing up EC2 instances Part 1<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-2\" target=\"_blank\">Backing up EC2 instances Part 2<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-3\" target=\"_blank\">Backing up EC2 instances Part 3<\/a>\r\n\r\n 2. **Batch Services**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-vs-aws\" target=\"_blank\">Batch Services Comparision<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-1-creating-batch-account\" target=\"_blank\">Creating Batch account<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-2-creating-batch-pool-in-an-account\" target=\"_blank\">Creating Batch Pool in an Account<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-3-creating-job-in-the-batch-pool\" target=\"_blank\">Creating Job in the Batch Pool<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-4-creating-tasks-in-a-batch-job\" target=\"_blank\">Creating Tasks in a Batch Job<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-aws-working-with-aws-batch-service\" target=\"_blank\">Working with AWS Batch Service<\/a>\r\n\r\n 3. **Auto Scaling**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-vmss-vs-aws-auto-scaling\/\" target=\"_blank\">Azure VMSS vs AWS Auto Scaling<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-1\" target=\"_blank\">Creating Virtual Machine Scale Sets (VMSS) - Part 1<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-2\" target=\"_blank\">Creating Virtual Machine Scale Sets (VMSS) - Part 2<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-02-view-running-instances-in-vmss\" target=\"_blank\">View Running Instances in VMSS<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-03-updating-the-scaling-policies-of-vmss\" target=\"_blank\">Updating the Scaling policies of VMSS<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-04-viewing-the-run-history-of-vmss\" target=\"_blank\">Viewing the Run History of VMSS<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-01-all-related-resources-for-auto-scaling\" target=\"_blank\">All Related Resources for Auto Scaling<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-02-creating-launch-configurations\" target=\"_blank\">Creating Launch Configurations<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-03-creating-launch-templates\/\" target=\"_blank\">Creating Launch Templates<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-1\" target=\"_blank\">Creating Auto Scaling Groups - Part 1<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-2\" target=\"_blank\">Creating Auto Scaling Groups - Part 2<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-05-aws-auto-scaling-service\" target=\"_blank\">AWS Auto Scaling service<\/a>\r\n\r\n 4. **Disks**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-azure-managed-disks-vs-aws-elastic-block-store-ebs\" target=\"_blank\">Azure Managed Disks vs AWS Elastic Block Store (EBS)<\/a>\r\n\r\n 5. **Storage**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-microsoft-azure-storage-accounts-vs-aws-simple-storage-service-s3\" target=\"_blank\">Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-01-creating-azure-storage-account\" target=\"_blank\">Creating Azure Storage Account<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-02-data-transfer-options\" target=\"_blank\">Data Transfer Options<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-03-event-driven-automation-of-azure-storage-accounts\" target=\"_blank\">Event driven automation of Azure Storage accounts<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-04-securely-accessing-storage-accounts\" target=\"_blank\">Securely Accessing Storage Accounts<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-05-configuring-firewall-and-vnet-access-on-storage-accounts\" target=\"_blank\">Configuring Firewall and vNet access on Storage accounts<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-06-geo-replication-on-storage-accounts\" target=\"_blank\">Geo Replication on Storage accounts<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-01-creating-simple-storage-service-or-s3-buckets\" target=\"_blank\">Creating Simple Storage Service or S3 buckets<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-02-working-with-s3-bucket-and-uploading-files\" target=\"_blank\">Working with S3 bucket and uploading files<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-03-configuring-s3-bucket-properties\" target=\"_blank\">Configuring S3 Bucket Properties<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-04-setting-permissions-on-s3-bucket\" target=\"_blank\">Setting Permissions on S3 Bucket<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-05-adding-lifecycle-rules-for-s3-buckets\" target=\"_blank\">Adding Lifecycle Rules for S3 buckets<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-06-configuring-replication-on-s3-buckets\" target=\"_blank\">Configuring replication on S3 buckets<\/a>\r\n   7. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-07-setting-up-access-points-on-s3-bucket\" target=\"_blank\">Setting up Access Points on S3 bucket<\/a>\r\n\r\n 6. **Networking**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-virtual-networks-vs-aws-virtual-private-cloud-vpc\" target=\"_blank\">Azure Virtual Networks vs AWS Virtual Private Cloud (VPC)<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-01-creating-virtual-network\" target=\"_blank\">Creating Virtual Network<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-02-working-with-virtual-networks-vnets-and-subnets\" target=\"_blank\">Working with Virtual Networks (vNets) and Subnets<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-03-service-endpoints\" target=\"_blank\">Service Endpoints<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-04-creating-network-security-groups\" target=\"_blank\">Creating Network Security Groups (NSGs)<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-05-creating-rules-in-nsgs-and-assigning-nsgs\" target=\"_blank\">Creating rules in NSGs and assigning NSGs<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-06-using-service-tags-to-define-rules-in-nsgs\/\" target=\"_blank\">Using Service Tags to define rules in NSGs<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-01-creating-virtual-private-cloud-vpc\" target=\"_blank\">Creating Virtual Private Cloud (VPC)<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-02-working-with-vpcs-and-subnets\" target=\"_blank\">Working with VPCs and Subnets<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-03-route-tables\" target=\"_blank\">Route Tables<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-04-network-acls\" target=\"_blank\">Network ACLs<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-05-security-groups\" target=\"_blank\">Security Groups<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-06-network-acls-vs-security-groups\" target=\"_blank\">Network ACLs vs Security Groups<\/a>\r\n\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "May 14, 2020",
+		"slug": "azure-for-aws-professionals-index",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p>This is the Index for the series regarding <strong>Microsoft Azure<\/strong>  and <strong>Amazon's AWS<\/strong> services comparisons. This series takes a very <strong>practical<\/strong> and <strong>hands-on<\/strong> approach (rather than just focusing on the theory). You don't need to follow all t...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure for AWS professionals - Networking - Azure - 06 Using Service Tags to define rules in NSGs",
+		"postDate": "12-05-2020",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"network",
+			"nsg",
+			"servicetags",
+			"virtualnetwork"
+		],
+		"category": "Azure vs AWS",
+		"body": "In the Network Security Groups (or NSGs), if you want to define rules related to Azure Services e.g. allowing communication on a particular port to Azure Storage account. Then you can do so for each and every IP address published by Microsoft for Azure Storage service. This is a very cumbersome method and is not practical. Also, there is a limit to the number of rules you can write and the number of NSGs you can have in a subscription. You can have up to 1000 rules per NSG. Also, you can have only a maximum of 200 NSGs in a subscription. You can find these limits here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-resource-manager\/management\/azure-subscription-service-limits\" target=\"_blank\">Azure subscription and service limits, quotas, and constraints.<\/a>\r\n\r\n## Solution ##\r\n\r\nMicrosoft provides the capability to write NSG rules using Service Tag as a destination. When you leverage a Service tag the system ensures that it accounts for all the IP addresses for that service. Not only that, if any IP address changes or a new IP address is added then the Service Tag will account for that automatically. You can target whole services across different regions or services in a particular region. E.g. You can select Storage as a service or select \"Storage.EastUS\" to target the Storage service but only in the East US region.\r\n\r\n## Where is the Option ##\r\n\r\nIn the **Inbound security rules**, this option is available for the Source. In the **Outbound security rules**, this option is available for the Destination. Once you select the service tag as the option, then you are presented with a drop-down for the Service Tag selection. Internet is the default option for the Service Tag. You can type and search for the particular service tag e.g. Azure Storage, Azure Backup, etc.\r\n\r\n<img src=\"\/images\/16169643636060eb0bc8678.png\" alt=\"Service Tag option\">\r\n\r\n\r\nYou can read more about Service Tags here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-network\/service-tags-overview\" target=\"_blank\">Virtual network service tags<\/a>.",
+		"addpost": "addpost",
+		"dated": "May 12, 2020",
+		"slug": "azure-for-aws-professionals-networking-azure-06-using-service-tags-to-define-rules-in-nsgs",
+		"categoryslug": "azure-vs-aws",
+		"status": "publised",
+		"summary": "\n<p>In the Network Security Groups (or NSGs), if you want to define rules related to Azure Services e.g. allowing communication on a particular port to Azure Storage account. Then you can do so for each and every IP address published by Microsoft for Azure Storage service. This is a very cumbersome m...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "eBook - 6 Step Migration Strategy \u2013 Systematic Approach to Migrating your Workloads to Microsoft Azure",
 		"postDate": "27-03-2020",
 		"tags": [
@@ -19,25 +309,6 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>I have authored this eBook titled \"<strong><em>6 Step Migration Strategy &ndash; Systematic Approach to Migrating your Workloads to Microsoft Azure<\/em><\/strong>\" which I am making available to everyone for <strong>free<\/strong>. It is a quick and short read that is meant to help set up...<\/p>\n",
-		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Azure for AWS professionals - Index",
-		"postDate": "05-03-2020",
-		"tags": [
-			"aws",
-			"microsoft",
-			"microsoftazure"
-		],
-		"category": "Azure vs AWS",
-		"body": "This is the Index for the series regarding **Microsoft Azure**  and **Amazon's AWS** services comparisons. This series takes a very **practical** and **hands-on** approach (rather than just focusing on the theory). You don't need to follow all the blog posts. You can only check the ones where you want to draw the comparison or check how to work with specific services.\r\n\r\nIf you are well versed with one platform this series is to cross-train you on the competitor platform. The intention is to know the pros and cons of each platform and begin with the basic services. You need to know the competition well before you can advocate any platform.\r\n\r\n**Disclaimer**: I am a Microsoft Azure MVP and a bit biased towards Azure. I make every attempt to view both platforms impartially and list pros and cons as they are without any personal opinions. \r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n\r\n 1. **Virtual Machines vs EC2 instances**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-01-finding-resources\" target=\"_blank\">Finding Resources<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-04-differences-in-iops\" target=\"_blank\">Differences in IOPS<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-03-creating-azure-vms\" target=\"_blank\">Creating Azure Virtual Machines<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-06-monitoring-of-azure-vms\" target=\"_blank\">Monitoring of Azure VMs<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-07-boot-diagnostics-of-azure-vms\" target=\"_blank\">Boot Diagnostics of Azure VMs<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-08-azure-vm-insights\" target=\"_blank\">Azure VM Insights<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-10-backing-up-azure-vms\" target=\"_blank\">Backing up Azure VMs<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-11-protecting-azure-vms\" target=\"_blank\">Protecting Azure VMs<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-02-creating-ec2-instances\" target=\"_blank\">Creating EC2 Instances<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-05-monitoring-of-ec2-instances\" target=\"_blank\">Monitoring of EC2 instances<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-1\" target=\"_blank\">Backing up EC2 instances Part 1<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-2\" target=\"_blank\">Backing up EC2 instances Part 2<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-virtual-machines-vs-ec2-instances-09-backing-up-ec2-instances-part-3\" target=\"_blank\">Backing up EC2 instances Part 3<\/a>\r\n\r\n 2. **Batch Services**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-vs-aws\" target=\"_blank\">Batch Services Comparision<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-1-creating-batch-account\" target=\"_blank\">Creating Batch account<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-2-creating-batch-pool-in-an-account\" target=\"_blank\">Creating Batch Pool in an Account<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-3-creating-job-in-the-batch-pool\" target=\"_blank\">Creating Job in the Batch Pool<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-azure-4-creating-tasks-in-a-batch-job\" target=\"_blank\">Creating Tasks in a Batch Job<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-batch-services-aws-working-with-aws-batch-service\" target=\"_blank\">Working with AWS Batch Service<\/a>\r\n\r\n 3. **Auto Scaling**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-vmss-vs-aws-auto-scaling\/\" target=\"_blank\">Azure VMSS vs AWS Auto Scaling<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-1\" target=\"_blank\">Creating Virtual Machine Scale Sets (VMSS) - Part 1<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-01-creating-vmss-part-2\" target=\"_blank\">Creating Virtual Machine Scale Sets (VMSS) - Part 2<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-02-view-running-instances-in-vmss\" target=\"_blank\">View Running Instances in VMSS<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-03-updating-the-scaling-policies-of-vmss\" target=\"_blank\">Updating the Scaling policies of VMSS<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-azure-04-viewing-the-run-history-of-vmss\" target=\"_blank\">Viewing the Run History of VMSS<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-01-all-related-resources-for-auto-scaling\" target=\"_blank\">All Related Resources for Auto Scaling<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-02-creating-launch-configurations\" target=\"_blank\">Creating Launch Configurations<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-03-creating-launch-templates\/\" target=\"_blank\">Creating Launch Templates<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-1\" target=\"_blank\">Creating Auto Scaling Groups - Part 1<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-04-creating-auto-scaling-groups-part-2\" target=\"_blank\">Creating Auto Scaling Groups - Part 2<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-auto-scaling-aws-05-aws-auto-scaling-service\" target=\"_blank\">AWS Auto Scaling service<\/a>\r\n\r\n 4. **Disks**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-azure-managed-disks-vs-aws-elastic-block-store-ebs\" target=\"_blank\">Azure Managed Disks vs AWS Elastic Block Store (EBS)<\/a>\r\n\r\n 5. **Storage**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-microsoft-azure-storage-accounts-vs-aws-simple-storage-service-s3\" target=\"_blank\">Microsoft Azure Storage Accounts vs AWS Simple Storage Service (S3)<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-01-creating-azure-storage-account\" target=\"_blank\">Creating Azure Storage Account<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-02-data-transfer-options\" target=\"_blank\">Data Transfer Options<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-03-event-driven-automation-of-azure-storage-accounts\" target=\"_blank\">Event driven automation of Azure Storage accounts<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-04-securely-accessing-storage-accounts\" target=\"_blank\">Securely Accessing Storage Accounts<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-05-configuring-firewall-and-vnet-access-on-storage-accounts\" target=\"_blank\">Configuring Firewall and vNet access on Storage accounts<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-azure-06-geo-replication-on-storage-accounts\" target=\"_blank\">Geo Replication on Storage accounts<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-01-creating-simple-storage-service-or-s3-buckets\" target=\"_blank\">Creating Simple Storage Service or S3 buckets<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-02-working-with-s3-bucket-and-uploading-files\" target=\"_blank\">Working with S3 bucket and uploading files<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-03-configuring-s3-bucket-properties\" target=\"_blank\">Configuring S3 Bucket Properties<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-04-setting-permissions-on-s3-bucket\" target=\"_blank\">Setting Permissions on S3 Bucket<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-05-adding-lifecycle-rules-for-s3-buckets\" target=\"_blank\">Adding Lifecycle Rules for S3 buckets<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-06-configuring-replication-on-s3-buckets\" target=\"_blank\">Configuring replication on S3 buckets<\/a>\r\n   7. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-storage-aws-07-setting-up-access-points-on-s3-bucket\" target=\"_blank\">Setting up Access Points on S3 bucket<\/a>\r\n\r\n 6. **Networking**\r\n\r\n  a. Combined\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-virtual-networks-vs-aws-virtual-private-cloud-vpc\" target=\"_blank\">Azure Virtual Networks vs AWS Virtual Private Cloud (VPC)<\/a>\r\n\r\n  b. Azure\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-01-creating-virtual-network\" target=\"_blank\">Creating Virtual Network<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-02-working-with-virtual-networks-vnets-and-subnets\" target=\"_blank\">Working with Virtual Networks (vNets) and Subnets<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-03-service-endpoints\" target=\"_blank\">Service Endpoints<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-04-creating-network-security-groups\" target=\"_blank\">Creating Network Security Groups (NSGs)<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-azure-05-creating-rules-in-nsgs-and-assigning-nsgs\" target=\"_blank\">Creating rules in NSGs and assigning NSGs<\/a>\r\n\r\n  c. AWS\r\n\r\n   1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-01-creating-virtual-private-cloud-vpc\" target=\"_blank\">Creating Virtual Private Cloud (VPC)<\/a>\r\n   2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-02-working-with-vpcs-and-subnets\" target=\"_blank\">Working with VPCs and Subnets<\/a>\r\n   3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-03-route-tables\" target=\"_blank\">Route Tables<\/a>\r\n   4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-04-network-acls\" target=\"_blank\">Network ACLs<\/a>\r\n   5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-05-security-groups\" target=\"_blank\">Security Groups<\/a>\r\n   6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-for-aws-professionals-networking-aws-06-network-acls-vs-security-groups\" target=\"_blank\">Network ACLs vs Security Groups<\/a>\r\n\r\n\r\n",
-		"addpost": "addpost",
-		"dated": "Mar 05, 2020",
-		"slug": "azure-for-aws-professionals-index",
-		"categoryslug": "azure-vs-aws",
-		"status": "publised",
-		"summary": "\n<p>This is the Index for the series regarding <strong>Microsoft Azure<\/strong>  and <strong>Amazon's AWS<\/strong> services comparisons. This series takes a very <strong>practical<\/strong> and <strong>hands-on<\/strong> approach (rather than just focusing on the theory). You don't need to follow all t...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -4632,26 +4903,5 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Service Tags are now supported for Defining Routes in Route Tables",
-		"postDate": "27-03-2021",
-		"tags": [
-			"Azure",
-			"microsoft",
-			"microsoftazure",
-			"network",
-			"routetables",
-			"virtualnetwork"
-		],
-		"category": "Azure",
-		"body": "Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP addresses corresponding to the Azure Storage service. Microsoft publishes all these IP addresses in a JSON format that you can leverage. This JSON file is available here: <a href=\"https:\/\/www.microsoft.com\/en-us\/download\/details.aspx?id=56519\" target=\"_blank\">Azure IP Ranges and Service Tags \u2013 Public Cloud<\/a>\r\n\r\nThis current process will involve around 504 routes corresponding to each IP address space published by Microsoft for Azure Storage service alone. To make matters even more complex, you have a limit on the total number of routes allowed in a subscription. You can have a max of 200 Route Tables and only 400 routes allowed per Route Tables. You can check all the service limits here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-resource-manager\/management\/azure-subscription-service-limits\" target=\"_blank\">Azure subscription and service limits, quotas, and constraints<\/a>\r\n\r\n### Solution ###\r\n\r\nMicrosoft has published the solution for this problem. You can now leverage the Service Tags when defining User Defined Routes (or UDRs) in a Route Table. I believe this addresses a long-requested feature and makes the task to route any Microsoft service-related communication easy. \r\n\r\nThis service is currently in **Public Preview** (at the time of writing this blog post). Also, this service is only available via APIs i.e. via REST, PowerShell, CLI, and can also be used in ARM templates. This feature is **not** currently available through the Azure Portal.\r\n\r\nYou can now specify a Service Tag for the address prefix parameter in a user-defined route for your route table. You can choose from tags representing over 60 Microsoft and Azure services to simplify route creation and maintenance. \r\n\r\n - You no longer need to manually update routes when services change or add to their list of endpoints. Routes with Service Tags will update automatically to include new changes. \r\n - This also eliminates the need for regularly updating routes based on the IP data in the weekly JSON file downloads that Microsoft provides. \r\n - This also helps reduce the likelihood of running into the routes per route table limit (400) which is common when configuring routing for multiple Microsoft and Azure services. By using Service Tags, you can avoid this, since the tag condenses all ranges for that service into one group. \r\n - For example, Microsoft lists more than 4,500 prefixes that collectively represent the Azure address space. You can now use one route with the AzureCloud Service Tag which will include all of these. \r\n\r\nLearn more about this capability here: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/public-preview-service-tags-for-user-defined-routing\/\" target=\"_blank\">Public preview: Service Tags for User Defined Routing<\/a>",
-		"addpost": "addpost",
-		"dated": "Mar 27, 2021",
-		"slug": "service-tags-are-now-supported-for-defining-routes-in-route-tables",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p>Let us assume that you have to define routing for a particular Azure service e.g. Azure Storage. Any communication to the Azure storage service should happen via your defined route e.g. a virtual appliance. To be able to define this route table you will need to define many routes for all the IP a...<\/p>\n"
 	}
 ]

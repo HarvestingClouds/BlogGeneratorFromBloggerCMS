@@ -24,14 +24,263 @@
 <pubDate>Sat, 27 Mar 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>eBook - 6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</title>
-<description><![CDATA[<p>I have authored this eBook titled &quot;<strong><em>6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</em></strong>&quot; which I am making available to everyone for <strong>free</strong>. It is a quick and short read that is meant to help set up the migration process for your department. Use this eBook as a blueprint to kickstart your migration to the cloud.</p>
-<p>You can download the eBook by clicking on this link: <a href="http://harvestingclouds.com/eBooks/6%20Step%20Migration%20Strategy%20%E2%80%93%20Systematic%20Approach%20to%20Migrating%20your%20Workloads%20to%20Microsoft%20Azure.pdf" target="_blank">6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</a></p>
-<p><a href="http://harvestingclouds.com/eBooks/6%20Step%20Migration%20Strategy%20%E2%80%93%20Systematic%20Approach%20to%20Migrating%20your%20Workloads%20to%20Microsoft%20Azure.pdf" target="_blank"></p>
-<img src="http://harvestingclouds.com/eBooks/Ebook2CoverPage.png" alt="6 Steps Migration Strategy Book" height="350" width="175">
-<p></a></p>]]></description>
-<link>http://HarvestingClouds.com/post/ebook-6-step-migration-strategy-systematic-approach-to-migrating-your-workloads-to-microsoft-azure</link>
-<pubDate>Fri, 27 Mar 2020 00:00:00 +0500</pubDate>
+<title>How to Copy data from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob</title>
+<description><![CDATA[<p>Copying from Google Cloud to Microsoft Azure has been a challenge that Microsoft has addressed in the latest release of AzCopy. Via the latest release i.e. <strong>v10.9.0</strong>, Microsoft has brought the capabilities importing from Google Cloud Platform (GCP) Storage to Microsoft Azure Storage Block Blob. Additionally, this latest release will also have support for scanning logs that can have low or high output based on the requirements. Tags will be preserved when copying the blobs and the list command will include &quot;Last Modified Time&quot; related information.</p>
+<p>General syntax to copy is as shown below:</p>
+<pre><code>azcopy copy 'https://storage.cloud.google.com/&lt;bucket-name&gt;/&lt;object-name&gt;' 'https://&lt;storage-account-name&gt;.blob.core.windows.net/&lt;container-name&gt;/&lt;blob-name&gt;'</code></pre>
+<p>An example is as below:</p>
+<pre><code>azcopy copy 'https://storage.cloud.google.com/mybucket/myobject' 'https://mystorageaccount.blob.core.windows.net/mycontainer/myblob'</code></pre>
+<p>This feature is currently in preview at the time of writing of this blog. You can read more about how to practically use AzCopy to copy form the GCP Storage to Microsoft Azure Storage block blob here: <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-google-cloud?toc=/azure/storage/blobs/toc.json" target="_blank">Copy data from Google Cloud Storage to Azure Storage by using AzCopy</a>.</p>]]></description>
+<link>http://HarvestingClouds.com/post/how-to-copy-data-from-google-cloud-platform-gcp-storage-to-microsoft-azure-storage-block-blob</link>
+<pubDate>Thu, 25 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Simplified process for publishing VM Images to Azure Marketplace</title>
+<description><![CDATA[<p>Microsoft has announced a new capability now to publish the VM Images to Marketplace. You can now publish a VM Image in Shared Image Gallery (SIG) to Azure Marketplace. This capability simplifies your image preparation, testing, and submission process as you no longer have to extract VHDs, upload them, and generate SAS URIs. With this capability, you can now manage the full image lifecycle within Azure. You can simply create your image from the VM or a VHD into Shared Image Gallery, then select the SIG Image to publish it in Partner Center.</p>
+<h2>Step by step process</h2>
+<p>Here is how the step by step process looks like:</p>
+<ol>
+<li>Select an approved base image. This is the Windows or Linux Operating System image that Microsoft has approved to be leveraged as a base for the OS image.</li>
+<li>Create a VM from the approved base image. </li>
+<li>Configure the VM. In this step, you install the binaries and perform configurations as per your requirements. You also install all the required updates and patches on the VM and ensure that the VM meets the security standards.</li>
+<li>Generalize the VM and Capture the image for the VM. </li>
+<li>Publish the VM from the Shared Image Gallery (SIG) to the Marketplace</li>
+</ol>
+<p>The option to Capture the image is from the VM blade click on the Capture button at the top.</p>
+<img src="/images/1616970203606101db85ee0.png" alt="Capture option">
+<p>During the Capture process ensure to use the option to &quot;Share image to Shared image gallery&quot;</p>
+<img src="/images/1616970211606101e3f0fae.png" alt="Option to share image to gallery">
+<p>To check the detailed walkthrough check this official documentation: <a href="https://docs.microsoft.com/en-us/azure/marketplace/azure-vm-create-using-approved-base" target="_blank">How to create a virtual machine using an approved base</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/simplified-process-for-publishing-vm-images-to-azure-marketplace</link>
+<pubDate>Tue, 23 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Dynamic data masking granular permissions for Azure SQL and Azure Synapse Analytics</title>
+<description><![CDATA[<p><strong>Dynamic Data Masking</strong> now supports granular permissions. This support is now available for:</p>
+<ul>
+<li>Azure SQL Database, </li>
+<li>Azure Synapse Analytics, and </li>
+<li>Azure SQL Managed Instance</li>
+</ul>
+<p>This feature allows you to grant and deny <strong>UNMASK permission</strong> at the schema-level, the table-level, and the column-level. This enhancement provides a more granular way to control and limit unauthorized access to SQL assets on Azure and improve data security management.</p>
+<p>You can read more about this feature towards the end of the doucmentation here: <a href="https://docs.microsoft.com/en-us/azure/azure-sql/database/dynamic-data-masking-overview#permissions" target="_blank">Dynamic data masking - Permissions section</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/dynamic-data-masking-granular-permissions-for-azure-sql-and-azure-synapse-analytics</link>
+<pubDate>Thu, 18 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>SQL insights in Azure Monitor</title>
+<description><![CDATA[<p>Microsoft Azure Monitor now has SQL monitoring capabilities. This feature is provided out of the box now. </p>
+<p>Using this you can monitor:</p>
+<ol>
+<li>Azure SQL Databases</li>
+<li>Azure SQL Managed Instance</li>
+<li>SQL Server on Azure VM</li>
+</ol>
+<p>Now you can monitor things like:</p>
+<ul>
+<li>CPU Utilization percentage</li>
+<li>Memory Utilization percentage</li>
+<li>Data IO percentage</li>
+<li>Number of User Connections</li>
+<li>Active Temp Tables</li>
+<li>Memory Grants Pending</li>
+<li>Processes blocked</li>
+<li>Deadlocks/sec</li>
+<li>Total data file size</li>
+<li>Total log file size</li>
+<li>Total log file used size</li>
+<li>Free space in tempdb</li>
+<li>Memory broker clerk size, etc.</li>
+</ul>
+<h2>Where are the SQL Insights</h2>
+<p>You can access the SQL insights by navigating to the Monitor in the Azure portal. And then in the Insights section, you can navigate to the &quot;<strong>SQL (preview)</strong>&quot; option.</p>
+<img src="/images/16169741476061114326387.png" alt="SQL Monitoring solution">
+<h2>Pricing</h2>
+<p>There is no separate pricing for the SQL Insights. All costs are incurred by the virtual machines that gather the data, the Log Analytics workspaces that store the data, and any alert rules configured on the data.</p>
+<p>You can learn more about the SQL insights from the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/insights/sql-insights-overview" target="_blank">Monitor your SQL deployments with SQL insights</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/sql-insights-in-azure-monitor</link>
+<pubDate>Thu, 18 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Creating alerts based on Azure Forecasts for spending</title>
+<description><![CDATA[<p>You can now create alerts based on the Azure Forecasts. This can help adjust your spending before you hit the budget target. Think about it, if you are going to hit the budget on the 25th day of the month instead of the last day you would want to know about it as early as possible. The earlier you know, the better you can get to manage the spending.</p>
+<p>You can customize notifications and also take action if the alert is triggered by leveraging the Action Groups in Azure. You can check how to create Action Groups in this post: <a href="http://harvestingclouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Creating the Action Groups for alerts in Microsoft Azure</a>.</p>
+<h3>How to configure Alerts based on Forecasts</h3>
+<p>Navigate to &quot;Cost Management + Billing&quot; and select the &quot;<strong>Cost Management</strong>&quot; option.</p>
+<img src="/images/1616979222606125161f60d.png" alt="Cost Management">
+<p>In the Cost Management blade, select the option for &quot;<strong>Budgets</strong>&quot; and then click on &quot;<strong>+ Add</strong>&quot;.</p>
+<img src="/images/161697925560612537d527b.png" alt="Budgets inside Cost Management">
+<p>In the next screen under &quot;<strong>Create a budget</strong>&quot; select the appropriate values for the following:</p>
+<ul>
+<li>Budget scope</li>
+<li>Budget name</li>
+<li>Reset period - under most circumstances this should be Billing month</li>
+<li>Creation date</li>
+<li>Expiration date</li>
+<li>Provide an amount for the Budget</li>
+</ul>
+<img src="/images/16169792766061254c6544e.png" alt="Create Budget">
+<p>In the next screen for &quot;Set alerts&quot;, under the Alert conditions, select the type as &quot;<strong>Forecasted</strong>&quot;. Provide the percentage of budget. E.g. if you provided the budget as $150 and selected the percentage of budget as 80% then the alert would be triggered at $120.</p>
+<p>Provide the Action Group to alert via SMS or emails. You can alert via email by providing individual email ids or distribution list's id for &quot;Alert recipients (email)&quot; entry.</p>
+<img src="/images/16169792926061255c9682b.png" alt="Set alerts section">
+<p>You can read more about this feature at the official blog here: <a href="https://azure.microsoft.com/en-us/blog/prevent-exceeding-azure-budget-with-forecasted-cost-alerts/" target="_blank">Prevent exceeding Azure budget with forecasted cost alerts</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/creating-alerts-based-on-azure-forecasts-for-spending</link>
+<pubDate>Tue, 16 Mar 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Enabling soft delete for blobs in an Azure Storage Account</title>
+<description><![CDATA[<p>Data protection is a key feature that should always factor into the security posture of your organization. Imagine if someone gets access to your Storage Account and deletes the contents of a Storage Account. Or if an employee accidentally deletes the contents of a container inside the Storage account. </p>
+<p>Microsoft has added the support for soft delete. You can enable this while creating the storage account under the &quot;Data protection&quot;. You have 4 key options that you can enable. These options are:</p>
+<ol>
+<li>Turn on point-in-time restore for container</li>
+<li>Turn on soft delete for blobs</li>
+<li>Turn on soft delete for containers</li>
+<li>Turn on soft delete for file shares</li>
+</ol>
+<p>These options are shown below.</p>
+<img src="/images/161699099660615314d836a.png" alt="Soft delete options in a Storage Account creation">
+<h3>Accessing the Soft Delete capabilities for a blob</h3>
+<p>If you have enabled the soft delete for blobs, then you will view a toggle to &quot;<strong>Show deleted blobs</strong>&quot;. Any deleted blobs which was deleted within the configured number of days during the creation of the storage account will show up with the status as &quot;Deleted&quot;. </p>
+<img src="/images/16169913746061548e330dd.png" alt="Soft delete option after blob deletion">
+<p>You can then either right-click or click on the three dots at the end of the line for the blob with Status as &quot;Deleted&quot;. You will see the option for &quot;View previous versions&quot;. Click on this option to see any deleted versions of this blob.</p>
+<img src="/images/16169915476061553bf39a3.png" alt="View Previous Versions">
+<p>From the deleted versions of the blob, you can select any of the version and then you can either download that blob (by clicking on the <strong>Download version</strong> button) or restore it (by clicking on the <strong>Make current version</strong> button).</p>
+<img src="/images/161699157160615553cb0ef.png" alt="Restore or Download Previous version">
+<p>After restoring the blob, it will show up with the status as Active.</p>
+<p><strong>Note</strong>: </p>
+<ol>
+<li>The soft delete feature retains the data for only a fixed number of days. You define this number based on your recovery strategy during the creation of the storage account. </li>
+<li>If you delete the Storage Account then you can't restore the blobs. </li>
+</ol>
+<p>You can read more about this feature in the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview" target="_blank">Soft delete for blobs</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/enabling-soft-delete-for-blobs-in-an-azure-storage-account</link>
+<pubDate>Mon, 15 Feb 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Setting up the Routing Preferences in Azure</title>
+<description><![CDATA[<p>Routing preferences determine how your traffic routes between Azure and the Internet. There are two options to select when it comes to routing:</p>
+<ol>
+<li>Microsoft Network</li>
+<li>Internet</li>
+</ol>
+<p>Selecting <strong>Microsoft global network</strong> delivers traffic via Microsoft global network closest to the user. <strong>Internet</strong> route option uses transit ISP network. Egress data transfer price varies based on the routing selection. The Microsoft global network has lower latency and is very fast. It is also very secure and is the default choice. You should select this option for any enterprise customers. Internet option on the other hand provides a cost-optimized alternative. </p>
+<h3>How to set Routing Preferences for a VM</h3>
+<p>You can set the Route Preferences for a <strong>VM</strong> via its public IP address. The public IP address can be associated with resources such as virtual machines, virtual machine scale sets, internet-facing load balancers, etc. </p>
+<p>While creating the public IP address, you can provide the preference as shown below.</p>
+<img src="/images/1616986538606141aa081ec.png" alt="Routing Preference">
+<h3>How to set Routing Preferences for a Storage Account</h3>
+<p>You can also set the routing preference for <strong>Azure storage</strong> resources such as blobs, files, web, and Azure DataLake. This is done when creating the Azure Storage Account. The setting is under the <strong>Networking</strong> part of the creation wizard as shown below.</p>
+<img src="/images/16169902506061502acf0c0.png" alt="Routing preferences for a Storage Account">
+<p><strong>Note</strong>: </p>
+<ol>
+<li>The routing preference option of a Public IP can’t be changed once created.</li>
+<li>By default, traffic is routed via the Microsoft global network for all Azure services.</li>
+</ol>
+<p>You can read more about Routing preferences here: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/routing-preference-overview" target="_blank">Routing Preference - Microsoft documentation</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/setting-up-the-routing-preferences-in-azure</link>
+<pubDate>Wed, 10 Feb 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Backup Center in Microsoft Azure</title>
+<description><![CDATA[<p>The <strong>Backup Center</strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience</strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.</p>
+<p>With the Backup Center you can manage:</p>
+<ol>
+<li>Backup instances - all instances across different vaults</li>
+<li>Backup policies - all policies across different vaults</li>
+<li>Vaults - all Recovery Services Vaults</li>
+</ol>
+<p>You can also monitor:</p>
+<ol>
+<li>All backup jobs and filter for Failed jobs</li>
+<li>Fetch backup reports</li>
+</ol>
+<p>You can also control the policy compliance for Backup directly from the backup center.</p>
+<p>The backup center is currently supported for Azure VM backup, SQL in Azure VM backup, SAP HANA in Azure VM backup, Azure Files backup, Azure Blobs backup, Azure Managed Disks backup, and Azure Database for PostgreSQL Server backup.</p>
+<img src="/images/16169881876061481b27edc.png" alt="Backup Center">
+<p>You can learn more about the Backup Center here: <a href="https://docs.microsoft.com/en-us/azure/backup/backup-center-overview" target="_blank">Overview of Backup center</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/backup-center-in-microsoft-azure</link>
+<pubDate>Sat, 10 Oct 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>How to get alerts based on your spending in Azure</title>
+<description><![CDATA[<p>Azure has very advanced Cost Management capabilities. One of these capabilities is to create alerts based on your spending. You can define budgets and if you are close to spending more than a percentage of that budget then you can get alerted via email, SMS, App push notification, or even a voice call. You can even take actions if the budget exceeds a certain percentage. </p>
+<p>You take action if the alert is triggered by leveraging the Action Groups in Azure. You can check how to create Action Groups in this post: <a href="http://harvestingclouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Creating the Action Groups for alerts in Microsoft Azure</a>.</p>
+<h3>How to configure the Alerts</h3>
+<p>Navigate to &quot;Cost Management + Billing&quot; and select the &quot;<strong>Cost Management</strong>&quot; option.</p>
+<img src="/images/1616979222606125161f60d.png" alt="Cost Management">
+<p>In the Cost Management blade, select the option for &quot;<strong>Budgets</strong>&quot; and then click on &quot;<strong>+ Add</strong>&quot;.</p>
+<img src="/images/161697925560612537d527b.png" alt="Budgets inside Cost Management">
+<p>In the next screen under &quot;<strong>Create a budget</strong>&quot; select the appropriate values for the following:</p>
+<ul>
+<li>Budget scope</li>
+<li>Budget name</li>
+<li>Reset period - under most circumstances this should be Billing month</li>
+<li>Creation date</li>
+<li>Expiration date</li>
+<li>Provide an amount for the Budget</li>
+</ul>
+<img src="/images/16169792766061254c6544e.png" alt="Create Budget">
+<p>In the next screen for &quot;Set alerts&quot;, under the Alert conditions, provide the percentage of the budget. E.g. if you provided the budget as $150 and selected the percentage of budget as 80% then the alert would be triggered at $120.</p>
+<p>Provide the Action Group to alert via SMS or emails. You can alert via email by providing individual email ids or distribution list's id for &quot;Alert recipients (email)&quot; entry.</p>
+<img src="/images/16169834056061356dbd7ce.png" alt="Set alerts section">
+<p>That's it! Now the alert is up and running. If you want to test the alert then update the budget and the alert percentage to close the spending and the alert should be triggered in short while. </p>
+<p>This is a very helpful feature that lets you take the control of your spending and stay on top of the overall usage. </p>]]></description>
+<link>http://HarvestingClouds.com/post/how-to-get-alerts-based-on-your-spending-in-azure</link>
+<pubDate>Sat, 30 May 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Creating the Action Groups for alerts in Microsoft Azure</title>
+<description><![CDATA[<p>In the previous post, we discussed what the Action Groups are and what they are used for. You can read the previous blog at this link: <a href="http://harvestingclouds.com/post/understanding-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Understanding the Action Groups for alerts in Microsoft Azure</a>. In this post, we are taking a look in the Azure portal to understand how to create the Action Groups. </p>
+<h3>Action Groups Location</h3>
+<p>The action groups are located under the Azure Monitor, in the Alerts section. Here, click on the &quot;<strong>Manage actions</strong>&quot; button to modify and create action groups.</p>
+<img src="/images/161698167360612ea9b1846.png" alt="Manage actions">
+<h3>Creating Action Groups</h3>
+<p>In the Manage actions blade, click on the &quot;<strong>+ Add action group</strong>&quot; button. </p>
+<img src="/images/161698169360612ebd3cde3.png" alt="Add action group">
+<p>Enter the basics information in the first blade to Create an action group.</p>
+<img src="/images/161698170760612ecb01b15.png" alt="Basics information">
+<p>In the notifications tab, select the type of notifications. Also add additional information for Email, SMS, Azure app Push Notifications, and Voice, etc.</p>
+<img src="/images/161698172360612edbd40bc.png" alt="Notification settings">
+<p>Under the Actions tab, select if you want to perform any action. The possible values for action are:</p>
+<ol>
+<li>Automation Runbook</li>
+<li>Azure Function</li>
+<li>ITSM</li>
+<li>Logic App</li>
+<li>Secure Webhook</li>
+<li>Webhook</li>
+</ol>
+<img src="/images/161698175260612ef807104.png" alt="Actions inside Action Group">
+<p>Next, add the Tags and review the final information. Click on the Create button once done.</p>
+<p>Now that the Action Group is ready, you can use this in any alerts that you will create. The notifications and actions inside the Action Group will be triggered whenever the alert is triggered.</p>
+<p>For further details, you can refer the official documentation here: <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups" target="_blank">Create and manage action groups in the Azure portal</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure</link>
+<pubDate>Tue, 26 May 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Understanding the Action Groups for alerts in Microsoft Azure</title>
+<description><![CDATA[<p>Action Groups is a very useful concept in Microsoft Azure. It is used to define two things when an alert is triggered. The first is to define how to send notifications and to whom when an action group is triggered via an alert. Secondly, it defines if any action should be taken when an alert is fired.</p>
+<p>Using the Action Groups you can <strong>send notifications</strong> via the following methods when an action group triggers:</p>
+<ol>
+<li>Group emails, </li>
+<li>SMS, </li>
+<li>Azure app notifications, and </li>
+<li>Voice calls. </li>
+<li>You can also send emails to an Azure Resource Manager role using Action Groups. </li>
+</ol>
+<p>Optionally, you can also <strong>take actions</strong> using the following features of Azure, when an action group is triggered:</p>
+<ol>
+<li>Automation Runbook</li>
+<li>Azure Function</li>
+<li>ITSM</li>
+<li>Logic App</li>
+<li>Secure Webhook</li>
+<li>Webhook</li>
+</ol>
+<p>Action Groups are located in the Azure Monitor under the &quot;Alerts&quot; section. Navigate to &quot;Manage actions&quot; to create or modify action groups.</p>
+<p>In the next blog post, we will look at how to create Action Groups in the Azure Portal. You can check the next blog here: <a href="http://harvestingclouds.com/post/creating-the-action-groups-for-alerts-in-microsoft-azure/" target="_blank">Creating the Action Groups for alerts in Microsoft Azure</a></p>]]></description>
+<link>http://HarvestingClouds.com/post/understanding-the-action-groups-for-alerts-in-microsoft-azure</link>
+<pubDate>Mon, 25 May 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure for AWS professionals - Index</title>
@@ -153,6 +402,7 @@
 <li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-03-service-endpoints" target="_blank">Service Endpoints</a></li>
 <li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-04-creating-network-security-groups" target="_blank">Creating Network Security Groups (NSGs)</a></li>
 <li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-05-creating-rules-in-nsgs-and-assigning-nsgs" target="_blank">Creating rules in NSGs and assigning NSGs</a></li>
+<li><a href="http://harvestingclouds.com/post/azure-for-aws-professionals-networking-azure-06-using-service-tags-to-define-rules-in-nsgs/" target="_blank">Using Service Tags to define rules in NSGs</a></li>
 </ol>
 <p>c. AWS</p>
 <ol>
@@ -166,7 +416,29 @@
 </li>
 </ol>]]></description>
 <link>http://HarvestingClouds.com/post/azure-for-aws-professionals-index</link>
-<pubDate>Thu, 05 Mar 2020 00:00:00 +0500</pubDate>
+<pubDate>Thu, 14 May 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Azure for AWS professionals - Networking - Azure - 06 Using Service Tags to define rules in NSGs</title>
+<description><![CDATA[<p>In the Network Security Groups (or NSGs), if you want to define rules related to Azure Services e.g. allowing communication on a particular port to Azure Storage account. Then you can do so for each and every IP address published by Microsoft for Azure Storage service. This is a very cumbersome method and is not practical. Also, there is a limit to the number of rules you can write and the number of NSGs you can have in a subscription. You can have up to 1000 rules per NSG. Also, you can have only a maximum of 200 NSGs in a subscription. You can find these limits here: <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits" target="_blank">Azure subscription and service limits, quotas, and constraints.</a></p>
+<h2>Solution</h2>
+<p>Microsoft provides the capability to write NSG rules using Service Tag as a destination. When you leverage a Service tag the system ensures that it accounts for all the IP addresses for that service. Not only that, if any IP address changes or a new IP address is added then the Service Tag will account for that automatically. You can target whole services across different regions or services in a particular region. E.g. You can select Storage as a service or select &quot;Storage.EastUS&quot; to target the Storage service but only in the East US region.</p>
+<h2>Where is the Option</h2>
+<p>In the <strong>Inbound security rules</strong>, this option is available for the Source. In the <strong>Outbound security rules</strong>, this option is available for the Destination. Once you select the service tag as the option, then you are presented with a drop-down for the Service Tag selection. Internet is the default option for the Service Tag. You can type and search for the particular service tag e.g. Azure Storage, Azure Backup, etc.</p>
+<img src="/images/16169643636060eb0bc8678.png" alt="Service Tag option">
+<p>You can read more about Service Tags here: <a href="https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview" target="_blank">Virtual network service tags</a>.</p>]]></description>
+<link>http://HarvestingClouds.com/post/azure-for-aws-professionals-networking-azure-06-using-service-tags-to-define-rules-in-nsgs</link>
+<pubDate>Tue, 12 May 2020 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>eBook - 6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</title>
+<description><![CDATA[<p>I have authored this eBook titled &quot;<strong><em>6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</em></strong>&quot; which I am making available to everyone for <strong>free</strong>. It is a quick and short read that is meant to help set up the migration process for your department. Use this eBook as a blueprint to kickstart your migration to the cloud.</p>
+<p>You can download the eBook by clicking on this link: <a href="http://harvestingclouds.com/eBooks/6%20Step%20Migration%20Strategy%20%E2%80%93%20Systematic%20Approach%20to%20Migrating%20your%20Workloads%20to%20Microsoft%20Azure.pdf" target="_blank">6 Step Migration Strategy – Systematic Approach to Migrating your Workloads to Microsoft Azure</a></p>
+<p><a href="http://harvestingclouds.com/eBooks/6%20Step%20Migration%20Strategy%20%E2%80%93%20Systematic%20Approach%20to%20Migrating%20your%20Workloads%20to%20Microsoft%20Azure.pdf" target="_blank"></p>
+<img src="http://harvestingclouds.com/eBooks/Ebook2CoverPage.png" alt="6 Steps Migration Strategy Book" height="350" width="175">
+<p></a></p>]]></description>
+<link>http://HarvestingClouds.com/post/ebook-6-step-migration-strategy-systematic-approach-to-migrating-your-workloads-to-microsoft-azure</link>
+<pubDate>Fri, 27 Mar 2020 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Data Factory Basics and Azure SQL Basics Series - Index</title>
