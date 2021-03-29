@@ -4903,5 +4903,48 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Configuring Azure Backup for Azure File Shares",
+		"postDate": "02-02-2021",
+		"tags": [
+			"azuresiterecovery",
+			"backup",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery",
+			"storage"
+		],
+		"category": "Azure",
+		"body": "Azure Recovery Services Vaults can backup File shares within the Azure Storage Accounts. This provides an additional layer of security from any accidental deletion of the File share contents or any corruption of the data on the files in the file share.\r\n\r\n**Note**: This blog post assumes that you already have a recovery service vault. If you don't you can create one easily by navigating to the Recovery service vault section in the Azure portal. \r\n\r\n### Step by step backup configurations ###\r\n\r\n\r\nTo backup the file share, navigate to the backup vault and go to the \"**Protected items**\" and click on the \"**Backup items**\". On the right-hand side, click on the \"**Azure Storage (Azure Files)**\".\r\n\r\n<img src=\"\/images\/1616996299606167cb9f0db.png\" alt=\"Backup Items\">\r\n\r\nFrom the Backup items pane, you can select the \"**+ Add**\" button to add new backup items to the vault.\r\n\r\n<img src=\"\/images\/1616996331606167eb5a048.png\" alt=\"Add new\">\r\n\r\nIn the Backup Goal, select the \"Azure File Share\" for the question \"What do you want to backup?\". Click on the Backup button to start the configurations.\r\n\r\n<img src=\"\/images\/16169964976061689194f24.png\" alt=\"Backup Goal\">\r\n\r\nThe next step is to select the Storage Account on which the File share exists. Once the storage account is selected, you can select the File share by clicking on the \"**Add**\" button, selecting the file share, and then clicking Ok in the popup.\r\n\r\n<img src=\"\/images\/161699688160616a11e2817.png\" alt=\"Storage Account and File Share selection\">\r\n\r\nThe next step is to configure the backup policy. By default, a policy is created for you. It is highly recommended to customize this policy as per your business requirements. At a bare minimum, you should provide a unique and descriptive name for this policy. Remember that this policy can be reused multiple times for other File share backups as well. \r\n\r\nAlso, provide a backup schedule and the retention of daily backup points. Optionally, you can configure weekly, monthly, and yearly backup retention values. \r\n\r\nOnce the backup policy is created, click on the \"Enable backup\" button to submit the deployment to configure the backup.\r\n\r\n<img src=\"\/images\/161699692560616a3d6111f.png\" alt=\"Backup policy and Enable backup\">\r\n\r\nNote that when you configure the backup it creates a lock on the Storage Account. You should not delete this lock otherwise the backup will not work as desired.",
+		"addpost": "addpost",
+		"dated": "Feb 02, 2021",
+		"slug": "configuring-azure-backup-for-azure-file-shares",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Azure Recovery Services Vaults can backup File shares within the Azure Storage Accounts. This provides an additional layer of security from any accidental deletion of the File share contents or any corruption of the data on the files in the file share.<\/p>\n<p><strong>Note<\/strong>: This blog post...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Auditing of Microsoft operations in an Azure SQL Database",
+		"postDate": "04-03-2021",
+		"tags": [
+			"audit",
+			"auditing",
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "Microsoft has added the capability to audit the actions of Microsoft support engineers when helping you to troubleshoot issues related to your Azure SQL Databases. This option is easy to configure and is available with the auditing capabilities of the Azure SQL Database from the Server level auditing.\r\n\r\nTo configure this, navigate to the Azure SQL Database and click on the \"**Auditing**\" option under the security settings. In the right pane, select the \"**View server settings**\".\r\n\r\n<img src=\"\/images\/161699778560616d990d05f.png\" alt=\"Auditing option\">\r\n\r\nIn the server level auditing settings, toggle the setting for \"*Enable Auditing of Microsoft support operations*\" to audit all the activities done by the Microsoft support. \r\nYou can select the target of the audit logs as either one or many selections from the below:\r\n\r\n 1. Storage\r\n 2. Log Analytics\r\n 3. Event Hub\r\n\r\n<img src=\"\/images\/161699780160616da90e305.png\" alt=\"Enable Auditing of Microsoft support operations\">\r\n\r\nThis strengthens the security posture even further for your SQL Databases.\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Mar 04, 2021",
+		"slug": "auditing-of-microsoft-operations-in-an-azure-sql-database",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>Microsoft has added the capability to audit the actions of Microsoft support engineers when helping you to troubleshoot issues related to your Azure SQL Databases. This option is easy to configure and is available with the auditing capabilities of the Azure SQL Database from the Server level audi...<\/p>\n"
 	}
 ]
