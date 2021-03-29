@@ -137,13 +137,13 @@
 			"virtualnetwork"
 		],
 		"category": "Azure",
-		"body": "In the last 2 posts, we looked at what Azure Route Server is and how to configure it. You can view those posts here: \r\n\r\n - <a href=\"\" target=\"_blank\">Understanding the Azure Route Server<\/a>\r\n - <a href=\"\" target=\"_blank\">Creating the Azure Route Server<\/a>\r\n\r\nIn this post, we will look at configuring the Azure Route Server. The below steps are involved in configuring the Route Server:\r\n\r\n 1. Set up the peering by adding a Peer. This could be a Network Virtual Appliance or NVA. \r\n 2. Establish BGP session from the NVA\r\n 3. Optionally you can configure route exchange if you are trying to connect to ExpressRoute gateway or a VPN gateway. \r\n\r\nLet's look at these steps in detail. \r\n\r\n### Set up the peering ###\r\n\r\nNavigate to the Route server by click on this link: <a href=\"https:\/\/aka.ms\/routeserver\" target=\"_blank\">Azure Route Server<\/a>.\r\n\r\nClick on the \"**Peers**\" and then on the right side click on the \"**+ Add**\" button to add the peering. A pop-up window will open on the side to \"**Add Peer**\". In here enter the values for the NVA. Specifically, enter a name you want to give to this peering. And enter the ASN or *Autonomous Systems Number* for your NVA. Also, enter the  IP address of the NVA the Route Server will communicate with to establish BGP.\r\n\r\n**Note**: The virtual network where you deployed the Route Server should have connectivity to the IPv4 IP address of the NVA.\r\n\r\n<img src=\"\/images\/1617039597606210ed9fa47.png\" alt=\"Adding a peer\">\r\n\r\n### Establish BGP session from the NVA ###\r\n\r\nThe connection with the NVA will not be established until you finish the configurations on the NVA. These configurations will vary depending on the type of NVA (e.g. Check Point, Palo Alto, to name a few). To complete the connection you will need to provide the NVA team with 2 pieces of information regarding the Route Server. These are:\r\n\r\n 1. Peer IPs for the Route Server\r\n 2. ASN number of the Route Server\r\n\r\nYou can get this information from the Overview page of the Route Server as shown below.\r\n\r\n<img src=\"\/images\/1617039616606211003a605.png\" alt=\"Getting information for IP and ASN of Route Server\">\r\n\r\n### Configure route exchange - for ExpressRoute gateway or a VPN gateway ###\r\n\r\nIf you have an ExpressRoute gateway or VPN gateway or both and you want them to exchange routes with the Route Server, you can enable route exchange. It is simply a toggle setting in the Route server. You can access this from the Configurations section under the settings. Select \"Enabled\" for the \"Branch-to-branch\" setting and click on the Save button to save the settings.\r\n\r\n<img src=\"\/images\/16170396306062110ea0a26.png\" alt=\"Configuring Route Exchange\">\r\n\r\nYou can find all the Route Server related official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/route-server\/\" target=\"_blank\">Azure Route Server documentation<\/a>",
+		"body": "In the last 2 posts, we looked at what Azure Route Server is and how to configure it. You can view those posts here: \r\n\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-azure-route-server\/\" target=\"_blank\">Understanding the Azure Route Server<\/a>\r\n - <a href=\"http:\/\/harvestingclouds.com\/post\/creating-the-azure-route-server\/\" target=\"_blank\">Creating the Azure Route Server<\/a>\r\n\r\nIn this post, we will look at configuring the Azure Route Server. The below steps are involved in configuring the Route Server:\r\n\r\n 1. Set up the peering by adding a Peer. This could be a Network Virtual Appliance or NVA. \r\n 2. Establish BGP session from the NVA\r\n 3. Optionally you can configure route exchange if you are trying to connect to ExpressRoute gateway or a VPN gateway. \r\n\r\nLet's look at these steps in detail. \r\n\r\n### Set up the peering ###\r\n\r\nNavigate to the Route server by click on this link: <a href=\"https:\/\/aka.ms\/routeserver\" target=\"_blank\">Azure Route Server<\/a>.\r\n\r\nClick on the \"**Peers**\" and then on the right side click on the \"**+ Add**\" button to add the peering. A pop-up window will open on the side to \"**Add Peer**\". In here enter the values for the NVA. Specifically, enter a name you want to give to this peering. And enter the ASN or *Autonomous Systems Number* for your NVA. Also, enter the  IP address of the NVA the Route Server will communicate with to establish BGP.\r\n\r\n**Note**: The virtual network where you deployed the Route Server should have connectivity to the IPv4 IP address of the NVA.\r\n\r\n<img src=\"\/images\/1617039597606210ed9fa47.png\" alt=\"Adding a peer\">\r\n\r\n### Establish BGP session from the NVA ###\r\n\r\nThe connection with the NVA will not be established until you finish the configurations on the NVA. These configurations will vary depending on the type of NVA (e.g. Check Point, Palo Alto, to name a few). To complete the connection you will need to provide the NVA team with 2 pieces of information regarding the Route Server. These are:\r\n\r\n 1. Peer IPs for the Route Server\r\n 2. ASN number of the Route Server\r\n\r\nYou can get this information from the Overview page of the Route Server as shown below.\r\n\r\n<img src=\"\/images\/1617039616606211003a605.png\" alt=\"Getting information for IP and ASN of Route Server\">\r\n\r\n### Configure route exchange - for ExpressRoute gateway or a VPN gateway ###\r\n\r\nIf you have an ExpressRoute gateway or VPN gateway or both and you want them to exchange routes with the Route Server, you can enable route exchange. It is simply a toggle setting in the Route server. You can access this from the Configurations section under the settings. Select \"Enabled\" for the \"Branch-to-branch\" setting and click on the Save button to save the settings.\r\n\r\n<img src=\"\/images\/16170396306062110ea0a26.png\" alt=\"Configuring Route Exchange\">\r\n\r\nYou can find all the Route Server related official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/route-server\/\" target=\"_blank\">Azure Route Server documentation<\/a>",
 		"addpost": "addpost",
 		"dated": "Mar 15, 2021",
 		"slug": "configuring-the-azure-route-server",
 		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p>In the last 2 posts, we looked at what Azure Route Server is and how to configure it. You can view those posts here: <\/p>\n<ul>\n<li><a href=\"\" target=\"_blank\">Understanding the Azure Route Server<\/a><\/li>\n<li><a href=\"\" target=\"_blank\">Creating the Azure Route Server<\/a><\/li>\n<\/ul>\n<p>In this post...<\/p>\n",
+		"summary": "\n<p>In the last 2 posts, we looked at what Azure Route Server is and how to configure it. You can view those posts here: <\/p>\n<ul>\n<li><a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-azure-route-server\/\" target=\"_blank\">Understanding the Azure Route Server<\/a><\/li>\n<li><a href=\"http:\/\/har...\"><\/a><\/li><\/ul>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -160,7 +160,7 @@
 			"virtualnetwork"
 		],
 		"category": "Azure",
-		"body": "In the previous blog post we looked at what an Azure Route Server is and what are its benefits. You can view the previous post here: <a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-azure-route-server\/\" target=\"_blank\">Understanding the Azure Route Server<\/a>\r\n\r\nIn this blog post, we will be setting up an **Azure Route Server** via the Azure Portal.\r\n\r\n### Pre-requisite ###\r\n\r\nIf you are setting up Azure Route Server for your Network Virtual Appliance or NVA, the two key pre-requisites are:\r\n\r\n 1. For you to be able to set up an Azure Route Server, you need to have an empty subnet in your virtual network with the name \"**RouteServerSubnet**\". This subnet should have an address space with a prefix of at least \"**\/27**\" or higher.\r\n 2. The NVA should allow the BGP protocol to leverage the benefits of having the Azure Route Server.\r\n\r\n### Finding the Route Server section ###\r\n\r\nTo find the section for Route Server navigate to this direct link: <a href=\"https:\/\/aka.ms\/routeserver\" target=\"_blank\">Azure Route Server<\/a>\r\n\r\nTo create a new Route Server, simply click on the \"**+ Create new route server**\" button.\r\n\r\n<img src=\"\/images\/16170339076061fab3c3d27.png\" alt=\"Route Servers\">\r\n\r\n### Configurations ###\r\n\r\nIn the Basics section, provide the values for Subscription, Resource Group, Instance name of the route server, and Region for the deployment. Next you will need to select the Virtual network in the same region where you want to deploy the route server. The wizard will automatically select the subnet with the name \"RouteServerSubnet\". As noted earlier, this subnet should have at least a \"\/27\" prefix for the address space.\r\n\r\n<img src=\"\/images\/16170345396061fd2b4b162.png\" alt=\"Basics\">\r\n\r\nNext, provide any Tags, and then click on \"Review + create\" and finally click on the \"Create\" button to create the route server.\r\n\r\n<img src=\"\/images\/16170347226061fde24cce5.png\" alt=\"Create the Route Server\">\r\n\r\nBehind the scene it creates two resources of following types:\r\n\r\n - Microsoft.Network\/**virtualHubs**\r\n - Microsoft.Network\/virtualHubs\/**ipConfigurations**\r\n\r\nIf you check the Resource Group that you used for deployment, it will look empty. But when you click on the check box for \"Show hidden types\" you will be able to view the Virtual Hub that was deployed for the Route Server. \r\n\r\n<img src=\"\/images\/161703712860620748445e8.png\" alt=\"Hidden type for Virtual Hub\">\r\n\r\nIn the next post, we will look at configuring the Route Server.\r\n",
+		"body": "In the previous blog post we looked at what an Azure Route Server is and what are its benefits. You can view the previous post here: <a href=\"http:\/\/harvestingclouds.com\/post\/understanding-the-azure-route-server\/\" target=\"_blank\">Understanding the Azure Route Server<\/a>\r\n\r\nIn this blog post, we will be setting up an **Azure Route Server** via the Azure Portal.\r\n\r\n### Pre-requisite ###\r\n\r\nIf you are setting up Azure Route Server for your Network Virtual Appliance or NVA, the two key pre-requisites are:\r\n\r\n 1. For you to be able to set up an Azure Route Server, you need to have an empty subnet in your virtual network with the name \"**RouteServerSubnet**\". This subnet should have an address space with a prefix of at least \"**\/27**\" or higher.\r\n 2. The NVA should allow the BGP protocol to leverage the benefits of having the Azure Route Server.\r\n\r\n### Finding the Route Server section ###\r\n\r\nTo find the section for Route Server navigate to this direct link: <a href=\"https:\/\/aka.ms\/routeserver\" target=\"_blank\">Azure Route Server<\/a>\r\n\r\nTo create a new Route Server, simply click on the \"**+ Create new route server**\" button.\r\n\r\n<img src=\"\/images\/16170339076061fab3c3d27.png\" alt=\"Route Servers\">\r\n\r\n### Configurations ###\r\n\r\nIn the Basics section, provide the values for Subscription, Resource Group, Instance name of the route server, and Region for the deployment. Next you will need to select the Virtual network in the same region where you want to deploy the route server. The wizard will automatically select the subnet with the name \"RouteServerSubnet\". As noted earlier, this subnet should have at least a \"\/27\" prefix for the address space.\r\n\r\n<img src=\"\/images\/16170345396061fd2b4b162.png\" alt=\"Basics\">\r\n\r\nNext, provide any Tags, and then click on \"Review + create\" and finally click on the \"Create\" button to create the route server.\r\n\r\n<img src=\"\/images\/16170347226061fde24cce5.png\" alt=\"Create the Route Server\">\r\n\r\nBehind the scene it creates two resources of following types:\r\n\r\n - Microsoft.Network\/**virtualHubs**\r\n - Microsoft.Network\/virtualHubs\/**ipConfigurations**\r\n\r\nIf you check the Resource Group that you used for deployment, it will look empty. But when you click on the check box for \"Show hidden types\" you will be able to view the Virtual Hub that was deployed for the Route Server. \r\n\r\n<img src=\"\/images\/161703712860620748445e8.png\" alt=\"Hidden type for Virtual Hub\">\r\n\r\nIn the next post, we will look at configuring the Route Server. You can view the post here: <a href=\"http:\/\/harvestingclouds.com\/post\/configuring-the-azure-route-server\/\" target=\"_blank\">Configuring the Azure Route Server<\/a>\r\n",
 		"addpost": "addpost",
 		"dated": "Mar 15, 2021",
 		"slug": "creating-the-azure-route-server",
@@ -182,7 +182,7 @@
 			"virtualnetwork"
 		],
 		"category": "Azure",
-		"body": "**Azure Route Server** is a new offering from Microsoft that simplifies the routing in your infrastructure, especially if you have a Network Virtual Appliance or NVA. It eliminates the need to manually configure or maintain route tables. It is a fully managed service and is configured with high availability.\r\n\r\nThis service works with:\r\n\r\n 1. Network Virtual Appliance or NVA\r\n 2. ExpressRoute\r\n 3. Azure VPN Gateway\r\n\r\nYou can enable or disable the route exchange on the Azure Route Server with a simple command. Also, you don't need to manually configure or maintain route tables.\r\n\r\nWith NVAs, it allows you to exchange routing information directly through Border Gateway Protocol (BGP) routing protocol between any NVA that supports the BGP routing protocol and the Azure Virtual Network.\r\n\r\n### Pre-requisite ###\r\n\r\n 1. For you to be able to set up an Azure Route Server, you need to have an empty subnet in your virtual network with the name \"**RouteServerSubnet**\". This subnet should have an address space with a prefix of at least \"**\/27**\" or higher.\r\n 2. The NVA should allow the BGP protocol to leverage the benefits of having the Azure Route Server.\r\n\r\n### Benefits ###\r\n\r\nAzure Route Server simplifies the configuration, management, and deployment of your NVA in your virtual network.\r\n\r\n 1. You no longer need to manually update the routing table on your NVA whenever your virtual network addresses are updated.\r\n 2. You no longer need to update User-Defined Routes manually whenever your NVA announces new routes or withdraw old ones.\r\n 3. You can peer multiple instances of your NVA with Azure Route Server.\r\n 4. The interface between NVA and Azure Route Server is based on a common standard protocol i.e. BGP.\r\n 5. You can deploy Azure Route Server in any of your new or existing virtual networks.\r\n\r\nYou can read more about this service here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/route-server\/overview\" target=\"_blank\">Azure Route Server<\/a>",
+		"body": "**Azure Route Server** is a new offering from Microsoft that simplifies the routing in your infrastructure, especially if you have a Network Virtual Appliance or NVA. It eliminates the need to manually configure or maintain route tables. It is a fully managed service and is configured with high availability.\r\n\r\nThis service works with:\r\n\r\n 1. Network Virtual Appliance or NVA\r\n 2. ExpressRoute\r\n 3. Azure VPN Gateway\r\n\r\nYou can enable or disable the route exchange on the Azure Route Server with a simple command. Also, you don't need to manually configure or maintain route tables.\r\n\r\nWith NVAs, it allows you to exchange routing information directly through Border Gateway Protocol (BGP) routing protocol between any NVA that supports the BGP routing protocol and the Azure Virtual Network.\r\n\r\n### Pre-requisite ###\r\n\r\n 1. For you to be able to set up an Azure Route Server, you need to have an empty subnet in your virtual network with the name \"**RouteServerSubnet**\". This subnet should have an address space with a prefix of at least \"**\/27**\" or higher.\r\n 2. The NVA should allow the BGP protocol to leverage the benefits of having the Azure Route Server.\r\n\r\n### Benefits ###\r\n\r\nAzure Route Server simplifies the configuration, management, and deployment of your NVA in your virtual network.\r\n\r\n 1. You no longer need to manually update the routing table on your NVA whenever your virtual network addresses are updated.\r\n 2. You no longer need to update User-Defined Routes manually whenever your NVA announces new routes or withdraw old ones.\r\n 3. You can peer multiple instances of your NVA with Azure Route Server.\r\n 4. The interface between NVA and Azure Route Server is based on a common standard protocol i.e. BGP.\r\n 5. You can deploy Azure Route Server in any of your new or existing virtual networks.\r\n\r\nIn the next blog post, we will create an Azure Route Server in the Azure portal. You can view that post here: <a href=\"http:\/\/harvestingclouds.com\/post\/creating-the-azure-route-server\/\" target=\"_blank\">Creating the Azure Route Server<\/a>",
 		"addpost": "addpost",
 		"dated": "Mar 11, 2021",
 		"slug": "understanding-the-azure-route-server",
@@ -193,7 +193,7 @@
 	},
 	{
 		"author": "@20aman",
-		"title": "Managing the backup-related alerts via the Azure Monitor",
+		"title": "Azure Backup - Managing the backup-related alerts via the Azure Monitor",
 		"postDate": "05-05-2021",
 		"tags": [
 			"alert",
@@ -204,12 +204,12 @@
 			"microsoftazure",
 			"recovery"
 		],
-		"category": "Azure",
+		"category": "Azure Backup",
 		"body": "You can now manage **backup-related alerts** via the standard **Azure Monitor** experience for alert management. This integration ensures that you can leverage the alert management experience within the \"Azure Monitor\" as a single pane of glass for managing all alerts in your environment.\r\n\r\nThis also means that you can leverage Action Groups to send notifications to email, SMS, Azure app push notifications, and voice calls. You can also leverage Action Groups to take actions when an alert is triggered.\r\n\r\nAll you need to do is navigate to the Alerts section in the Monitor and you will be able to monitor and manage the alerts directly from this pane.\r\n\r\nCurrently, this feature is supported for the following workloads: Azure Databases for PostgreSQL server, Azure Blobs, and Azure Managed Disks. Support for other workloads will be added in the near future. Alerts are currently generated for security-related scenarios and job failure scenarios, with more enhancements planned in the short term.\r\n\r\nYou can read more about this feature here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/backup\/backup-azure-monitoring-built-in-monitor#azure-monitor-alerts-for-azure-backup-preview\" target=\"_blank\">Azure Monitor alerts for Azure Backup<\/a>",
 		"addpost": "addpost",
 		"dated": "Mar 05, 2021",
-		"slug": "managing-the-backup-related-alerts-via-the-azure-monitor",
-		"categoryslug": "azure",
+		"slug": "azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor",
+		"categoryslug": "azure-backup",
 		"status": "publised",
 		"summary": "\n<p>You can now manage <strong>backup-related alerts<\/strong> via the standard <strong>Azure Monitor<\/strong> experience for alert management. This integration ensures that you can leverage the alert management experience within the \"Azure Monitor\" as a single pane of glass for managing all...<\/p>\n",
 		"prevStatus": "publised"
@@ -234,6 +234,45 @@
 		"categoryslug": "azure-sql",
 		"status": "publised",
 		"summary": "\n<p>Microsoft has added the capability to audit the actions of Microsoft support engineers when helping you to troubleshoot issues related to your Azure SQL Databases. This option is easy to configure and is available with the auditing capabilities of the Azure SQL Database from the Server level audi...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Microsoft retiring many older services by 29 February 2024",
+		"postDate": "25-02-2021",
+		"tags": [
+			"microsoft",
+			"microsoftazure",
+			"migration"
+		],
+		"category": "Azure",
+		"body": "Microsoft has recently announced that they are retiring a lot of older services. They have provided a generous deadline of \"29th February, 2024\" for many services to move to the newer version of these services. On that day the older services will be deleted by Microsoft. \r\n\r\nI have created a list of the prominent ones that Microsoft has announced will retire on 29th Feb, 2024 are:\r\n\r\n - Update your scripts to use Az PowerShell modules\r\n - Switch to Azure Data Lake Storage Gen2\r\n - Classic Application Insights\r\n - AKS legacy Azure AD integration\r\n - Jenkins plug-ins for Azure\r\n - Network Performance Monitor\r\n - Azure Network Watcher Connection Monitor (classic)\r\n - Azure Batch \u2018CloudServiceConfiguration\u2019 pools\r\n - Azure Application Gateway analytics\r\n - Switch Azure Media Services REST API and SDKs to v3\r\n - Classic Azure Migrate\r\n - Update the Azure Cosmos DB Java SDK\r\n - Azure Stack Edge Pro FPGA\r\n - Azure Batch rendering VM images & licensing\r\n - The standard version of Custom Voice\r\n - Azure Cognitive Services Text Analytics v2.x\r\n - Upgrade your Azure AD Connect sync to a newer version\r\n - Azure Batch Transcription and Customization Rest API v2\r\n\r\nThere are few other services that Microsoft has announced will retire a bit earlier.\r\n\r\nAt least the first one in the above list can be easily taken care of. You can automatically migrate your scripts at least to the newer Az PowerShell modules by leveraging the migration tool and steps from here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/powershell\/azure\/quickstart-migrate-azurerm-to-az-automatically?view=azps-5.7.0\" target=\"_blank\">Automatically migrate PowerShell scripts from AzureRM to the Az PowerShell module<\/a>.",
+		"addpost": "addpost",
+		"dated": "Feb 25, 2021",
+		"slug": "microsoft-retiring-many-older-services-by-29-february-2024",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Microsoft has recently announced that they are retiring a lot of older services. They have provided a generous deadline of \"29th February, 2024\" for many services to move to the newer version of these services. On that day the older services will be deleted by Microsoft. <\/p>\n<p>I have ...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Backup - Cross Region Restore (CRR) for Azure Virtual Machines is now generally available",
+		"postDate": "20-02-2021",
+		"tags": [
+			"backup",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure Backup",
+		"body": "We discussed the Cross Region Restore (CRR) for Azure Virtual Machines in Azure Backup in an earlier post. You can view that post here: <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup\/\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup<\/a>\r\n\r\nNow, this feature for Virtual Machines is **generally available**. \r\n\r\nNote that:\r\n\r\n - Azure zonal pinned VMs that are backed up with RS vault enabled with this feature will now be provided with options to restore in any zone of customer choice.\r\n - Azure Backup supports all **managed and unmanaged VMs** for Cross Region Restore. Classic VMs remains to be unsupported.\r\n - Microsoft is starting with the **replication RPO of up to 12 hours** in the secondary region even though the storage SLA of geo-replication is 15 mins.\r\n - The pricing is unchanged and stays the same. This is really good of Microsoft to not increase the pricing of the feature.\r\n\r\nWhile Microsoft has moved the preview of  CRR for Azure VMs to GA, CRR for SQL\/SAP HANA databases running in Azure VMs will continue to be in preview.",
+		"addpost": "addpost",
+		"dated": "Feb 20, 2021",
+		"slug": "azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available",
+		"categoryslug": "azure-backup",
+		"status": "publised",
+		"summary": "\n<p>We discussed the Cross Region Restore (CRR) for Azure Virtual Machines in Azure Backup in an earlier post. You can view that post here: <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup\/\" target=\"_blank\">Cross Region Rest...<\/a><\/p>\n",
+		"prevStatus": "publised"
 	},
 	{
 		"author": "@20aman",
@@ -279,7 +318,7 @@
 	},
 	{
 		"author": "@20aman",
-		"title": "Configuring Azure Backup for Azure File Shares",
+		"title": "Azure Backup - Configuring Azure Backup for Azure File Shares",
 		"postDate": "02-02-2021",
 		"tags": [
 			"azuresiterecovery",
@@ -290,18 +329,19 @@
 			"recovery",
 			"storage"
 		],
-		"category": "Azure",
+		"category": "Azure Backup",
 		"body": "Azure Recovery Services Vaults can backup File shares within the Azure Storage Accounts. This provides an additional layer of security from any accidental deletion of the File share contents or any corruption of the data on the files in the file share.\r\n\r\n**Note**: This blog post assumes that you already have a recovery service vault. If you don't you can create one easily by navigating to the Recovery service vault section in the Azure portal. \r\n\r\n### Step by step backup configurations ###\r\n\r\n\r\nTo backup the file share, navigate to the backup vault and go to the \"**Protected items**\" and click on the \"**Backup items**\". On the right-hand side, click on the \"**Azure Storage (Azure Files)**\".\r\n\r\n<img src=\"\/images\/1616996299606167cb9f0db.png\" alt=\"Backup Items\">\r\n\r\nFrom the Backup items pane, you can select the \"**+ Add**\" button to add new backup items to the vault.\r\n\r\n<img src=\"\/images\/1616996331606167eb5a048.png\" alt=\"Add new\">\r\n\r\nIn the Backup Goal, select the \"Azure File Share\" for the question \"What do you want to backup?\". Click on the Backup button to start the configurations.\r\n\r\n<img src=\"\/images\/16169964976061689194f24.png\" alt=\"Backup Goal\">\r\n\r\nThe next step is to select the Storage Account on which the File share exists. Once the storage account is selected, you can select the File share by clicking on the \"**Add**\" button, selecting the file share, and then clicking Ok in the popup.\r\n\r\n<img src=\"\/images\/161699688160616a11e2817.png\" alt=\"Storage Account and File Share selection\">\r\n\r\nThe next step is to configure the backup policy. By default, a policy is created for you. It is highly recommended to customize this policy as per your business requirements. At a bare minimum, you should provide a unique and descriptive name for this policy. Remember that this policy can be reused multiple times for other File share backups as well. \r\n\r\nAlso, provide a backup schedule and the retention of daily backup points. Optionally, you can configure weekly, monthly, and yearly backup retention values. \r\n\r\nOnce the backup policy is created, click on the \"Enable backup\" button to submit the deployment to configure the backup.\r\n\r\n<img src=\"\/images\/161699692560616a3d6111f.png\" alt=\"Backup policy and Enable backup\">\r\n\r\nNote that when you configure the backup it creates a lock on the Storage Account. You should not delete this lock otherwise the backup will not work as desired.",
 		"addpost": "addpost",
 		"dated": "Feb 02, 2021",
-		"slug": "configuring-azure-backup-for-azure-file-shares",
-		"categoryslug": "azure",
+		"slug": "azure-backup-configuring-azure-backup-for-azure-file-shares",
+		"categoryslug": "azure-backup",
 		"status": "publised",
-		"summary": "\n<p>Azure Recovery Services Vaults can backup File shares within the Azure Storage Accounts. This provides an additional layer of security from any accidental deletion of the File share contents or any corruption of the data on the files in the file share.<\/p>\n<p><strong>Note<\/strong>: This blog post...<\/p>\n"
+		"summary": "\n<p>Azure Recovery Services Vaults can backup File shares within the Azure Storage Accounts. This provides an additional layer of security from any accidental deletion of the File share contents or any corruption of the data on the files in the file share.<\/p>\n<p><strong>Note<\/strong>: This blog post...<\/p>\n",
+		"prevStatus": "publised"
 	},
 	{
 		"author": "@20aman",
-		"title": "Backup Center in Microsoft Azure",
+		"title": "Azure Backup - Backup Center in Microsoft Azure",
 		"postDate": "10-10-2020",
 		"tags": [
 			"backup",
@@ -310,14 +350,57 @@
 			"microsoftazure",
 			"recovery"
 		],
-		"category": "Azure",
+		"category": "Azure Backup",
 		"body": "The **Backup Center** provides a single pane of glass into the whole backup posture of the Azure environment. It provides a **single unified management experience** in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.\r\n\r\nWith the Backup Center you can manage:\r\n\r\n 1. Backup instances - all instances across different vaults\r\n 2. Backup policies - all policies across different vaults\r\n 3. Vaults - all Recovery Services Vaults\r\n\r\nYou can also monitor:\r\n\r\n 1. All backup jobs and filter for Failed jobs\r\n 2. Fetch backup reports\r\n\r\nYou can also control the policy compliance for Backup directly from the backup center.\r\n\r\nThe backup center is currently supported for Azure VM backup, SQL in Azure VM backup, SAP HANA in Azure VM backup, Azure Files backup, Azure Blobs backup, Azure Managed Disks backup, and Azure Database for PostgreSQL Server backup.\r\n\r\n<img src=\"\/images\/16169881876061481b27edc.png\" alt=\"Backup Center\">\r\n\r\nYou can learn more about the Backup Center here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/backup\/backup-center-overview\" target=\"_blank\">Overview of Backup center<\/a>",
 		"addpost": "addpost",
 		"dated": "Oct 10, 2020",
-		"slug": "backup-center-in-microsoft-azure",
-		"categoryslug": "azure",
+		"slug": "azure-backup-backup-center-in-microsoft-azure",
+		"categoryslug": "azure-backup",
 		"status": "publised",
-		"summary": "\n<p>The <strong>Backup Center<\/strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience<\/strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.<\/p>\n<p>With the Backup...<\/p>\n"
+		"summary": "\n<p>The <strong>Backup Center<\/strong> provides a single pane of glass into the whole backup posture of the Azure environment. It provides a <strong>single unified management experience<\/strong> in Azure for enterprises to govern, monitor, operate, and analyze backups at scale.<\/p>\n<p>With the Backup...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Backup - Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup",
+		"postDate": "04-06-2020",
+		"tags": [
+			"backup",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure Backup",
+		"body": "In the last post, we looked at the redundancy options for a Recovery Services Vault. You can  view that post here: <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-set-storage-redundancy-for-recovery-services-vault\/\" target=\"_blank\">Set Storage Redundancy for Recovery Services Vault<\/a>\r\n\r\nIn this post, we will look at how to take control of the replicated data.\r\n\r\nBy default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. You can trigger a cross-region restore regardless of whether the primary region is available or not. Azure Backup now supports restoring Azure Virtual Machines as well as disks from a secondary region.\r\n\r\nBehind the scene, Azure Backup leverages storage accounts\u2019 read-access geo-redundant storage (**RA-GRS**) capability to support restores from a secondary region. If you enable cross-region-restore, Microsoft upgrades your backup storage from GRS to read-access geo-redundant storage (RA-GRS). Charges for storage are separate from the cost of Azure Backup.\r\n\r\n**Note** that due to delays in storage replication from primary to secondary, there will be **latency** in the backed-up data being available for a restore in the secondary region.\r\n\r\nCross-Region Restore (CRR) supports the following data sources:\r\n\r\n - Azure VMs\r\n - SQL databases on Azure VMs \r\n - SAP HANA databases on Azure VMs\r\n\r\n### Configurations ###\r\n\r\nTo update the Cross-Region Restore (CRR) settings: \r\n\r\n 1. Navigate to the recovery services vault and click on the **Properties** under Settings\r\n 2. Then click on the \"**Update**\" link under the Backup Configuration\r\n 3. In the Backup Configurations blade, make sure that the setting for redundancy is set to \"Geo-Redundant\". Then select \"**Enable**\" for the \"**Cross Region Restore**\" setting.\r\n\r\nFinally, click on the Save button to save the settings.\r\n\r\n<img src=\"\/images\/16170496926062385cf189b.png\" alt=\"Cross-Region Restore\">\r\n\r\n**Note**: Cross Region Restore is currently non-reversible storage property. This means that you won't be able to disable the property after enabling it. \r\n",
+		"addpost": "addpost",
+		"dated": "Jun 04, 2020",
+		"slug": "azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup",
+		"categoryslug": "azure-backup",
+		"status": "publised",
+		"summary": "\n<p>In the last post, we looked at the redundancy options for a Recovery Services Vault. You can  view that post here: <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-set-storage-redundancy-for-recovery-services-vault\/\" target=\"_blank\">Set Storage Redundancy for Recovery Services Vault<\/a><\/p>...\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Backup - Set Storage Redundancy for Recovery Services Vault",
+		"postDate": "02-06-2020",
+		"tags": [
+			"backup",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure Backup",
+		"body": "When you create a Recovery Services Vault in Azure, the default for the Storage Redundancy now is \"Geo-redundant\". Earlier this was not a customizable setting and was default to Locally-redundant. As a Business Continuity and Disaster Recovery (**BCDR**) strategy it makes sense to have Backup as Geo-redundant. This will ensure that the backup will be replicated to a secondary paired region. In the event of disaster level event if the primary region goes down then you will have access to the data in the secondary region. \r\n\r\nYou can find which is the secondary paired region based on the region where you have deployed the resources by referring the table in this link: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/best-practices-availability-paired-regions#azure-regional-pairs\" target=\"_blank\">Business continuity and disaster recovery (BCDR): Azure Paired Regions<\/a>\r\n\r\n### Where to update configurations ###\r\n\r\nTo update the redundancy settings: \r\n\r\n 1. Navigate to the recovery services vault and click on the **Properties** under Settings\r\n 2. Then click on the \"Update\" link under the Backup Configuration\r\n 3. In the Backup Configurations blade, the setting for redundancy is the first one and is available under the \"Storage replication type\"\r\n\r\n<img src=\"\/images\/161704808060623210d5ee6.png\" alt=\"Storage Replication Type\">\r\n\r\n**Note**: This setting can not be changed if you have any item being protected in the vault. You will only be able to modify if you don't have anything protected. \r\n\r\nBy default, the data that is replicated to the secondary region is available to restore in the secondary region only if Azure declares a disaster in the primary region. But now you can also control the cross-region restore (CRR) yourself. We will look at that feature in the next blog post that you can access here: <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup\/\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup<\/a>",
+		"addpost": "addpost",
+		"dated": "Jun 02, 2020",
+		"slug": "azure-backup-set-storage-redundancy-for-recovery-services-vault",
+		"categoryslug": "azure-backup",
+		"status": "publised",
+		"summary": "\n<p>When you create a Recovery Services Vault in Azure, the default for the Storage Redundancy now is \"Geo-redundant\". Earlier this was not a customizable setting and was default to Locally-redundant. As a Business Continuity and Disaster Recovery (<strong>BCDR<\/strong>) strategy it makes s...<\/p>\n",
+		"prevStatus": "publised"
 	},
 	{
 		"author": "@20aman",
