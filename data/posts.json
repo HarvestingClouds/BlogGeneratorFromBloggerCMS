@@ -1,6 +1,24 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Finding IP address ranges for SUSE Linux Enterprise images to work in Microsoft Azure behind Firewall or NSGs",
+		"postDate": "27-03-2021",
+		"tags": [
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "For the **SUSE Linux Enterprise Server** (**SLES**) images to work in the Microsoft Azure environment, it needs to communicate with the SUSE servers. Specifically, it needs to communicate with the SUSE registration servers and the repository servers. If the VM deployed from SUSE images, is deployed behind a Firewall or NSG then this communication will be blocked by default and will need to be opened up. \r\n\r\nSo where will we get the IP addresses or URLs for the SUSE server?\r\n\r\n### Solution ###\r\n\r\nThe SUSE team publishes the required IP addresses in the below 2 XML files. These are dynamic links that the SUSE team keeps updating and should be referred if any communication is broken.\r\n\r\nThe **URLs** for the IP addresses are:\r\n\r\n - <a href=\"https:\/\/susepubliccloudinfo.suse.com\/v1\/microsoft\/servers\/smt.xml\" target=\"_blank\">https:\/\/susepubliccloudinfo.suse.com\/v1\/microsoft\/servers\/smt.xml<\/a>\r\n - <a href=\"https:\/\/susepubliccloudinfo.suse.com\/v1\/microsoft\/servers\/regionserver.xml\" target=\"_blank\">https:\/\/susepubliccloudinfo.suse.com\/v1\/microsoft\/servers\/regionserver.xml<\/a>\r\n\r\nIt is recommended to open the IP addresses for the regions where our VMs are deployed. The required communication occurs on **Port 443** i.e. HTTPS.\r\n\r\n### Long term solution ###\r\n\r\nLong term solution is to deploy a SUSE **RMT** (or **Repository Mirroring Tool**) server in the environment. For older versions of SLES, you may require SMT instead. It is highly recommended to upgrade and use RMT instead. \r\n\r\n\"*RMT server establishes a proxy system for SUSE Customer Center with repositories and registration targets. This helps you to centrally manage software updates within a firewall on a per-system basis while maintaining your corporate security policies and regulatory compliance.*\"\r\n\r\nHere is a guide for configuring the RMT: <a href=\"https:\/\/documentation.suse.com\/sles\/15-SP1\/single-html\/SLES-rmt\/index.html\" target=\"_blank\">Repository Mirroring Tool Guide<\/a>.",
+		"addpost": "addpost",
+		"dated": "Mar 26, 2021",
+		"slug": "finding-ip-address-ranges-for-suse-linux-enterprise-images-to-work-in-microsoft-azure-behind-firewall-or-nsgs",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>For the <strong>SUSE Linux Enterprise Server<\/strong> (<strong>SLES<\/strong>) images to work in the Microsoft Azure environment, it needs to communicate with the SUSE servers. Specifically, it needs to communicate with the SUSE registration servers and the repository servers. If the VM deployed f...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Service Tags are now supported for Defining Routes in Route Tables",
 		"postDate": "27-03-2021",
 		"tags": [
@@ -190,6 +208,27 @@
 		"status": "publised",
 		"summary": "\n<p><strong>Azure Route Server<\/strong> is a new offering from Microsoft that simplifies the routing in your infrastructure, especially if you have a Network Virtual Appliance or NVA. It eliminates the need to manually configure or maintain route tables. It is a fully managed service and is configure...<\/p>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Backup Series - Index",
+		"postDate": "06-03-2021",
+		"tags": [
+			"backup",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery",
+			"storage"
+		],
+		"category": "Azure Backup",
+		"body": "This is the **Index** for the series of blog posts regarding the **Azure Backup service**.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-set-storage-redundancy-for-recovery-services-vault\" target=\"_blank\">Set Storage Redundancy for Recovery Services Vault<\/a>\r\n 2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup<\/a>\r\n 3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-soft-delete-for-recovery-services-vault\" target=\"_blank\">Soft Delete for Recovery Services Vault<\/a>\r\n 4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 1 Overview<\/a>\r\n 5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault<\/a>\r\n 6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault<\/a>\r\n 7. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault<\/a>\r\n 8. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault<\/a>\r\n 9. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-backup-center-in-microsoft-azure\" target=\"_blank\">Backup Center in Microsoft Azure<\/a>\r\n 10. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm\" target=\"_blank\">Understanding the backup policy for SQL Server in Azure VM<\/a>\r\n 11. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database\" target=\"_blank\">Understanding the backup policy for SAP HANA in Azure VM (Database)<\/a>\r\n 12. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database\" target=\"_blank\">Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database)<\/a>\r\n 13. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-configuring-azure-backup-for-azure-file-shares\" target=\"_blank\">Configuring Azure Backup for Azure File Shares<\/a>\r\n 14. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines is now generally available<\/a>\r\n 15. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor\" target=\"_blank\">Managing the backup-related alerts via the Azure Monitor<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 06, 2021",
+		"slug": "azure-backup-series-index",
+		"categoryslug": "azure-backup",
+		"status": "publised",
+		"summary": "\n<p>This is the <strong>Index<\/strong> for the series of blog posts regarding the <strong>Azure Backup service<\/strong>.<\/p>\n<p><strong>Note<\/strong> that this Index is updated regularly as more posts are added around this topic.<\/p>\n<ol>\n<li><a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-set...\"><\/a><\/li><\/ol>\n"
 	},
 	{
 		"author": "@20aman",
@@ -5308,23 +5347,19 @@
 	},
 	{
 		"author": "@20aman",
-		"title": "Azure Backup Series - Index",
-		"postDate": "06-03-2021",
+		"title": "Connectivity Requirements for RDP Licensing Server Connectivity and Firewall Rules",
+		"postDate": "28-01-2021",
 		"tags": [
-			"backup",
-			"disasterrecovery",
 			"microsoft",
-			"microsoftazure",
-			"recovery",
-			"storage"
+			"microsoftazure"
 		],
-		"category": "Azure Backup",
-		"body": "This is the **Index** for the series of blog posts regarding the **Azure Backup service**.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-set-storage-redundancy-for-recovery-services-vault\" target=\"_blank\">Set Storage Redundancy for Recovery Services Vault<\/a>\r\n 2. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup<\/a>\r\n 3. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-soft-delete-for-recovery-services-vault\" target=\"_blank\">Soft Delete for Recovery Services Vault<\/a>\r\n 4. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 1 Overview<\/a>\r\n 5. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault<\/a>\r\n 6. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault<\/a>\r\n 7. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault<\/a>\r\n 8. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault<\/a>\r\n 9. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-backup-center-in-microsoft-azure\" target=\"_blank\">Backup Center in Microsoft Azure<\/a>\r\n 10. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm\" target=\"_blank\">Understanding the backup policy for SQL Server in Azure VM<\/a>\r\n 11. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database\" target=\"_blank\">Understanding the backup policy for SAP HANA in Azure VM (Database)<\/a>\r\n 12. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database\" target=\"_blank\">Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database)<\/a>\r\n 13. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-configuring-azure-backup-for-azure-file-shares\" target=\"_blank\">Configuring Azure Backup for Azure File Shares<\/a>\r\n 14. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines is now generally available<\/a>\r\n 15. <a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor\" target=\"_blank\">Managing the backup-related alerts via the Azure Monitor<\/a>",
+		"category": "Azure",
+		"body": "If you deploy an RDP License on a VM in Azure, then that VM needs to be able to talk to the RDP Licensing Server. The RDP License allows multiple users to log into the VM at the same time. By default, only 2 users can log into the VM concurrently. RDP License lets you increase that number based on the license. This is a typical use case for a Jump box VM deployment in Microsoft Azure.\r\n\r\nFor the RDP license to work, it needs to validate with the RDP Licensing Server. For this, the Firewall needs to allow communication. To be able to allow this communication, you need to know the following:\r\n\r\n 1. The IP address of the **VM** where the RDP license is configured\r\n 2. The IP address of the **RDP Licensing Server**\r\n 3. The **port numbers and the protocol** on which to allow the communication\r\n\r\nThe port numbers on which the communication occurs are as below:\r\n\r\n 1. **TCP on port number 135**. This is the main port where communication occurs.\r\n 2. **TCP on 49152\u201365535** i.e. **RPC dynamic address range**. A dynamic port is assigned from this range for validation-related communication.\r\n\r\nUsing this information ensure that the Firewall in your environment is configured appropriately to allow communication.",
 		"addpost": "addpost",
-		"dated": "Mar 06, 2021",
-		"slug": "azure-backup-series-index",
-		"categoryslug": "azure-backup",
+		"dated": "Jan 28, 2021",
+		"slug": "connectivity-requirements-for-rdp-licensing-server-connectivity-and-firewall-rules",
+		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p>This is the <strong>Index<\/strong> for the series of blog posts regarding the <strong>Azure Backup service<\/strong>.<\/p>\n<p><strong>Note<\/strong> that this Index is updated regularly as more posts are added around this topic.<\/p>\n<ol>\n<li><a href=\"http:\/\/harvestingclouds.com\/post\/azure-backup-set...\"><\/a><\/li><\/ol>\n"
+		"summary": "\n<p>If you deploy an RDP License on a VM in Azure, then that VM needs to be able to talk to the RDP Licensing Server. The RDP License allows multiple users to log into the VM at the same time. By default, only 2 users can log into the VM concurrently. RDP License lets you increase that number based o...<\/p>\n"
 	}
 ]
