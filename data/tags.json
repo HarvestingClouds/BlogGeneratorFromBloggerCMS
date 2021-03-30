@@ -223,5 +223,7 @@
 	"230": "monitoring",
 	"231": "alerts",
 	"232": "alert",
-	"233": "routing"
+	"233": "routing",
+	"234": "sap",
+	"235": "hana"
 }
