@@ -1,6 +1,100 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Azure Bastion Series - Index",
+		"postDate": "25-04-2021",
+		"tags": [
+			"bastion",
+			"connectivity",
+			"microsoft",
+			"microsoftazure",
+			"rdp",
+			"ssh"
+		],
+		"category": "Azure",
+		"body": "This is the **Index** for the series of blog posts regarding the **Azure Bastion service**.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"\" target=\"_blank\">What is Azure Bastion<\/a>\r\n 2. <a href=\"\" target=\"_blank\">Creating an Azure Bastion Host<\/a>\r\n 3. <a href=\"\" target=\"_blank\">Connecting to Windows VMs using Azure Bastion<\/a>\r\n 4. <a href=\"\" target=\"_blank\">Connecting to Linux VMs using Azure Bastion<\/a>\r\n 5. <a href=\"\" target=\"_blank\">Connecting to VM Scale Sets (VMSS) using Azure Bastion<\/a>\r\n 6. <a href=\"\" target=\"_blank\">Clipboard access and going full screen<\/a>\r\n 7. <a href=\"\" target=\"_blank\">NSG and Firewall configurations<\/a>\r\n 8. <a href=\"\" target=\"_blank\">Managing Azure Bastion - Session Management, Monitoring and Alerting<\/a>",
+		"savedraft": "savedraft",
+		"dated": "Apr 25, 2021",
+		"slug": "azure-bastion-series-index",
+		"categoryslug": "azure",
+		"status": "draft",
+		"summary": "\n<p>This is the <strong>Index<\/strong> for the series of blog posts regarding the <strong>Azure Bastion service<\/strong>.<\/p>\n<p><strong>Note<\/strong> that this Index is updated regularly as more posts are added around this topic.<\/p>\n<ol>\n<li><a href=\"\" target=\"_blank\">What is Azure Bastion<\/a><\/li>...<\/ol>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Simplifying Azure Bastion - 8 Managing Azure Bastion - Session Management, Monitoring and Alerting",
+		"postDate": "24-06-2021",
+		"tags": [
+			"bastion",
+			"connectivity",
+			"microsoft",
+			"microsoftazure",
+			"monitoring",
+			"network",
+			"rdp",
+			"ssh"
+		],
+		"category": "Azure",
+		"body": "In the previous few posts, we looked at various aspects of the Azure Bastion service. In this post, we will look at various monitoring and alerting capabilities related to Azure Bastion. \r\n\r\n### Monitoring remote sessions ###\r\n\r\nYou can monitor all the remote sessions being facilitated by Azure Bastion. To do this navigate to the Azure Bastion host. Click on the \"Sessions\" under settings. On the right side, you will be able to view all the active sessions. Click on the Refresh button to update the list with any added or removed session.\r\n\r\nNote that in the list you will see many pieces of valuable information. Few important ones are:\r\n\r\n 1. Target Host Name - Hostname of the VM that has an active session.\r\n 2. UserName - User name that was used to connect to the VM.\r\n 3. Protocol - RDP or SSH protocol, that is used to connect to the target VMs (by the Bastion host). It is ssh for Linux and RDP for Windows VMs.\r\n\r\n<img src=\"\/images\/16172197836064d0c7aa98f.png\" alt=\"Monitoring remote sessions\">\r\n\r\n### Managing remote sessions - Deleting the sessions ###\r\n\r\nIf required, you can delete any session from the list of active sessions. To do this simply right-click on the session name in the list and click on the Delete in the pop-up menu.\r\n\r\n<img src=\"\/images\/16172197906064d0cedd0d8.png\" alt=\"Option to delete a session\">\r\n\r\nThe person connected to the VM via Azure Bastion will see a prompt similar to the below. Even after a reconnection attempt from this prompt the connection won't be successful. If the end-user wants to connect again then they will have to initiate the connection again from the Azure portal.\r\n\r\n<img src=\"\/images\/16172197976064d0d59163b.png\" alt=\"Disconnected session\">\r\n\r\n### Monitoring Azure Bastion ###\r\n\r\nThe monitoring capabilities are integrated with Azure Monitor. Navigate to the **Monitor** service in the Azure portal and then click on the \"**Metrics**\" option in the left settings pane. On the right side, set the Scope to the Azure Bastion host, that you want to monitor. Next, select one of the available metrics from the list of Metric dropdown. \r\n\r\nThe options available for Metric are:\r\n\r\n 1. Availability - Bastion communication status \r\n 2. Saturation - Total memory\r\n 3. Saturation - Used CPU\r\n 4. Saturation - Used memory\r\n 5. Traffic - Session count\r\n\r\nThe one shown in the screenshot below is for \"Traffic - **Session count**\".\r\n\r\n<img src=\"\/images\/16172198356064d0fb2edca.png\" alt=\"Metrics for Bastion Monitoring\">\r\n\r\n### Creating Alerts on Azure Bastions ###\r\n\r\nFrom the Monitor, you can also create Alerts related to Azure Bastion. This experience is also similar to creating an alert for any other service in Azure. To create a new alert, click on the \"+ New alert rule\" button under the Alert section.\r\n\r\nIn the \"Create alert rule\", select the scope and set it to the Azure Bastion service. Then click on the \"Add condition\" button. This will bring a pop-up blade to \"Configure signal logic\". This is the condition on which the alert will be triggered. Check all the signals available here.\r\n\r\nAdditionally, you can select or create an Action Group to send notifications and take actions whenever an alert is triggered.\r\n\r\n<img src=\"\/images\/16172198416064d101ed680.png\" alt=\"Alerts for Bastion\">",
+		"savedraft": "savedraft",
+		"dated": "Apr 24, 2021",
+		"slug": "simplifying-azure-bastion-8-managing-azure-bastion-session-management-monitoring-and-alerting",
+		"categoryslug": "azure",
+		"status": "draft",
+		"summary": "\n<p>In the previous few posts, we looked at various aspects of the Azure Bastion service. In this post, we will look at various monitoring and alerting capabilities related to Azure Bastion. <\/p>\n<h3>Monitoring remote sessions<\/h3>\n<p>You can monitor all the remote sessions being facilitated by Azure...<\/p>\n",
+		"addpost": "addpost",
+		"prevStatus": "draft"
+	},
+	{
+		"author": "@20aman",
+		"title": "Simplifying Azure Bastion - 7 NSG and Firewall configurations",
+		"postDate": "20-06-2021",
+		"tags": [
+			"bastion",
+			"firewall",
+			"microsoft",
+			"microsoftazure",
+			"nsg",
+			"rdp",
+			"ssh",
+			"virtualnetwork"
+		],
+		"category": "Azure",
+		"body": "In the earlier posts, we saw how to set up the Azure Bastion service and how to connect to VMs using this service. In this post, we will see what ports are involved and on which side to allow this communication. That is which ports are involved in the outbound communication between the target VMs and Bastion host and which ports are involved in the inbound communication. You will need this information when dealing with any NSGs or Firewalls.\r\n\r\n### Key Points ###\r\n\r\nAzure Bastion is a fully managed platform PaaS service from Azure that is hardened internally to provide you with secure RDP\/SSH connectivity. You don't need to apply any NSGs on the Azure Bastion subnet. Because Azure Bastion connects to your virtual machines over private IP, you can configure your NSGs to allow RDP\/SSH from Azure Bastion only. This removes the hassle of managing NSGs each time you need to securely connect to your virtual machines.\r\n\r\n**Note**: UDR is not supported on an Azure Bastion subnet. You don\u2019t need to force traffic from an Azure Bastion subnet to Azure Firewall because the communication between Azure Bastion and your VMs is private. Therefore unless you have a complex deployment you will need to define the rules only at the NSG levels.\r\n\r\n#### Inbound rules for the Azure Bastion Subnet ###\r\n\r\n**Note**: These are the rules for the **Inbound** or **Ingress** communication for the Azure Bastion host. These are **applied to** the NSG for the Bastion subnet.\r\n\r\nNavigate to the \"Inbound security rules\" in the NSG and click on the \"+ Add\" button to add individual rules. As a best practice, leave a range of 10 or higher when providing priority to the rules. Ensure that the order is correct and in the required sequence. \r\n\r\nAdd **the rules** for the following:\r\n\r\n 1. Inbound on 443 from the Internet - Allow HTTPS inbound on port 443 for TCP protocol. Use the service tag of \"Internet\" for the Source and \"Any\" for the destination. This rule is required for you to be able to make HTTPS connections to the Azure Bastion host from the Azure portal.\r\n 2. Azure Bastion control plane - Allow 443 for TCP protocol. Use the service tag of \"GatewayManager\" for the Source and \"Any\" for the destination. This rule is required for the Azure Bastion control plane, i.e. Gateway Manager to be able to talk to Azure Bastion\r\n 3. Azure Bastion data plane communication - Allow 443 for TCP protocol. Use the service tag of \"AzureLoadBalancer\" for the Source and \"Any\" for the destination. This rule allows communication between the underlying components of Azure Bastion.\r\n 4. Azure Load Balancer Health probes - Allow 5701 and 8080 for \"Any\" protocol. Use the service tag of \"VirtualNetwork\" for the Source and also \"VirtualNetwork\" for the destination. This rule enables Azure Load Balancer to detect connectivity.\r\n\r\n<img src=\"\/images\/16172164676064c3d372f83.png\" alt=\"Inbound for the Azure Bastion Subnet\">\r\n\r\n#### Outbound rules for the Azure Bastion Subnet ###\r\n\r\n**Note**: These are the rules for the **Outbound** or **Egress** communication for the Azure Bastion host. These are **applied to** the NSG for the Bastion subnet.\r\n\r\nNavigate to the \"Outbound security rules\" in the NSG and click on the \"+ Add\" button to add individual rules. As a best practice, leave a range of 10 or higher when providing priority to the rules. Ensure that the order is correct and in the required sequence. \r\n\r\nAdd **the rules** for the following:\r\n\r\n 1. Traffic to target VMs - Allow SSH and RDP outbound on ports 22 and 3389 for Any protocol. Use the \"Any\" for the Source and the service tag of \"VirtualNetwork\" for the destination. This rule allows Bastion to be able to connect to target VMs for SSH and RDP connectivity.\r\n 2. Azure Bastion data plane communication - Allow outbound on ports 443 for TCP protocol. Use the \"Any\" for the Source and the service tag of \"AzureCloud\" for the destination. This rule allows outbound communication for the components of Azure Bastion to talk to each other.\r\n 3. Azure Cloud communication - Allow outbound on ports 5701 and 8080 for Any protocol. Use the \"VirtualNetwork\" for the Source and also the service tag of \"VirtualNetwork\" for the destination. This rules is required for Azure Bastion to send diagnostics logs, metering logs, and other information to various public endpoints within Azure cloud.\r\n 4. Internet communication - Allow outbound on port 80 for Any protocol. Use the \"Any\" for the Source and the service tag of \"Internet\" for the destination. This rule is required for session and certificate validation.\r\n\r\n<img src=\"\/images\/16172164756064c3db1bc20.png\" alt=\"Outbound for the Azure Bastion Subnet\">\r\n\r\n#### Inbound rules for the Target VM's NSG ###\r\n\r\n**Note**: These are the rules for the **Inbound** or **Ingress** communication for the Target VM that you will RDP to via the Bastion host. These are **applied to** the NSG for the subnet of the Target VM or directly to the network interface card of the VM. \r\n\r\nYou will need to allow ports 3389 (RDP) and 22 (SSH) inbound on the target VM. This needs to be allowed for the Bastion host to be able to make the RDP and SSH connections respectively to the target VM.\r\n\r\n**Note**  \r\n\r\n 1. You don't need both ports i.e. 3389 (RDP) and 22 (SSH). You should limit it to either one based on the operating system within the VM. For Windows VMs you will select the 3389 port and for the Linux VMs, you will select port number 22. This is shown as number 4 in the below screenshot.\r\n 2. You should update the Source IP address range to the address range of the Bastion subnet i.e. \"**AzureBastionSubnet**\" subnet only. This is shown as number 5 in the below screenshot.\r\n\r\n<img src=\"\/images\/16172164676064c3d372f83.png\" alt=\"Inbound for the Target VM\">\r\n\r\nYou can read more about these in the official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/bastion\/bastion-nsg\" target=\"_blank\">Working with NSG access and Azure Bastion<\/a>",
+		"savedraft": "savedraft",
+		"dated": "Apr 20, 2021",
+		"slug": "simplifying-azure-bastion-7-nsg-and-firewall-configurations",
+		"categoryslug": "azure",
+		"status": "draft",
+		"summary": "\n<p>In the earlier posts, we saw how to set up the Azure Bastion service and how to connect to VMs using this service. In this post, we will see what ports are involved and on which side to allow this communication. That is which ports are involved in the outbound communication between the target VMs...<\/p>\n",
+		"addpost": "addpost",
+		"prevStatus": "draft"
+	},
+	{
+		"author": "@20aman",
+		"title": "Simplifying Azure Bastion - 6 Clipboard access and going Full screen",
+		"postDate": "15-04-2021",
+		"tags": [
+			"bastion",
+			"connectivity",
+			"microsoft",
+			"microsoftazure",
+			"rdp",
+			"ssh"
+		],
+		"category": "Azure",
+		"body": "When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows VMs, you connect via RDP and for Linux VMs you connect via SSH. In both scenarios, you will need to copy and paste the text from the local machine to the remote VM. In Bastion this is managed via the Clipboard manager on the Bastion host.\r\n\r\nBefore you start make sure that you know how to connect to the VMs and various caveats linked to that as we discussed in the earlier posts.\r\n\r\n### Clipboard Access ###\r\n\r\nWhen trying to connect for the first time or trying to connect on a new browser, the Bastion service will request you to allow the Text and Image related clipboard access. I highly recommend allowing this. If you opt to not allow this access then later, you won't be able to share any clipboard with the session.\r\n\r\n**Note**: Only text copy\/paste is supported.\r\n\r\n<img src=\"\/images\/16171550566063d3f05a651.png\" alt=\"Allow Clipboard access\">\r\n\r\nWhen you are in the remote session, launch the Bastion clipboard access tool palette by selecting the two arrows on the left-center of the session.\r\n\r\n<img src=\"\/images\/1617171691606414ebdf8a2.png\" alt=\"Pop out option\">\r\n\r\nIn the pop-out window, any text you have copied on the local machine will automatically appear in the text box in this window. You can review or modify the text in this window and the clipboard in the remote VM will be updated automatically. \r\n\r\n<img src=\"\/images\/1617171699606414f37cae9.png\" alt=\"Clipboard\">\r\n\r\n### Full Screen ###\r\n\r\nAnother very useful option that is available in the pop-out option is to go full screen. Just click on the button as indicated below to enter the full-screen mode. This is recommended when you have to work on the remote VM for a long period of time.\r\n\r\n<img src=\"\/images\/1617171707606414fb514f6.png\" alt=\"Full Screen Option\">\r\n\r\nPress the Escape button to exit the Full Screen.",
+		"savedraft": "savedraft",
+		"dated": "Apr 15, 2021",
+		"slug": "simplifying-azure-bastion-6-clipboard-access-and-going-full-screen",
+		"categoryslug": "azure",
+		"status": "draft",
+		"summary": "\n<p>When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows VMs, you connect via RDP and for Linux VMs you connect via SSH. In both scenarios, you will need to copy and paste the text from the local machine to the remote VM. In Bastion this is managed via the Clip...<\/p>\n",
+		"addpost": "addpost",
+		"prevStatus": "draft"
+	},
+	{
+		"author": "@20aman",
 		"title": "Simplifying Azure Bastion - 5 Connecting to VM Scale Sets (VMSS) using Azure Bastion",
 		"postDate": "11-04-2021",
 		"tags": [
@@ -569,6 +663,47 @@
 		"categoryslug": "azure-backup",
 		"status": "publised",
 		"summary": "\n<p>Azure Backup can be leveraged to discover and backup the SQL Server deployed in the Azure VMs. The backup behavior is governed by the \"<strong>Backup Policies<\/strong>\". There are different policies specific to different kinds of workloads. In this post, we are looking at the backup pol...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure SQL - Sync to other databases - 2 - Create sync group",
+		"postDate": "17-11-2020",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "In the previous blog, you read about what is Sync to other databases features of the Azure SQL databases. In this blog, we will learn how to create the sync group.\r\n\r\nTo start navigate to the Azure SQL database on which you want to create the sync group. In this click on the \"Sync to other databases\" option. Click on the \u201c**New Sync Group**\u201d as shown below. It will open the \u201cCreate Data Sync Group\u201d blade.\r\n\r\n<img src=\"\/images\/16172332036065053355738.png\" alt=\"New sync group option\">\r\n\r\nThis will open the new blade for \"Create Data Sync Group\".\r\n\r\n<img src=\"\/images\/161723320960650539938fe.png\" alt=\"Create Data Sync Group blade\">\r\n\r\nFollowing are the details you need to provide while creating the sync group:-\r\n 1. Provide the meaningful name to the sync group name.\r\n 2. Sync Metadata Database \u2013 Microsoft recommends creating a New database for this property. But for the sake of the demo, I am using the existing database.\r\n 3. Automatic Sync \u2013 If you select On, then enter a number and select Seconds, Minutes, Hours, or Days in the Sync Frequency section.\r\nThe first sync begins after the selected interval period elapses from the time the configuration is saved.\r\n 4. Conflict Resolution \u2013 It has two options: Hub win and Member win. Hub win means when conflicts occur, data in the hub database overwrite conflicting data in the member database.\r\nMember win means when conflicts occur, data in the member database overwrite conflicting data in the hub database.\r\n 5. Private Link \u2013 This option is in preview mode as of now and will be managed by Microsoft.\r\nOnce you click on Ok, It will create the Sync group as shown below.\r\n\r\n<img src=\"\/images\/16172332156065053f084d8.png\" alt=\"Added Sync Groups\">\r\n\r\nYou can add more azure SQL databases by clicking on the \u201cAdd an Azure Database\u201d. If you want to add the on-premises SQL database into the member database then go with the \u201cAdd an On-Premises Database\u201d option.\r\n\r\nThat's all there is to it. In the next posts, we will delve deeper into sync group and related options.",
+		"addpost": "addpost",
+		"dated": "Nov 17, 2020",
+		"slug": "azure-sql-sync-to-other-databases-2-create-sync-group",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>In the previous blog, you read about what is Sync to other databases features of the Azure SQL databases. In this blog, we will learn how to create the sync group.<\/p>\n<p>To start navigate to the Azure SQL database on which you want to create the sync group. In this click on the \"Sync to oth...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure SQL - Sync to other databases - 1 - Overview",
+		"postDate": "12-11-2020",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "\u201cSync to other databases\u201d is a feature of the Azure SQL Databases. Azure SQL Data Sync is a service that is used to replicate the tables in the Azure SQL database to another Azure SQL database or on-premises databases. Data can be replicated one way or bidirectional. The important note is that Azure Managed Instance doesn\u2019t support the Sync Data feature as of now. \r\n\r\nThe concept is around Hub and members databases. All the databases in the member group can sync up with the Hub. The member databases can be on-premises databases or on cloud databases.\r\n\r\n### Where to access this feature ###\r\n\r\n\r\nNavigate to the SQL databases and click on the \u201cSync to other databases\u201d in the settings as shown below. \r\n\r\n\r\n<img src=\"\/images\/1617232808606503a8eecaf.png\" alt=\"Sync to other databases\">\r\n\r\nIn the upcoming posts, we will look into this feature in detail.",
+		"addpost": "addpost",
+		"dated": "Nov 12, 2020",
+		"slug": "azure-sql-sync-to-other-databases-1-overview",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>&ldquo;Sync to other databases&rdquo; is a feature of the Azure SQL Databases. Azure SQL Data Sync is a service that is used to replicate the tables in the Azure SQL database to another Azure SQL database or on-premises databases. Data can be replicated one way or bidirectional. The important not...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -5474,23 +5609,42 @@
 	},
 	{
 		"author": "@20aman",
-		"title": "Simplifying Azure Bastion - 6 Clipboard access and going Full screen",
-		"postDate": "15-04-2021",
+		"title": "Azure SQL - Sync to other databases - 3 - Add sync members",
+		"postDate": "25-11-2020",
 		"tags": [
-			"bastion",
-			"connectivity",
+			"azuresql",
 			"microsoft",
 			"microsoftazure",
-			"rdp",
-			"ssh"
+			"sql",
+			"sqldatabase"
 		],
-		"category": "Azure",
-		"body": "When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows \r\n\r\n### Clipboard Access ###\r\n\r\n\r\n<img src=\"\/images\/1617171691606414ebdf8a2.png\" alt=\"Pop out option\">\r\n\r\n<img src=\"\/images\/1617171699606414f37cae9.png\" alt=\"Clipboard\">\r\n\r\n### Full Screen ###\r\n\r\n<img src=\"\/images\/1617171707606414fb514f6.png\" alt=\"Full Screen Option\">\r\n\r\nPress Escape to exit the Full Screen.",
-		"savedraft": "savedraft",
-		"dated": "Apr 15, 2021",
-		"slug": "simplifying-azure-bastion-6-clipboard-access-and-going-full-screen",
-		"categoryslug": "azure",
-		"status": "draft",
-		"summary": "\n<p>When working with Azure Bastion you connect to various VMs via the Bastion host. For Windows <\/p>\n<h3>Clipboard Access<\/h3>\n<img src=\"\/images\/1617171691606414ebdf8a2.png\" alt=\"Pop out option\">\n<img src=\"\/images\/1617171699606414f37cae9.png\" alt=\"Clipboard\">\n<h3>Full Screen<\/h3>\n<img src=\"\/images\/1...\">\n"
+		"category": "Azure SQL",
+		"body": "In the previous post, we saw how to create the sync group for the Azure SQL Database. If you haven\u2019t gone through the post on how to create a sync group then please check that post first. In this post, we will learn how to add the sync members for the already created sync group.\r\n\r\nTo begin, navigate to the existing sync group and click on it to open the new blade as shown below.\r\n\r\n<img src=\"\/images\/161723379960650787b5b36.png\" alt=\"Databases section under Sync groups\">\r\n\r\nClick on the Databases section to add the databases as members of the sync group.\r\n\r\n<img src=\"\/images\/16172338056065078da820a.png\" alt=\"Select Sync members\">\r\n\r\nNext, click on \u201cAdd an Azure Database\u201d. Provide the following details about the target database to add it as a member for syncing.\r\n\r\n<img src=\"\/images\/1617233811606507932ded7.png\" alt=\"Configure Azure Database\">\r\n\r\nOnce you click Ok, you will see the databases added under the \"Member Database\" section as shown below.\r\n\r\n<img src=\"\/images\/161723381760650799cd29e.png\" alt=\"Member Database section\">\r\n\r\nYou can add more azure SQL databases by clicking on the \u201cAdd an Azure Database\u201d. If you want to add the on-premises SQL database into the member database then go with the \u201cAdd an On-Premises Database\u201d option.\r\n",
+		"addpost": "addpost",
+		"dated": "Nov 25, 2020",
+		"slug": "azure-sql-sync-to-other-databases-3-add-sync-members",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>In the previous post, we saw how to create the sync group for the Azure SQL Database. If you haven&rsquo;t gone through the post on how to create a sync group then please check that post first. In this post, we will learn how to add the sync members for the already created sync group.<\/p>\n<p>To b...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure SQL - Sync to other databases - 4 - Configure sync group",
+		"postDate": "03-12-2020",
+		"tags": [
+			"azuresql",
+			"microsoft",
+			"microsoftazure",
+			"sql",
+			"sqldatabase"
+		],
+		"category": "Azure SQL",
+		"body": "In our last post, we discussed how to add sync members. After the new sync group members are created and deployed, Configure sync group is highlighted in the New sync group page.\r\n\r\nTo begin navigate to the Azure SQL database and click on the \"Sync to other databases\" section. Click on the **Tables** section as highlighted below.\r\n\r\n<img src=\"\/images\/161723418060650904a5f3d.png\" alt=\"Sync Group\">\r\n\r\nClick on the ellipse in the tables section. It will open up the blade and select the database to which we want to sync and refresh the schema. \r\n\r\n<img src=\"\/images\/16172341876065090b38177.png\" alt=\"Selecting Tables\">\r\n\r\nAs shown below, select the database and select the tables to sync along with columns selection, and click save.\r\n\r\n<img src=\"\/images\/16172341946065091270898.png\" alt=\"Populated Table and its Schema\">\r\n\r\nTo trigger the sync process navigate to the Database sync group page and click on sync as shown below. This will ensure that the databases are synced as per the direction you have specified.\r\n\r\n<img src=\"\/images\/161723420060650918693fe.png\" alt=\"Trigger Sync\">\r\n\r\nTo stop the syncing process, click on the Stop button as shown below. \r\n\r\n<img src=\"\/images\/161723421460650926ea517.png\" alt=\"Stop Syncing\">\r\n\r\nAfter a successful syncing, you will be able to see the synced tables and related schema in the db_test01 database from the db_test02 database.\r\n\r\nTo read more about the sync groups, check the official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/azure-sql\/database\/sql-data-sync-sql-server-configure\" target=\"_blank\">Set up SQL Data Sync between databases in Azure SQL Database and SQL Server<\/a>\r\n\r\n",
+		"addpost": "addpost",
+		"dated": "Dec 03, 2020",
+		"slug": "azure-sql-sync-to-other-databases-4-configure-sync-group",
+		"categoryslug": "azure-sql",
+		"status": "publised",
+		"summary": "\n<p>In our last post, we discussed how to add sync members. After the new sync group members are created and deployed, Configure sync group is highlighted in the New sync group page.<\/p>\n<p>To begin navigate to the Azure SQL database and click on the \"Sync to other databases\" section. Click...<\/p>\n"
 	}
 ]
