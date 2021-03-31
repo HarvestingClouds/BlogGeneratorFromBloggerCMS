@@ -225,5 +225,9 @@
 	"232": "alert",
 	"233": "routing",
 	"234": "sap",
-	"235": "hana"
+	"235": "hana",
+	"236": "connectivity",
+	"237": "bastion",
+	"238": "rdp",
+	"239": "ssh"
 }
