@@ -119,28 +119,6 @@
 	},
 	{
 		"author": "@20aman",
-		"title": "Simplifying Azure Bastion - 4 Connecting to Linux VMs using Azure Bastion over SSH",
-		"postDate": "09-04-2021",
-		"tags": [
-			"bastion",
-			"microsoft",
-			"microsoftazure",
-			"rdp",
-			"ssh"
-		],
-		"category": "Azure",
-		"body": "In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.\r\n\r\nTo connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.\r\n\r\n<img src=\"\/images\/16171654566063fc90b1e71.png\" alt=\"Bastion Option\">\r\n\r\nNext, click on the Use Bastion button on the next screen.\r\n\r\n<img src=\"\/images\/16171654646063fc98dfab9.png\" alt=\"Use Bastion button\">\r\n\r\nIn the next screen to \"**Connect using Azure Bastion**\" make note of the following:\r\n\r\n 1. At the top you will see the Bastion host being used for the connection. This is for your information only. You do not need to take any action here. You may need this if you run into any issues and have to troubleshoot.\r\n 2. I recommend leaving the check box for \"Open in new window\" checked. This ensures that the connection opens in a new tab or window and uses the maximum area. If you uncheck this then the connection will open in a new blade to the right and the view will be limited.\r\n 3. Next provide the Username that will be used to connect via SSH to the Linux VM\r\n 4. Authentication type is important. Select the one that you want to leverage. The next entry will update as per the selection here.\r\n 5. Provide the additional information for the selection you made in the previous point. \r\n 6. The advanced settings are optional and can be skipped. This does not relate to all authentication types.\r\n 7. Finally click on the Connect button to connect to the VM\r\n\r\nThe options for **authentication types** are as follows:\r\n\r\n 1. Password - This is to use the normal username and password-based authentication\r\n 2. SSH Private Key - This option is used when you want to provide the key phrase manually\r\n 3. SSH Private Key from Local File - This is to upload the private key file from the local computer. You can optionally provide a passphrase for this.\r\n 4. SSH Private Key from Azure Key Vault - This is to use a private key file that you have previously uploaded to the Azure Key Vault.\r\n\r\n\r\n<img src=\"\/images\/16171654726063fca09b5cc.png\" alt=\"Connecting via Bastion\">\r\n\r\nOnce you click on the **Connect** button, the SSH session to the VM opens up in a new tab.\r\n\r\n<img src=\"\/images\/16171655386063fce2774b2.png\" alt=\"Connected VM\">\r\n\r\n**Note**: Almost all the Caveats from the previous blog for RDP to Windows VM also apply to the SSH to Linux VMs.",
-		"savedraft": "savedraft",
-		"dated": "Apr 09, 2021",
-		"slug": "simplifying-azure-bastion-4-connecting-to-linux-vms-using-azure-bastion-over-ssh",
-		"categoryslug": "azure",
-		"status": "draft",
-		"summary": "\n<p>In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.<\/p>\n<p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on th...<\/p>\n",
-		"addpost": "addpost",
-		"prevStatus": "draft"
-	},
-	{
-		"author": "@20aman",
 		"title": "Simplifying Azure Bastion - 3 Connecting to Windows VMs using Azure Bastion",
 		"postDate": "08-04-2021",
 		"tags": [
@@ -156,10 +134,33 @@
 		"dated": "Apr 08, 2021",
 		"slug": "simplifying-azure-bastion-3-connecting-to-windows-vms-using-azure-bastion",
 		"categoryslug": "azure",
-		"status": "draft",
+		"status": "publised",
 		"summary": "\n<p>In the last post, we deployed the Azure Bastion service. In this post, we will look at how to connect to a Windows VM via RDP using the Bastion service.<\/p>\n<h3>Connecting to the Windows VM via RDP<\/h3>\n<p>To start an RDP connection to a Windows host, navigate to the virtual machine that you want...<\/p>\n",
 		"addpost": "addpost",
-		"prevStatus": "draft"
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Simplifying Azure Bastion - 2 Create an Azure Bastion Host",
+		"postDate": "05-04-2021",
+		"tags": [
+			"bastion",
+			"connectivity",
+			"microsoft",
+			"microsoftazure",
+			"rdp",
+			"ssh"
+		],
+		"category": "Azure",
+		"body": "In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.\r\n\r\nAs we noted in the previous post, the Azure Bastion host is linked to a particular virtual network. In this post, when we will perform the deployment, you will notice that the deployment will be done related to a particular virtual network that we will need to select. This should be the virtual network into which your virtual machines are also deployed which you want to RDP or SSH into via the Azure Bastion service.\r\n\r\n### Pre-requisites ###\r\n\r\nBefore you start setting up the Azure Bastion host, you need to have a subnet in your Virtual network where you are deploying it.\r\n\r\n 1. The subnet must be named **AzureBastionSubnet**.\r\n 2. The subnet must be at least **\/27 or larger**.\r\n\r\nIn order to make a connection, the following **roles** are required:\r\n\r\n 1. Reader role on the virtual machine\r\n 2. Reader role on the NIC with private IP of the virtual machine\r\n 3. Reader role on the Azure Bastion resource\r\n\r\n### Creating the Azure Bastion host ###\r\n\r\nTo create a Bastion host, you can navigate to the **Bastions** section in the Azure portal. Click on the \"+ Add\" button to add a new Bastion host.\r\n\r\n<img src=\"\/images\/16171514666063c5ea66c5f.png\" alt=\"Bastion section\">\r\n\r\nA new blade for \"Create a Bastion\" will open up. In this new blade, provide the details for:\r\n\r\n - Subscription and the Resource Group where you want to deploy the Bastion service.\r\n - Provide a name for the Bastion host and the region where it should be deployed. Note that the region should be the same as where the Virtual Network and the VMs are located.\r\n - Next, select the target Virtual network. It will automatically select the subnet with the name as AzureBastionSubnet. Note that this subnet should have the size as \/27 or larger. If there is no such subnet then you will get an error. \r\n - Next, either create a new public IP address or use an existing public IP for the Bastion host.\r\n\r\n<img src=\"\/images\/16171514816063c5f962004.png\" alt=\"Create a new Bastion\">\r\n\r\nIn the next screen provide the Tags. Review all the settings and then create the Bastion host. \r\n\r\nThat's all there is to it. Once the deployment is complete we will be ready to leverage this to connect to the other VMs in the virtual network. \r\n\r\nNote that we will not be able to connect to the Bastion host itself. It is a fully managed service and is used under the hood to connect to the VMs via RDP or SSH internally. We will be able to connect to other VMs in the network, over port 443 directly from the Azure portal, directly in the browser.\r\n\r\nIn the next post, we will look at how to connect to VMs using the Azure Bastion host.",
+		"savedraft": "savedraft",
+		"dated": "Apr 07, 2021",
+		"slug": "simplifying-azure-bastion-2-create-an-azure-bastion-host",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.<\/p>\n<p>As we noted in the previous post, the Azure Bastion host i...<\/p>\n",
+		"addpost": "addpost",
+		"prevStatus": "publised"
 	},
 	{
 		"author": "@20aman",
@@ -5630,24 +5631,23 @@
 	},
 	{
 		"author": "@20aman",
-		"title": "Simplifying Azure Bastion - 2 Create an Azure Bastion Host",
-		"postDate": "05-04-2021",
+		"title": "Simplifying Azure Bastion - 4 Connecting to Linux VMs using Azure Bastion over SSH",
+		"postDate": "09-04-2021",
 		"tags": [
 			"bastion",
-			"connectivity",
 			"microsoft",
 			"microsoftazure",
 			"rdp",
 			"ssh"
 		],
 		"category": "Azure",
-		"body": "In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.\r\n\r\nAs we noted in the previous post, the Azure Bastion host is linked to a particular virtual network. In this post, when we will perform the deployment, you will notice that the deployment will be done related to a particular virtual network that we will need to select. This should be the virtual network into which your virtual machines are also deployed which you want to RDP or SSH into via the Azure Bastion service.\r\n\r\n### Pre-requisites ###\r\n\r\nBefore you start setting up the Azure Bastion host, you need to have a subnet in your Virtual network where you are deploying it.\r\n\r\n 1. The subnet must be named **AzureBastionSubnet**.\r\n 2. The subnet must be at least **\/27 or larger**.\r\n\r\nIn order to make a connection, the following **roles** are required:\r\n\r\n 1. Reader role on the virtual machine\r\n 2. Reader role on the NIC with private IP of the virtual machine\r\n 3. Reader role on the Azure Bastion resource\r\n\r\n### Creating the Azure Bastion host ###\r\n\r\nTo create a Bastion host, you can navigate to the **Bastions** section in the Azure portal. Click on the \"+ Add\" button to add a new Bastion host.\r\n\r\n<img src=\"\/images\/16171514666063c5ea66c5f.png\" alt=\"Bastion section\">\r\n\r\nA new blade for \"Create a Bastion\" will open up. In this new blade, provide the details for:\r\n\r\n - Subscription and the Resource Group where you want to deploy the Bastion service.\r\n - Provide a name for the Bastion host and the region where it should be deployed. Note that the region should be the same as where the Virtual Network and the VMs are located.\r\n - Next, select the target Virtual network. It will automatically select the subnet with the name as AzureBastionSubnet. Note that this subnet should have the size as \/27 or larger. If there is no such subnet then you will get an error. \r\n - Next, either create a new public IP address or use an existing public IP for the Bastion host.\r\n\r\n<img src=\"\/images\/16171514816063c5f962004.png\" alt=\"Create a new Bastion\">\r\n\r\nIn the next screen provide the Tags. Review all the settings and then create the Bastion host. \r\n\r\nThat's all there is to it. Once the deployment is complete we will be ready to leverage this to connect to the other VMs in the virtual network. \r\n\r\nNote that we will not be able to connect to the Bastion host itself. It is a fully managed service and is used under the hood to connect to the VMs via RDP or SSH internally. We will be able to connect to other VMs in the network, over port 443 directly from the Azure portal, directly in the browser.\r\n\r\nIn the next post, we will look at how to connect to VMs using the Azure Bastion host.",
+		"body": "In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.\r\n\r\nTo connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on the Bastion option.\r\n\r\n<img src=\"\/images\/16171654566063fc90b1e71.png\" alt=\"Bastion Option\">\r\n\r\nNext, click on the Use Bastion button on the next screen.\r\n\r\n<img src=\"\/images\/16171654646063fc98dfab9.png\" alt=\"Use Bastion button\">\r\n\r\nIn the next screen to \"**Connect using Azure Bastion**\" make note of the following:\r\n\r\n 1. At the top you will see the Bastion host being used for the connection. This is for your information only. You do not need to take any action here. You may need this if you run into any issues and have to troubleshoot.\r\n 2. I recommend leaving the check box for \"Open in new window\" checked. This ensures that the connection opens in a new tab or window and uses the maximum area. If you uncheck this then the connection will open in a new blade to the right and the view will be limited.\r\n 3. Next provide the Username that will be used to connect via SSH to the Linux VM\r\n 4. Authentication type is important. Select the one that you want to leverage. The next entry will update as per the selection here.\r\n 5. Provide the additional information for the selection you made in the previous point. \r\n 6. The advanced settings are optional and can be skipped. This does not relate to all authentication types.\r\n 7. Finally click on the Connect button to connect to the VM\r\n\r\nThe options for **authentication types** are as follows:\r\n\r\n 1. Password - This is to use the normal username and password-based authentication\r\n 2. SSH Private Key - This option is used when you want to provide the key phrase manually\r\n 3. SSH Private Key from Local File - This is to upload the private key file from the local computer. You can optionally provide a passphrase for this.\r\n 4. SSH Private Key from Azure Key Vault - This is to use a private key file that you have previously uploaded to the Azure Key Vault.\r\n\r\n\r\n<img src=\"\/images\/16171654726063fca09b5cc.png\" alt=\"Connecting via Bastion\">\r\n\r\nOnce you click on the **Connect** button, the SSH session to the VM opens up in a new tab.\r\n\r\n<img src=\"\/images\/16171655386063fce2774b2.png\" alt=\"Connected VM\">\r\n\r\n**Note**: Almost all the Caveats from the previous blog for RDP to Windows VM also apply to the SSH to Linux VMs.",
 		"savedraft": "savedraft",
-		"dated": "Apr 07, 2021",
-		"slug": "simplifying-azure-bastion-2-create-an-azure-bastion-host",
+		"dated": "Apr 10, 2021",
+		"slug": "simplifying-azure-bastion-4-connecting-to-linux-vms-using-azure-bastion-over-ssh",
 		"categoryslug": "azure",
 		"status": "publised",
-		"summary": "\n<p>In the previous post, we looked at what the Azure Bastion service is. We discuss its architecture, how it works, key benefits, pricing, etc. In this post, we will look at how to create the Azure Bastion service in the Azure portal.<\/p>\n<p>As we noted in the previous post, the Azure Bastion host i...<\/p>\n",
+		"summary": "\n<p>In the previous blog, we saw how to RDP to a Windows VM using Bastion. In this post, we will look at how to SSH to a Linux VM using the Bastion service.<\/p>\n<p>To connect to the VM via Bastion, first, navigate to the Linux VM in Azure. Click on the Connect button. In the pop-out menu, click on th...<\/p>\n",
 		"addpost": "addpost",
 		"prevStatus": "publised"
 	}
