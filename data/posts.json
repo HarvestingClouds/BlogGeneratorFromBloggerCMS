@@ -385,6 +385,46 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Grant access to Azure Storage Accounts for Azure resource instances",
+		"postDate": "05-01-2022",
+		"tags": [
+			"Azure",
+			"microsoft",
+			"microsoftazure",
+			"storage"
+		],
+		"category": "Azure",
+		"body": "You can now grant access to resource instances to Azure Storage Accounts. This further secures and restricts storage account access only to your application's Azure resources. \r\n\r\nResource instances must be from the same tenant as your storage account, but they can belong to any subscription in the tenant. Internally it uses system-assigned managed identity for the selected Azure resources.\r\n\r\n## Granting access ##\r\n\r\nFollow the below steps to set up access to Resource Instances:\r\n\r\n - **Step 1** - You can start by navigating to your Storage Account and then navigating to the **Networking** under \"**Security + networking**\"\r\n - **Step 2** - Scroll down to the section named \"*Resource instances*\"\r\n - **Step 3** - Select the **Resource Type** as per your requirements\r\n - **Step 4** - Select the **instance name**.\r\n\r\n<img src=\"\/images\/164747167362326c3974951.png\" alt=\"Settings\">\r\n\r\nYou have various options for the **instance name** selection: \r\n\r\n 1. You can select an individual instance name.\r\n 2. You can also select \"**All in current tenant**\" to select all resources of that type in the current tenant's all subscriptions.\r\n 3. You can also select \"**All in current subscription**\" to select all resources of that type in the current subscription.\r\n 4. You can also select \"**All in current resource group**\" to select all resources of that type in the current resource group.\r\n\r\n## Controlling allowed operations ##\r\n\r\nThe types of operations that a resource instance can perform on storage account data are determined by the Azure role assignments of the resource instance. You can assign these using the system-assigned managed identity of the resource on the Storage Account's RBAC settings.\r\n\r\n**Reference**: You can read more on the official documentation here: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/common\/storage-network-security?tabs=azure-portal#grant-access-from-azure-resource-instances-preview\" target=\"_blank\">Grant access from Azure resource instances<\/a>",
+		"addpost": "addpost",
+		"dated": "Jan 05, 2022",
+		"slug": "grant-access-to-azure-storage-accounts-for-azure-resource-instances",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>You can now grant access to resource instances to Azure Storage Accounts. This further secures and restricts storage account access only to your application's Azure resources. <\/p>\n<p>Resource instances must be from the same tenant as your storage account, but they can belong to any subscription ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Enabling Storage Account access to virtual networks in other regions",
+		"postDate": "03-01-2022",
+		"tags": [
+			"Azure",
+			"microsoft",
+			"microsoftazure",
+			"storage"
+		],
+		"category": "Azure",
+		"body": "Within Azure Storage Accounts, the Service endpoints work with the virtual networks in the same region or the paired regions. You can extend this functionality to virtual networks in other regions by enabling the AllowGlobalTagsForStorage feature for your subscription.  \r\n\r\n\r\n## Enabling the feature ##\r\n\r\nYou can enable the feature by running the below script. This essentially uses the \"***Register-AzProviderFeature***\" cmdlet to register the feature named \"***AllowGlobalTagsForStorage***\".\r\n\r\n    $subscriptionName = \"Your-Subscription-Name\"\r\n    \r\n    #Adding Azure Account and Subscription\r\n    $env = Get-AzEnvironment -Name \"AzureCloud\"\r\n    Connect-AzAccount -Environment $env\r\n    Set-AzContext -SubscriptionName $subscriptionName\r\n    \r\n    #Registering or Enabling the feature\r\n    Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName AllowGlobalTagsForStorage\r\n\r\n\r\n## Caveats ##\r\n\r\nIf you registered the **AllowGlobalTagsForStorage** feature, and you want to enable access to your storage account from a virtual network\/subnet in another Azure AD tenant, or in a region other than the region of the storage account or its paired region, then you must use PowerShell or the Azure CLI. The Azure portal does not show subnets in other Azure AD tenants or in regions other than the region of the storage account or its paired region, and hence cannot be used to configure access rules for virtual networks in other regions.\r\n\r\n\r\nReference: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/common\/storage-network-security?tabs=azure-powershell\" target=\"_blank\">Configure Azure Storage firewalls and virtual networks<\/a>",
+		"addpost": "addpost",
+		"dated": "Jan 03, 2022",
+		"slug": "enabling-storage-account-access-to-virtual-networks-in-other-regions",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Within Azure Storage Accounts, the Service endpoints work with the virtual networks in the same region or the paired regions. You can extend this functionality to virtual networks in other regions by enabling the AllowGlobalTagsForStorage feature for your subscription.  <\/p>\n<h2>Enabling the feat...<\/h2>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure Bastion Series - Index",
 		"postDate": "25-04-2021",
 		"tags": [
