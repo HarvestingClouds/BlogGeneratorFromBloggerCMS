@@ -229,5 +229,7 @@
 	"236": "connectivity",
 	"237": "bastion",
 	"238": "rdp",
-	"239": "ssh"
+	"239": "ssh",
+	"240": "linux",
+	"241": "sap on azure"
 }
