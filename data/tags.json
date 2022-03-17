@@ -231,5 +231,7 @@
 	"238": "rdp",
 	"239": "ssh",
 	"240": "linux",
-	"241": "sap on azure"
+	"241": "sap on azure",
+	"242": "sla",
+	"243": "uptime"
 }

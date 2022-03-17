@@ -1,6 +1,30 @@
 [
 	{
 		"author": "@20aman",
+		"title": "Quick Tip - Understanding uptime and downtime linked to any Cloud SLA numbers",
+		"postDate": "28-12-2022",
+		"tags": [
+			"Azure",
+			"aws",
+			"cloud",
+			"googlecloud",
+			"microsoft",
+			"microsoftazure",
+			"sla",
+			"uptime"
+		],
+		"category": "General",
+		"body": "When you are in any conversation related to the Cloud SLAs you will hear numbers like the SLA is 99.9% or 99.99% or more. What are those numbers and how they translate into uptime and downtime in a year? Let's take a closer look to understand these details.\r\n\r\n## 99.9% uptime SLA ##\r\n\r\nLet's start with 99.9% SLA i.e. **three nines**. SLA level of 99.9% uptime\/availability means that you can have up to the following periods of allowed downtime or unavailability.\r\n\r\n - Daily: 1m 26s\r\n - Weekly: 10m 4s\r\n - Monthly: 43m 49s\r\n - Quarterly: 2h 11m 29s\r\n - Yearly: 8h 45m 56s\r\n\r\n## 99.99% uptime SLA ##\r\n\r\nSLA level of 99.99% i.e. **four nines** uptime\/availability means that you can have up to the following periods of allowed downtime or unavailability.\r\n\r\n - Daily: 8s\r\n - Weekly: 1m 0s\r\n - Monthly: 4m 22s\r\n - Quarterly: 13m 8s\r\n - Yearly: 52m 35s\r\n\r\n## Find uptime and downtime for any SLA ##\r\n\r\nUse various online SLA calculators to determine the numbers easily for yourself. One such calculator is provided below (just as a reference):\r\n<a href=\"https:\/\/uptime.is\/\" target=\"_blank\">https:\/\/uptime.is\/<\/a>\r\n\r\nThis is very simple tip, but helps you in any cloud related SLA conversation to have better understanding of the related numbers.",
+		"addpost": "addpost",
+		"dated": "Dec 28, 2021",
+		"slug": "quick-tip-understanding-uptime-and-downtime-linked-to-any-cloud-sla-numbers",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>When you are in any conversation related to the Cloud SLAs you will hear numbers like the SLA is 99.9% or 99.99% or more. What are those numbers and how they translate into uptime and downtime in a year? Let's take a closer look to understand these details.<\/p>\n<h2>99.9% uptime SLA<\/h2>\n<p>Let's ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Windows Admin Center in the Azure portal - Index",
 		"postDate": "15-05-2022",
 		"tags": [
@@ -421,6 +445,27 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>Within Azure Storage Accounts, the Service endpoints work with the virtual networks in the same region or the paired regions. You can extend this functionality to virtual networks in other regions by enabling the AllowGlobalTagsForStorage feature for your subscription.  <\/p>\n<h2>Enabling the feat...<\/h2>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Quick Tip - Finding SLA of any Azure service",
+		"postDate": "29-12-2022",
+		"tags": [
+			"Azure",
+			"cloud",
+			"microsoft",
+			"microsoftazure",
+			"sla"
+		],
+		"category": "Azure",
+		"body": "If you are architecting a solution around Azure services, you will need to find the Service-level agreements (SLA) for the related Azure services. This is important to be factored into your solution designs as it will impact the availability and uptime of the service in your solution. \r\n\r\n\r\n## Finding the SLA of Azure Services ##\r\n\r\nTo find the Service-level agreements (SLAs) for any Azure service navigate to this link: <a href=\"https:\/\/azure.microsoft.com\/en-us\/support\/legal\/sla\/\" target=\"_blank\">Service-level agreements for Azure services<\/a>. \r\n\r\nHere you can search for any Azure service and find the SLA for the same. E.g. to find the SLA for Azure Site Recovery (ASR) navigate to the Management category and then click on the \"Azure Site Recovery\" option. \r\n\r\n<img src=\"\/images\/16474896396232b267a380a.png\" alt=\"Finding SLAs\">\r\n\r\nThis will take you to the SLA details link for the ASR.\r\n\r\n\r\n## Providing an internal SLA for the services ##\r\n\r\nNote that in addition to Microsoft's SLA your internal department may need to follow some processes related to the services that will reduce the SLA further. Ensure that you factor these external factors into your solution and its related SLAs. E.g. for Azure Site Recovery (ASR) the SLA from Microsoft is very less, but your internal department may need to take additional steps post and pre-failover via ASR. You will need to factor these into your internal department's SLA for the service.\r\n\r\nA general rule of thumb is to simulate failure and check how much time it takes for your solution or services to recover from the failure. Add some reasonable (and proportional) buffer to the observed times to formulate the internal SLAs. Ensure that any external factors, human errors, or one-time issues are not affecting these numbers during such exercises.\r\n\r\nHopefully, this helps you in better designing solutions in the cloud. Let us know your tips related to SLAs in the comments below.",
+		"addpost": "addpost",
+		"dated": "Dec 29, 2021",
+		"slug": "quick-tip-finding-sla-of-any-azure-service",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>If you are architecting a solution around Azure services, you will need to find the Service-level agreements (SLA) for the related Azure services. This is important to be factored into your solution designs as it will impact the availability and uptime of the service in your solution. <\/p>\n<h2>Fi...<\/h2>\n",
 		"prevStatus": "publised"
 	},
 	{
