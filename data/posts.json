@@ -1,30 +1,6 @@
 [
 	{
 		"author": "@20aman",
-		"title": "Quick Tip - Understanding uptime and downtime linked to any Cloud SLA numbers",
-		"postDate": "28-12-2022",
-		"tags": [
-			"Azure",
-			"aws",
-			"cloud",
-			"googlecloud",
-			"microsoft",
-			"microsoftazure",
-			"sla",
-			"uptime"
-		],
-		"category": "General",
-		"body": "When you are in any conversation related to the Cloud SLAs you will hear numbers like the SLA is 99.9% or 99.99% or more. What are those numbers and how they translate into uptime and downtime in a year? Let's take a closer look to understand these details.\r\n\r\n## 99.9% uptime SLA ##\r\n\r\nLet's start with 99.9% SLA i.e. **three nines**. SLA level of 99.9% uptime\/availability means that you can have up to the following periods of allowed downtime or unavailability.\r\n\r\n - Daily: 1m 26s\r\n - Weekly: 10m 4s\r\n - Monthly: 43m 49s\r\n - Quarterly: 2h 11m 29s\r\n - Yearly: 8h 45m 56s\r\n\r\n## 99.99% uptime SLA ##\r\n\r\nSLA level of 99.99% i.e. **four nines** uptime\/availability means that you can have up to the following periods of allowed downtime or unavailability.\r\n\r\n - Daily: 8s\r\n - Weekly: 1m 0s\r\n - Monthly: 4m 22s\r\n - Quarterly: 13m 8s\r\n - Yearly: 52m 35s\r\n\r\n## Find uptime and downtime for any SLA ##\r\n\r\nUse various online SLA calculators to determine the numbers easily for yourself. One such calculator is provided below (just as a reference):\r\n<a href=\"https:\/\/uptime.is\/\" target=\"_blank\">https:\/\/uptime.is\/<\/a>\r\n\r\nThis is very simple tip, but helps you in any cloud related SLA conversation to have better understanding of the related numbers.",
-		"addpost": "addpost",
-		"dated": "Dec 28, 2021",
-		"slug": "quick-tip-understanding-uptime-and-downtime-linked-to-any-cloud-sla-numbers",
-		"categoryslug": "general",
-		"status": "publised",
-		"summary": "\n<p>When you are in any conversation related to the Cloud SLAs you will hear numbers like the SLA is 99.9% or 99.99% or more. What are those numbers and how they translate into uptime and downtime in a year? Let's take a closer look to understand these details.<\/p>\n<h2>99.9% uptime SLA<\/h2>\n<p>Let's ...<\/p>\n",
-		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
 		"title": "Windows Admin Center in the Azure portal - Index",
 		"postDate": "15-05-2022",
 		"tags": [
@@ -40,6 +16,49 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>This is the <strong>Index<\/strong> for the series of blog posts regarding the <strong>Windows Admin Center in the Azure portal <\/strong>.<\/p>\n<p><strong>Note<\/strong> that this Index is updated regularly as more posts are added around this topic.<\/p>\n<ol>\n<li><a href=\"https:\/\/harvestingclouds.com...\"><\/a><\/li><\/ol>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Capacity Reservations experience now available within Azure Site Recovery (ASR)",
+		"postDate": "14-03-2022",
+		"tags": [
+			"Azure",
+			"azuresiterecovery",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure Security",
+		"body": "Capacity Reservations ensure that you get the capacity (in terms of CPU and memory) to start your VMs when you need those. This is a most common requirement when you are performing a failover in a disaster scenario. At that time, chances are that everyone else will also try to perform a failover and there can be a capacity crunch. This often results in \"Capacity Allocation\" errors and your VMs will not come up. The solution is to either select an alternate SKU (if that is available) or reserve the capacity beforehand. \r\n\r\nNow, this experience is inbuilt into Azure Site Recovery (ASR). You have two places where you can set this up. \r\n\r\n## During Enabling Replication ##\r\n\r\nWhen you are enabling the replication, you can select the Capacity Reservation Settings. You will be reserving the capacity for the target region where you will failover during a Disaster Recovery scenario.\r\n\r\n<img src=\"\/images\/164754634562338fe936985.png\" alt=\"Enabling Replication Wizard\">\r\n\r\nAll you need to do is to select the Capacity Reservation Group. Click on the link above for the \"*View or Edit Capacity Reservation group assignment*\". This will open up a window as shown below. Select the group and you are done.\r\n\r\n<img src=\"\/images\/164754635162338fefda5b5.png\" alt=\"Capacity Reservers group selection\">\r\n\r\n## For Already Replicated VMs ##\r\n\r\nFor the VMs that are already being replicated, you also have the option to update the Capacity Reservation settings. To this navigate to your Recovery Services Vault. Then navigate to the \"Replicated items\" under \"Protected items\" -> then select the VM for which you want to update the settings. Then navigate to the Compute settings under General. This is where you will see the \"Capacity Reservation Settings\". \r\n\r\nSimilar to what you did during enabling the replication, you can select a Capacity Reservation Group here.\r\n\r\n<img src=\"\/images\/16475804966234155069e29.png\" alt=\"Capacity Reservation under Compute Settings\">\r\n\r\n**References**: \r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-machines\/capacity-reservation-overview\" target=\"_blank\">On-demand Capacity Reservation<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/site-recovery\/azure-to-azure-common-questions#capacity\" target=\"_blank\">Why to use Capacity Reservations<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 14, 2022",
+		"slug": "capacity-reservations-experience-now-available-within-azure-site-recovery-asr",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>Capacity Reservations ensure that you get the capacity (in terms of CPU and memory) to start your VMs when you need those. This is a most common requirement when you are performing a failover in a disaster scenario. At that time, chances are that everyone else will also try to perform a failover ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Understanding Capacity Reservations in Azure",
+		"postDate": "12-03-2022",
+		"tags": [
+			"Azure",
+			"azuresiterecovery",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure Security",
+		"body": "**Capacity Reservations** ensure that you get the capacity (in terms of CPU and memory) to start your VMs when you need those. This is a most common requirement when you are performing a failover in a disaster scenario. At that time, chances are that everyone else will also try to perform a failover and there can be a capacity crunch. This often results in \"Capacity Allocation\" errors and your VMs will not come up. The solution is to either select an alternate SKU (if that is available) or reserve capacity beforehand. \r\n\r\n## Differences ##\r\n\r\n**Capacity Reservation** is different from **Reserved Instances**. Here are the key differences:\r\n\r\n 1. **Time considerations (Term)** - Reserved Instance is a commitment to use a resource for a period of time. You get a discount for this commitment. E.g. 1-year or 3-year commitment on a VM. Capacity Reservation doesn't have a time\/term commitment. It can be for any duration of time. The capacity is reserved and available immediately until the reservation is deleted.\r\n 2. **Linking** - Reserved Instance is linked only to the VM size. The Capacity Reservation is defined with the combination of VM size, location, and quantity of instances to be reserved.\r\n 3. **Capacity Guarantee (SLA)** - Reserver Instances don't guarantee the capacity. If the VM SKU is out of capacity you will get a Capacity Allocation error. Capacity Reservation guarantees capacity availability.\r\n 4. **Region vs Availability Zones** - Capacity Reservations can be done for a region or an Availability Zone. Reserver Instances are available at the region level e.g. East US or Central US etc.\r\n 5. **Billing** - Reserved Instances provide you a discount by committing to a term. Capacity Reservations cost you with pay-as-you-go rates for the underlying VM. More on this in the next section.\r\n\r\n## Pricing ##\r\n\r\nCapacity Reservations are priced at the same rate as the underlying VM size (with pay-as-you-go rates). E.g. You have 4 D4s_v3 VMs for which you reserve the capacity. Then you will be charged for 8 VMs. 4 running VMs (as per their usage) and 4 capacity reservations (regardless of whether you use these or not).\r\n\r\nBut if you have the Reserved Instances, then Reserved Capacity is provided free of cost.\r\n\r\nAlso, when you are using the capacity that you reserved via Capacity Reservations then there is no additional charge for the reservation (other than the VM cost for the up and running VM).\r\n\r\n## Caveats ##\r\n\r\n - While creating the Capacity Reservation, the capacity should be available in the target region or Availability Zone, otherwise, the reservation will fail (just like VM creation).\r\n - Spot VMs and Azure Dedicated Host Nodes are not supported\r\n - Availability Sets are not supported\r\n - Deployment constraints like Proximity Placement Group, Update domains, and UltraSSD storage are also not supported\r\n - Only Av2, B, D, E, & F VM series are supported right now. The SKUs will expand in near future.\r\n - Only the subscription that created the reservation can use it.\r\n - Reservations are only available to paid Azure customers\r\n\r\n**References**: \r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/virtual-machines\/capacity-reservation-overview\" target=\"_blank\">On-demand Capacity Reservation<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/site-recovery\/azure-to-azure-common-questions#capacity\" target=\"_blank\">Why to use Capacity Reservations<\/a>",
+		"addpost": "addpost",
+		"dated": "Mar 12, 2022",
+		"slug": "understanding-capacity-reservations-in-azure",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p><strong>Capacity Reservations<\/strong> ensure that you get the capacity (in terms of CPU and memory) to start your VMs when you need those. This is a most common requirement when you are performing a failover in a disaster scenario. At that time, chances are that everyone else will also try to pe...<\/p>\n"
 	},
 	{
 		"author": "@20aman",
@@ -263,6 +282,28 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Protecting Recovery Services Vaults with Resource Guard and Multi-user authorizations",
+		"postDate": "18-02-2022",
+		"tags": [
+			"Azure",
+			"azuresiterecovery",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery"
+		],
+		"category": "Azure Security",
+		"body": "You want to control access to Recovery Services Vault and what kind of operations are allowed on the same, you can now do so using the **Resource Guard**. It is another resource in Azure that you can \r\n\r\n## Scenario and Permissions ##\r\n\r\nLet's assume that there are two people at your organization. One who is responsible for the security and another who is responsible for performing backup-related operations. The security wants to limit the backup administrator's operations. Let's classify these people into two roles:\r\n\r\n 1. **Backup Admin** - He is the owner of the Recovery Services Vault and needs to perform various operations.\r\n 2. **Security Admin** - He is the gatekeeper of the critical operations that occur on the vault and controls permissions that the Backup admin needs to perform his job. \r\n\r\n**Permissions on the Resource Guard** - The Security admin needs to be the owner of the Resource Guard. The Backup admin must not have any permission to the Resource Guard.\r\n\r\n\r\n## Caveats ##\r\n\r\nBelow are some of the caveats that you should be aware of:\r\n\r\n - The Backup admin must not have Contributor permissions to the Resource Guard in any scenario. The Resource Guard must be owned by a different user than the backup admin.\r\n - You can place Resource Guard in a subscription or tenant different from the one containing the Recovery Services vault to provide better protection.\r\n - This feature is currently supported for Recovery Services vaults only and not available for Backup vaults.\r\n - Ensure that your subscriptions containing the Recovery Services vault as well as the Resource Guard (in different subscriptions or tenants) are registered to use Microsoft.RecoveryServices provider.\r\n\r\n## Resource Guard Creation ##\r\n\r\nJust search for \"Resource Guard\" in the search box on the Azure portal and navigate to the section. Click on the \"+ Create\" button to create a new Resource Guard. Fill in the name and other defaults and hit Create. That's it. \r\n\r\n<img src=\"\/images\/164755043562339fe30ffee.png\" alt=\"Resource Guard Creation\">\r\n\r\nNavigate to the resource guard resource once ready.\r\n\r\n## Enabling and Disabling Operations in Resource Guard ##\r\n\r\nFollow the below steps to enable\/disable the protected operations. The numbers correspond to the numbers in the screenshot.\r\n\r\n 1. Navigate to your Resource Guard resource. Then navigate to the properties section.\r\n 2. Provide a description. This would appear in the vaults that are protected using this Resource Guard.\r\n 3. Enable and Disable the protected operations next as shown below.\r\n\r\n<img src=\"\/images\/16475508836233a1a3173cd.png\" alt=\"Properties of the Resource Guard\">\r\n\r\n## Adding Backup admin as Reader on the Resource Guard ##\r\n\r\nTo enable MUA on a vault, the backup admin of the vault must have a Reader role on the Resource Guard or subscription containing the Resource Guard. Grant the Reader role to the backup admin user from the \"Role assignments\" under the \"Access control (IAM)\" for the Resource Guard resource.\r\n\r\n## Enabling Multi-User Authorization on the Recovery Services Vault ##\r\n\r\nTo set up the Multi-User Authorization on the Recovery Services Vault, navigate to the vault and link it to the Resource Guard resource. To do this navigate to the properties of the vault and select the \"Update\" link under the Multi-User Authorization setting.\r\n\r\n<img src=\"\/images\/16475511876233a2d3d09f3.png\" alt=\"Multi-User Authorization Setting\">\r\n\r\nNext, select the check box for the \"Protect with Resource Guard\" and select the radio button for the \"Select Resource Guard\". To select the actual resource for the Resource Guard, click on the \"Select Resource Guard\" link.\r\n\r\n<img src=\"\/images\/16475513316233a363659d3.png\" alt=\"Multi-User Authorization Setting - Details\">\r\n\r\nIn the next blade, select your directory and then the resource guard resource under that from the list. Hit select and then Save in the previous blade. \r\n\r\n<img src=\"\/images\/16475513356233a367d62f1.png\" alt=\"Selecting the Resource Guard for the Vault\">\r\n\r\nThis should set it up for you. Now the operations you disabled can't be performed on the recovery services vault by the backup admin.\r\n\r\n## Authorize critical (protected) operations ##\r\n\r\nIf for any reason you want to allow the critical i.e. protected operations then the recommended approach is to leverage Privileged Identity Management (PIM) and have the backup admin elevate their access from Reader to a Contributor on the Resource Guard resource. An alternative is to manually update these role assignments on the Resource Guard resource. PIM is the recommended approach as it time bounds the authorization providing just-in-time (JIT) access that is auto-revoked after allowed time.\r\n\r\n**Official documentation link**: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/backup\/multi-user-authorization\" target=\"_blank\">Multi-user authorization using Resource Guard<\/a>",
+		"addpost": "addpost",
+		"dated": "Feb 18, 2022",
+		"slug": "protecting-recovery-services-vaults-with-resource-guard-and-multi-user-authorizations",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>You want to control access to Recovery Services Vault and what kind of operations are allowed on the same, you can now do so using the <strong>Resource Guard<\/strong>. It is another resource in Azure that you can <\/p>\n<h2>Scenario and Permissions<\/h2>\n<p>Let's assume that there are two people at ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Mount point changes and Non-standard SWAP disk creation on Linux VMs in Azure",
 		"postDate": "05-02-2022",
 		"tags": [
@@ -466,6 +507,51 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>If you are architecting a solution around Azure services, you will need to find the Service-level agreements (SLA) for the related Azure services. This is important to be factored into your solution designs as it will impact the availability and uptime of the service in your solution. <\/p>\n<h2>Fi...<\/h2>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Quick Tip - Understanding uptime and downtime linked to any Cloud SLA numbers",
+		"postDate": "28-12-2022",
+		"tags": [
+			"Azure",
+			"aws",
+			"cloud",
+			"googlecloud",
+			"microsoft",
+			"microsoftazure",
+			"sla",
+			"uptime"
+		],
+		"category": "General",
+		"body": "When you are in any conversation related to the Cloud SLAs you will hear numbers like the SLA is 99.9% or 99.99% or more. What are those numbers and how they translate into uptime and downtime in a year? Let's take a closer look to understand these details.\r\n\r\n## 99.9% uptime SLA ##\r\n\r\nLet's start with 99.9% SLA i.e. **three nines**. SLA level of 99.9% uptime\/availability means that you can have up to the following periods of allowed downtime or unavailability.\r\n\r\n - Daily: 1m 26s\r\n - Weekly: 10m 4s\r\n - Monthly: 43m 49s\r\n - Quarterly: 2h 11m 29s\r\n - Yearly: 8h 45m 56s\r\n\r\n## 99.99% uptime SLA ##\r\n\r\nSLA level of 99.99% i.e. **four nines** uptime\/availability means that you can have up to the following periods of allowed downtime or unavailability.\r\n\r\n - Daily: 8s\r\n - Weekly: 1m 0s\r\n - Monthly: 4m 22s\r\n - Quarterly: 13m 8s\r\n - Yearly: 52m 35s\r\n\r\n## Find uptime and downtime for any SLA ##\r\n\r\nUse various online SLA calculators to determine the numbers easily for yourself. One such calculator is provided below (just as a reference):\r\n<a href=\"https:\/\/uptime.is\/\" target=\"_blank\">https:\/\/uptime.is\/<\/a>\r\n\r\nThis is very simple tip, but helps you in any cloud related SLA conversation to have better understanding of the related numbers.",
+		"addpost": "addpost",
+		"dated": "Dec 28, 2021",
+		"slug": "quick-tip-understanding-uptime-and-downtime-linked-to-any-cloud-sla-numbers",
+		"categoryslug": "general",
+		"status": "publised",
+		"summary": "\n<p>When you are in any conversation related to the Cloud SLAs you will hear numbers like the SLA is 99.9% or 99.99% or more. What are those numbers and how they translate into uptime and downtime in a year? Let's take a closer look to understand these details.<\/p>\n<h2>99.9% uptime SLA<\/h2>\n<p>Let's ...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Upgrade to Azure Storage account with Data Lake Gen2 easily with new feature",
+		"postDate": "21-12-2021",
+		"tags": [
+			"Azure",
+			"adls",
+			"microsoft",
+			"microsoftazure",
+			"storage"
+		],
+		"category": "Azure",
+		"body": "Now there is in-built capability in the Azure Storage Accounts to upgrade to the Data Lake Gen2. You no longer need to copy over the data. Note that this option is available only for the \"***StorageV2 (general purpose v2)***\" storage account types. It is not available for the v1 storage accounts.\r\n\r\n## Upgrade Experience ##\r\n\r\nTo find the upgrade option, simply navigate to your storage account and then navigate to the Settings section. You will see an option to perform the \"***Data Lake Gen2 upgrade***\". It gives you a step-by-step experience with this upgrade process.\r\n\r\n<img src=\"\/images\/16475365296233699135ba3.png\" alt=\"Finding the upgrade option\">\r\n\r\n## More Details ##\r\n\r\nThe three steps for performing the upgrade are as below.\r\n\r\n - **Step 1**: Review account changes before upgrading - here you review and agree to the changes being performed as part of the upgrade.\r\n - **Step 2**: Validate account before upgrading - checking for any unsupported features and providing a report.\r\n - **Step 3**: Upgrade account - performing the actual upgrade.\r\n\r\n<img src=\"\/images\/16475365366233699807e35.png\" alt=\"Upgrade option details\">\r\n\r\nDuring step 3, you are presented with all the unsupported configurations. These features are also checked during step 2 i.e. the validation step and a report is provided before the upgrade is performed. E.g. If you have versioning enabled then that will be found in the Validation step. You will have to navigate to the Data Protection and disable the same. After disabling you will be able to run through the wizard again. \r\n\r\n<img src=\"\/images\/164753706562336ba98f6f1.png\" alt=\"Unsupported changes\">\r\n\r\nIf there are still errors, then an \"**error.json**\" file is created with blob-level error details. This is created in a container named \"**hnsonerror**\". E.g. If a Blob has auto-snapshot, or if it has an active lease, then these will be tracked in this error.json file. Rectify these errors at the blob level and then retry the experience.\r\n\r\n**Reference**: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/blobs\/upgrade-to-data-lake-storage-gen2-how-to?tabs=azure-portal\" target=\"_blank\">Upgrade Azure Blob Storage with Azure Data Lake Storage Gen2 capabilities<\/a>",
+		"addpost": "addpost",
+		"dated": "Dec 21, 2021",
+		"slug": "upgrade-to-azure-storage-account-with-data-lake-gen2-easily-with-new-feature",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Now there is in-built capability in the Azure Storage Accounts to upgrade to the Data Lake Gen2. You no longer need to copy over the data. Note that this option is available only for the \"<strong><em>StorageV2 (general purpose v2)<\/em><\/strong>\" storage account types. It is not availabl...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
