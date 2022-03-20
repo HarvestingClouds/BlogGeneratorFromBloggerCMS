@@ -234,5 +234,19 @@
 	"241": "sap on azure",
 	"242": "sla",
 	"243": "uptime",
-	"244": "adls"
+	"244": "adls",
+	"245": "availability",
+	"246": "availability zones",
+	"247": "high availability",
+	"248": "code",
+	"249": "suse",
+	"250": "byos",
+	"251": "suse byos",
+	"252": "suse byos licensing",
+	"253": "payg",
+	"254": "rhel byos",
+	"255": "red hat",
+	"256": "red hat enterprise linux",
+	"257": "rhel byos licensing",
+	"258": "rhel"
 }
