@@ -248,5 +248,7 @@
 	"255": "red hat",
 	"256": "red hat enterprise linux",
 	"257": "rhel byos licensing",
-	"258": "rhel"
+	"258": "rhel",
+	"259": "custom policies",
+	"260": "export policies"
 }
