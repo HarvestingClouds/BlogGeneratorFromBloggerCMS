@@ -57,6 +57,8 @@
 <li><a href="https://HarvestingClouds.com/post/script-sample-removing-locks-from-azure-resources/" target="_blank">Removing Locks from Azure Resources</a></li>
 <li><a href="https://HarvestingClouds.com/post/script-sample-generate-report-for-route-tables-with-associated-subnets-and-related-information/" target="_blank">Generate Report for Route Tables with associated Subnets and related information</a></li>
 <li><a href="https://HarvestingClouds.com/post/script-sample-disassociate-and-associate-subnets-to-route-tables/" target="_blank">Disassociate and Associate Subnets to Route Tables</a></li>
+<li><a href="https://harvestingclouds.com/post/getting-a-report-for-all-vms-and-its-related-os-and-data-disks-code-sample/" target="_blank">Getting a report for all VMs and it's related OS and Data Disks</a></li>
+<li><a href="https://harvestingclouds.com/post/automate-azure-route-table-testing-using-network-watcher-and-powershell-scripting-code-sample/" target="_blank">Automate Azure Route Table testing using Network Watcher and PowerShell scripting</a></li>
 <li><a href="https://harvestingclouds.com/post/automatically-trigger-on-demand-azure-vm-backup-for-multiple-vms-code-sample/" target="_blank">Automatically trigger on-demand Azure VM Backup for multiple VMs</a></li>
 <li><a href="https://harvestingclouds.com/post/automatically-trigger-on-demand-sap-hana-on-azure-vm-backup-for-multiple-databases-code-sample/" target="_blank">Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases</a></li>
 <li><a href="https://harvestingclouds.com/post/moving-an-azure-virtual-machine-vm-to-an-availability-zone-the-automated-way-with-complete-code-sample/" target="_blank">Moving an Azure Virtual Machine (VM) to an Availability Zone the automated way</a></li>
@@ -1150,27 +1152,22 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <pubDate>Sat, 16 Oct 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
-<title>Automatically trigger on-demand Azure VM Backup for multiple VMs - Code Sample</title>
-<description><![CDATA[<p>Over the period of time, you will have multiple VMs being protected in Azure Recovery Services Vault using the Backup services i.e. the daily VM Backup. Before performing any major activity in your environment, you will want to take an on-demand backup with an extended expiry date. This helps you to have a fallback option if anything goes wrong during the activity. </p>
-<p>The script I present in this post automates the triggering of this on-demand backup for multiple VMs and also lets you specify a date for the expiry of this backup. The script takes the name of VMs in a csv file as input.</p>
+<title>Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases - Code Sample</title>
+<description><![CDATA[<p>Let's assume you have various <strong>SAP HANA databases on Azure VMs</strong> that are being backed up in Azure Recovery Services Vault using the Backup services i.e. the daily backup. Before performing any major activity in your environment, you will want to take an on-demand backup. This helps you to have a fallback option if anything goes wrong during the activity. To extend the expiry date you may want to update the policy temporarily as the on-demand backup for SAP HANA on Azure VMs, doesn't allow the feature to specify the expiry date.</p>
+<p>The script I present in this post automates the triggering of this on-demand backup for multiple SAP HANA databases. The script takes the name of VMs and related SAP HANA database information in a csv file as input.</p>
+<p><strong>NOTE</strong>: As the feature to trigger the SAP HANA database is available only with the CLI cmdlet, we are using the CLI command. Please ensure that you have AZ CLI also installed in your environment by following the instructions here: <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli" target="_blank">How to install the Azure CLI</a>.</p>
 <h2>Script location</h2>
-<p>The latest version of the script can be found in GitHub here:
-<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Trigger-AzVMOnDemandBackup" target="_blank">Trigger-AzVMOnDemandBackup</a></p>
-<p>The input CSV file is also located at the same location. Use this file to provide the VM names as an input to the script. Update the path to this file in the script input variables.</p>
+<p>The latest version of the script can be found in GitHub here: <a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Trigger-AzSAPHANAOnDemandBackup" target="_blank">Trigger-AzSAPHANAOnDemandBackup</a></p>
+<p>The input CSV file sample is also located at the same location. Use this file to provide the VM names and related SAP HANA database information as an input to the script. Update the path to this file in the script input variables. Update this file as per your environment.</p>
 <h2>Script Working</h2>
-<p>The script starts by checking if the input config file (with VM names) exists or not. If not, then the script prints the message to check the path and exit. It then imports the CSV file. Then it sets the context to the right recovery services vault and starts iterating through the VMs. Then it fetches the backup container for the current VM using the below command. </p>
-<pre><code>$backupcontainer = Get-AzRecoveryServicesBackupContainer `
-            -ContainerType "AzureVM" `
-            -FriendlyName $vmName</code></pre>
-<p>It uses the container to fetch the backup item corresponding to the current VM. </p>
-<pre><code>$item = Get-AzRecoveryServicesBackupItem `
-            -Container $backupcontainer `
-            -WorkloadType "AzureVM"</code></pre>
-<p>Finally, it triggers the on-demand backup using the <strong><em>Backup-AzRecoveryServicesBackupItem</em></strong> cmdlet.</p>
-<pre><code>Backup-AzRecoveryServicesBackupItem -Item $item -ExpiryDateTimeUTC $dateTillExpiry</code></pre>
-<p>I hope this script helps you save lots of time during on-demand backup creation. If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on the GitHub.</p>]]></description>
-<link>https://HarvestingClouds.com/post/automatically-trigger-on-demand-azure-vm-backup-for-multiple-vms-code-sample</link>
-<pubDate>Mon, 23 Aug 2021 00:00:00 +0500</pubDate>
+<p>The script starts by checking if the input config file (with VM names) exists or not. If not, then the script prints the message to check the path and exit. It then imports the CSV file. Then it sets the context to the right recovery services vault and starts iterating through the VMs. Then it sets the item and container variables as below.</p>
+<pre><code>$itemName = "SAPHanaDatabase;$instanceName;$databaseName"
+$containerName = "VMAppContainer;Compute;$VMResourceGroup;$vmName"</code></pre>
+<p>Finally, it triggers the on-demand backup using the below az cli command.</p>
+<pre><code>az backup protection backup-now --resource-group $rgOfVault --item-name $itemName --vault-name $vaultName --container-name $containerName --backup-type Full --output table</code></pre>
+<p>I hope this script helps you save lots of time during on-demand backup creation. If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/automatically-trigger-on-demand-sap-hana-on-azure-vm-backup-for-multiple-databases-code-sample</link>
+<pubDate>Tue, 24 Aug 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Automatically trigger on-demand Azure VM Backup for multiple VMs - Code Sample</title>
@@ -1194,6 +1191,63 @@ Register-AzProviderFeature -ProviderNamespace Microsoft.Network -FeatureName All
 <p>I hope this script helps you save lots of time during on-demand backup creation. If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
 <link>https://HarvestingClouds.com/post/automatically-trigger-on-demand-azure-vm-backup-for-multiple-vms-code-sample</link>
 <pubDate>Mon, 23 Aug 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Automate Azure Route Table testing using Network Watcher and PowerShell scripting - Code Sample</title>
+<description><![CDATA[<p>In any enterprise environment, you will have lots of customer <strong>User Defined Routes</strong> or <strong>UDRs</strong> written within <strong>Azure Route Tables</strong>. You will want to test all of these route tables and check if the &quot;<em>Next Hop</em>&quot; is as per the route tables set by you or not. This could prove to be a tedious task if done manually. I have automated this task using PowerShell scripting. I am sharing the sample in this post. </p>
+<p><strong>NOTE</strong>: You should enable Network Watcher in your environment for this script sample to work. Also, note that you need to enable the Network watcher only in the region where your resources exist.</p>
+<h2>Script location</h2>
+<p>The latest version of the script can be found in GitHub here:
+<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Test-NetworkWatcherRouteNextHop" target="_blank">Test-NetworkWatcherRouteNextHop</a>.</p>
+<p>A sample input CSV file is also located at the same location.</p>
+<h2>Script Working</h2>
+<p>For the script to work, make sure that you have filled the input CSV file as per your environment. In every test, there will be a source and a destination for the communication pair. The script primary looks for the below information from the csv file:</p>
+<ol>
+<li><strong>SourceSubscription</strong> - The subscription for the source.</li>
+<li><strong>SourceRG</strong> - The resource group of the source VM</li>
+<li><strong>SourceVMName</strong> - Name of the source VM</li>
+<li><strong>Source IP - Indicative</strong> - Actual IP address of the source VM. Please ignore the &quot;indicative&quot; text</li>
+<li><strong>DestinationIP-Actual</strong> - Actual IP address of the destination VM</li>
+<li><strong>SourceLocation</strong> - Azure region location of the source VM</li>
+</ol>
+<p><strong>NOTE</strong>: Within the script update the Network Watcher names as per your primary and secondary regions in Azure where &quot;<strong><em>Get-AzNetworkWatcher</em></strong>&quot; cmdlet is used. E.g. to fetch the Network Watcher in the East US 2 region the command used is as below.</p>
+<pre><code>$nw = Get-AzNetworkWatcher -Name NetworkWatcher_eastus2 -ResourceGroupName NetworkWatcherRG</code></pre>
+<p>The script then fetches the VM using the <strong><em>Get-AzVM</em></strong> cmdlet.</p>
+<pre><code>$vm = Get-AzVM -Name $SourceVMName -ResourceGroupName $SourceVMResourceGroupName</code></pre>
+<p>Finally, it executes the test by using the <strong><em>Get-AzNetworkWatcherNextHop</em></strong> command.</p>
+<pre><code>$nextHop = Get-AzNetworkWatcherNextHop -NetworkWatcher $nw -TargetVirtualMachineId $vm.Id -SourceIPAddress $SourceVMIPAddress -DestinationIPAddress $DestinationIPAddress</code></pre>
+<p>To get the results it uses the output of the above command.</p>
+<pre><code>$eachVM.NextHopType = $nextHop.NextHopType
+$eachVM.IPAddressResult = $nextHop.NextHopIpAddress
+$eachVM.RouteTableID = $nextHop.RouteTableId</code></pre>
+<p>You can then compare the output with the expected output to check if the test case passed or failed. </p>
+<p>If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/automate-azure-route-table-testing-using-network-watcher-and-powershell-scripting-code-sample</link>
+<pubDate>Wed, 21 Jul 2021 00:00:00 +0500</pubDate>
+</item>
+<item>
+<title>Getting a report for all VMs and it's related OS and Data Disks - Code Sample</title>
+<description><![CDATA[<p>In the past, I wrote a script sample to output all VMs related reports. Now, this report is easily available in the Azure portal when you are viewing the VMs. You can even apply any filters and add/remove any columns for more data. Then you can download the csv for the data you see. </p>
+<p>One thing that is not available is a <strong>report of VMs and their related OS and Data disks</strong>. You may need this sometime as per your requirements. In this post, I am sharing one such script that pulls a report around all VMs and their all related disks.</p>
+<h2>Script location</h2>
+<p>The latest version of the script can be found in GitHub here:
+<a href="https://github.com/HarvestingClouds/PowerShellSamples/tree/master/Scripts/Get-AzResourceInfo-VMsAndAllRelatedDisks" target="_blank">Get-AzResourceInfo-VMsAndAllRelatedDisks</a></p>
+<p>A sample output CSV file and a sample excel report (based on the output csv) are also located at the same location.</p>
+<h2>Script Working</h2>
+<p>The script selects all subscriptions and iterates over those. Then within each subscription, it fetches all Resource Groups and iterates over those. The script also indicates a way for filtering over Resource Groups (while fetching these) by using wildcards.</p>
+<p>For each Resource Group, it fetches all resources and iterates over these. Then it filters out the resources of type virtual machines. Specifically, it uses the filter to match the type to &quot;<strong><em>Microsoft.Compute/virtualMachines</em></strong>&quot;.</p>
+<pre><code>$resource.Type -eq "Microsoft.Compute/virtualMachines"</code></pre>
+<p>Then for every VM, it fetches three different types of information and adds each as a separate row to the output CSV:</p>
+<ol>
+<li>The VM itself</li>
+<li>OS disk details</li>
+<li>Data disk details - one-row entry for each data disk</li>
+</ol>
+<p>The script uses a value/column for &quot;attachedToVM&quot; for all types of rows to indicate which VM the entry belongs to. The script also outputs &quot;<strong>ResourceType</strong>&quot; column that you can further use to filter data. </p>
+<p>Now that you have the data, you can create custom reports as per your requirements. One such report is provided in the same location for your easy reference.</p>
+<p>If you have any improvements you would like to see in the script feel free to provide that as a comment here or a pull request on GitHub.</p>]]></description>
+<link>https://HarvestingClouds.com/post/getting-a-report-for-all-vms-and-its-related-os-and-data-disks-code-sample</link>
+<pubDate>Thu, 15 Jul 2021 00:00:00 +0500</pubDate>
 </item>
 <item>
 <title>Azure Bastion Series - Index</title>

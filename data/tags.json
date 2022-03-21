@@ -250,5 +250,7 @@
 	"257": "rhel byos licensing",
 	"258": "rhel",
 	"259": "custom policies",
-	"260": "export policies"
+	"260": "export policies",
+	"261": "sap hana",
+	"262": "sap hana on azure vm"
 }
