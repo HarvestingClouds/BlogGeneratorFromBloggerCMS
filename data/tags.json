@@ -252,5 +252,11 @@
 	"259": "custom policies",
 	"260": "export policies",
 	"261": "sap hana",
-	"262": "sap hana on azure vm"
+	"262": "sap hana on azure vm",
+	"263": "resource visualizer",
+	"264": "architecture",
+	"265": "diagrams",
+	"266": "redundancy",
+	"267": "zrs",
+	"268": "zone redundancy"
 }

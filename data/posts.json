@@ -680,6 +680,29 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Easily and automatically generate architecture diagrams in Azure with the Resource Visualizer",
+		"postDate": "29-11-2021",
+		"tags": [
+			"Azure",
+			"architecture",
+			"azureresourcemanager",
+			"diagrams",
+			"microsoft",
+			"microsoftazure",
+			"resource visualizer"
+		],
+		"category": "Azure",
+		"body": "Imagine you are in a rush and you need to create a diagram of your environment urgently. You wish there was a way to just select the resources and generate the diagram, that not only shows all the resources in the environment but also shows you the relation between different resources. And now there is such a way in Azure.\r\n\r\n**Resource Visualizer** is a new feature that is now integrated into the Azure portal. Access from any Resource Group's setting and quickly generate a diagram for all the resources in the resource group. \r\n\r\n<img src=\"\/images\/164790946662391a5aea37b.png\" alt=\"Resource Visualizer\">\r\n\r\nOne of the neat features is that you can click on the \"***Choose resources***\" button at the top to select the resources you need in the visualizer (and exclude others). You can also zoom in and out by using the zoom controls at the bottom right corner. If you are not able to adjust and need to reset, you can click on the \"***Zoom to fit***\" button at the top. \r\n\r\nI am sure this feature will become a go-to for quickly generating diagrams with dependencies for providing walk-throughs and creating architectural diagrams in Microsoft Azure. ",
+		"addpost": "addpost",
+		"dated": "Nov 29, 2021",
+		"slug": "easily-and-automatically-generate-architecture-diagrams-in-azure-with-the-resource-visualizer",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Imagine you are in a rush and you need to create a diagram of your environment urgently. You wish there was a way to just select the resources and generate the diagram, that not only shows all the resources in the environment but also shows you the relation between different resources. And now th...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Automating the enabling of BYOS licensing for all Red Hat Enterprise Linux (RHEL) VMs in Azure - Code Sample",
 		"postDate": "27-11-2021",
 		"tags": [
@@ -735,6 +758,24 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Find all preview features that you can try now in Azure easily",
+		"postDate": "15-11-2021",
+		"tags": [
+			"Azure",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "You can easily find all the preview features in Azure. You can also find detailed information about each of these features directly within the Azure portal. If you like a feature you can then try it out as well. Let's see where and how to do this.\r\n\r\n## Finding all the preview features ##\r\n\r\nYou can find all the preview features by navigating to the Azure subscription. Once within the subscription, you can scroll down in the settings and search for \"**Preview features**\". This is the less known area that shows you all the latest pre-release features that are available for you to try out. \r\n\r\n<img src=\"\/images\/16479205106239457e6366a.png\" alt=\"Preview features in Azure\">\r\n\r\nEvery feature has below details:\r\n\r\n 1. For every preview feature there is a column for State. This shows if you are already registered or not registered for this feature. \r\n 2. Next it shows the provider that features pertains to. \r\n 3. It also shows the release date of the feature.\r\n 4. Finally, there is a link to the documentation to this feature for more details.\r\n\r\nYou also have the option to filter the available features by text (at the top).\r\n\r\nReview this section periodically to check the latest features that are available for you to try. I hope you find this tip useful.\r\n",
+		"addpost": "addpost",
+		"dated": "Nov 15, 2021",
+		"slug": "find-all-preview-features-that-you-can-try-now-in-azure-easily",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>You can easily find all the preview features in Azure. You can also find detailed information about each of these features directly within the Azure portal. If you like a feature you can then try it out as well. Let's see where and how to do this.<\/p>\n<h2>Finding all the preview features<\/h2>\n<p>...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
 		"title": "Export all custom Azure Policies - Code Sample",
 		"postDate": "11-11-2021",
 		"tags": [
@@ -781,6 +822,29 @@
 		"categoryslug": "azure-script-sample",
 		"status": "publised",
 		"summary": "\n<p><strong>Availability Zones<\/strong> is the new concept to increase the availability of an Azure Virtual Machine (VM). It provides different datacenter with independent cooling, power, and network within one Azure Region. If you have an application deployed redundantly across more than one VM, the...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "New Feature Alert - Zone redundant storage (ZRS) for Azure Disk Storage and Azure Storage Accounts",
+		"postDate": "20-09-2021",
+		"tags": [
+			"Azure",
+			"manageddisks",
+			"microsoft",
+			"microsoftazure",
+			"redundancy",
+			"zone redundancy",
+			"zrs"
+		],
+		"category": "Azure",
+		"body": "With **Availability Zones** there is a new way for the data to be made redundant as well in a zone-aware deployment. This is known as \"**Zone Redundant Storage**\" or **ZRS**. This option replicates the data across different availability zones and therefore protects you against the datacenter level failures. It is highly recommended for the architecture involving highly available (HA) design\/solution.\r\n\r\n## ZRS for Managed Disks ##\r\n\r\nZRS as an option for the managed disk is the new feature that has just been introduced.\r\n\r\nNote that this option is available for: \r\n\r\n - Azure Premium SSDs\r\n - Standard SSDs\r\n\r\nAt the time of writing of this post, this option is only available for the below regions:\r\n\r\n - West Europe  \r\n - North Europe \r\n - West US 2 \r\n - France Central\r\n\r\nWhen you will try to create a new managed disk, while selecting the disk size, you can modify its redundancy option. If you are using one of the region mentioned above, you will view \"Zone-redundant storage\" as the option for the **disk SKU**. You will have the option to select either premium SSD or Standard SSD only.\r\n\r\n<img src=\"\/images\/1647932669623974fde0111.png\" alt=\"ZRS Option for Managed Disks\">\r\n\r\n## ZRS and GZRS options for Storage Accounts ##\r\n\r\nFor the Storage Accounts, this feature is more widely available across various regions. This feature has been available for some time now for the storage accounts.\r\n\r\nWhen creating new storage accounts, you can select ZRS and GZRS for the storage account data redundancy. These stand for:\r\n\r\n - **ZRS** - Zone-redundant storage - data is replicated across different zones.\r\n - **GZRS** - Geo-zone-redundant storage - this is a mix of GRS and ZRS. In addition to data being replicated across zones, it is also replicated across different geo regions.\r\n\r\n<img src=\"\/images\/164793267762397505de820.png\" alt=\"ZRS Option for Storage Accounts\">\r\n\r\n## Biggest Advantages ##\r\n\r\nThere are lots of advantages to leveraging ZRS storage redundancy in your solutions. The big ones include:\r\n\r\n - If a virtual machine becomes unavailable in an affected zone, you can continue to work with the disk by mounting it to a virtual machine in a different zone. \r\n - You can also use the ZRS option with shared disks to provide improved availability for clustered or distributed applications E.g. SQL FCI, SAP ASCS\/SCS, or GFS2.\r\n\r\n**References**: \r\n\r\n - <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/zone-redundant-storage-zrs-for-azure-disk-storage-now-generally-available\/\" target=\"_blank\">Zone redundant storage (ZRS) for Azure Disk Storage<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/common\/storage-redundancy#redundancy-in-the-primary-region\" target=\"_blank\">Azure Storage redundancy in the primary region<\/a>",
+		"addpost": "addpost",
+		"dated": "Sep 20, 2021",
+		"slug": "new-feature-alert-zone-redundant-storage-zrs-for-azure-disk-storage-and-azure-storage-accounts",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>With <strong>Availability Zones<\/strong> there is a new way for the data to be made redundant as well in a zone-aware deployment. This is known as \"<strong>Zone Redundant Storage<\/strong>\" or <strong>ZRS<\/strong>. This option replicates the data across different availability zones and t...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
