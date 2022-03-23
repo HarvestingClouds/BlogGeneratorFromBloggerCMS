@@ -849,6 +849,28 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Simplifying the Azure Backup Center",
+		"postDate": "14-09-2021",
+		"tags": [
+			"Azure",
+			"Azure Backup",
+			"backup",
+			"backup center",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure Backup",
+		"body": "**Azure Backup Center** is the new one-stop-shop for all your backup management related tasks within Microsoft Azure. It unifies the backup data from various vaults across different subscriptions within your tenant.\r\n\r\n## Navigating to the Backup Center ##\r\n\r\n\r\n\r\n<img src=\"\/images\/1648000888623a7f78dec92.png\" alt=\"Backup Center homepage\">\r\n\r\n\r\n<img src=\"\/images\/1648000897623a7f8116ec9.png\" alt=\"Datasource type\">\r\n\r\n## Support Matrix ##\r\n\r\nLet's check out what all you can do with the Backup Center.\r\n\r\n| Syntax      | Description | Test Text     |\r\n| :---        |    :----:   |          ---: |\r\n| Header      | Title       | Here's this   |\r\n| Paragraph   | Text        | And more      |\r\n\r\n________\r\n\r\n| Heading1 | Heading 2 | Heading 3 |\r\n|----------|-----------|-----------|\r\n| A        | B         | C         |\r\n| 1        | 2         | 3         |\r\n\r\n## Unsupported Scenario ##\r\n\r\nCurrently, the only unsupported scenario is updating the vault settings at scale. You have to navigate to each individual vault to update its settings.\r\n\r\n**References**: \r\n\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/backup\/backup-center-overview\" target=\"_blank\">Overview of Backup center<\/a>\r\n - <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/backup\/backup-center-support-matrix\" target=\"_blank\">Support matrix for Backup center<\/a>",
+		"addpost": "addpost",
+		"dated": "Sep 14, 2021",
+		"slug": "simplifying-the-azure-backup-center",
+		"categoryslug": "azure-backup",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Backup Center<\/strong> is the new one-stop-shop for all your backup management related tasks within Microsoft Azure. It unifies the backup data from various vaults across different subscriptions within your tenant.<\/p>\n<h2>Navigating to the Backup Center<\/h2>\n<img src=\"\/images\/16480...\">\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Automatically trigger on-demand SAP HANA on Azure VM Backup for multiple Databases - Code Sample",
 		"postDate": "23-08-2021",
 		"tags": [
