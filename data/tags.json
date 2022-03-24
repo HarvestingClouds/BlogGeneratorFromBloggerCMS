@@ -259,5 +259,7 @@
 	"266": "redundancy",
 	"267": "zrs",
 	"268": "zone redundancy",
-	"269": "backup center"
+	"269": "backup center",
+	"270": "backup vault",
+	"271": "recovery services vault"
 }
