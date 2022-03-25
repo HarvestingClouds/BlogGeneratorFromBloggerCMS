@@ -11,7 +11,7 @@
 		"category": "Azure",
 		"body": "This is the **Index** for the series of blog posts regarding the **Windows Admin Center in the Azure portal **.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-1-intro-to-the-easiest-server-management\/\" target=\"_blank\">Intro to the Easiest Server Management<\/a>\r\n 2. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-2-setting-it-up\/\" target=\"_blank\">Setting it up<\/a>\r\n 3. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-3-under-the-hood\/\" target=\"_blank\">Under the hood<\/a>\r\n 4. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-4-connecting-to-it\/\" target=\"_blank\">Connecting to it<\/a>\r\n 5. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-5-working-with-it\/\" target=\"_blank\">Working with it<\/a>\r\n 6. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-6-various-tools-part-1\/\" target=\"_blank\">Various Tools - Part 1<\/a>\r\n 7. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-7-various-tools-part-2\/\" target=\"_blank\">Various Tools - Part 2<\/a>\r\n 8. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-8-caveats\/\" target=\"_blank\">Caveats<\/a>\r\n 9. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-9-securing-inbound-connectivity\/\" target=\"_blank\">Securing inbound connectivity<\/a>\r\n 10. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-10-troubleshooting-common-issues\/\" target=\"_blank\">Troubleshooting common issues<\/a>\r\n 11. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-11-automating-deployment\/\" target=\"_blank\">Automating deployment<\/a>\r\n",
 		"addpost": "addpost",
-		"dated": "Mar 20, 2022",
+		"dated": "Mar 24, 2022",
 		"slug": "windows-admin-center-in-the-azure-portal-index",
 		"categoryslug": "azure",
 		"status": "publised",
@@ -826,6 +826,28 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Azure Backup Series - Index",
+		"postDate": "06-03-2021",
+		"tags": [
+			"backup",
+			"disasterrecovery",
+			"microsoft",
+			"microsoftazure",
+			"recovery",
+			"storage"
+		],
+		"category": "Azure Backup",
+		"body": "This is the **Index** for the series of blog posts regarding the **Azure Backup service**.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-set-storage-redundancy-for-recovery-services-vault\" target=\"_blank\">Set Storage Redundancy for Recovery Services Vault<\/a>\r\n 2. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup<\/a>\r\n 3. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-soft-delete-for-recovery-services-vault\" target=\"_blank\">Soft Delete for Recovery Services Vault<\/a>\r\n 4. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 1 Overview<\/a>\r\n 5. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault<\/a>\r\n 6. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault<\/a>\r\n 7. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault<\/a>\r\n 8. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault<\/a>\r\n 9. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-backup-center-in-microsoft-azure\" target=\"_blank\">Backup Center in Microsoft Azure<\/a>\r\n 10. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm\" target=\"_blank\">Understanding the backup policy for SQL Server in Azure VM<\/a>\r\n 11. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database\" target=\"_blank\">Understanding the backup policy for SAP HANA in Azure VM (Database)<\/a>\r\n 12. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database\" target=\"_blank\">Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database)<\/a>\r\n 13. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-configuring-azure-backup-for-azure-file-shares\" target=\"_blank\">Configuring Azure Backup for Azure File Shares<\/a>\r\n 14. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines is now generally available<\/a>\r\n 15. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor\" target=\"_blank\">Managing the backup-related alerts via the Azure Monitor<\/a>\r\n 16. <a href=\"https:\/\/harvestingclouds.com\/post\/simplifying-the-azure-backup-center-part-1\/\" target=\"_blank\">Simplifying the Azure Backup Center - Part 1<\/a>\r\n 17. <a href=\"https:\/\/harvestingclouds.com\/post\/simplifying-the-azure-backup-center-part-2\/\" target=\"_blank\">Simplifying the Azure Backup Center - Part 2<\/a>\r\n 18. <a href=\"https:\/\/harvestingclouds.com\/post\/azure-recovery-services-vaults-vs-backup-vaults\/\" target=\"_blank\">Azure Recovery Services Vaults vs Backup Vaults<\/a>",
+		"addpost": "addpost",
+		"dated": "Sep 30, 2021",
+		"slug": "azure-backup-series-index",
+		"categoryslug": "azure-backup",
+		"status": "publised",
+		"summary": "\n<p>This is the <strong>Index<\/strong> for the series of blog posts regarding the <strong>Azure Backup service<\/strong>.<\/p>\n<p><strong>Note<\/strong> that this Index is updated regularly as more posts are added around this topic.<\/p>\n<ol>\n<li><a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-se...\"><\/a><\/li><\/ol>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure Recovery Services Vaults vs Backup Vaults",
 		"postDate": "28-09-2021",
 		"tags": [
@@ -993,6 +1015,53 @@
 		"categoryslug": "azure-script-sample",
 		"status": "publised",
 		"summary": "\n<p>In any enterprise environment, you will have lots of customer <strong>User Defined Routes<\/strong> or <strong>UDRs<\/strong> written within <strong>Azure Route Tables<\/strong>. You will want to test all of these route tables and check if the \"<em>Next Hop<\/em>\" is as per the route tables...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Block all public access to Azure Storage Accounts - via Azure policy - with complete sample",
+		"postDate": "28-07-2021",
+		"tags": [
+			"Azure",
+			"azuresecurity",
+			"blob",
+			"datasecurity",
+			"microsoft",
+			"microsoftazure",
+			"security",
+			"storage"
+		],
+		"category": "Azure Security",
+		"body": "In the last post, we looked at how to block all public access to Azure Storage Accounts via manual configurations on the Storage Account. In this post, we are looking at how to automatically enforce this in your environment not just for existing storage accounts but also for any new storage accounts that will be created in the future. As the title suggests, we are going to use Azure policy to achieve this. \r\n\r\nYou have **two key options** when it comes to any Azure policy. You can either use it only to audit which resources are not compliant. Or you can enforce the required settings. We ideally want the latter effect, so that if someone changes the settings the settings are auto-corrected.\r\n\r\n## Finding the required resources within the policy ##\r\n\r\nYou first need to find the relevant resources. The **two conditions** you need to apply within the policy are:\r\n\r\n 1. You need to filter for all **Storage Account** resources\r\n 2. Then you need to filter for Storage Accounts for which \"**allowBlobPublicAccess**\" is not equal to \"**false**\" i.e. for which the allow blob public access is enabled.\r\n\r\nFor the first condition i.e. to filter by Storage account resource you use the below condition within the policy:\r\n\r\n    {\r\n              \"field\": \"type\",\r\n              \"equals\": \"Microsoft.Storage\/storageAccounts\"\r\n     }\r\n\r\nFor the second condition, i.e. to filter for Storage Accounts for which \"**allowBlobPublicAccess**\" is not equal to \"**false**\" you can use the below condition:\r\n\r\n    {\r\n              \"not\": {\r\n                \"field\": \"Microsoft.Storage\/storageAccounts\/allowBlobPublicAccess\",\r\n                \"equals\": \"false\"\r\n              }\r\n    }\r\n\r\n## Option 1 - Auditing for compliance ##\r\n\r\nIf you want to only Audit these storage accounts for which the allow blob public access is enabled, for the effect you can specify to only \"**audit**\" as shown below:\r\n\r\n      \"then\": {\r\n        \"effect\": \"audit\"\r\n      }\r\n\r\nThis will only show the non-compliant storage accounts under the compliance report. \r\n\r\n## Option 2 - Enforcing the setting (Recommended) ##\r\n\r\nTo go one step further you want to enforce the setting. You have two ways to do this:\r\n\r\n 1. Deny the operation\r\n 2. Reapply the settings. \r\n\r\nTo deny the operation simply specify the effect as \"**deny**\" as shown below:\r\n\r\n      \"then\": {\r\n        \"effect\": \"deny\"\r\n      }\r\n\r\nTo reapply the settings automatically you can use the below \"**modify**\" effect in the policy. You need to specify the guid for the role with which the effect will be applied. And then you specify the \"**addOrReplace**\" operation to update the setting as shown below:\r\n\r\n    \"then\": {\r\n          \"effect\": \"modify\",\r\n          \"details\": {\r\n            \"roleDefinitionIds\": [\r\n              \"\/providers\/microsoft.authorization\/roleDefinitions\/b24988ac-6180-42a0-ab88-20f7382dd24c\"\r\n            ],\r\n            \"operations\": [\r\n              {\r\n                \"operation\": \"addOrReplace\",\r\n                \"field\": \"Microsoft.Storage\/storageAccounts\/allowBlobPublicAccess\",\r\n                \"value\": false\r\n              }\r\n            ]\r\n          }\r\n        }\r\n\r\n**NOTE**: You can create Exemptions in the policy if you have a genuine case where the access needs to be opened. E.g. a public static website hosted on the Storage Account.\r\n\r\n## Complete Policy Sample GitHub Location ##\r\n\r\nTo find the complete policy sample can be found in the GitHub at this location: <a href=\"https:\/\/github.com\/HarvestingClouds\/AzurePolicySamples\/blob\/main\/Storage\/DisableBlobPublicAccess.json\" target=\"_blank\">DisableBlobPublicAccess.json<\/a>\r\n\r\n**Reference**: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/blobs\/anonymous-read-access-prevent\" target=\"_blank\">Prevent anonymous public read access to containers and blobs<\/a>",
+		"addpost": "addpost",
+		"dated": "Jul 17, 2021",
+		"slug": "block-all-public-access-to-azure-storage-accounts-via-azure-policy-with-complete-sample",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>In the last post, we looked at how to block all public access to Azure Storage Accounts via manual configurations on the Storage Account. In this post, we are looking at how to automatically enforce this in your environment not just for existing storage accounts but also for any new storage accou...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Block all public access to Azure Storage Accounts - via manual setting",
+		"postDate": "20-07-2021",
+		"tags": [
+			"Azure",
+			"data",
+			"datasecurity",
+			"microsoft",
+			"microsoftazure",
+			"security",
+			"storage"
+		],
+		"category": "Azure Security",
+		"body": "In the recent past, there have been so many instances where critical data was unintentionally exposed because public access was enabled on the Azure Storage Accounts. Outside people were able to access the blobs and containers publically. Now there is a way to block all public access with just a click of a button.\r\n\r\n## Finding the setting - Allow blob public access##\r\n\r\nTo find this setting, navigate to the storage account for which you want to enable this setting. Then navigate to **Configuration** under Settings. Find the configuration for \"***Allow Blob public access***\" and set it to \"***Disabled***\" to disable any public blob access.\r\n\r\n<img src=\"\/images\/1648111273623c2ea98665f.png\" alt=\"Allow Blob public access\">\r\n\r\n## More ways to secure the storage account ##\r\n\r\nThere are various ways to further lockdown and secure your storage account. Let's look at a few of these.\r\n\r\n### Locking the Networking to only selected networks ###\r\n\r\nOne of the most important settings is to update the Storage Account's networking settings to not allow access from \"**All Networks**\". You should lock it down to specific networks only or to specified Public IP addresses only.\r\n\r\n<img src=\"\/images\/1648173827623d2303100ce.png\" alt=\"Storage Networking settings\">\r\n\r\n### Other security related settings ###\r\n\r\nAnother security-related configuration is to require secure transfer. This means that when the data travels to and from the storage account HTTPS should be used instead of HTTP. In the case of file shares, the encrypted connection should be used as well.\r\n\r\n<img src=\"\/images\/1648173837623d230d988d3.png\" alt=\"Other Storage Configurations\">\r\n\r\n## Next Steps ##\r\n\r\nIn the next post, we will look at automatically enforcing blocking of the public access to storage accounts across your subscription with Azure policies. We will have this policy apply for any existing and new Storage Accounts.\r\n\r\n**Reference**: <a href=\"https:\/\/docs.microsoft.com\/en-us\/azure\/storage\/blobs\/anonymous-read-access-prevent\" target=\"_blank\">Prevent anonymous public read access to containers and blobs<\/a>",
+		"addpost": "addpost",
+		"dated": "Jul 15, 2021",
+		"slug": "block-all-public-access-to-azure-storage-accounts-via-manual-setting",
+		"categoryslug": "azure-security",
+		"status": "publised",
+		"summary": "\n<p>In the recent past, there have been so many instances where critical data was unintentionally exposed because public access was enabled on the Azure Storage Accounts. Outside people were able to access the blobs and containers publically. Now there is a way to block all public access with just a ...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -1436,28 +1505,6 @@
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p><strong>Azure Route Server<\/strong> is a new offering from Microsoft that simplifies the routing in your infrastructure, especially if you have a Network Virtual Appliance or NVA. It eliminates the need to manually configure or maintain route tables. It is a fully managed service and is configure...<\/p>\n",
-		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Azure Backup Series - Index",
-		"postDate": "06-03-2021",
-		"tags": [
-			"backup",
-			"disasterrecovery",
-			"microsoft",
-			"microsoftazure",
-			"recovery",
-			"storage"
-		],
-		"category": "Azure Backup",
-		"body": "This is the **Index** for the series of blog posts regarding the **Azure Backup service**.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-set-storage-redundancy-for-recovery-services-vault\" target=\"_blank\">Set Storage Redundancy for Recovery Services Vault<\/a>\r\n 2. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-using-azure-backup\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines using Azure Backup<\/a>\r\n 3. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-soft-delete-for-recovery-services-vault\" target=\"_blank\">Soft Delete for Recovery Services Vault<\/a>\r\n 4. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-1-overview\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 1 Overview<\/a>\r\n 5. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-2-enable-managed-identity-for-your-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 2 Enable managed identity for your Recovery Services vault<\/a>\r\n 6. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-3-assign-permissions-to-the-vault-to-access-the-encryption-key-in-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 3 Assign permissions to the vault to access the encryption key in the Azure Key Vault<\/a>\r\n 7. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-4-enable-soft-delete-and-purge-protection-on-the-azure-key-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 4 Enable Soft Delete and purge protection on the Azure Key Vault<\/a>\r\n 8. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-bring-your-own-keys-byok-for-recovery-services-vaults-5-assign-the-encryption-key-to-the-recovery-services-vault\" target=\"_blank\">Bring your own keys (BYOK) for recovery services vaults - 5 Assign the encryption key to the Recovery Services vault<\/a>\r\n 9. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-backup-center-in-microsoft-azure\" target=\"_blank\">Backup Center in Microsoft Azure<\/a>\r\n 10. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sql-server-in-azure-vm\" target=\"_blank\">Understanding the backup policy for SQL Server in Azure VM<\/a>\r\n 11. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-understanding-the-backup-policy-for-sap-hana-in-azure-vm-database\" target=\"_blank\">Understanding the backup policy for SAP HANA in Azure VM (Database)<\/a>\r\n 12. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-troubleshooting-the-backup-issues-for-sql-server-on-azure-vm-or-sap-hana-on-azure-vm-database\" target=\"_blank\">Troubleshooting the backup issues for SQL Server on Azure VM or SAP HANA on Azure VM (Database)<\/a>\r\n 13. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-configuring-azure-backup-for-azure-file-shares\" target=\"_blank\">Configuring Azure Backup for Azure File Shares<\/a>\r\n 14. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-cross-region-restore-crr-for-azure-virtual-machines-is-now-generally-available\" target=\"_blank\">Cross Region Restore (CRR) for Azure Virtual Machines is now generally available<\/a>\r\n 15. <a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-managing-the-backup-related-alerts-via-the-azure-monitor\" target=\"_blank\">Managing the backup-related alerts via the Azure Monitor<\/a>\r\n 16. <a href=\"https:\/\/harvestingclouds.com\/post\/simplifying-the-azure-backup-center-part-1\/\" target=\"_blank\">Simplifying the Azure Backup Center - Part 1<\/a>\r\n 17. <a href=\"https:\/\/harvestingclouds.com\/post\/simplifying-the-azure-backup-center-part-2\/\" target=\"_blank\">Simplifying the Azure Backup Center - Part 2<\/a>\r\n 18. <a href=\"https:\/\/harvestingclouds.com\/post\/azure-recovery-services-vaults-vs-backup-vaults\/\" target=\"_blank\">Azure Recovery Services Vaults vs Backup Vaults<\/a>",
-		"addpost": "addpost",
-		"dated": "Sep 30, 2021",
-		"slug": "azure-backup-series-index",
-		"categoryslug": "azure-backup",
-		"status": "publised",
-		"summary": "\n<p>This is the <strong>Index<\/strong> for the series of blog posts regarding the <strong>Azure Backup service<\/strong>.<\/p>\n<p><strong>Note<\/strong> that this Index is updated regularly as more posts are added around this topic.<\/p>\n<ol>\n<li><a href=\"https:\/\/HarvestingClouds.com\/post\/azure-backup-se...\"><\/a><\/li><\/ol>\n",
 		"prevStatus": "publised"
 	},
 	{
