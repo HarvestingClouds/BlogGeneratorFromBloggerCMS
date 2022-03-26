@@ -265,5 +265,9 @@
 	"272": "trigger",
 	"273": "azure data factory",
 	"274": "data factory",
-	"275": "storage trigger"
+	"275": "storage trigger",
+	"276": "strategy",
+	"277": "tagging strategy",
+	"278": "design",
+	"279": "tags strategy"
 }
