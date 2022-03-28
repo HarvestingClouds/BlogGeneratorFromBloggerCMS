@@ -844,7 +844,7 @@
 			"tags strategy"
 		],
 		"category": "Azure",
-		"body": "This is the **Index** for the series of blog posts regarding **Designing Tagging Strategy for Microsoft Azure**.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-1-basics\/\" target=\"_blank\">Basics and strategies in detail<\/a>\r\n 2. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-2-enforcing-tags-at-the-resource-level\/\" target=\"_blank\">Enforcing Tags at the Resource level<\/a>\r\n 3. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-3-enforcing-tags-at-the-subscription-level-and-inheriting-on-underlying-resources\/\" target=\"_blank\">Enforcing Tags at the Subscription level and Inheriting on underlying resources<\/a>\r\n 4. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-4-enforcing-tags-at-the-resource-group-level-and-inheriting-on-underlying-resources\/\" target=\"_blank\">Enforcing Tags at the Resource Group level and Inheriting on underlying resources<\/a>\r\n 5. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-5-combining-strategies\/\" target=\"_blank\">Combining strategies<\/a>\r\n 6. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-6-auto-calculate-and-apply-tags\/\" target=\"_blank\">Auto calculate and auto-apply Tags<\/a>\r\n 7. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-7-enforcing-tagging-standards-with-azure-policies\/\" target=\"_blank\">Enforcing tagging standards with Azure Policies<\/a>",
+		"body": "This is the **Index** for the series of blog posts regarding **Designing Tagging Strategy for Microsoft Azure**.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-1-basics\/\" target=\"_blank\">Basics and strategies in detail<\/a>\r\n 2. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-2-enforcing-tags-at-the-resource-level\/\" target=\"_blank\">Enforcing Tags at the Resource level<\/a>\r\n 3. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-3-enforcing-tags-at-the-subscription-level-and-inheriting-on-underlying-resources\/\" target=\"_blank\">Enforcing Tags at the Subscription level and Inheriting on underlying resources<\/a>\r\n 4. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-4-enforcing-tags-at-the-resource-group-level-and-inheriting-on-underlying-resources\/\" target=\"_blank\">Enforcing Tags at the Resource Group level and Inheriting on underlying resources<\/a>\r\n 5. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-5-combining-strategies\/\" target=\"_blank\">Combining strategies<\/a>\r\n 6. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-6-auto-calculate-and-apply-tags\/\" target=\"_blank\">Auto calculate and auto-apply Tags<\/a>\r\n 7. <a href=\"https:\/\/harvestingclouds.com\/post\/designing-tagging-strategy-for-microsoft-azure-part-7-enforcing-tagging-standards-with-azure-policies\/\" target=\"_blank\">Enforcing tagging standards with Azure Policies<\/a>\r\n\r\n**Additinal Links**:\r\n\r\n - <a href=\"https:\/\/harvestingclouds.com\/tag\/policy\/\" target=\"_blank\">All Azure policy related blogs<\/a>\r\n - <a href=\"https:\/\/harvestingclouds.com\/tag\/tag\/\" target=\"_blank\">All Tagging related blogs<\/a>",
 		"addpost": "addpost",
 		"dated": "Oct 27, 2021",
 		"slug": "designing-tagging-strategy-for-microsoft-azure-index",
@@ -1265,11 +1265,18 @@
 		"postDate": "28-07-2021",
 		"tags": [
 			"Azure",
+			"azure policies",
+			"azure policy",
+			"azurepolicies",
 			"azuresecurity",
 			"blob",
+			"custom policies",
+			"custompolicy",
 			"datasecurity",
 			"microsoft",
 			"microsoftazure",
+			"policies",
+			"policy",
 			"security",
 			"storage"
 		],
@@ -1328,6 +1335,57 @@
 		"status": "publised",
 		"summary": "\n<p>In the past, I wrote a script sample to output all VMs related reports. Now, this report is easily available in the Azure portal when you are viewing the VMs. You can even apply any filters and add\/remove any columns for more data. Then you can download the csv for the data you see. <\/p>\n<p>One t...<\/p>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Restricting resource types from creation in Azure via Azure Policy",
+		"postDate": "23-06-2021",
+		"tags": [
+			"Azure",
+			"azure policies",
+			"azure policy",
+			"azurepolicies",
+			"custom policies",
+			"custompolicy",
+			"microsoft",
+			"microsoftazure",
+			"policies",
+			"policy"
+		],
+		"category": "Azure",
+		"body": "As a best practice, you should restrict the **type of resources** that can be created in your environment. Even if these are required these should be created by creating an exemption in the policy temporarily. What this does is, it restricts end-users from accidentally creating those resources and disrupting your environment. \r\n\r\n\r\n## Resource Types to restrict ##\r\n\r\nOne such example is **Route Tables**. If someone in your organization with contributor rights creates a Route Table that is applied on a critical subnet then that user can divert all traffic from that subnet. \r\n\r\n**Public IP Addresses** are another big one that you want to restrict. Any public IP in your environment needs to have a valid business justification. These are the connection to the outside world and therefore you need to ensure that if one exists in your environment then that has proper safeguards (like Firewall) etc. in place. \r\n\r\nClassic resources should also be limited. You want to conform to the latest standards (ARM-based) and stay away from classic compute and storage resources within Azure.\r\n\r\nWe recommend the below resource types to consider restricting in your environment as a starting place. You can then extend these and add\/remove any types as per your requirements:\r\n\r\n - Route Tables\r\n - Public IP addresses\r\n - DNS Zones\r\n - Network Watchers\r\n - Search Services\r\n - Bastion Hosts\r\n - Elastic Pools\r\n - Classic Compute\r\n - Classic Storage\r\n\r\n## Policy Sample ##\r\n\r\nThe below policy sample implements the restrictions and limits the resource types (that we discussed above) from being created at all. If any of the mentioned resource type is created then the policy denies that resource creation operation.\r\n\r\n    {\r\n        \"mode\": \"All\",\r\n        \"policyRule\": {\r\n          \"if\": {\r\n            \"anyOf\": [\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.Network\/dnszones*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.Network\/networkWatchers*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.Search\/searchServices*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.Network\/publicIPAddresses*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.Network\/bastionHosts*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.Sql\/servers\/elasticpools*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.Network\/routeTables*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.ClassicCompute\/*\"\r\n              },\r\n              {\r\n                \"field\": \"type\",\r\n                \"like\": \"Microsoft.ClassicStorage\/*\"\r\n              }\r\n            ]\r\n          },\r\n          \"then\": {\r\n            \"effect\": \"deny\"\r\n          }\r\n        },\r\n        \"parameters\": {}\r\n      }\r\n\r\n## Additional Considerations - restricting VM SKUs ##\r\n\r\nIn addition to restricting the resource types, you should also restrict VM SKUs. A SKU from the high performance computing series like HBv3-series can eat up your budget very fast. So as a good practice you should be restricting the SKUs to only the ones that you allow. You will need to maintain the list and update it as different projects require additional SKUs or want to upgrade to the latest series. But that is easily done and hardly takes any time. The benefits far outweigh this one small downside.\r\n\r\n## Complete Policy Samples on GitHub ##\r\n\r\nYou can find the complete policy samples on the GitHub in my policy samples repository here: <a href=\"https:\/\/github.com\/HarvestingClouds\/AzurePolicySamples\/tree\/main\/Enforcing%20Standards\" target=\"_blank\">AzurePolicySamples - Enforcing Standards<\/a>.",
+		"addpost": "addpost",
+		"dated": "Jun 23, 2021",
+		"slug": "restricting-resource-types-from-creation-in-azure-via-azure-policy",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>As a best practice, you should restrict the <strong>type of resources<\/strong> that can be created in your environment. Even if these are required these should be created by creating an exemption in the policy temporarily. What this does is, it restricts end-users from accidentally creating those...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Enforcing Naming Convention for Resource Group via Azure Policy",
+		"postDate": "18-06-2021",
+		"tags": [
+			"Azure",
+			"azure policies",
+			"azure policy",
+			"azurepolicies",
+			"custom policies",
+			"custompolicy",
+			"microsoft",
+			"microsoftazure",
+			"policies",
+			"policy"
+		],
+		"category": "Azure",
+		"body": "Having the right naming convention is very important for your environment. If you already have a naming convention defined then you should try to enforce it in your environment. One such way to do this is via Azure policy. In this post, we will look at how we can do this with a policy sample.\r\n\r\n## Sample naming convention ##\r\n\r\nLet's assume that the naming convention for the Resource Groups has the below features\/restrictions:\r\n\r\n - The name should start with \"RG-\"\r\n - The name should end with the environment i.e. dev, test, or prod\r\n - The name should also end with the location i.e. US East, US West, etc.\r\n\r\nE.g. the name should be something like RG-AccoutingRecordsApp-Dev-USE to denote that the resource group is for the accounting department for some \"records app\". This resource group is in a dev environment and within the US East location.\r\n\r\n## Enforcing the naming convention ##\r\n\r\nTo enforce the naming convention we will have negative conditions so that later we can apply the deny operation to stop the resource group from even creating. Also note that all of the conditions should be met. If any of the conditions is not met then the resource group creation will fail.\r\n\r\nPolicy sample:\r\n\r\n    {\r\n        \"mode\": \"All\",\r\n        \"policyRule\": {\r\n          \"if\": {\r\n            \"allOf\": [\r\n              {\r\n                \"field\": \"type\",\r\n                \"equals\": \"Microsoft.Resources\/subscriptions\/resourceGroups\"\r\n              },\r\n              {\r\n                \"anyOf\": [\r\n                  {\r\n                    \"field\": \"name\",\r\n                    \"notLike\": \"RG-*\"\r\n                  },\r\n                  {\r\n                    \"allOf\": [\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-DEV-USE\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-DEV-USW\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-TEST-USE\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-TEST-USW\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-PROD-USE\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-PROD-USW\"\r\n                      }\r\n                    ]\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          },\r\n          \"then\": {\r\n            \"effect\": \"deny\"\r\n          }\r\n        },\r\n        \"parameters\": {}\r\n      }\r\n\r\n\r\n## Complete Policy Samples on GitHub ##\r\n\r\nYou can find the complete policy samples on the GitHub in my policy samples repository here: <a href=\"https:\/\/github.com\/HarvestingClouds\/AzurePolicySamples\/tree\/main\/Enforcing%20Standards\" target=\"_blank\">AzurePolicySamples - Enforcing Standards<\/a>.",
+		"addpost": "addpost",
+		"dated": "Jun 18, 2021",
+		"slug": "enforcing-naming-convention-for-resource-group-via-azure-policy",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>Having the right naming convention is very important for your environment. If you already have a naming convention defined then you should try to enforce it in your environment. One such way to do this is via Azure policy. In this post, we will look at how we can do this with a policy sample.<\/p>...\n"
 	},
 	{
 		"author": "@20aman",
@@ -6990,30 +7048,5 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "Enforcing Naming Convention for Resource Group via Azure Policy",
-		"postDate": "18-06-2021",
-		"tags": [
-			"Azure",
-			"azure policies",
-			"azure policy",
-			"azurepolicies",
-			"custom policies",
-			"custompolicy",
-			"microsoft",
-			"microsoftazure",
-			"policies",
-			"policy"
-		],
-		"category": "Azure",
-		"body": "Having the right naming convention is very important for your environment. If you already have a naming convention defined then you should try to enforce it in your environment. One such way to do this is via Azure policy. In this post, we will look at how we can do this with a policy sample.\r\n\r\n## Sample naming convention ##\r\n\r\nLet's assume that the naming convention for the Resource Groups has the below features\/restrictions:\r\n\r\n - The name should start with \"RG-\"\r\n - The name should end with the environment i.e. dev, test, or prod\r\n - The name should also end with the location i.e. US East, US West, etc.\r\n\r\nE.g. the name should be something like RG-AccoutingRecordsApp-Dev-USE to denote that the resource group is for the accounting department for some \"records app\". This resource group is in a dev environment and within the US East location.\r\n\r\n## Enforcing the naming convention ##\r\n\r\nTo enforce the naming convention we will have negative conditions so that later we can apply the deny operation to stop the resource group from even creating. Also note that all of the conditions should be met. If any of the conditions is not met then the resource group creation will fail.\r\n\r\nPolicy sample:\r\n\r\n    {\r\n        \"mode\": \"All\",\r\n        \"policyRule\": {\r\n          \"if\": {\r\n            \"allOf\": [\r\n              {\r\n                \"field\": \"type\",\r\n                \"equals\": \"Microsoft.Resources\/subscriptions\/resourceGroups\"\r\n              },\r\n              {\r\n                \"anyOf\": [\r\n                  {\r\n                    \"field\": \"name\",\r\n                    \"notLike\": \"RG-*\"\r\n                  },\r\n                  {\r\n                    \"allOf\": [\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-DEV-USE\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-DEV-USW\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-TEST-USE\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-TEST-USW\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-PROD-USE\"\r\n                      },\r\n                      {\r\n                        \"field\": \"name\",\r\n                        \"notLike\": \"*-PROD-USW\"\r\n                      }\r\n                    ]\r\n                  }\r\n                ]\r\n              }\r\n            ]\r\n          },\r\n          \"then\": {\r\n            \"effect\": \"deny\"\r\n          }\r\n        },\r\n        \"parameters\": {}\r\n      }\r\n\r\n\r\n## Complete Policy Samples on GitHub ##\r\n\r\nYou can find the complete policy samples on the GitHub in my policy samples repository here: <a href=\"https:\/\/github.com\/HarvestingClouds\/AzurePolicySamples\/tree\/main\/Enforcing%20Standards\" target=\"_blank\">AzurePolicySamples - Enforcing Standards<\/a>.",
-		"addpost": "addpost",
-		"dated": "Jun 18, 2021",
-		"slug": "enforcing-naming-convention-for-resource-group-via-azure-policy",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p>Having the right naming convention is very important for your environment. If you already have a naming convention defined then you should try to enforce it in your environment. One such way to do this is via Azure policy. In this post, we will look at how we can do this with a policy sample.<\/p>...\n"
 	}
 ]
