@@ -1467,6 +1467,28 @@
 	},
 	{
 		"author": "@20aman",
+		"title": "Log analytics workspace name uniqueness is now per resource group",
+		"postDate": "05-05-2021",
+		"tags": [
+			"Azure",
+			"log analytics workspace",
+			"loganalytics",
+			"microsoft",
+			"microsoftazure",
+			"workspace"
+		],
+		"category": "Azure",
+		"body": "**Azure monitor log analytics workspace name** needed to be unique globally so far (similar to storage account names). Microsoft has implemented changes on the backend around how the names are handled in the background. The main change that is an outcome of this is that the log analytics workspace name no longer needs to be globally unique. Instead, it needs to be unique only within a resource group level.\r\n\r\nThis provides a lot more flexibility in providing whatever names you want to assign to the log analytics workspace and following your naming standards without worrying that someone else across the globe could be using the same name. \r\n\r\n## Workspace uniqueness updates ##\r\n\r\n**Workspace uniqueness** is maintained as follow:\r\n\r\n - **Workspace ID** \u2013 global uniqueness remained unchanged.\r\n - **Workspace resource ID** \u2013 also needs to be globally unique.\r\n - **Workspace name** \u2013 needs to be unique per resource group.\r\n\r\n## Cross workspace queries ##\r\n\r\nCross workspace queries should now reference workspaces by either: \r\n\r\n - Qualified name, or\r\n - Workspace ID, or\r\n - Azure Resource ID\r\n\r\nCross workspace queries referenced by resource name (i.e. the workspace name) will fail due to ambiguous names when you have multiple workspaces with that name.\r\n\r\n**Official update link**: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/general-availability-log-analytics-workspace-name-uniqueness-is-now-per-resource-group\/\" target=\"_blank\">Log analytics workspace name uniqueness is now per resource group<\/a>.",
+		"addpost": "addpost",
+		"dated": "May 05, 2021",
+		"slug": "log-analytics-workspace-name-uniqueness-is-now-per-resource-group",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure monitor log analytics workspace name<\/strong> needed to be unique globally so far (similar to storage account names). Microsoft has implemented changes on the backend around how the names are handled in the background. The main change that is an outcome of this is that the log analy...<\/p>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
 		"title": "Azure Bastion Series - Index",
 		"postDate": "25-04-2021",
 		"tags": [
@@ -7074,5 +7096,42 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Site Recovery now supports cross-continental disaster recovery - although only for 3 region pairs",
+		"postDate": "11-05-2021",
+		"tags": [
+			"Azure",
+			"microsoft",
+			"microsoftazure"
+		],
+		"category": "Azure",
+		"body": "If you even had to create a strategy for your organization around Business Continuity\/Disaster Recovery in Azure for Virtual Machines, the key product\/offering you leverage is Azure Site Recovery or ASR. It actively replicates the data across different region and provides ability to failover in case of a disaster. \r\n\r\nAzure Site Recovery now supports cross-continental disaster recovery giving a new meaning to failover. This feature is available for 3 region pairs. These pairs are:\r\n\r\n 1. Southeast Asia and Australia East\r\n 2. Southeast Asia and Australia Southeast\r\n 3. West Europe and South Central US\r\n\r\nThis means that a workload running in Southeast Asia can be replicated to Australia East and failed over across continents in case of a disaster. \r\n\r\nOfficial announcement link: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/asr-cross-continental-dr\/\" target=\"_blank\">Azure Site Recovery now supports cross-continental disaster recovery for 3 region pairs<\/a>.",
+		"addpost": "addpost",
+		"dated": "May 11, 2021",
+		"slug": "azure-site-recovery-now-supports-cross-continental-disaster-recovery-although-only-for-3-region-pairs",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>If you even had to create a strategy for your organization around Business Continuity\/Disaster Recovery in Azure for Virtual Machines, the key product\/offering you leverage is Azure Site Recovery or ASR. It actively replicates the data across different region and provides ability to failover in c...<\/p>\n"
+	},
+	{
+		"author": "@20aman",
+		"title": "Azure Key Vault service SLA raised to 99.99% from 99.9%",
+		"postDate": "22-05-2021",
+		"tags": [
+			"Azure",
+			"microsoft",
+			"microsoftazure",
+			"sla"
+		],
+		"category": "Azure",
+		"body": "**Azure Key Vault** service is now even more resilient. The SLA for this service has been raised to **99.99%**. Earlier this SLA was only 99.9%.\r\n\r\nWith this update, Azure Key Vault guarantees that valid Key Vault requests will have availability 99.99% of the time. \r\n\r\nLet's understand what that change translates to. The permissible **downtime or unavailability time** has been reduced as follows.\r\n\r\n - **Daily**: From 1m 26s to 8s\r\n - **Weekly**: From 10m 4s to 1m\r\n - **Monthly**: From 43m 49s to 4m 22s\r\n - **Quarterly**: From 2h 11m 29s to 13m 8s\r\n - **Yearly**: From 8h 45m 56s to 52m 35s\r\n\r\nAs you can see from the above numbers, even if the SLA doesn't look much bigger change, it actually is a very big difference in the allowed downtime.\r\n\r\nReference: <a href=\"https:\/\/azure.microsoft.com\/en-us\/updates\/akv-sla-raised-to-9999\/\" target=\"_blank\">Azure Key Vault SLA raised to 99.99%<\/a>",
+		"addpost": "addpost",
+		"dated": "May 22, 2021",
+		"slug": "azure-key-vault-service-sla-raised-to-9999-from-999",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p><strong>Azure Key Vault<\/strong> service is now even more resilient. The SLA for this service has been raised to <strong>99.99%<\/strong>. Earlier this SLA was only 99.9%.<\/p>\n<p>With this update, Azure Key Vault guarantees that valid Key Vault requests will have availability 99.99% of the time. <...><\/...><\/p>\n"
 	}
 ]
