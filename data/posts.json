@@ -11,11 +11,37 @@
 		"category": "Azure",
 		"body": "This is the **Index** for the series of blog posts regarding the **Windows Admin Center in the Azure portal **.\r\n\r\n**Note** that this Index is updated regularly as more posts are added around this topic.\r\n\r\n 1. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-1-intro-to-the-easiest-server-management\/\" target=\"_blank\">Intro to the Easiest Server Management<\/a>\r\n 2. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-2-setting-it-up\/\" target=\"_blank\">Setting it up<\/a>\r\n 3. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-3-under-the-hood\/\" target=\"_blank\">Under the hood<\/a>\r\n 4. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-4-connecting-to-it\/\" target=\"_blank\">Connecting to it<\/a>\r\n 5. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-5-working-with-it\/\" target=\"_blank\">Working with it<\/a>\r\n 6. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-6-various-tools-part-1\/\" target=\"_blank\">Various Tools - Part 1<\/a>\r\n 7. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-7-various-tools-part-2\/\" target=\"_blank\">Various Tools - Part 2<\/a>\r\n 8. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-8-caveats\/\" target=\"_blank\">Caveats<\/a>\r\n 9. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-9-securing-inbound-connectivity\/\" target=\"_blank\">Securing inbound connectivity<\/a>\r\n 10. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-10-troubleshooting-common-issues\/\" target=\"_blank\">Troubleshooting common issues<\/a>\r\n 11. <a href=\"https:\/\/harvestingclouds.com\/post\/windows-admin-center-in-the-azure-portal-11-automating-deployment\/\" target=\"_blank\">Automating deployment<\/a>\r\n",
 		"addpost": "addpost",
-		"dated": "Mar 29, 2022",
+		"dated": "Mar 28, 2022",
 		"slug": "windows-admin-center-in-the-azure-portal-index",
 		"categoryslug": "azure",
 		"status": "publised",
 		"summary": "\n<p>This is the <strong>Index<\/strong> for the series of blog posts regarding the <strong>Windows Admin Center in the Azure portal <\/strong>.<\/p>\n<p><strong>Note<\/strong> that this Index is updated regularly as more posts are added around this topic.<\/p>\n<ol>\n<li><a href=\"https:\/\/harvestingclouds.com...\"><\/a><\/li><\/ol>\n",
+		"prevStatus": "publised"
+	},
+	{
+		"author": "@20aman",
+		"title": "An Easter Egg or hidden feature within the Azure Portal - Simplified View of all resources",
+		"postDate": "28-03-2022",
+		"tags": [
+			"Azure",
+			"azure portal",
+			"azureportal",
+			"easter egg",
+			"easter egg in Azure",
+			"hidden feature",
+			"microsoft",
+			"microsoftazure",
+			"portal",
+			"simplified view"
+		],
+		"category": "Azure",
+		"body": "My friend Eric Bogenschuetz first showed me about this hidden feature within the Azure portal. This is a borderline easter egg of some sort. Let's look at what it is and how to find it. \r\n\r\n## The hidden feature ##\r\n\r\nThe latest view to view all resources within a Resource Group or all resources for the whole environment within the Azure portal is very advanced with lots of async queries running behind the scene and a lot of features\/filtering capabilities etc. Sometimes this view can take time to reflect the changes if there are lots of changes happening at the same time. You are required to refresh the whole page sometimes to circumvent this issue if after multiple refreshes the view still doesn't refresh for you. Luckily there is a \"**Simplified View**\" within the Azure portal that can tone down the optimizations and provide you with a very simplified view of all your resources.\r\n\r\n## How to access it ##\r\n\r\nTo access this hidden feature, simply click on the \"**Refresh**\" button 5 times within the Resource Group or All Resources in general. You will have to wait between each refresh to let it finish refreshing the view. When you will click the 5th time, instead of refreshing the page, the portal prompts you to switch to a simplified view, as shown below.\r\n\r\n<img src=\"\/images\/16486063276243bc7729ef7.png\" alt=\"Prompt to switch\">\r\n\r\nIf you click on the blue button for \"Switch to simplified view\" you are shown the simplified view as shown below.\r\n\r\n<img src=\"\/images\/16486063366243bc80638e9.png\" alt=\"Simplified view\">\r\n\r\nGive it a try yourself. Let me know if you find this interesting.",
+		"addpost": "addpost",
+		"dated": "Mar 27, 2022",
+		"slug": "an-easter-egg-or-hidden-feature-within-the-azure-portal-simplified-view-of-all-resources",
+		"categoryslug": "azure",
+		"status": "publised",
+		"summary": "\n<p>My friend Eric Bogenschuetz first showed me about this hidden feature within the Azure portal. This is a borderline easter egg of some sort. Let's look at what it is and how to find it. <\/p>\n<h2>The hidden feature<\/h2>\n<p>The latest view to view all resources within a Resource Group or all resour...<\/p>\n",
 		"prevStatus": "publised"
 	},
 	{
@@ -7133,30 +7159,5 @@
 		"status": "publised",
 		"summary": "\n<p>Harvesting Clouds is a blog about all things Cloud. Be it Private Cloud or Public Cloud, I will try to cover various aspects of both.<\/p>\n<h3>Private Cloud<\/h3>\n<p>My key areas of interest in Private Cloud include the following:<\/p>\n<ul><li>PowerShell Scripting<\/li>\n<li>Windows Azure Pack or WAP...<\/li><\/ul>\n",
 		"prevStatus": "publised"
-	},
-	{
-		"author": "@20aman",
-		"title": "An Easter Egg or hidden feature within the Azure Portal - Simplified View of all resources",
-		"postDate": "28-03-2022",
-		"tags": [
-			"Azure",
-			"azureportal",
-			"microsoft",
-			"microsoftazure",
-			"portal",
-			"azure portal",
-			"hidden feature",
-			"easter egg",
-			"easter egg in Azure",
-			"simplified view"
-		],
-		"category": "Azure",
-		"body": "My friend Eric Bogenschuetz first showed me about this hidden feature within the Azure portal. This is a borderline easter egg of some sort. Let's look at what it is and how to find it. \r\n\r\n## The hidden feature ##\r\n\r\nThe latest view to view all resources within a Resource Group or all resources for the whole environment within the Azure portal is very advanced with lots of async queries running behind the scene and a lot of features\/filtering capabilities etc. Sometimes this view can take time to reflect the changes if there are lots of changes happening at the same time. You are required to refresh the whole page sometimes to circumvent this issue if after multiple refreshes the view still doesn't refresh for you. Luckily there is a \"**Simplified View**\" within the Azure portal that can tone down the optimizations and provide you with a very simplified view of all your resources.\r\n\r\n## How to access it ##\r\n\r\nTo access this hidden feature, simply click on the \"**Refresh**\" button 5 times within the Resource Group or All Resources in general. You will have to wait between each refresh to let it finish refreshing the view. When you will click the 5th time, instead of refreshing the page, the portal prompts you to switch to a simplified view, as shown below.\r\n\r\n<img src=\"\/images\/16486063276243bc7729ef7.png\" alt=\"Prompt to switch\">\r\n\r\nIf you click on the blue button for \"Switch to simplified view\" you are shown the simplified view as shown below.\r\n\r\n<img src=\"\/images\/16486063366243bc80638e9.png\" alt=\"Simplified view\">\r\n\r\nGive it a try yourself. Let me know if you find this interesting.",
-		"addpost": "addpost",
-		"dated": "Mar 28, 2022",
-		"slug": "an-easter-egg-or-hidden-feature-within-the-azure-portal-simplified-view-of-all-resources",
-		"categoryslug": "azure",
-		"status": "publised",
-		"summary": "\n<p>My friend Eric Bogenschuetz first showed me about this hidden feature within the Azure portal. This is a borderline easter egg of some sort. Let's look at what it is and how to find it. <\/p>\n<h2>The hidden feature<\/h2>\n<p>The latest view to view all resources within a Resource Group or all resour...<\/p>\n"
 	}
 ]
